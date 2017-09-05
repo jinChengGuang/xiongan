@@ -1,0 +1,36 @@
+{
+  "name": "ht-admin-node",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debug": "nodemon --harmony index.js",
+    "lint": "gulp lint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hc-basis-node": "^0.0.5",
+    "hw-common-node": "^0.0.5",
+    "koa": "^2.3.0",
+    "koa-ejs": "^4.1.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  }
+}
