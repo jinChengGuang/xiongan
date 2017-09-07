@@ -1,0 +1,124 @@
+<style>
+  body{ background-color: #fff!important; }
+  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
+  .interval{ margin-top: 50px; }
+  .icon{ color: #333; }
+  .list-unstyled li{ height: 40px; line-height: 40px; background-color: #f2f4f5; border-bottom: 1px solid #e4e4e4; }
+  .col-7 i{ color: #8a8a8a; font-size: 14px; }
+  .list{ display: none; }
+  .list li { padding-top: 1%; padding-bottom: 1%; border-bottom: 1px solid #f1f1f1; }
+  .child{ font-size: 14px; background: #f2f4f5; display: none; }
+  .cur{ background-color: #fff!important; }
+  .active{ color:#169bd5;}
+</style>
+<div class="container-fluid">
+  <div class="row bg-light justify-content-left fixed-top">
+    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon">&#xe7b9;</a></div>
+    <div class="col-8 text-center">选择期望职位</div>
+  </div>
+
+  <div class="row interval">
+    <div class="col-5 none">
+      <ul class="list-unstyled text-center">
+        <li>IT/互联网/软件</li>
+        <li>销售/客服/市场</li>
+        <!--<li>食品/饮料/服装</li>
+        <li>设计/广告/媒体</li>
+        <li>教育/培训/翻译</li>
+        <li>财会/银行/金融</li>
+        <li>人力/行政/法律</li>-->
+      </ul>
+    </div>
+    <div class="col-7 none pl-1 pr-1">
+      <ul class="list">
+        <li>
+          <i class="icon">&#xe806;</i>
+          <span>产品1</span>
+          <i class="icon right">&#xe7c3;</i>
+
+            <ul class="child">
+              <li>产品专员/产品经理</li>
+              <li>产品专员/高级产品经理</li>
+            </ul>
+
+        </li>
+        <li>
+          <i class="icon">&#xe806;</i>
+          <span>设计</span>
+          <i class="icon right">&#xe7c3;</i>
+
+            <ul class="child">
+              <li>产品专员/产品经理</li>
+              <li>产品专员/高级产品经理</li>
+            </ul>
+
+        </li>
+      </ul>
+
+      <ul class="list">
+        <li>
+          <i class="icon">&#xe806;</i>
+          <span>销售</span>
+          <i class="icon right">&#xe7c3;</i>
+
+            <ul class="child">
+              <li>产品专员/产品经理</li>
+              <li>产品专员/高级产品经理</li>
+            </ul>
+
+        </li>
+        <li>
+          <i class="icon">&#xe806;</i>
+          <span>客服</span>
+          <i class="icon right">&#xe7c3;</i>
+
+            <ul class="child">
+              <li>产品专员/产品经理</li>
+              <li>产品专员/高级产品经理</li>
+            </ul>
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  $(function(){
+    $(".list-unstyled>li").eq(0).addClass("cur");
+    $(".list").eq(0).css("display","block");
+    $('.list-unstyled li').click(function(){
+    let index = $(this).index()
+    $('.list-unstyled li').eq(index).addClass("cur").siblings().removeClass("cur");
+    $('.list').hide().eq(index).show();
+    });
+
+    $(".list li").click(function(){
+      // let $this = $(this);
+      // let index = $(this).index();
+      // if($this.hasClass("active")){
+      //   $this.removeClass("active");
+      //   $(this).find(".right").html("&#xe7c2;")
+      //   $(".list li .child").eq(index).hide();
+      // }else{
+      //   $(".list li").removeClass("active").find(".right").html("&#xe7c2;");
+      //   $this.addClass("active");
+      //   $(this).find(".right").html("&#xe7c3;")
+      //   $(".list li .child").hide();
+      //   $(".list li .child").eq(index).show();
+      //    console.log(index)
+      // }
+      let j = $(".list>li").length
+      for(let i=0; i<j; i++){
+        if($('.child')[i].display=="none"){
+          console.log(11)
+          $('.child')[i].display == "block";
+        }else{
+          $('.child')[i].display == "none";
+        }
+      }
+    })
+  })
+</script>

@@ -1,0 +1,150 @@
+<style>
+  body{ background-color: #fff!important; }
+  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
+  .interval{ margin-top: 50px; }
+  .btn{ color: #fff; background-color: #199ed8; border-radius: 0px; margin: 10px auto; }
+  .title{ font-size: 15px; font-weight: bold; }
+  .st-icon-pandora{ color: red;}
+  .none{ padding-left: 0px; padding-right: 0px; }
+  label{ margin-bottom: 0px; }
+  .from-group{ font-size: 14px; border-bottom: 1px solid #f1f1f1; padding-top: 2%; padding-bottom: 2%; }
+  .form-control-plaintext{ padding-top: 0px; padding-bottom: 0px; }
+  .bg{ background-color: #32a7da; padding-top: 5%; padding-bottom: 5%; }
+  .head{ color: #fff; font-size: 14px; display: block; }
+  input{ outline: none; }
+  .form-check{ margin-bottom: 0px; }
+</style>
+<div class="container-fluid">
+  <div class="row bg-light justify-content-left fixed-top">
+    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon">&#xe7c5;</a></div>
+    <div class="col-8 text-center">我的简历</div>
+  </div>
+  <form action="#" class="interval">
+    <div class="row bg">
+      <div class="col-12 text-center">
+        <input type="file">
+        <span class="text-center head">好的工作从头像开始！</span>
+      </div>
+    </div>
+    
+    <div class="row from-group">
+      <div class="col-12">
+        <span class="title">个人资料</span>
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">姓名</label>
+      <div class="col-7 none">
+        <input type="text" class="form-control-plaintext border-0 w-100 text-right" placeholder="请输入姓名">
+      </div>
+      <div class="col-1 align-self-center text-center none">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">性别</label>
+      <div class="col-6 none text-right">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="isopen" value="1"> 男
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="isopen" value="2"> 女
+          </label>
+        </div>
+      </div>
+      <div class="col-2 align-self-center text-right">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">出生年月</label>
+      <div class="col-7 none">
+        <input type="datetime_local" class="form-control form_datetime_2">
+      </div>
+      <div class="col-1 align-self-center text-center none">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">最高学历</label>
+      <div class="col-6 none align-self-center text-right">
+        <select>
+          <option value="1">有限公司</option>
+          <option value="2">有限责任公司</option>
+        </select>
+      </div>
+      <div class="col-2 align-self-center text-right">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">工作经验</label>
+      <div class="col-6 none align-self-center text-right">
+        <select>
+          <option value="1">有限公司</option>
+          <option value="2">有限责任公司</option>
+        </select>
+      </div>
+      <div class="col-2 align-self-center text-right">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">现居住地</label>
+      <div class="col-6 none align-self-center text-left">
+        <div class="row">
+          <div class="col-6 none ">
+            <select>
+              <option>请选择市</option>
+              <option value="1">有限公司</option>
+              <option value="2">有限责任公司</option>
+            </select>
+          </div>
+          <div class="col-6 none">
+            <select>
+              <option>请选择县/区</option>
+              <option value="1">有限公司</option>
+              <option value="2">有限责任公司</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 align-self-center text-right">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">手机号码</label>
+      <div class="col-7 none">
+        <input type="text" class="form-control-plaintext border-0 w-100 text-right" placeholder="请输入手机号码">
+      </div>
+      <div class="col-1 align-self-center text-center none">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group row">
+      <label for="" class="col-4 col-from-label align-self-center">邮箱</label>
+      <div class="col-7 none">
+        <input type="text" class="form-control-plaintext border-0 w-100 text-right" placeholder="请输入邮箱">
+      </div>
+      <div class="col-1 align-self-center text-center none">
+        <span class="st-icon-pandora">*</span>  
+      </div>
+    </div>
+
+    <div class="row">
+      <a href="/job/new" class="btn">下一步</a>
+    </div>
+  </form>
+</div>
