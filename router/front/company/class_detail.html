@@ -1,0 +1,104 @@
+<!--顶部导航栏-->
+<div class="container-fluid top">
+  <div class="row tab">
+    <div class="col-2 ">
+      <i class="icon back">&#xe86c;</i>
+    </div>
+    <div class="col-8 middle">
+      <span>课程详情</span>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<div class="box">
+  <!--轮播图-->
+  <div id="carouselId" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselId" data-slide-to="1"></li>
+      <li data-target="#carouselId" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox" style="height:150px">
+      <div class="carousel-item active">
+        <img src="../../../skins/img/bk1.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../skins/img/bk2.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../skins/img/bk3.jpg" alt="Third slide">
+      </div>
+    </div>
+  </div>
+  <p>
+    <span>课程名称</span>
+    <span class="time">2017/10/15</span>
+  </p>
+  <p>
+    <i class="icon">&#xe621;</i>
+    <span>上课地址</span>
+  </p>
+  <p class="content">1、师资雄厚，实训能力强
+  我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。
+  2、培训后人员快速上岗，薪酬提升明显
+  我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。</p>
+  <p style="text-align: center;">
+    <a name="" id="" class="btn btn-primary" href="#" role="button">报名</a>
+  </p>
+  
+</div>
+
+<!--底部导航栏-->
+<div class="container-fluid py-1 bottom">
+  <div class="row">
+    <div class="col">
+      <a href="/front/company/home">
+        <i class="icon notbig">&#xe7c9;</i>
+        <p class="mb-0">首页</p >
+      </a>
+    </div>
+    <div class="col">
+      <a href="/front/company/recruit_list">
+        <i class="icon notbig">&#xe788;</i>
+        <p class="mb-0">招聘</p >
+      </a>
+    </div>
+    <div class="col">
+      <a href="/front/company/play">
+        <i class="icon big">&#xe7df;</i>
+        <p class="mb-0 play">雄安直播</p >
+      </a>
+    </div>
+    <div class="col">
+      <a href="/front/company/cultivate_list">
+        <i class="icon notbig">&#xe603;</i>
+        <p class="mb-0">培训</p >
+      </a>
+    </div>
+    <div class="col">
+      <a href="/front/company/compan_home">
+        <i class="icon notbig">&#xe81f;</i>
+        <p class="mb-0">我的</p >
+      </a>
+    </div>
+  </div>
+</div>
+<style>
+  .top{ position:fixed; top:0; left:0; z-index:10; border-bottom:#dcdddd solid 1px;}
+  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
+  .tab { height:45px; line-height:45px; background-color: #fff;}
+  .tab .middle{text-align: center;}
+  
+  .box{margin-top:45px; background-color: #fff; font-size:0.8rem; margin-bottom: 85px;}
+  .box p{padding:5px 15px; margin-bottom: 0;}
+  .box p .time{float:right;}
+  .box .btn{padding: .3rem 3.5rem; margin:10px auto;}
+  
+  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
+  .bottom .col { text-align: center; padding:0;}
+  .bottom .col a{display: block; width: 100%; height: 100%; color: #323232;}
+  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
+  .bottom .play { padding-top:29%;}
+  .mb-0{ font-size:0.8rem;}
+  .bottom .notbig{ font-size:1rem!important;}
+</style>
