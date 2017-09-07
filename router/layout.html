@@ -3,8 +3,8 @@
   <head>
     <title>和社区管理后台</title>
     <meta charset='utf-8'>
-    <!--<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>-->
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!--<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.1/weui.min.js"></script>
@@ -18,8 +18,55 @@
       Vue.use(VueResource)
       Vue.prototype.ajax = proto.ajax
     </script>
+    <style>
+      * {  
+    margin: 0;  
+    padding: 0;  
+    /*border: 0;  */
+    font: inherit;  
+    font-size: 100%;  
+    vertical-align: baseline;  
+  }  
+    
+  html {  
+    line-height: 1;  
+  }  
+    
+  ol, ul {  
+    list-style: none;  
+  }  
+    
+  table {  
+    border-collapse: collapse;  
+    border-spacing: 0;  
+  }  
+    
+  caption, th, td {  
+    text-align: left;  
+    font-weight: normal;  
+    vertical-align: middle;  
+  }  
+    
+  q, blockquote {  
+    quotes: none; 
+  }  
+  q:before, q:after, blockquote:before, blockquote:after {  
+    content: "";  
+    content: none;  
+  }  
+    
+  a img {  
+    border: none;  
+  }  
+    
+  article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {  
+    display: block;  
+  }
+
+   .none{ padding-left: 0px; padding-right: 0px; }
+    </style>
   </head>
-  <body>
+  <body style="background-color: #f1f1f1;">
     <div id='app'><%- body %></div>
   </body>
 </html>
