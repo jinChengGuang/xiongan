@@ -1,0 +1,84 @@
+<!--顶部导航栏-->
+<div class="container-fluid top">
+  <div class="row tab">
+    <div class="col-2 ">
+      <i class="icon back">&#xe86c;</i>
+    </div>
+    <div class="col-8 middle">
+      <span>站内信</span>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<!--空页-->
+<div class="empty w-100" style="display: none;">
+  <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="">
+</div>
+<!--通知条-->
+<div class="container-fluid notice">
+  <div class="row">
+    <div class="col-10">系统通知
+      <span class="weui-badge weui-badge_dot"></span>
+    </div>
+    <div class="col-2">
+      <i class="icon">&#xe630;</i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">用户投递通知
+      <span class="weui-badge weui-badge_dot"></span>
+    </div>
+    <div class="col-2">
+      <i class="icon">&#xe630;</i>
+    </div>
+  </div>
+</div>
+
+
+<!--底部导航栏-->
+<div class="container-fluid py-1 bottom">
+  <div class="row">
+    <div class="col">
+      <i class="icon notbig">&#xe7c9;</i>
+      <p class="mb-0">首页</p>
+    </div>
+    <div class="col">
+      <i class="icon notbig">&#xe788;</i>
+      <p class="mb-0">招聘</p>
+    </div>
+    <div class="col">
+      <i class="icon big">&#xe7df;</i>
+      <p class="mb-0 play">雄安直播</p>
+    </div>
+    <div class="col">
+      <i class="icon notbig">&#xe603;</i>
+      <p class="mb-0">培训</p>
+    </div>
+    <div class="col">
+      <i class="icon notbig">&#xe81f;</i>
+      <p class="mb-0">我的</p>
+    </div>
+  </div>
+</div>
+<style>
+  .top{ position:fixed; top:0; left:0; z-index:10; border-bottom:#dcdddd solid 1px;}
+  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
+  .tab { height:45px; line-height:45px; background-color: #fff;}
+  .tab .middle{text-align: center;}
+
+  .empty{ margin-top: 50%; text-align: center;}
+  .empty img { width:70%;}
+  
+  .notice{margin-top:50px;}
+  .notice .row{padding:10px 15px; background-color: #fff; font-size:0.8rem; margin-top:5px;}
+  .notice .row .col-10{padding:0;}
+  .notice .row .col-2{padding:0; text-align: right;}
+  .notice .row .col-10 .weui-badge{vertical-align: top;}
+
+  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
+  .bottom .col { text-align: center; padding:0;}
+  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
+  .bottom .play { padding-top:29%;}
+  .mb-0{ font-size:0.8rem;}
+  .bottom .notbig{ font-size:1rem!important;}
+</style>

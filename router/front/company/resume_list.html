@@ -1,0 +1,198 @@
+<!--顶部导航栏-->
+<div class="container-fluid top">
+  <div class="row tab">
+    <div class="col-2">
+      <i class="icon back">&#xe86c;</i>
+    </div>
+    <div class="col-8 middle">
+      <span>简历列表</span>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<!--简历列表-->
+<div class="box">
+  <ul class="list">
+    <li class="lis row">
+      <div class="col-2">
+        <img src="../../../skins/img/byb.png" alt="">
+      </div>
+      <div class="col-10">
+        <p>
+          <span>王XXX</span>
+        </p>
+        <p>
+          <span>学历：</span>
+          <span>本科</span>
+        </p>
+        <p>
+          <span>工作经验</span>
+          <span>1年</span>
+        </p>
+        <p>
+          <span>工位电话</span>
+          <a href="###">
+            <span>电商产品经理电话</span>
+            <i class="icon">&#xe760;</i>
+          </a>
+        </p>
+        <p>
+          <span>投递日期</span>
+          <span>2017/08/19</span>
+        </p>
+        <a href="###" class="button invitation">邀请</a>
+        <a href="###" class="button delete">
+          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
+        </a>
+        <i class="icon star">&#xe727;</i>
+      </div>
+    </li>
+    <li class="lis row">
+      <div class="col-2">
+        <img src="../../../skins/img/byb.png" alt="">
+      </div>
+      <div class="col-10">
+        <p>
+          <span>王XXX</span>
+        </p>
+        <p>
+          <span>学历：</span>
+          <span>本科</span>
+        </p>
+        <p>
+          <span>工作经验</span>
+          <span>1年</span>
+        </p>
+        <p>
+          <span>工位电话</span>
+          <a href="###">
+            <span>电商产品经理电话</span>
+            <i class="icon"> &#xe760; </i>
+          </a>
+        </p>
+        <p>
+          <span>投递日期</span>
+          <span>2017/08/19</span>
+        </p>
+        <a href="###" class="button invitation">邀请</a>
+        <a href="###" class="button delete">
+          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
+        </a>
+        <i class="icon star">&#xe727;</i>
+      </div>
+    </li>
+    </ul>
+  </div>
+  <!--邀请弹层-->
+  <div id="dialog2" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="backbox">
+      <div class="title">邀请模板</div>
+      <p>
+        <span>联系人：</span>
+        <span>何先生</span>
+      </p>
+      <p>
+        <span>联系电话：</span>
+        <span>13730125689</span>
+      </p>
+      <p>
+        <span>面试时间：</span>
+        <span>2017/8/31 10:00:00</span>
+      </p>
+      <p>
+        <span>面试地址：</span>
+        <span>北二环于瑞祥大街交叉口东行50米和社区</span>
+      </p>
+       <p>
+        <span>备注：</span>
+        <span>哈哈哈哈</span>
+      </p>
+    </div>
+  </div>
+  <!--删除弹框-->
+  <div id="dialog1" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+      <div class="weui-dialog__hd"><strong class="weui-dialog__title">111</strong></div>
+      <div class="weui-dialog__bd">您是否要进行此操作？</div>
+      <div class="weui-dialog__ft">
+          <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+          <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+      </div>
+    </div>
+  </div>
+  <!--底部导航栏-->
+    <div class="container-fluid py-1 bottom">
+      <div class="row">
+        <div class="col">
+          <i class="icon notbig">&#xe7c9;</i>
+          <p class="mb-0">首页</p>
+        </div>
+        <div class="col">
+          <i class="icon notbig">&#xe788;</i>
+          <p class="mb-0">招聘</p>
+        </div>
+        <div class="col">
+          <i class="icon big">&#xe7df;</i>
+          <p class="mb-0 play">雄安直播</p>
+        </div>
+        <div class="col">
+          <i class="icon notbig">&#xe603;</i>
+          <p class="mb-0">培训</p>
+        </div>
+        <div class="col">
+          <i class="icon notbig">&#xe81f;</i>
+          <p class="mb-0">我的</p>
+        </div>
+      </div>
+    </div>
+<style>
+  .top{ position:fixed; top:0; left:0; z-index: 10;}
+  .tab { height:45px; line-height:45px; background-color: #fff;}
+  .tab .middle{text-align: center;}
+  .tab .back { padding-left:15px; padding-right:15px; font-size: 1.5rem!important; vertical-align: middle;}
+
+  .list{ margin-top:55px; margin-bottom:80px; font-size:0.8rem;}
+  .lis { margin:10px; padding:10px; background-color: #fff; border-radius: 5px; position:relative;}
+  .lis p {line-height:25px;  margin-bottom:0;}
+  .lis img { width:100%; position:absolute; top:30%;}
+  .col-10{ padding:0;}
+  .col-2{ padding:0;}
+  .list .col-10 .button{ position:absolute; top:0; right:5%;}
+  .list .col-10 .invitation { padding-left:5px; padding-right:5px; font-size: 0.5rem; color:#fff; background-color:deepskyblue; border-radius: 5px; right:20%; }
+  .star{ position:absolute; bottom:0; right:0; font-size: 2rem!important; color:aqua;}
+
+  .weui-dialog{ font-size:0.8rem; border-radius: 5px;}
+
+  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
+  .bottom .col { text-align: center; padding:0;}
+  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
+  .bottom .play { padding-top:29%;}
+  .mb-0{ font-size:0.8rem;}
+  .bottom .notbig{ font-size:1rem!important;}
+
+  #dialog2 .backbox{ position:absolute; top:27%; left:10%; width:80%; padding:10px; background-color: #fff; border-radius: 5px; z-index: 1010; font-size:0.8rem;}
+  #dialog2 .backbox .title{width:100%; height:25px; line-height: 25px; text-align: center; font-size: 1rem; margin-bottom: 10px;}
+</style>
+<script>
+  let a = document.getElementsByClassName('delete')
+  let dialog1 = document.getElementById('dialog1')
+  let weuimask = document.getElementsByClassName('weui-mask')
+  let cancel = document.getElementsByClassName('weui-dialog__btn_default')
+  for(let one of a){
+    one.onclick = function(){
+      dialog1.style.display = 'block'
+    }
+  }
+  for(let one of weuimask){
+    one.onclick = function(){
+      dialog1.style.display = 'none'
+    }
+  }
+  for(let one of cancel){
+    one.onclick = function(){
+      dialog1.style.display = 'none'
+    }
+  }
+</script>
