@@ -16,7 +16,7 @@
     <script src='https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js' integrity='sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1' crossorigin='anonymous'></script>
     <script>
       Vue.use(VueResource)
-      Vue.prototype.ajax = proto.ajax
+      //Vue.prototype.ajax = proto.ajax
     </script>
     <style>
       * {  
@@ -69,6 +69,48 @@
   <body style="background-color: #f1f1f1;">
     <div id='app'><%- body %></div>
   </body>
+  <style>
+  
+  body{ background:#f1f1f1}
+  
+  * {  
+    margin: 0;  
+    padding: 0;  
+    border: 0;  
+    font: inherit;  
+    font-size: 100%;  
+    vertical-align: baseline;  
+  }  
+  html { line-height: 1; }  
+  ol, ul {  list-style: none; margin-bottom: 0px; }  
+  table {border-collapse: collapse; border-spacing: 0;  }  
+  caption, th, td { text-align: left; font-weight: normal; vertical-align: middle; }  
+  q, blockquote { quotes: none;}  
+  q:before, q:after, blockquote:before, blockquote:after { content: ""; content: none; }  
+  a img { border: none; }  
+  article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary { display: block;} 
+
+  .icon {
+    line-height: 1;
+    margin-top: -3px;
+    margin-top: -0.3rem;
+    font-style: normal;
+    font-size: inherit;
+    text-rendering: auto;
+    display: inline-block;
+    font-family: "iconfont" !important;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @font-face {font-family: "iconfont";
+    src: url('../../../skins/font/iconfont.eot'); /* IE9*/
+    src: url('../../../skins/font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../../skins/font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../../../skins/font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../../../skins/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  </style>
 </html>
 <style>
   * {  
