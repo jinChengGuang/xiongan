@@ -75,12 +75,16 @@ exports.get = {
    '/front/jobseeker/new_resume': async (ctx, next) => {
     await ctx.render('/front/jobseeker/new_resume')
   },
+  //简历详情
+   '/front/jobseeker/resume_detail': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/resume_detail')
+  },
    //创建求职意向
    '/front/jobseeker/job': async (ctx, next) => {
     await ctx.render('/front/jobseeker/job')
   },
   //个人评价
-   '/front/jobseeker/job': async (ctx, next) => {
+   '/front/jobseeker/assess': async (ctx, next) => {
     await ctx.render('/front/jobseeker/assess')
   },
   //个人评价提交成功

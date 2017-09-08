@@ -113,6 +113,7 @@
 .m-t-30{margin-top:30px;}
 .m-t-35{margin-top:35px;}
 .m-t-40{margin-top:40px;}
+.m-t-45{margin-top:45px;}
 .m-t-46{margin-top:46px;}
 .m-t-50{margin-top: 50px;}
 .m-t-55{margin-top: 55px;}
@@ -124,8 +125,10 @@
 .m-t-p5{margin-top:5%;}
 .m-t-p7{margin-top:7%;}
 .m-t-p8{margin-top:8%;}
+.m-t-p30{ margin-top: 30%; }
 .m-t-p45{margin-top:45%;}
 .m-t-p50{margin-top:50%;}
+
 
 .m-b-0{margin-bottom:0;}
 .m-b-2{margin-bottom:2px;}
@@ -138,6 +141,7 @@
 .m-b-18{margin-bottom:18px;}
 .m-b-20{margin-bottom:20px;}
 .m-b-22{margin-bottom:22px;}
+.m-b-38{margin-bottom:38px;}
 .m-b-45{margin-bottom:45px;}
 .m-b-55{margin-bottom:55px;}
 .m-b-60{margin-bottom:60px;}
@@ -171,7 +175,14 @@
 .m-r-18{margin-right:18px;}
 .m-r-20{margin-right:20px;}
 
+.m-20-auto{ margin: 20% auto; }
+.m-10-auto{ margin: 10px auto; }
+.m-50-auto-0{ margin: 50% auto 0; }
+.m-40-auto-0{ margin: 40% auto 0; }
+.ma{margin: 0 auto;}
 
+/*icon*/
+.icon{ margin-top: 0px; line-height: 1.25; }
 /* padding */
 .p-0{padding:0}
 .p-2{padding:2px;}
@@ -254,6 +265,7 @@
 .p-t-p9{padding-top:9%;}
 .p-t-p1{padding-top:1%;}
 .p-t-p2{padding-top:2%;}
+.p-t-p5{padding-top:5%;}
 .p-t-p13{padding-top:13%;}
 
 .p-b-0{padding-bottom:0;}
@@ -273,6 +285,7 @@
 .p-b-24{padding-bottom:24px;}
 .p-b-25{padding-bottom:25px;}
 .p-b-30{padding-bottom:30px;}
+.p-b-p5{padding-bottom: .5rem;}
 
 .p-l-0{padding-left:0;}
 .p-l-2{padding-left:2px;}
@@ -303,6 +316,7 @@
 .p-r-18{padding-right:18px;}
 .p-r-20{padding-right:20px;}
 .p-r-p3{padding-right:3%;}
+
 
 
 /* border */
@@ -342,6 +356,7 @@
 .bor-fff{border-color:#fff;}
 .bor-c9{border-color:#c9c9c9;}
 .bor-e3{border-color:#e3e3e3;}
+.bor-f1{border-color:#f1f1f1;}
 .bor-c3{border-color:#c3c3c3;}
 .bor-e45{border-color:#e45525;}
 .bor-a00{border-color:#a00;}
@@ -452,6 +467,7 @@
 .bg-c8c{background-color:#c8c9ca;}
 .bg-e60044{background-color:#e60044}
 .bg-df135d{background-color:#df135d}
+.bg-32a{ background-color: #32a7da}
 
 
 .bg-light{color:#58666e; background-color:#edf1f2;}
@@ -602,6 +618,7 @@ i{font-style:normal;}
 .pr{position:relative;}
 .pa{position:absolute;}
 .oh{overflow:hidden;}
+.fw{font-weight:bold;}
 .fw-b{font-weight:bold;}
 .in-out{outline:none;}
 
