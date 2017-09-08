@@ -24,11 +24,11 @@ exports.get = {
     await ctx.render('/front/company/cultivate_list')
   },
   // 课程详情
-  '/front/company/ruian/detail': async (ctx, next) => {
+  '/front/company/ruian_detail': async (ctx, next) => {
     await ctx.render('/front/company/ruian_detail')
   },
   // 考试详情、企业培训详情
-  '/front/company/class/detail': async (ctx, next) => {
+  '/front/company/class_detail': async (ctx, next) => {
     await ctx.render('/front/company/class_detail')
   },
   // 直播
@@ -86,7 +86,7 @@ exports.get = {
     await ctx.render('/front/company/mail')
   },
   // 站内信详情
-  '/front/company/mail/detail': async (ctx, next) => {
+  '/front/company/mail_detail': async (ctx, next) => {
     await ctx.render('/front/company/mail_detail')
   },
 }

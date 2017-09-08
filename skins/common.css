@@ -9,6 +9,8 @@
  8, text-color
  9, button
  10, animation
+ 11, vertical-align
+ 12, clear
  */
 
 /*new*/
@@ -116,13 +118,16 @@
 .m-t-50{margin-top: 50px;}
 .m-t-55{margin-top: 55px;}
 .m-t-80{margin-top: 80px;}
+.m-t-85{margin-top: 85px;}
 .m-t-90{margin-top: 90px;}
 .m-t-92{margin-top: 92px;}
 .m-t-107{margin-top: 107px;}
+.m-t-p5{margin-top:5%;}
 .m-t-p7{margin-top:7%;}
 .m-t-p8{margin-top:8%;}
 .m-t-p30{ margin-top: 30%; }
-
+.m-t-p45{margin-top:45%;}
+.m-t-p50{margin-top:50%;}
 
 
 .m-b-0{margin-bottom:0;}
@@ -137,9 +142,11 @@
 .m-b-20{margin-bottom:20px;}
 .m-b-22{margin-bottom:22px;}
 .m-b-38{margin-bottom:38px;}
+.m-b-45{margin-bottom:45px;}
 .m-b-55{margin-bottom:55px;}
 .m-b-60{margin-bottom:60px;}
 .m-b-80{margin-bottom:80px;}
+.m-b-85{margin-bottom:85px;}
 .m-b-114{margin-bottom:114px;}
 
 .m-l-0{margin-left:0;}
@@ -153,6 +160,8 @@
 .m-l-18{margin-left:18px;}
 .m-l-20{margin-left:20px;}
 .m-l-40{margin-left:40px;}
+.m-l-p3{margin-left:3%;}
+.m-l-p30{margin-left:30%;}
 
 
 .m-r-0{margin-right:0;}
@@ -257,6 +266,7 @@
 .p-t-p1{padding-top:1%;}
 .p-t-p2{padding-top:2%;}
 .p-t-p5{padding-top:5%;}
+.p-t-p13{padding-top:13%;}
 
 .p-b-0{padding-bottom:0;}
 .p-b-2{padding-bottom:2px;}
@@ -267,6 +277,7 @@
 .p-b-8{padding-bottom:8px;}
 .p-b-9{padding-bottom:9px;}
 .p-b-10{padding-bottom:10px;}
+.p-b-11{padding-bottom:11px;}
 .p-b-12{padding-bottom:12px;}
 .p-b-15{padding-bottom:15px;}
 .p-b-18{padding-bottom:18px;}
@@ -290,6 +301,8 @@
 .p-l-18{padding-left:18px;}
 .p-l-20{padding-left:20px;}
 .p-l-30{padding-left:30px;}
+.p-l-p1{padding-left:1%;}
+.p-l-p3{padding-left:3%;}
 
 .p-r-0{padding-right:0;}
 .p-r-2{padding-right:2px;}
@@ -302,6 +315,7 @@
 .p-r-15{padding-right:15px;}
 .p-r-18{padding-right:18px;}
 .p-r-20{padding-right:20px;}
+.p-r-p3{padding-right:3%;}
 
 
 
@@ -387,6 +401,7 @@
 .h-70{height:70px;}
 .h-80{height:80px;}
 .h-100{height:100px;}
+.h-150{height:150px;}
 
 /* line-height */
 .lh-16{line-height:16px;}
@@ -588,6 +603,7 @@
 .f-s-40{font-size:4.0rem;}
 .f-s-50{font-size:5.0rem;}
 .f-w-b{font-weight:bold;}
+.f-w-6{font-weight:600;}
 
 
 /* button */
@@ -603,6 +619,7 @@ i{font-style:normal;}
 .pa{position:absolute;}
 .oh{overflow:hidden;}
 .fw{font-weight:bold;}
+.fw-b{font-weight:bold;}
 .in-out{outline:none;}
 
 /* 定位 */
@@ -645,3 +662,11 @@ i{font-style:normal;}
 .icon{font-family:iconfont;}
 
 label {max-width:inherit;}
+
+/*vertical-align*/
+.va-m{vertical-align: middle;}
+.va-t{vertical-align: top;}
+.va-b{vertical-align: bottom;}
+
+/*clear*/
+.clear{clear: both;}
