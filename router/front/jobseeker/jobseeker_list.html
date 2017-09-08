@@ -1,172 +1,76 @@
-<div class="container-fluid header">
-  <div class="row mt-2">
-    <div class="col-1 icon icon_1 mt-2 pl-2">&#xe873;</div>
-    <div class="col-10 pl-2">
-      <input type="autocomplete" placeholder="搜索职位/公司">
-      <span class='icon'>&#xe7fd;</span>
-    </div>
-    <div class="col-1pl-0 mt-1 letter">
-      <div class="icon">&#xe7d5;</div> 
-      <span></span>
-    </div>
-  </div>
-</div>
-<!--过滤-->
-<div class="container-fluid box">
-  <div class="row row-one">
-    <div class="col-3 screen p-0"><a href="###">地区<i class='icon'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0"><a href="###">薪资<i class='icon'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0"><a href="###">发布时间<i class='icon'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0"><a href="###">待遇福利<i class='icon'>&#xe7c3;</i></a></div>
+<%- h%>
+<div class="container-fluid box m-t-46 pr">
+  <div class="row row-one h-40 lh-40 bg-fff">
+    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0'>地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0'>薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0'>发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6 bor-0"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6  t-c-0a0'>发布岗位</a></div>
   </div>
 </div>
 <!--弹层-->
-<div class='window container-fluid p-0'>
-  <div class='datail'>
-    <ul>
-      <li><span>全部</span></li>
-      <li><span>容城</span></li>
-      <li><span>雄县</span></li>
-      <li><span>安新</span></li>
-      <li><span>容城</span></li>
+<div class='window container-fluid p-0 dn h-400 bg-rgba w-100 pa t-14 z-100'>
+  <div class='datail h-150 bg-fff m-t-3 pr'>
+    <ul class='m-b-0'>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8'>全部</span></li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8'>容城</span></li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8'>雄县</span></li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8'>安新</span></li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8'>容城</span></li>
     </ul>
-    <button>确定</button>
+    <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-d pa b-0 l-0'>确定</button>
   </div>
 </div>
 
 <!--热门岗位1-->
-<div class=" container-fluid content">
-  <ul class="list">
-    <li class="lis row">
-      <p>
-        <span class="name">电商产品经理</span>
-        <span class="time">今天</span>
-      </p >
-      <p>
-        <span class="money">3000-5000</span>
-      </p >
-      <p class='left'>
-        <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
-      </p >
-      <p>
-        <span class="bor">五险一金</span>
-        <span class="bor">周日单休</span>
-        <span class="bor">法定节假</span>
-      </p >
-      <p>
-        <i class="icon">&#xe621;</i>
-        <span>保定市和社区外包有限公司</span>
-      </p >
-    </li>
-  </ul>
-</div>
-
-<div class=" container-fluid content">
-  <ul class="list">
-    <li class="lis row">
-      <p>
-        <span class="name">电商产品经理</span>
-        <span class="time">今天</span>
-      </p >
-      <p>
-        <span class="money">3000-5000</span>
-      </p >
-      <p class='left'>
-        <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
-      </p >
-      <p>
-        <span class="bor">五险一金</span>
-        <span class="bor">周日单休</span>
-        <span class="bor">法定节假</span>
-      </p >
-      <p>
-        <i class="icon">&#xe621;</i>
-        <span>保定市和社区外包有限公司</span>
-      </p >
-    </li>
-  </ul>
-</div>
-
-<!--底部导航栏-->
-<div class="container-fluid py-1 bottom">
-  <div class="row">
-    <div class="col">
-      <i class="icon notbig">&#xe7c9;</i>
-      <p class="mb-0">首页</p >
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe788;</i>
-      <p class="mb-0">求职</p >
-    </div>
-    <div class="col">
-      <i class="icon big">&#xe7df;</i>
-      <p class="mb-0 play">雄安直播</p >
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe603;</i>
-      <p class="mb-0">培训</p >
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe81f;</i>
-      <p class="mb-0">我的</p >
-    </div>
+<div>
+  <div class=" container-fluid content px-10 m-t-p3">
+    <ul class="list f-s-8">
+      <li class="lis row m-x-0 p-10 bg-fff br-5 pr m-t-10">
+        <p class='w-100 m-b-5'>
+          <span class="name f-s-10 f-w-600">电商产品经理</span>
+          <span class="time float-right">今天</span>
+        </p >
+        <p>
+          <span class="money t-c-b20">3000-5000</span>
+        </p >
+        <p class='left'>
+          <span><i class="icon">&#xe621;</i>保定 北市区</span>
+          <span class='p-l-6 f-s-6'><i class="icon">&#xe86a;</i>大专及以上</span>
+          <span class='p-l-6 f-s-6'><i class="icon">&#xe68c;</i>经验不限</span>
+        </p >
+        <p>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
+        </p >
+        <p>
+          <i class="icon">&#xe621;</i>
+          <span>保定市和社区外包有限公司</span>
+        </p >
+      </li>
+      <li class="lis row m-x-0 p-10 bg-fff br-5 pr m-t-10">
+        <p class='w-100 m-b-5'>
+          <span class="name f-s-10 f-w-600">电商产品经理</span>
+          <span class="time float-right">今天</span>
+        </p >
+        <p>
+          <span class="money t-c-b20">3000-5000</span>
+        </p >
+        <p class='left'>
+          <span><i class="icon">&#xe621;</i>保定 北市区</span>
+          <span class='p-l-6 f-s-6'><i class="icon">&#xe86a;</i>大专及以上</span>
+          <span class='p-l-6 f-s-6'><i class="icon">&#xe68c;</i>经验不限</span>
+        </p >
+        <p>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
+          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
+        </p >
+        <p>
+          <i class="icon">&#xe621;</i>
+          <span>保定市和社区外包有限公司</span>
+        </p >
+      </li>
+    </ul>
   </div>
-</div>
-
-
-
-<style>
-/*头部导航栏*/
-.header{position: fixed; top:0; height: 42px; background: #f1f1f1; z-index: 100;}
-  .header .icon_1{ font-size:18px; }
-  .header input{ height:28px; width: 100%; background: #fff; font-size:14px; padding-left: 10%; color: #dfdfdf;}
-  .header .col-10 .icon{ position: absolute; top:40%; left:5%; }
-  .header .letter{ font-size:18px; position: relative }
-  .header .letter span{position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:3px;; right:-2px;;}
-  /*筛选*/
-.box{ margin-top:45px; }
-  .row-one{ height:42px; line-height: 42px; background:#fff;}
-  .screen{ font-size:12px;}
-  .screen a{display: inline-block; width: 100%; text-align: center; height:25px; line-height: 25px; margin-top: 6%; border-right: 1px solid #ccc; color: #000;}
-  .screen a i{ padding-left: 3px; margin-top:3%;}
-  .screen a:nth-child(4){border:0}
-  
-
-
-/*热门岗位1*/
-.content{padding:0 10px 0 10px; margin-top: 3%;}
-  .list{font-size:0.8rem; }
-  .lis {margin:0; padding:10px; background-color: #fff; border-radius: 5px; position:relative;}
-  .lis p{ width:100%; margin-bottom:0.5rem;}
-  .list .left span:nth-child(2),span:nth-child(3){padding-left: 6px; font-size: 12px;}
-  .lis .name{ font-size:1rem!important; font-weight: 600;}
-  .lis .btn{ padding: 0.3rem .75rem; font-size:0.8rem!important; margin-left: 3%;}
-  .lis .time{float: right;}
-  .lis .money { color:red;}
-  .lis .bor{ padding:3px; border:#ccc solid 1px; color:dodgerblue; border-radius: 5px; font-size: 0.5rem; display: inline-block; margin-top:5px;}
-  .lis .right{text-align: right; margin-bottom:0;}
-
-  /*弹层*/
-.window{display: none; height:400px;background: rgba(0, 0, 0, 0.8); width:100%; position: absolute; top:14%; z-index: 100; }
-.datail{ height:150px; background: #fff; margin-top:3px; position: relative;}
-.datail ul li{float: left; padding-left:2%; padding-right:2%; width:25%; text-align: center;margin-top:5px; }
-.datail ul li span{  border:1px solid #ccc; border-radius: 5px;  display: inline-block; padding:3px 0 3px 0; width:100%; font-size:14px;}
-button{width:100%; height:35px; margin-top: 3%; font-size: 15px; color: #fff; background: dodgerblue; position: absolute; bottom:0; left:0; }
-
-
-/*底部导航*/
-.bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-
-
-
-
-</style>
+<%- f%>

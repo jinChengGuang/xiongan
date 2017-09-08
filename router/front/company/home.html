@@ -1,15 +1,6 @@
-<div class="container-fluid header">
-  <div class="row mt-2">
-    <div class="col-1 icon icon_1 mt-2 pl-2">&#xe873;</div>
-    <div class="col-10 pl-2">
-      <input type="autocomplete" placeholder="搜索职位/公司">
-      <span class='icon'>&#xe7fd;</span>
-    </div>
-    <div class="col-1 icon pl-0 mt-2 letter">&#xe7d5;</div>
-  </div>
-</div>
+<%- h%>
 <!--轮播图-->
-<div id="carouselId" class="carousel slide" data-ride="carousel">
+<div id="carouselId" class="carousel slide mt-4" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselId" data-slide-to="0" class="active"></li>
     <li data-target="#carouselId" data-slide-to="1"></li>
@@ -26,74 +17,64 @@
       <img src="../../../skins/img/ban3.jpg" class='w-100'>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
 <!---->
-<div class="container-fluid content border">
-  <div class="row">
-    <div class="col-6 p-0">
-      <div>
-        <img src="../../../skins/img/1.jpg">
+<div class="container-fluid content bor-sol bor-79">
+  <div class="row bg-eee h-80">
+    <div class="col-6 p-0 bor-r-sol bor-79">
+      <div class='float-left pl-3 w-w40 m-t-p15 t-c-0a0'>
+        <img src="../../../skins/img/1.jpg" class='h-30 w-w40'>
       </div>
-      <div>
-        <p>新区培训</p>
-        <p>我们祝你就业</p>
+      <div class='w-60 w-60 float-right f-s-7 m-t-p10'>
+        <p class='m-t-8 m-b-0'>新区培训</p>
+        <p class='t-c-666'>我们祝你就业</p>
       </div>
     </div>
-    <div class="col-6 p-0">
-      <div>
-        <img src="../../../skins/img/1.jpg">
+    <div class="col-6 p-0 ">
+      <div class='float-left pl-3 w-40 m-t-p15 t-c-0a0'>
+        <img src="../../../skins/img/1.jpg" class='h-30 w-w40'>
       </div>
-      <div>
-        <p>新区直播</p>
-        <p>新区直播开始啦</p>
+      <div class='w-60 float-right f-s-7 m-t-p10'>
+        <p class='m-t-8 m-b-0'>新区直播</p>
+        <p class='t-c-666'>新区直播开始啦</p>
       </div>
     </div>
   </div>
 </div>
 <!--直播-->
-<div class="container-fluid p-0 broadcast">
-  <img src="../../../skins/img/ban3.jpg" class='w-100'>
-  <p>正在进行时</p>
-  <div class='div'>
-    <span>机电实战</span>
-    <span>开讲时间:2017年9月1日 上午10:00</span>
+<div class="container-fluid p-0 broadcast h-128 pr">
+  <img src="../../../skins/img/ban3.jpg" class='w-100 '>
+  <p class='pa t-4 l-0 bg-316 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3' style='border-radius:0 50px 50px 0;'>正在进行时</p>
+  <div class='div pa b-0 f-s-7 h-28 w-100 lh-28 t-c-fff' style='background-color: rgba(0,0,0,0.5);'>
+    <span class='float-left p-l-10'>机电实战</span>
+    <span class='float-right p-r-10'>开讲时间:2017年9月1日 上午10:00</span>
   </div>
 </div>
 <!--热门岗位-->
-<div class='post container-fluid'>
-  <span class="icon">&#xe8b0;</span>
-  <span>热门岗位</span>
+<div class='post container-fluid h-40 w-100 bg-e4 m-t-5 f-s-8 lh-40'>
+  <span class="icon p-r-10">&#xe8b0;</span>
+  <span class='t-c-666'>热门岗位</span>
 </div>
-
-
 <!--热门岗位1-->
-<div class="box container-fluid">
-  <ul class="list">
-    <li class="lis row">
-      <p>
-        <span class="name">电商产品经理</span>
-        <span class="time">今天</span>
+<div class="box container-fluid m-b-55">
+  <ul class="list f-s-8">
+    <li class="lis row p-10 bg-fff br-5 pr">
+      <p class='w-100 m-b-5'>
+        <span class="name f-s-10 f-w-600">电商产品经理</span>
+        <span class="time float-right">今天</span>
       </p >
       <p>
-        <span class="money">3000-5000</span>
+        <span class="money t-c-b20">3000-5000</span>
       </p >
       <p class='left'>
         <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
+        <span class='p-l-6 f-s-6'><i class="icon">&#xe86a;</i>大专及以上</span>
+        <span class='p-l-6 f-s-6'><i class="icon">&#xe68c;</i>经验不限</span>
       </p >
       <p>
-        <span class="bor">五险一金</span>
-        <span class="bor">周日单休</span>
-        <span class="bor">法定节假</span>
+        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
+        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
+        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
       </p >
       <p>
         <i class="icon">&#xe621;</i>
@@ -102,39 +83,4 @@
     </li>
   </ul>
 </div>
-
-<!--底部导航栏-->
-<div class="container-fluid py-1 bottom">
-  <div class="row">
-    <div class="col">
-      <a href="/front/company/home">
-        <i class="icon notbig">&#xe7c9;</i>
-        <p class="mb-0">首页</p >
-      </a>
-    </div>
-    <div class="col">
-      <a href="/front/company/recruit_list">
-        <i class="icon notbig">&#xe788;</i>
-        <p class="mb-0">招聘</p >
-      </a>
-    </div>
-    <div class="col">
-      <a href="/front/company/play">
-        <i class="icon big">&#xe7df;</i>
-        <p class="mb-0 play">雄安直播</p >
-      </a>
-    </div>
-    <div class="col">
-      <a href="/front/company/cultivate_list">
-        <i class="icon notbig">&#xe603;</i>
-        <p class="mb-0">培训</p >
-      </a>
-    </div>
-    <div class="col">
-      <a href="/front/company/compan_home">
-        <i class="icon notbig">&#xe81f;</i>
-        <p class="mb-0">我的</p >
-      </a>
-    </div>
-  </div>
-</div>
+<%- f%>
