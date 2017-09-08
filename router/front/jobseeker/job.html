@@ -1,36 +1,36 @@
 <style>
   body{ background-color: #fff!important; }
   .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-  .interval{ margin-top: 50px; }
-  .icon{ color: #333; }
-  .from-group{ font-size: 14px; border-bottom: 1px solid #f1f1f1; padding-top: 2%; padding-bottom: 2%; }
-  .st-icon-pandora{ color: red;}
+
+
+
+
   .btn{ color: #fff; background-color: #199ed8; border-radius: 0px; margin: 10px auto; }
   .jump{ color: #666; }
 </style>
 <div class="container-fluid">
   <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon">&#xe7c5;</a></div>
+    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
     <div class="col-8 text-center">求职意向</div>
   </div>
 
-  <form action="#" class="interval">
-    <div class="from-group">
+  <form action="#" class="m-t-50 f-s-9">
+    <div class="from-group bor-b-sol bor-eee p-y-p2">
       <div class="row">
         <div class="col-4">期望职位</div>
         <div class="col-6 text-right none">
-          <a href="#" class="jump">
+          <a href="/front/jobseeker/job_content" class="jump">
             <span>请选择职位类别</span>
             <i class="icon">&#xe7c4;</i>
           </a>
         </div>
         <div class="col-2 align-self-center text-center none">
-          <span class="st-icon-pandora">*</span>  
+          <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
-    <div class="from-group">
+    <div class="from-group bor-b-sol bor-eee p-y-p2">
       <div class="row">
         <div class="col-4">期望薪资</div>
         <div class="col-6 text-right none">
@@ -41,28 +41,31 @@
           </select>
         </div>
         <div class="col-2 align-self-center text-center none">
-          <span class="st-icon-pandora">*</span>  
+          <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
-    <div class="from-group">
+     <div class="from-group bor-b-sol bor-eee p-y-p2">
       <div class="row">
         <div class="col-4">求职地区</div>
         <div class="col-6 text-right none">
-          <a href="#" class="jump">
-            <span>请选择求职地区</span>
-            <i class="icon">&#xe7c4;</i>
-          </a>
+          <select>
+            <option value="0">请选择</option>
+            <option value="1">安新</option>
+            <option value="1">保定</option>
+            <option value="1">蓉城</option>
+            <option value="1">雄县</option>
+          </select>
         </div>
         <div class="col-2 align-self-center text-center none">
-          <span class="st-icon-pandora">*</span>  
+          <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <a href="#" class="btn">下一步</a>
+      <a href="/front/jobseeker/assess" class="btn br-0 bg-32a t-c-white m-10-auto">下一步</a>
     </div>
   </form>
 </div>

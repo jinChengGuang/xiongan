@@ -1,46 +1,48 @@
 <!--顶部导航栏-->
-<div class="container-fluid top">
-  <div class="row tab">
-    <div class="col-2">
-      <i class="icon back">&#xe86c;</i>
+<div class="container-fluid">
+  <div class="fixed-top">
+    <div class="row tab">
+      <div class="col-2">
+        <i class="icon">&#xe86c;</i>
+      </div>
+      <div class="col-8 middle">
+        <span>我的报名培训</span>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-8 middle">
-      <span>我的报名培训</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
 </div>
+
 <!--空页-->
-<div class="empty w-100" style="display: none;" >
-  <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="">
+<div class="w-100 m-t-p30 text-center" style="display: none;" >
+  <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="" class="w-70">
 </div>
 <!--报名列表-->
-<div class="box">
-  <ul class="list">
-    <li class="lis row">
-      <p>
-        <span class="name">瑞安机电</span>
+<div class="box m-t-55">
+  <ul class="f-s-8 m-b-80">
+    <li class="m-t-10 p-10 bg-white br-5">
+      <p class="p-b-p5 m-b-0">
+        <span class="f-w-b f-s-10">瑞安机电</span>
         <i class="icon"></i>
       </p>
-      <p>
+      <p class="p-b-p5 m-b-0">
         <span>您于2017年8月30日报名的XXX待审核</span>
       </p>
-      <p class="right">
-        <button type="button" class="btn btn-secondary">取消报名</button>
-        <a name="" id="" class="btn btn-primary" href="#" role="button">联系客服</a>
+      <p class="text-right m-b-0">
+        <button type="button" class="btn btn-sm btn-secondary">取消报名</button>
+        <a name="" id="" class="btn btn-sm btn-primary" href="#" role="button">联系客服</a>
       </p>
     </li>
-    <li class="lis row">
-      <p>
-        <span class="name">瑞安机电</span>
+    <li class="m-t-10 p-10 bg-white br-5">
+      <p class="p-b-p5 m-b-0">
+        <span class="f-w-b f-s-10">瑞安机电</span>
         <i class="icon"></i>
       </p>
-      <p>
+      <p class="p-b-p5 m-b-0">
         <span>您于2017年8月30日报名的XXX待审核</span>
       </p>
-      <p class="right">
-        <button type="button" class="btn btn-secondary">取消报名</button>
-        <a name="" id="" class="btn btn-primary" href="#" role="button">联系客服</a>
+      <p class="text-right m-b-0">
+        <button type="button" class="btn btn-sm btn-secondary">取消报名</button>
+        <a name="" id="" class="btn btn-sm btn-primary" href="#" role="button">联系客服</a>
       </p>
     </li>
   </ul>
@@ -71,21 +73,16 @@
         </div>
       </div>
     </div>
+</div>
 <style>
   .top{ position:fixed; top:0; left:0; z-index: 10;}
   .tab { height:45px; line-height:45px; background-color: #fff;}
   .tab .middle{text-align: center;}
   .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
 
-  .empty{ margin-top: 50%; text-align: center;}
-  .empty img { width:70%;}
 
-  .list{ margin-top:55px; margin-bottom:80px; font-size:0.8rem;}
-  .lis { margin:10px; padding:10px; background-color: #fff; border-radius: 5px; position:relative;}
-  .lis p{ width:100%; margin-bottom:0.5rem;}
-  .lis .name{ font-size:1rem!important; font-weight: 600;}
-  .lis .btn{ padding: 0.3rem .75rem; font-size:0.8rem!important; margin-left: 3%;}
-  .lis .right{text-align: right; margin-bottom:0;}
+
+ 
 
   .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
   .bottom .col { text-align: center; padding:0;}
