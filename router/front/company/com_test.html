@@ -1,167 +1,159 @@
 <style>
 body{ background-color: #fff!important; }
 .bg-light{ background-color: #fff!important; height: 40px; line-height: 40px; border-bottom: 1px solid #f1f1f1; }
-.from{ margin-top: 40px; font-size: 14px; }
-.from-group{ border-bottom: 1px solid #f1f1f1; padding-top: 2%; padding-bottom: 2%; }
-.none{ padding-left: 0px; padding-right: 0px; }
-label{ margin-bottom: 0px; }
-.st-icon-pandora{ color: red;}
-.form-control-plaintext{ padding-top: 0px; padding-bottom: 0px; }
 .file{ background-color: #fff; width: 100px; height: 100px; border: 1px solid #f1f1f1; }
-.btn{ border-radius: 0px; color: #fff; }
-.icon{ color: #333; }
 </style>
 <div class="container-fluid">
   <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon">&#xe7c5;</a></div>
+    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
     <div class="col-8 text-center">企业认证</div>
   </div>
-  <form action="#" class="from">
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司名称</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="公司名称">
+  <form action="#" class="m-t-40 f-s-8">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司名称</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="公司名称">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司性质</label>
-      <div class="col-6 none align-self-center">
-        <select>
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司性质</label>
+      <div class="col-6 p-x-0 align-self-center">
+        <select class="border">
           <option value="1">有限公司</option>
           <option value="2">有限责任公司</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">所属行业</label>
-      <div class="col-6 none align-self-center">
-        <select>
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">所属行业</label>
+      <div class="col-6 p-x-0 align-self-center">
+        <select class="border">
           <option value="1">有限公司</option>
           <option value="2">有限责任公司</option>
         </select>
-        <select class="mt-2">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
-        </select>
-      </div>
-      <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司规模</label>
-      <div class="col-6 none align-self-center">
-        <select>
+        <select class="mt-2 border">
           <option value="1">有限公司</option>
           <option value="2">有限责任公司</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">注册地址</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="请填写公司地址">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司规模</label>
+      <div class="col-6 p-x-0 align-self-center">
+        <select class="border">
+          <option value="1">有限公司</option>
+          <option value="2">有限责任公司</option>
+        </select>
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司网址</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="请填写公司网址">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">注册地址</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司地址">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司邮箱</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="请填写公司邮箱">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司网址</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">联系人姓名</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="请填写联系人姓名">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司邮箱</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">联系人电话</label>
-      <div class="col-6 none">
-        <input type="text" class="form-control-plaintext border-0 w-100" placeholder="请填写联系人电话">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人姓名</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人姓名">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">公司简介</label>
-      <div class="col-6 none">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人电话</label>
+      <div class="col-6 p-x-0">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话">
+      </div>
+      <div class="col-1 align-self-center text-right">
+        <span class="t-c-e20">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司简介</label>
+      <div class="col-6 p-x-0">
         <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0"></textarea>
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">上传营业执照</label>
-      <div class="col-6 none file">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传营业执照</label>
+      <div class="col-6 p-x-0 file">
         <input type="file">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">上传法人身份证原件</label>
-      <div class="col-6 none file">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传法人身份证原件</label>
+      <div class="col-6 p-x-0 file">
         <input type="file">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
-    <div class="from-group row">
-      <label for="" class="col-4 col-from-label align-self-center">上传公司logo</label>
-      <div class="col-6 none file">
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传公司logo</label>
+      <div class="col-6 p-x-0 file">
         <input type="file">
       </div>
       <div class="col-1 align-self-center text-right">
-        <span class="st-icon-pandora">*</span>  
+        <span class="t-c-e20">*</span>  
       </div>
     </div>
 
     <div class="row">
-      <button class="btn w-100 bg-primary">确定</button>
+      <a href="/front/company/station" class="btn br-0 w-100 bg-primary t-c-white">确定</a>
     </div>
   </form>
 </div>

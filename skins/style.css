@@ -116,3 +116,6 @@
   .lis .bor{ padding:3px; border:#ccc solid 1px; color:dodgerblue; border-radius: 5px; font-size: 0.5rem; display: inline-block; margin-top:5px;}
   .lis .right{text-align: right; margin-bottom:0;}
 
+  /*注册页*/
+  .reg_form{ margin: 50% auto 0; width: 80%; }
+
