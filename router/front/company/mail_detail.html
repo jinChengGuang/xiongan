@@ -1,38 +1,37 @@
 <!--顶部导航栏-->
-<div class="container-fluid top">
-  <div class="row tab">
+<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
+  <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon back">&#xe86c;</i>
+      <i class="icon text-center f-s-15">&#xe86c;</i>
     </div>
-    <div class="col-8 middle">
-      <span>详情</span>
+    <div class="col-8 text-center">
+      <span>站内信详情</span>
     </div>
     <div class="col-2"></div>
   </div>
 </div>
-
 <!--通知详情列表-->
-<div class="container-fluid list">
+<div class="container-fluid m-t-50 p-0 m-b-80">
   <ul>
-    <li>
-      <p class="time">08/31</p>
-      <p>
+    <li class="m-y-5 m-x-10 bg-white bor-r-5 f-s-8 p-10">
+      <p class="text-right m-b-5">08/31</p>
+      <p class="m-b-5">
         <span>恭喜你与2017年8月29日申请和社区外包有限公司企业认证</span>
         <a href="###">通过</a>
         <span>了</span>
       </p>
     </li>
-    <li>
-      <p class="time">08/31</p>
-      <p>
+    <li class="m-y-5 m-x-10 bg-white bor-r-5 f-s-8 p-10">
+      <p class="text-right m-b-5">08/31</p>
+      <p class="m-b-5">
         <span>恭喜你与2017年8月29日申请和社区外包有限公司企业认证</span>
         <a href="###">通过</a>
         <span>了</span>
       </p>
     </li>
-    <li>
-      <p class="time">08/31</p>
-      <p>
+    <li class="m-y-5 m-x-10 bg-white bor-r-5 f-s-8 p-10">
+      <p class="text-right m-b-5">08/31</p>
+      <p class="m-b-5">
         <span>恭喜你与2017年8月29日申请和社区外包有限公司企业认证</span>
         <a href="###">通过</a>
         <span>了</span>
@@ -40,47 +39,4 @@
     </li>
   </ul>
 </div>
-
-<!--底部导航栏-->
-<div class="container-fluid py-1 bottom">
-  <div class="row">
-    <div class="col">
-      <i class="icon notbig">&#xe7c9;</i>
-      <p class="mb-0">首页</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe788;</i>
-      <p class="mb-0">招聘</p>
-    </div>
-    <div class="col">
-      <i class="icon big">&#xe7df;</i>
-      <p class="mb-0 play">雄安直播</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe603;</i>
-      <p class="mb-0">培训</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe81f;</i>
-      <p class="mb-0">我的</p>
-    </div>
-  </div>
-</div>
-<style>
-  .top{ position:fixed; top:0; left:0; z-index:10; border-bottom:#dcdddd solid 1px;}
-  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
-  .tab { height:45px; line-height:45px; background-color: #fff;}
-  .tab .middle{text-align: center;}
-  
-  .list{margin-top:50px; padding:0; margin-bottom: 80px;}
-  .list ul li{ margin:5px 10px; background-color: #fff; border-radius: 5px; font-size: 0.8rem; padding: 10px;}
-  .list ul li p{margin-bottom:5px;}
-  .list ul li .time{text-align: right;}
-
-  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-</style>
+<%- f%>

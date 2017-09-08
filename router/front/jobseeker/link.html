@@ -1,16 +1,16 @@
 <!--顶部导航栏-->
-<div class="container-fluid top">
-  <div class="row tab">
+<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
+  <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon back">&#xe86c;</i>
+      <i class="icon text-center f-s-15">&#xe86c;</i>
     </div>
-    <div class="col-8 middle">
+    <div class="col-8 text-center">
       <span>联系我们</span>
     </div>
     <div class="col-2"></div>
   </div>
 </div>
-<div class="box">
+<div class="m-t-46 bg-white">
   <!--轮播图-->
   <div id="carouselId" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -31,60 +31,16 @@
     </div>
   </div> 
   <!--介绍-->
-  <p class="content">
+  <p class="f-s-8 p-y-10 p-x-15">
     1、师资雄厚，实训能力强
   我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。
   2、培训后人员快速上岗，薪酬提升明显
   我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。
   </p>
   <!--联系我们-->
-  <p class="link">
+  <p class="w-100 text-center f-s-8 p-y-10 p-x-15">
     <span>客服电话：0312-678-5555</span>
     <i class="icon">&#xe75f;</i>
   </p>
 </div>
-
-<!--底部导航栏-->
-<div class="container-fluid py-1 bottom">
-  <div class="row">
-    <div class="col">
-      <i class="icon notbig">&#xe7c9;</i>
-      <p class="mb-0">首页</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe788;</i>
-      <p class="mb-0">招聘</p>
-    </div>
-    <div class="col">
-      <i class="icon big">&#xe7df;</i>
-      <p class="mb-0 play">雄安直播</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe603;</i>
-      <p class="mb-0">培训</p>
-    </div>
-    <div class="col">
-      <i class="icon notbig">&#xe81f;</i>
-      <p class="mb-0">我的</p>
-    </div>
-  </div>
-</div>
-<style>
-  .top{ position:fixed; top:0; left:0; z-index:10; border-bottom:#dcdddd solid 1px;}
-  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
-  .tab { height:45px; line-height:45px; background-color: #fff;}
-  .tab .middle{text-align: center;}
-  
-  .box{margin-top:45px; background-color: #fff;}
-  .box p{  font-size:.8rem;padding:10px 15px;}
-  .box .link{width:100%; text-align: center;}
-
-  
-
-  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-</style>
+<%- f%>

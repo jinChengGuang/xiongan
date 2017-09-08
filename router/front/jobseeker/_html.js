@@ -12,30 +12,30 @@ exports.get = {
     await ctx.render('/front/jobseeker/invitation_receive')
   },
   // 培训列表
-  '/front/jodseeker/cultivate_list': async (ctx, next) => {
-    await ctx.render('/front/jodseeker/cultivate_list')
+  '/front/jobseeker/cultivate_list': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/cultivate_list')
   },
-  // 课程详情
-  '/front/jodseeker/ruian/detail': async (ctx, next) => {
-    await ctx.render('/front/jodseeker/ruian_detail')
+  // 瑞安详情
+  '/front/jobseeker/ruian_detail': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/ruian_detail')
   },
   // 首页
-  '/front/jodseeker/home': async (ctx, next) => {
+  '/front/jobseeker/home': async (ctx, next) => {
     ctx.state.name = 'liuzihao, zhangfule'
     ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
-    await ctx.render('/front/jodseeker/home')
+    await ctx.render('/front/jobseeker/home')
   },
   // 考试详情、企业培训详情
-  '/front/jodseeker/class/detail': async (ctx, next) => {
-    await ctx.render('/front/jodseeker/class_detail')
+  '/front/jobseeker/class_detail': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/class_detail')
   },
   // 直播
-  '/front/jodseeker/play': async (ctx, next) => {
-    await ctx.render('/front/jodseeker/play')
+  '/front/jobseeker/play': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/play')
   },
   // 联系我们
-  '/front/jodseeker/link': async (ctx, next) => {
-    await ctx.render('/front/jodseeker/link')
+  '/front/jobseeker/link': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/link')
   },
   // 求职个人中心
   '/front/jobseeker/user_home': async (ctx, next) => {
