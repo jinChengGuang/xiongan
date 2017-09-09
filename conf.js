@@ -46,16 +46,16 @@ const conf = {
     },
     mysql: {
       main: {
-        host:       "127.0.0.1",
+        host:       "192.168.0.96",
         user:       "root",
         password:   "123456",
-        database:   "test"
+        database:   "xiongan"
       },
       user: {
-        host:       "127.0.0.1",
+        host:       "192.168.0.96",
         user:       "root",
         password:   "123456",
-        database:   "user"
+        database:   "he_user"
       }
     },
     redis: {
@@ -87,7 +87,7 @@ const conf = {
     },
     mysql: {
       main: {
-        host:       "127.0.0.1",
+        host:       "192.168.0.96",
         user:       "root",
         password:   "123456",
         database:   "test"
