@@ -4,8 +4,12 @@ const _ = require('lodash')
 exports.get = {
   // -------------------------------------------------------------------------- enter
   '/rest/manager/shop/product/list': async (ctx, next) => {
-    ctx.body = '123'
-    ctx.state.name = 'yuantao'
-    await ctx.render('/blank')
+    ctx.body = await $.http.get('http://192.168.0.98:3300/')
+  },
+}
+exports.post = {
+'/rest/login': async (ctx, next) => {
+  console.log(ctx.post)
+    ctx.body = ctx.post
   }
 }

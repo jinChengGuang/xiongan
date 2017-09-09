@@ -24,3 +24,6 @@ exports.get = {
     await ctx.render('/front/login/put_psd')
   },
 }
+
+
+

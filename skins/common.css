@@ -662,7 +662,7 @@
 
 /*right*/
 .r-4{right:4%}
-
+.r-34{right:34%}
 
 /*z-index: 100;*/
 .z-100{z-index: 100;}
@@ -734,6 +734,7 @@ i{font-style:normal;}
 .b-4{bottom:4%}
 .b-9{bottom:9%}
 .b-8{bottom:8px;}
+.b-30{bottom:30%}
 .b-10{bottom:10px;}
 .b-15{bottom:15px;}
 .l-p24{left:24%;}
