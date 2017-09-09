@@ -7,11 +7,13 @@ const common = require('hw-common-node')
 const serve = require('koa-static')
 const render = require('koa-ejs')
 const widget = require('./widget/widget')
+const preset = require('./preset')
 // ---------------------------------------------------------------------------- Global
 require('hc-basis-node')(require('./conf'))
 // ---------------------------------------------------------------------------- App与第三方中间件
 global.app = new Koa()
 app.use(body())
+app.use(preset())
 // ---------------------------------------------------------------------------- Common
 app.use(common())
 // ----------------------------------------------------------------------------widget
