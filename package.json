@@ -13,6 +13,7 @@
     "hc-basis-node": "^0.0.5",
     "hw-common-node": "^0.0.5",
     "koa": "^2.3.0",
+    "koa-better-body": "^3.0.4",
     "koa-ejs": "^4.1.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",

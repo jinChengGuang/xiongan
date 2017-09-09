@@ -2,6 +2,7 @@
 const path = require('path')
 const Koa = require('koa')
 const router = require('koa-router')()
+const body = require('koa-better-body')
 const common = require('hw-common-node')
 const serve = require('koa-static')
 const render = require('koa-ejs')
@@ -10,6 +11,7 @@ const widget = require('./widget/widget')
 require('hc-basis-node')(require('./conf'))
 // ---------------------------------------------------------------------------- App与第三方中间件
 global.app = new Koa()
+app.use(body())
 // ---------------------------------------------------------------------------- Common
 app.use(common())
 // ----------------------------------------------------------------------------widget
