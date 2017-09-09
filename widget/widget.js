@@ -11,7 +11,7 @@ module.exports = function () {
           <input type="autocomplete" placeholder="搜索职位/公司" style='height:28px; width: 100%; background: #fff; font-size:14px; padding-left: 10%; color: #dfdfdf;'>
           <span class='icon' style='position: absolute; top:40%; left:5%;'>&#xe7fd;</span>
         </div>
-        <div class="col-1 icon pl-0 mt-2 letter" style='font-size:18px; position: relative'>&#xe7d5;<span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:5px;'></span></div>
+        <div class="col-1 icon pl-0 mt-2 letter" style='font-size:18px; position: relative'><a href='front/company/mail'>&#xe7d5;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:5px;'></span></div>
       </div>
     </div>
     `
