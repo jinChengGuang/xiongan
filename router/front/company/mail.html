@@ -2,7 +2,9 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
       <span>站内信</span>
@@ -16,20 +18,20 @@
 </div>
 <!--通知条-->
 <div class="container-fluid m-t-50">
-  <a href="/front/company/mail_detail" class="d-block w-100 h-100 t-c-0a0">
+  <a href="/front/company/mail_detail?type = examine" class="d-block w-100 h-100 t-c-0a0">
     <div class="row p-y-10 p-x-15 bg-white f-s-8 m-t-5">
       <div class="col-10 p-0">系统通知
-        <span class="weui-badge weui-badge_dot align-top"></span>
+        <span class="weui-badge weui-badge_dot align-top" v-show = 'examine.length > 0'></span>
       </div>
       <div class="col-2 p-0 text-right">
         <i class="icon">&#xe630;</i>
       </div>
     </div>
   </a>
-  <a href="/front/company/mail_detail" class="d-block w-100 h-100 t-c-0a0">
+  <a href="/front/company/mail_detail?type = user" class="d-block w-100 h-100 t-c-0a0">
     <div class="row p-y-10 p-x-15 bg-white f-s-8 m-t-5">
       <div class="col-10 p-0">用户投递通知
-        <span class="weui-badge weui-badge_dot align-top"></span>
+        <span class="weui-badge weui-badge_dot align-top" v-show = 'user.length > 0'></span>
       </div>
       <div class="col-2 p-0 text-right">
         <i class="icon">&#xe630;</i>
@@ -38,3 +40,26 @@
   </a>
 </div>
 <%- f%>
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    examine:[],
+    user:[]
+  },
+  mounted () {
+    this.ajax.get('/examine/msg/red', (res) => {
+      this.examine = res.data
+    }, (err) => {
+      console.log(err)
+    })
+    this.ajax.get('/user/msg/red', (res) => {
+      this.user = res.data
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+  }
+})
+</script>

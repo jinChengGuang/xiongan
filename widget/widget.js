@@ -64,11 +64,11 @@ module.exports = function () {
   </div>
 </div>
     `
-    ctx.state.f1 = `
+    ctx.state.fjob = `
   <div class="container-fluid py-1 bottom" style='font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;'>
     <div class="row">
     <div class="col" style='text-align: center; padding:0;'>
-      <a href="/front/company/home" style='display: block; width: 100%; height: 100%; color: #323232;'>
+      <a href="/front/jobseeker/home" style='display: block; width: 100%; height: 100%; color: #323232;'>
         <i class="icon notbig" style='font-size:1rem!important;'>&#xe7c9;</i>
         <p class="mb-0" style='font-size:0.8rem;'>首页</p >
       </a>
@@ -80,28 +80,26 @@ module.exports = function () {
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/play" style='display: block; width: 100%; height: 100%; color: #323232;'>
+      <a href="/front/jobseeker/play" style='display: block; width: 100%; height: 100%; color: #323232;'>
         <i class="icon big" style='position:absolute; top:-50%; left:27%; font-size:2rem!important;'>&#xe7df;</i>
         <p class="mb-0 play" style='padding-top:29%;' style='font-size:0.8rem;'>雄安直播</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/cultivate_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
+      <a href="/front/jobseeker/cultivate_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
         <i class="icon notbig" style='font-size:1rem!important;'>&#xe603;</i>
         <p class="mb-0" style='font-size:0.8rem;'>培训</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/compan_home" style='display: block; width: 100%; height: 100%; color: #323232;'>
+      <a href="/front/jobseeker/user_home" style='display: block; width: 100%; height: 100%; color: #323232;'>
         <i class="icon notbig" style='font-size:1rem!important;'>&#xe81f;</i>
-        <p class="mb-0" style='font-size:0.8rem;'>我的</p >
+        <p class="mb-0" style='font-size:0.8rem;'>我的</p>
       </a>
     </div>
   </div>
 </div>
     `
-
-
     /**
      * 向后传递
      */

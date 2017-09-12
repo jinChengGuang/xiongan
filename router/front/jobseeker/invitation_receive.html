@@ -1,11 +1,12 @@
 <!--顶部导航栏-->
-<div class="container-fluid">
-  <div class="fixed-top">
-  <div class="row">
-    <div class="col-2">
-      <i class="icon">&#xe86c;</i>
+<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
-    <div class="col-8">
+    <div class="col-8 text-center">
       <span>面试邀请</span>
     </div>
     <div class="col-2"></div>
@@ -13,7 +14,7 @@
 </div>
 <!--提示-->
 <div class="row bg-white m-t-45 bor-t-sol bor-f1">
-  <div class="col-10 t-c-019 f-s-8 align-self-center p-y-p1">系统将自动清除30天以上的记录！</div>
+  <div class="col-10 t-c-019 f-s-8 align-self-center p-l-p7">系统将自动清除30天以上的记录！</div>
   <div class="col-2">
     <i class="icon">&#xe7b9;</i>
   </div>
@@ -23,90 +24,71 @@
   <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="" class="w-70">
 </div>
 <!--中间内容-->
-<div class="box">
+<div class="m-b-60">
   <ul class="list f-s-8">
-    <li class="m-t-10 p-10 bg-white br-5">
-      <p class="f-w-b f-s-10 p-b-p5 m-b-0">用户反馈通知</p>
-      <p class="p-b-p5 m-b-0">8月28日</p>
-      <p class="p-b-p5 m-b-0">
-        <span>Hi,何先生！您的简历符合我们的需求</span>
+    <li class="m-t-10 p-10 bg-white br-5" v-for='n in list'>
+      <p class="f-w-b f-s-10  m-b-2">用户反馈通知</p>
+      <p class="m-b-2">{{n.invitetime}}</p>
+      <p class="m-b-2">
+        <span>Hi,{{n.uname}}！您的简历符合我们的需求</span>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>面试岗位：</span>
-        <span>产品经理</span>
-        <span>查看</span>
+        <span>{{n.jname}}</span>
+        <a :href="'/front/jobseeker/jobseeker_detail?jid=' + n.jid">查看</a>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>面试时间：</span>
-        <span>2017年8月28日 19:18</span>
+        <span>{{n.interviewtime}}</span>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>联系电话：</span>
         <a href="###" class="t-c-666">
-          <span>12332125664</span>
+          <span>{{n.mobile}}</span>
           <i class="icon t-c-1ea">&#xe75f;</i>
           <span>王女士</span>
         </a>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>公司名称：</span>
-        <span>保定市和社区技术外包有限公司</span>
+        <span>{{n.cname}}</span>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>面试地址：</span>
-        <span>北二环于瑞祥大街交叉口东行50米和社区</span>
+        <span>{{n.address}}</span>
       </p>
-      <p class="p-b-p5 m-b-0">
+      <p class="m-b-2">
         <span>注：</span>
-        <span>哈哈哈哈哈</span>
+        <span>{{n.remark}}</span>
       </p>
     </li>
     
   </ul>
-  </div>
-  <!--底部导航栏-->
-  <div class="container-fluid py-1 bottom">
-    <div class="row">
-      <div class="col">
-        <i class="icon notbig">&#xe7c9;</i>
-        <p class="mb-0">首页</p>
-      </div>
-      <div class="col">
-        <i class="icon notbig">&#xe788;</i>
-        <p class="mb-0">招聘</p>
-      </div>
-      <div class="col">
-        <i class="icon big">&#xe7df;</i>
-        <p class="mb-0 play">雄安直播</p>
-      </div>
-      <div class="col">
-        <i class="icon notbig">&#xe603;</i>
-        <p class="mb-0">培训</p>
-      </div>
-      <div class="col">
-        <i class="icon notbig">&#xe81f;</i>
-        <p class="mb-0">我的</p>
-      </div>
-    </div>
-  </div>
-
 </div>
-<style>
 
-  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
-  .tab { height:45px; line-height:45px; background-color: #fff;}
-  .tab .middle{text-align: center;}
-
-
-
-
-  
-
-
-  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-</style>
+<%- fjob%>
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    list:[],
+  },
+  mounted () {
+    this.ajax.get('/user/invite/record', (res) => {
+      this.list = res.data
+      console.log(this.list)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+    signUp(){
+      this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
+        window.alert('报名成功')
+      }, (err) => {
+        console.log(err)
+      })
+    }
+  }
+})
+</script>

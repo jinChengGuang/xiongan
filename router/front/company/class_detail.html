@@ -2,7 +2,9 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
       <span>课程详情</span>
@@ -31,20 +33,48 @@
     </div>
   </div>
   <p class="p-y-5 p-x-15 mb-0">
-    <span>课程名称</span>
-    <span class="float-right">2017/10/15</span>
+    <span>{{cultivate.name}}</span>
+    <span class="float-right">{{cultivate.class_starttime}}</span>
   </p>
   <p class="p-y-5 p-x-15 mb-0">
     <i class="icon">&#xe621;</i>
-    <span>上课地址</span>
+    <span>{{cultivate.address}}</span>
   </p>
   <p class="content p-y-5 p-x-15 mb-0">1、师资雄厚，实训能力强
   我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。
   2、培训后人员快速上岗，薪酬提升明显
   我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。</p>
   <p style="text-align: center;">
-    <a name="" id="" class="btn btn-primary p-y-3 p-x-30 m-y-10" href="#" role="button">报名</a>
+    <a name="" id="" class="btn btn-primary p-y-3 p-x-30 m-y-10" href="#" role="button" @click='signUp'>报名</a>
   </p>
   
 </div>
 <%- f%>
+
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    type:0,
+    cultivate:[],
+    id: '2'
+  },
+  mounted () {
+    this.ajax.get('/cultivate/detail/' + this.id, (res) => {
+      this.cultivate = res.data[0]
+      console.log(this.cultivate)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+    signUp(){
+      this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
+        window.alert('报名成功')
+      }, (err) => {
+        console.log(err)
+      })
+    },
+  }
+})
+</script>
