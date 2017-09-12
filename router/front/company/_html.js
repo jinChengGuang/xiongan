@@ -43,8 +43,6 @@ exports.get =  {
   '/front/company/home': async (ctx, next) => {
     ctx.state.name = 'liuzihao, zhangfule'
     ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
-    ctx.list = await $.http.get('http://192.168.0.100:3300/home/swiper')
-    console.log()
     await ctx.render('/front/company/home')
   },
   // 招聘列表搜索
@@ -55,8 +53,6 @@ exports.get =  {
   },
     // 企业个人中心
   '/front/company/compan_home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/compan_home')
   },
   // 搜索页
@@ -67,8 +63,6 @@ exports.get =  {
   },
   // 公司详情
   '/front/company/company_list': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/company_list')
   },
    //企业认证

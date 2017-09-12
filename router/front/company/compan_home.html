@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="container-fluid img h-130 bg-169bd5 text-center m-t-46">
-  <img src="http://img5.imgtn.bdimg.com/it/u=4267222417,1017407570&fm=200&gp=0.jpg" class='br-h w50 h50 m-t-10'>
+  <img src="http://img5.imgtn.bdimg.com/it/u=4267222417,1017407570&fm=200&gp=0.jpg" class='br-h w50 h50 m-t-20'>
   <p class='mt-2'>某某某</p>
 </div>
 <div class="container-fluid bg-white m-b-50 f-s-9">
@@ -13,43 +13,43 @@
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">企业认证</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/com_test" class='db w-100'>企业认证</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/com_test" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">发布的岗位</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/station " class='db w-100'>发布的岗位</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/station" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">修改密码</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/login/put_psd" class='db w-100'>修改密码</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/login/put_psd" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">简历记录</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/resume_record" class='db w-100'>简历记录</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/resume_record" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">我收到的邀请</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/invitation_send" class='db w-100'>我发出的邀请</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/invitation_send" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">我们的报名培训</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/cultivate_list" class='db w-100'>我们的报名培训</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/cultivate_list" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
 
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
@@ -57,26 +57,58 @@
       <i class="icon">&#xe897;</i>
     </div>
     <div class="col-10 p-x-0">
-      <span>站内信</span>
-      <span class = 'in-block absolute h-7 w-7 bg-044 br-h'> </span>
+      <a href="/front/company/mail" class='db w-100'>
+        <span>站内信</span>
+        <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-18' v-for='n in list' v-show='n.isread==0'> </span>
+      </a>
     </div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/mail" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">联系我们</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/link" class='db w-100'>联系我们</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/link" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-e3 p-y-p3 " @click='switch_1'>
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
     <div class="col-10 p-x-0">切换身份</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
-  </div> 
+    <div class="col-1 text-center align-self-center p-x-0"><i class="icon">&#xe630;</i></div>
+  </div>
 </div>
-<style>
+<%- f%>
+<script> 
+  new Vue({
+    el:'#app',
+    data:{
+      list:[]
+    },
+    mounted(){
+      this.ajax.get('/msg/red',(res)=>{
+        this.list = res.data
+        console.log(this.list)
+      },(err)=>{
 
-</style>
+      })
+    },
+    methods: {
+      switch_1(){
+        weui.confirm('', {
+            title: '确认要切换身份吗?',
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function(){ console.log('no') }
+            }, {
+                label: '确定',
+                type: 'primary',
+                onClick: function(){ window.location.href='/front/login/identity' }
+            }]
+        })
+      }
+    }
+  })
+</script>

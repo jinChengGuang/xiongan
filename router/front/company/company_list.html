@@ -2,7 +2,7 @@
 <div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
   <div class="row tab h-45 lh-45 bg-fff">
     <div class="col-2 ">
-      <i class="icon back f-s-15 v-a">&#xe86c;</i>
+      <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
     </div>
     <div class="col-8 middle ta-c">
       <span>公司详情</span>
@@ -10,13 +10,12 @@
     <div class="col-2"></div>
   </div>
 </div>
-
 <!--公司头像-->
-<div class="container-fluid img h-170 bg-fff ta-c">
-  <img src="http://img5.imgtn.bdimg.com/it/u=4267222417,1017407570&fm=200&gp=0.jpg" class='mt-3 br-h w-w50 h-h50'>
-  <p class='mt-1 f-s-8 t-c-666'>某某某公司</p>
-  <div class='mt-1 f-s-8 t-c-666'>行业 | 成立年份 | 规模</div>
-  <p class='mt-1 f-s-8 t-c-666 m-b-0 f-s-8 t-c-0a0'>公司地址:xxxxxxxxx</p>
+<div class="container-fluid img h-170 bg-fff ta-c m-t-46">
+  <img src="list.logo" class='mt-3 br-h w-w50 h-h50'>
+  <p class='mt-1 f-s-8 t-c-666'>{{list.name}}</p>
+  <div class='mt-1 f-s-8 t-c-666'>{{industry.name}} | 成立{{list.age}}年 | {{list.scope}}</div>
+  <p class='mt-1 f-s-8 t-c-666 m-b-0 f-s-8 t-c-0a0'>公司地址 : {{list.address}}</p>
 </div>
 
 <!--公司概况-->
@@ -26,7 +25,7 @@
     <span>公司概况</span>
   </div>
   <div class='content_1 f-s-6 t-c-666 p-b-10'>
-    <p class='m-t-5'>1.的伺服电机复合大师v符合vuvUI是v失败v句;点击萨克复合地基开发健康煽风点火见风使舵就肯定会是否健康的十分的伺服电机复合大师v符合vuvUI是v失败v句;点击萨克复合地基开发健康煽风点火见风使舵就肯定会是否健康的十分</p>
+    <p class='m-t-5'>{{list.summary}}</p>
   </div>
 </div>
 
@@ -38,52 +37,52 @@
   </div>
   
 <div class='container-fluid m-b-60'>
-  <ul class=" f-s-8">
-    <li class=" bg-white bor-r-5 p-10 pr row bor-b-sol bor-ccc">
+  <ul class=" f-s-8 m-b-0">
+    <li class=" bg-white bor-r-5 p-10 pr row bor-b-sol bor-ccc" v-for='n in datail'>
       <p class="w-100 m-b-10">
-        <span class="f-s-10 f-w-6">电商产品经理</span>
-        <span class="float-right">今天</span>
+        <span class="f-s-10 f-w-6">{{n.name}}</span>
+        <span class="float-right">{{n.issue_time}}</span>
       </p>
       <p class="w-100 m-b-5">
-        <span class="t-c-ff5">3000-5000</span>
+        <span class="t-c-ff5">{{n.pay}}</span>
       </p>
       <p class="w-100 m-b-5">
-        <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
+        <span><i class="icon">&#xe621;</i>{{n.area}}</span>
+        <span><i class="icon">&#xe86a;</i>{{n.education}}</span>
+        <span><i class="icon">&#xe68c;</i>{{n.experience}}</span>
       </p>
       <p class="w-100 m-b-5">
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
+        <span class="bor p-x-2 m-l-3 bor-sol bor-ccc t-c-d br-5 p-l-5 f-s-5 dinb m-t-5" v-for="i in n.benefit.split('|')">{{i}}</span>
       </p>
       <p class="w-100 m-b-5">
         <i class="icon">&#xe621;</i>
-        <span>保定市和社区外包有限公司</span>
-      </p>
-    </li>
-    <li class=" bg-white bor-r-5 p-10 pr row bor-b-sol bor-ccc">
-      <p class="w-100 m-b-10">
-        <span class="f-s-10 f-w-6">电商产品经理</span>
-        <span class="float-right">今天</span>
-      </p>
-      <p class="w-100 m-b-5">
-        <span class="t-c-ff5">3000-5000</span>
-      </p>
-      <p class="w-100 m-b-5">
-        <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
-      </p>
-      <p class="w-100 m-b-5">
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
-      </p>
-      <p class="w-100 m-b-5">
-        <i class="icon">&#xe621;</i>
-        <span>保定市和社区外包有限公司</span>
+        <span>{{n.cname}}</span>
       </p>
     </li>
   </ul>
 </div>
+
+<script> 
+  new Vue({
+    el:'#app',
+    data:{
+      list:[],
+      datail:[],
+      industry:[],
+    },
+    mounted(){
+      this.ajax.get('/company/detail/1',(res)=>{
+        this.list = res.data[0]
+        this.datail = res.data[1]
+        this.industry = res.data[2]
+      },(err)=>{
+        
+      })
+    },
+    methods: {
+      go(){
+        window.history.go(-1);
+      }
+    }
+  })
+</script>
