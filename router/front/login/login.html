@@ -2,11 +2,11 @@
   <form action="#" class="m-50-auto-0 w-80">
     <div class="input-group mt-3">
       <span class="input-group-addon icon border-0" id="basic-addon1">&#xe745;</span>
-      <input v-model='user.name' type="text" class="from-control w-100" placeholder="请输入账号">
+      <input v-model='user.username' type="text" class="from-control w-100 in-out" placeholder="请输入账号">
     </div>
     <div class="input-group mt-3">
       <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input v-model='user.password' type="password" class="from-control w-100" placeholder="请输入密码">
+      <input v-model='user.password' type="password" class="from-control w-100 in-out" placeholder="请输入密码">
     </div>
     <div class="text-center">
       <botton class="btn btn-warning mt-3 w-100 t-c-white" @click='login'>登陆</botton>
@@ -21,20 +21,12 @@ new Vue({
   data: {
     user: {}
   },
-  // mounted () {
-  //   this.ajax.get('https://www.baidu.com', (res) => {
-  //     console.log(res)
-  //   }, (res) => {
-  //     console.log(res)
-  //   })
-  // },
   methods: {
     login () {
-      console.log(this.user)
-      this.ajax.post('/rest/login', this.user, (res) => {
+      this.ajax.get('/company/login/'+this.user.username + '/' + this.user.password, (res) => {
         console.log(res)
       }, (err) => {
-        console.log(err)
+        alert(err.errmsg)
       })
     }
   }

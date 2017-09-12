@@ -83,6 +83,10 @@ exports.get = {
    '/front/company/station': async (ctx, next) => {
     await ctx.render('/front/company/station')
   },
+  //编辑岗位发布
+   '/front/company/station_edit': async (ctx, next) => {
+    await ctx.render('/front/company/station_edit')
+  },
   // 站内信
   '/front/company/mail': async (ctx, next) => {
     await ctx.render('/front/company/mail')

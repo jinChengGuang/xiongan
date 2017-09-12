@@ -37,10 +37,21 @@ exports.post = {
 // ---------------------------------------------------------------------------- PUT
 exports.put = {
   /**
-   * 公司修改密码
+   *  忘记密码
    */
   '/company/change': async (ctx, next) => {
-    let { username,oldpassword,newpassword } = ctx.put
+    let { username,newpassword } = ctx.put
+    let data = await $.mysql.push($.conf.mysql.main, 'update company set password=? where username=?', [newpassword,username])
+    ctx.result.ok.data = data
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   *  公司修改密码
+   */
+  '/forgot/password': async (ctx, next) => {
+    let username = ctx.company.username
+    console.log(username)
+    let { oldpassword,newpassword } = ctx.put
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where username = ?', [username])
     if(company[0].password!= oldpassword){
       ctx.result.e4001.errmsg = '对不起，您输入的原密码有误'

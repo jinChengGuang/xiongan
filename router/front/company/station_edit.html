@@ -11,34 +11,22 @@ body{ background-color: #fff!important; }
   </div>
   <form action="#" class="m-t-40 m-b-38 f-s-8">
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 v-a">职位类型
-        <span class="w-w1 dinb bg-a00 h-20 v-a ml-1"></span>
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">职位类型
       </label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border" id="bcat" @click='linkage'>
-          <option>请选择</option>
-          <option v-for='o in one' :value='o.id'> {{o.name}} </option>
-        </select><br/>
-        <select class="mt-2 border" id='mcat' @click='link'>
-          <option>请选择</option>
-          <option v-for='t in twocat' :value='t.id'> {{t.name}} </option>
-        </select><br/>
-        <select class="mt-2 border" v-model='jobs.jtid' id='cat'>
-          <option value='0'>请选择</option>
-          <option v-for='n in threecat' :value='n.id'> {{n.name}} </option>
+        <select class="mt-2 border" v-model='list.jtid' disabled>
+          <option v-for='n in listType' :value='n.id'> {{n.name}} </option>
         </select>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
-      </div>  
+      </div>
     </div>
 
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 v-a">职位名称
-        <span class="w-w1 dinb bg-a00 h-20 v-a ml-1"></span>
-      </label>
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">职位名称</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写职位名称" v-model='jobs.name'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-a4a" placeholder="请填写职位名称" v-model='list.name' readonly>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -48,7 +36,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">薪资水平</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.pay'>
+        <select class="border" v-model='list.pay'>
           <!--<option>2000-4000</option>-->
           <option v-for='list in pay'>{{list}}</option>
         </select>
@@ -59,27 +47,11 @@ body{ background-color: #fff!important; }
     </div>
 
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0" >福利待遇</label>
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">福利待遇</label>
       <div class="col-6 p-x-0 align-self-center">
-        <p>更多</p>
-        <p id="p"></p>
-        <div id="span">
-          <span class="border p-1 dinb mb-1">五险一金</span>
-          <span class="border p-1 dinb mb-1">双休</span>
-          <span class="border p-1 dinb mb-1">节日福利</span>
-          <span class="border p-1 dinb mb-1">节日福利</span>
-        </div>
-        <!--<select class="border" v-model='jobs.benefit' id="select" @change='select'>
-          
-            <input type="checkbox">
-            五险一金
-          
-            <input type="checkbox">
-            双休
-          
-            <input type="checkbox">
-            节日福利-->
-          <!--<option v-for='list in pay'>{{list}}</option>-->
+        <select class="border" v-model='list.benefit'>
+          <!--<option>五险一金</option>-->
+          <option v-for='list in pay'>{{list}}</option>
         </select> 
       </div>
       <div class="col-2 align-self-center text-right">
@@ -90,9 +62,9 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">工作区域</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.area'>
+        <select class="border" v-model='list.area'>
           <!--<option>保定</option>-->
-          <option v-for='a in area'>{{a}}</option>
+          <option v-for='list in pay'>{{list}}</option>
         </select> 
       </div>
       <div class="col-2 align-self-center text-right">
@@ -103,7 +75,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">学历要求</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.education'>
+        <select class="border" v-model='list.education'>
           <!--<option>本科</option>-->
           <option v-for='e in education'>{{e}}</option>
         </select>
@@ -116,7 +88,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">经验要求</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.experience'>
+        <select class="border" v-model='list.experience'>
           <!--<option value="1">3年以上</option>-->
           <option v-for='exper in exper'>{{exper}}</option>
         </select>
@@ -129,7 +101,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">工作地址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写详细地址" v-model='jobs.address'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写详细地址" v-model='list.address'>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -139,7 +111,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">岗位职责</label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0" v-model='jobs.statement'></textarea>
+        <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0" v-model='list.statement'></textarea>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -149,7 +121,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">任职资格</label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的任职资格，保证真实有效" class="border-0" v-model='jobs.requirements'></textarea>
+        <textarea rows="3" placeholder="请填写完整的任职资格，保证真实有效" class="border-0" v-model='list.requirements'></textarea>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -161,12 +133,12 @@ body{ background-color: #fff!important; }
       <div class="col-6 p-x-0">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="isopen" value="1" v-model='jobs.status'> 公开
+            <input class="form-check-input" type="radio" name="isopen" value="1" v-model='list.status'> 公开
           </label>
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="isopen" value="2" v-model='jobs.status'> 仅对自己可见
+            <input class="form-check-input" type="radio" name="isopen" value="2" v-model='list.status'> 仅对自己可见
           </label>
         </div>
       </div>
@@ -177,7 +149,7 @@ body{ background-color: #fff!important; }
 
 
     <div class="row fixed-bottom">
-      <a class="btn br-0 w-100 bg-primary t-c-white" @click="add">确定</a>
+      <button class="btn br-0 w-100 bg-primary t-c-white" @click='edit'>确定</button>
       <!--<a href="/front/company/job_send" class="btn br-0 w-100 bg-primary t-c-white">确定</a>-->
     </div>
   </form>
@@ -190,105 +162,62 @@ new Vue({
   data: {
     jobs: {},
     list: [],
-    one: [],
-    two: [],
-    twocat:[],
-    three: [],
-    threecat:[],
+    listType:[],
     area:[],
     exper:[],
     education: [],
     pay: [],
   },
   mounted(){
+    this.ajax.get('/job/detail/6',(res)=>{
+      this.list = res.data[0]
+      this.jobs = this.list
+    },(err)=>{
+      console.log(err.errmsg)
+    }),
     //职位类型
     this.ajax.get('/jobtype/list',(res)=>{
-      this.list = res.data
-      for(let i of this.list){
-        if(i.bid == 0 && i.mid == 0){
-          this.one.push(i)
-        }else if(i.bid!=0 && i.mid==0){
-          this.two.push(i)
-        }else{
-          this.three.push(i)
-        }      
-      }
+      this.listType = res.data
     },(err)=>{
 
     })
     //学历列表
-    this.ajax.get('/education/list',(res)=>{
-      this.education = res.data
-      console.log(JSON.stringify(this.education))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-    //薪资要求
-    this.ajax.get('/pay/list',(res)=>{
-      this.pay = res.data
-      console.log(JSON.stringify(this.pay))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-  //  区域列表
-    this.ajax.get('/area/list',(res)=>{
-      this.area = res.data
-      console.log(JSON.stringify(this.area))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-    // 经验要求
-    this.ajax.get('/experience/list',(res)=>{
-      this.exper = res.data
-      console.log(JSON.stringify(this.exper))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-  $(function(){
-    $('#span>span').click(function(){
-      let index = $(this).index()
-      let p = $('#p').html( $('#span>span').eq(index).html())
-      console.log(p)
-    })
+  this.ajax.get('/education/list',(res)=>{
+    this.education = res.data
+    console.log(JSON.stringify(this.education))
+  },(err)=>{
+    console.log(err.errmsg)
+  }),
+  //薪资要求
+  this.ajax.get('/pay/list',(res)=>{
+    this.pay = res.data
+    console.log(JSON.stringify(this.pay))
+  },(err)=>{
+    console.log(err.errmsg)
+  }),
+//  区域列表
+  this.ajax.get('/area/list',(res)=>{
+    this.area = res.data
+    console.log(JSON.stringify(this.area))
+  },(err)=>{
+    console.log(err.errmsg)
+  }),
+  // 经验要求
+  this.ajax.get('/experience/list',(res)=>{
+    this.exper = res.data
+    console.log(JSON.stringify(this.exper))
+  },(err)=>{
+    console.log(err.errmsg)
   })
   },
   methods: {
-    add(){
-      this.ajax.post('/job/add',this.jobs,(res)=>{
-        console.log(11)
+    edit(){
+      this.ajax.put('/edit/job',this.jobs,(res)=>{
+       alert('编辑成功')
       },(err)=>{
         console.log(err.errmsg)
       })
-    },
-    select(){
-      let input = $(':input')
-      let inp = input.eq(-1).remove()
-      // let select = document.getElementById('select')
-      console.log(inp)
-    },
-    //联动
-    linkage(){
-      let bcat = document.getElementById('bcat')
-      if(bcat.value !=0){
-        this.twocat=[]
-        for(let two of this.two){
-          if(two.bid == bcat.value){
-            this.twocat.push(two)
-          }
-        }
-      }
-    },
-    link(){
-      let mcat = document.getElementById('mcat')
-      if(mcat.value !=0 ){
-        this.threecat=[]
-        for(let three of this.three){
-          if(three.mid == mcat.value){
-            this.threecat.push(three)
-          }
-        }
-      }
-    },
+    }
   }
 })
 </script>

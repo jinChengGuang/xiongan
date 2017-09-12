@@ -23,8 +23,7 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司性质</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
+          <option v-for='t in type'>{{t}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -35,13 +34,13 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">所属行业</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
-        </select>
-        <select class="mt-2 border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
+        <select class="border" id='bcat' @click="linkage">
+          <option :value='0'>请选择</option>
+          <option v-for="b in big" :value="b.id">{{b.name}}</option>
+        </select><br/>
+        <select class="mt-2 border" id='mcat'>
+          <option :value='0'>请选择</option>
+          <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -53,8 +52,7 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司规模</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
+          <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -75,7 +73,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司网址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址" id='website'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -85,7 +83,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司邮箱</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱" id='email'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -105,7 +103,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人电话</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话" id='mobile'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -153,7 +151,95 @@ body{ background-color: #fff!important; }
     </div>
 
     <div class="row">
-      <a href="/front/company/station" class="btn br-0 w-100 bg-primary t-c-white">确定</a>
+      <button class="btn br-0 w-100 bg-primary t-c-white" @click='submit'>确定</button>
+      <!--<a href="/front/company/station" class="btn br-0 w-100 bg-primary t-c-white">确定</a>-->
     </div>
   </form>
 </div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+   list:[],
+   big:[],
+   small:[],
+   smallall:[],
+   type:[],
+   scope:[],
+  },
+  mounted(){
+    this.ajax.get('/company/industry/list',(res)=>{
+      this.list = res.data
+      let bigcat = []
+      let smallall = []
+      for(let cat of res.data){
+        if(cat.fid == 0){
+          bigcat.push(cat)
+          continue
+        }else{
+          smallall.push(cat)
+        }
+      }
+      this.big = bigcat
+      this.smallall = smallall
+    },(err)=>{
+      alert(err.errmsg)
+    }),
+    //性质
+    this.ajax.get('/company/kind/list',(res)=>{
+      this.type = res.data
+      console.log(JSON.stringify(this.type))
+    },(err)=>{
+      alert(err.errmsg)
+    })
+    // //规模
+    // this.ajax.get('/company/scope/list',(res)=>{
+    //   this.scope = res.data
+    //   console.log(JSON.stringify(this.scope))
+    // },(err)=>{
+    //   alert(err.errmsg)
+    // })
+  },
+  methods: {
+    linkage (){
+      let bcat = document.getElementById('bcat')
+      let mcat = document.getElementById('mcat')
+      if (bcat.value != 0) {
+        this.small=[]
+        for (let samll of this.smallall) {
+					if (samll.fid == bcat.value) {
+						this.small.push(samll)
+					}
+				}
+			} 
+    },
+    submit(){
+      let website = document.getElementById('website').value
+      let email = document.getElementById('email').value
+      let mobile = document.getElementById('mobile').value
+      let group = document.getElementsByClassName('form-control-plaintext')
+      console.log(group)
+      let webreg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/
+      let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
+      let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
+      for(let i=0; i<group.length; i++){
+        if(group[i].value == ''){
+          alert('不能为空')
+        }
+      }
+      if(!webreg.test(website)){
+        alert('输入的网址格式不正确')
+        return false
+      }else if(!emareg.test(email)){
+        alert('输入的邮箱格式不正确')
+        return false
+      }else if(!mobreg.test(mobile)){
+        alert('输入的手机号格式不正确')
+      }else{
+        alert('成功')
+      }
+    }
+  }
+})
+</script>

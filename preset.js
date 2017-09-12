@@ -7,7 +7,7 @@ module.exports = function () {
     // session
     let user = await $.mysql.query($.conf.mysql.user, 'select * from user where id=? ', [26])
     ctx.user = user[0]
-    let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id=? ', [1])
+    let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id=? ', [9])
     ctx.company = company[0]
     // 进入接口处理
     await next()
