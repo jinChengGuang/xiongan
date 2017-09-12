@@ -41,8 +41,6 @@ exports.get =  {
   },
   // 首页
   '/front/company/home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/home')
   },
   // 招聘列表搜索

@@ -11,39 +11,59 @@
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">公司名称</div>
       <div class="col-8 text-right">
-        <input type="text" class="border-0 text-right" placeholder="请输入公司名称">
+        <input type="text" class="border-0 text-right" placeholder="请输入公司名称" v-model='data.company'>
       </div>
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">职位名称</div>
       <div class="col-8 text-right">
-        <input type="text" class="border-0 text-right" placeholder="请输入职位名称">
+        <input type="text" class="border-0 text-right" placeholder="请输入职位名称"v-model='data.job'>
       </div>
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">开始时间</div>
       <div class="col-8 text-right">
-        <select>
-          <option value="0">请选择</option>
-          <option value="1">本科</option>
-        </select>
+        <input type="date" v-model='data.start'>
       </div>
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">结束时间</div>
       <div class="col-8 text-right">
-        <select>
-          <option value="0">请选择</option>
-          <option value="1">本科</option>
-        </select>
+        <input type="date" v-model='data.end'>
       </div>
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2">
-      <a href="/front/jobseeker/assess_ok" class="btn br-0 bg-primary t-c-white m-10-auto">保存</a>
+      <a @click='next' class="btn br-0 bg-primary t-c-white m-10-auto">保存</a>
     </div>
  </div>
 </div>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    data:{},
+    experience:[]
+  },
+  mounted () {
+  },
+  methods: {
+    next(){
+      // 另一个页面传进来的值
+      this.data.rid = 1
+      this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
+      this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
+      console.log(this.data)
+      this.ajax.post('/add/experience', this.data,(res) => {
+        console.log('提交成功')
+        window.history.go(-1)
+      }, (res) => {
+        console.log(res.errmsg)
+      })
+    }
+  }
+})
+</script>

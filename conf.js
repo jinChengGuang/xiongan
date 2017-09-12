@@ -76,7 +76,7 @@ const conf = {
   // -------------------------------------------------------------------------- Pro
   production: {
     accept:         "http://localhost",
-    uptemp:         "uptemp",
+    uptemp:         "c:\\uptemp",
     session: {
       redis: {
         host:       "localhost",

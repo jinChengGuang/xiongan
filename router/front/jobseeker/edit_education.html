@@ -58,6 +58,12 @@ new Vue({
     education:[]
   },
   mounted () {
+    this.ajax.get('/user/education/detail/2',(res) => {
+      this.data = res.data[0]
+      console.log(this.data)
+      }, (res) => {
+        console.log(res.errmsg)
+    })
     this.ajax.get('/education/list',(res) => {
       this.education = res.data
       }, (res) => {
