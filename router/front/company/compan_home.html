@@ -1,7 +1,12 @@
-<div class="container-fluid top bg-white h-45 f-s-12 lh-45 fixed t-0 z-index-100 ">
-  <div class="row">
-    <div class="col-2"><</div>
-    <div class="col-10  p-l-p23 ">个人中心</div>
+<div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
+  <div class="row tab h-45 lh-45 bg-fff">
+    <div class="col-2 ">
+      <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
+    </div>
+    <div class="col-8 middle ta-c">
+      <span>个人中心</span>
+    </div>
+    <div class="col-2"></div>
   </div>
 </div>
 <div class="container-fluid img h-130 bg-169bd5 text-center m-t-46">
@@ -108,6 +113,9 @@
                 onClick: function(){ window.location.href='/front/login/identity' }
             }]
         })
+      },
+      go(){
+        window.history.go(-1);
       }
     }
   })

@@ -11,6 +11,10 @@ exports.get =  {
   '/front/company/resume_list': async (ctx, next) => {
     await ctx.render('/front/company/resume_list')
   },
+   // 职位详情
+  '/front/company/company_detail': async (ctx, next) => {
+    await ctx.render('/front/company/company_detail')
+  },
   // 发布的岗位
   '/front/company/job_send': async (ctx, next) => {
     await ctx.render('/front/company/job_send')
