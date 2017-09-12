@@ -2,7 +2,9 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
       <span>直播</span>
@@ -12,37 +14,32 @@
 </div>
 <!--直播-->
 <ul class="container-fluid p-0 m-t-46 m-b-85">
-  <li class="pr m-b-10">
-    <img src="../../../skins/img/bk3.jpg" class='w-100 h-150'>
-    <p class="pa t-4 l-0 bg-f29 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3" style="border-radius:0 50px 50px 0; top:4%; left:0;">正在进行时</p >
+  <li class="pr m-b-10" v-for = 'n in list'>
+    <img :src="n.img" class='w-100 h-150'>
+    <p class="pa t-4 l-0 bg-f29 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3 text-center" style="border-radius:0 50px 50px 0; top:4%; left:0;">{{status[n.status]}}</p >
     <div class='pa b-0 f-s-7 h-28 w-100 lh-28 t-c-white' style="background-color: rgba(0,0,0,0.5);">
-      <span class="float-left p-l-10">机电实战</span>
-      <span class="float-right p-r-10">开讲时间:2017年9月1日 上午10:00</span>
-    </div>
-  </li>
-  <li class="pr m-b-10">
-    <img src="../../../skins/img/bk3.jpg" class='w-100 h-150'>
-    <p class="pa t-4 l-0 bg-f29 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3" style="border-radius:0 50px 50px 0; top:4%; left:0;">正在进行时</p >
-    <div class='pa b-0 f-s-7 h-28 w-100 lh-28 t-c-white' style="background-color: rgba(0,0,0,0.5);">
-      <span class="float-left p-l-10">机电实战</span>
-      <span class="float-right p-r-10">开讲时间:2017年9月1日 上午10:00</span>
-    </div>
-  </li>
-  <li class="pr m-b-10">
-    <img src="../../../skins/img/bk3.jpg" class='w-100 h-150'>
-    <p class="pa t-4 l-0 bg-f29 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3" style="border-radius:0 50px 50px 0; top:4%; left:0;">正在进行时</p >
-    <div class='pa b-0 f-s-7 h-28 w-100 lh-28 t-c-white' style="background-color: rgba(0,0,0,0.5);">
-      <span class="float-left p-l-10">机电实战</span>
-      <span class="float-right p-r-10">开讲时间:2017年9月1日 上午10:00</span>
-    </div>
-  </li>
-  <li class="pr m-b-10">
-    <img src="../../../skins/img/bk3.jpg" class='w-100 h-150'>
-    <p class="pa t-4 l-0 bg-f29 w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3" style="border-radius:0 50px 50px 0; top:4%; left:0;">正在进行时</p >
-    <div class='pa b-0 f-s-7 h-28 w-100 lh-28 t-c-white' style="background-color: rgba(0,0,0,0.5);">
-      <span class="float-left p-l-10">机电实战</span>
-      <span class="float-right p-r-10">开讲时间:2017年9月1日 上午10:00</span>
+      <span class="float-left p-l-10">{{n.name}}</span>
+      <span class="float-right p-r-10">开讲时间:{{n.time}}</span>
     </div>
   </li>
 </ul>
 <%- f%>
+
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    list : [],
+    status: ['未开始','正在进行','已结束']
+  },
+  mounted () {
+    this.ajax.get('/live/list', (res) => {
+      this.list = res.data
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+  }
+})
+</script>

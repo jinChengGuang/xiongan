@@ -2,10 +2,12 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
-      <span>课程详情</span>
+      <span>瑞安详情</span>
     </div>
     <div class="col-2"></div>
   </div>
@@ -52,11 +54,39 @@
 <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-85">
   <p class="p-y-5 px-0 bor-b-sol bor-eee mb-0 t-c-009">
     <i class="icon f-s-15 align-middle">&#xe829;</i>
-    <span class="f-s-9">课程优势</span>
+    <span class="f-s-9">课程时间</span>
   </p>
   <p class="p-y-7 px-0">
-    <span>开课标题：</span>
-    <span>开课时间</span>
+    <span>开课时间：</span>
+    <span>{{cultivate.class_starttime}}</span>
   </p>
 </div>
-<%- f%>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3" @click='signUp(cultivate.id,cultivate.name)'>报名</button>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    id:'2',
+    cultivate:[],
+  },
+  mounted () {
+    this.ajax.get('/cultivate/detail/' + this.id,(res) => {
+        this.cultivate = res.data[0]
+        console.log(this.cultivate)
+      }, (err) => {
+        console.log(err)
+      })
+  },
+  methods: {
+    signUp(id,name){
+      console.log(id)
+      this.ajax.post('/add/cultivate/record',{culid:id,culname:name},(res) => {
+        
+        window.alert('报名成功')
+      }, (err) => {
+        console.log(err)
+      })
+    }
+  }
+})
+</script>

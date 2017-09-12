@@ -7,7 +7,7 @@
       </form>
       <span class='icon pr t-28 l-2 f-s-12'>&#xe7fd;</span>
     </div>
-    <div class="col-1 p-0 icon none m-t-8"><a href="/front/company/recruit_list">&#xe7c1;</a></div>
+    <div class="col-1 p-0 icon none m-t-8"><a href="front/jobseeker/jobseeker_list">&#xe7c1;</a></div>
   </div>
 </div>
 
@@ -53,7 +53,7 @@
     watch:{
       keyword(curVal, oldVal){
         if(curVal){
-          setTimeout("window.location.href = '/front/company/recruit_list?name=' + this.keyword",1000)
+          setTimeout("window.location.href = '/front/jobseeker/jobseeker_list?name=' + this.keyword",1000)
         }
       }
     },

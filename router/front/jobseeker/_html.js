@@ -49,6 +49,10 @@ exports.get = {
     ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/jobseeker_list')
   },
+  // 求职搜索
+  '/front/jobseeker/search': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/search')
+  },
   // 职位详情
   '/front/jobseeker/jobseeker_detail': async (ctx, next) => {
     ctx.state.name = 'liuzihao, zhangfule'
