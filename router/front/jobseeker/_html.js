@@ -7,6 +7,14 @@ exports.get = {
   '/front/jobseeker/my_cultivate': async (ctx, next) => {
     await ctx.render('/front/jobseeker/my_cultivate')
   },
+  // 编辑教育经历
+  '/front/jobseeker/edit_education': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/edit_education')
+  },
+  // 编辑工作经历
+  '/front/jobseeker/edit_experience': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/edit_experience')
+  },
   // 面试邀请
   '/front/jobseeker/invitation_receive': async (ctx, next) => {
     await ctx.render('/front/jobseeker/invitation_receive')
@@ -21,8 +29,6 @@ exports.get = {
   },
   // 首页
   '/front/jobseeker/home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/home')
   },
   // 考试详情、企业培训详情
@@ -39,32 +45,30 @@ exports.get = {
   },
   // 求职个人中心
   '/front/jobseeker/user_home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/user_home')
   },
   // 求职列表搜索
   '/front/jobseeker/jobseeker_list': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/jobseeker_list')
   },
   // 职位详情
   '/front/jobseeker/jobseeker_detail': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/jobseeker_detail')
+  },
+  // 编辑个人基本信息
+  '/front/jobseeker/edit_resume': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/edit_resume')
+  },
+  // 编辑个人求职意向
+  '/front/jobseeker/edit_job': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/edit_job')
   },
   // 我的投递
   '/front/jobseeker/mailing': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/mailing')
   },
     // 岗位收藏
   '/front/jobseeker/collect': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/collect')
   },
   //我的简历

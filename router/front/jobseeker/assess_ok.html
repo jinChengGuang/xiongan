@@ -22,19 +22,21 @@
   </div>
 
 <div class="box">
-  <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;">
+  <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;" v-for='v in education'>
     <div class="col-8">
-      <span>2012.03-2016.03</span>
+      <span>{{v.start}}-{{v.end}}</span>
     </div>
     <div class="col-2 text-right none">
-      <i class="icon">&#xe803;</i>
+      <a href="/front/jobseeker/edit_education">
+        <i class="icon">&#xe803;</i>
+      </a>
     </div>
     <div class="col-2 text-left">
-      <i class="icon">&#xe7f9;</i>
+      <i class="icon" @click='deledu(v.id)'>&#xe7f9;</i>
     </div>
     <div class="w-100"></div>
-    <div class="col-12">保定学院</div>
-    <div class="col-12">网络工程师</div>
+    <div class="col-12">{{v.school}}</div>
+    <div class="col-12">{{v.speciality}}</div>
   </div>
 </div>
 
@@ -49,24 +51,65 @@
   </div>
 
   <div class="box">
-    <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;">
+    <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;" v-for='v in experience'>
       <div class="col-8">
-        <span>2012.03-2016.03</span>
+        <span>{{v.strat}}-{{v.end}}</span>
       </div>
       <div class="col-2 text-right none">
-        <i class="icon">&#xe803;</i>
+        <a href="/front/jobseeker/edit_experience">
+          <i class="icon">&#xe803;</i>
+        </a>
       </div>
       <div class="col-2 text-left">
-        <i class="icon">&#xe7f9;</i>
+        <i class="icon" @click='delexp(v.id)'>&#xe7f9;</i>
       </div>
       <div class="w-100"></div>
-      <div class="col-12">保定学院</div>
-      <div class="col-12">网络工程师</div>
+      <div class="col-12">{{v.company}}</div>
+      <div class="col-12">{{v.job}}</div>
     </div>
 </div>
 
   <div class="row item pt-2 pb-2">
     <a href="/front/jobseeker/resume_detail" class="btn br-0 bg-primary t-c-white m-10-auto">确定</a>
   </div>
-
 </div>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    data: {},
+    experience:[],
+    education:[]
+  },
+  mounted () {
+    this.ajax.get('/user/resume/experience/1', (res) => {
+      this.experience = res.data
+    }, (res) => {
+      console.log(res.errmsg)
+    })
+    this.ajax.get('/user/resume/education/1', (res) => {
+      this.education = res.data
+    }, (res) => {
+      console.log(res.errmsg)
+    })
+  },
+  methods: {
+    delexp(id){
+     this.ajax.delete('/experience/delete/'+id,(res) => {
+      console.log('删除成功')
+      window.location.reload()
+      }, (res) => {
+        console.log(res.errmsg)
+      })
+    },
+    deledu(id){
+     this.ajax.delete('/education/delete/'+id,(res) => {
+      console.log('删除成功')
+      window.location.reload()
+      }, (res) => {
+        console.log(res.errmsg)
+      })
+    }
+  }
+})
+</script>

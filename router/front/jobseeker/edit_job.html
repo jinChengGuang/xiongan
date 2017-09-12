@@ -67,11 +67,16 @@ new Vue({
   data: {
     pay:[],
     data:{},
-    area:[]
+    area:[],
   },
   mounted () {
     this.ajax.get('/pay/list', (res) => {
       this.pay = res.data
+    }, (res) => {
+      console.log(res.errmsg)
+    })
+    this.ajax.get('/user/resume', (res) => {
+      this.data = res.data[0]
     }, (res) => {
       console.log(res.errmsg)
     })
@@ -88,6 +93,7 @@ new Vue({
       this.data.jtid = 4
       this.ajax.put('/add/wanted', this.data,(res) => {
         console.log('提交成功')
+        // window.location.href='/front/jobseeker/assess'
         window.location.href='/front/jobseeker/assess'
         }, (res) => {
           console.log(res.errmsg)

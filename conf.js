@@ -23,8 +23,8 @@ const common = {
     }
   },
   aliyun: {
-    accessKey: 'LTAISqgBxKWM0BqQ',
-    accessSecret: 'ZNb0pBReD1Je5S8HwuhXe9y7KGogz4',
+    accessKey: 'xxxxxx',
+    accessSecret: 'xxxxxx',
     oss: {
       region: 'oss-cn-shanghai',
       bucket: 'hoss-upload'
@@ -41,7 +41,7 @@ const conf = {
         host:       "localhost",
         port:       6379
       },
-      domain:       '192.168.0.5',
+      domain:       '192.168.0.100',
       path:         '/',
     },
     mysql: {
@@ -63,8 +63,8 @@ const conf = {
       port:       6379
     },
     wechat: {
-      appid:        "wx9852fd56ec8cbbc5",
-      appsecret:    "021f04101dee3f77e856ab7563a9848e",
+      appid:        "xxxxxx",
+      appsecret:    "xxxxxx",
       scope:        "snsapi_userinfo",
       jsapi_domain: "http://shop.plat.hesq.com.cn/",
       mch_id:       "1232291902",
@@ -76,13 +76,13 @@ const conf = {
   // -------------------------------------------------------------------------- Pro
   production: {
     accept:         "http://localhost",
-    uptemp:         "uptemp",
+    uptemp:         "c:\\uptemp",
     session: {
       redis: {
         host:       "localhost",
         port:       6379
       },
-      domain:       '192.168.0.5',
+      domain:       '192.168.0.100',
       path:         '/',
     },
     mysql: {
@@ -90,13 +90,13 @@ const conf = {
         host:       "192.168.0.96",
         user:       "root",
         password:   "123456",
-        database:   "test"
+        database:   "xiongan"
       },
       user: {
-        host:       "127.0.0.1",
+        host:       "192.168.0.96",
         user:       "root",
         password:   "123456",
-        database:   "user"
+        database:   "he_user"
       }
     },
     redis: {
@@ -104,8 +104,8 @@ const conf = {
       port:       6379
     },
     wechat: {
-      appid:        "wx9852fd56ec8cbbc5",
-      appsecret:    "021f04101dee3f77e856ab7563a9848e",
+      appid:        "xxxxxx",
+      appsecret:    "xxxxxx",
       scope:        "snsapi_userinfo",
       jsapi_domain: "http://shop.plat.hesq.com.cn/",
       mch_id:       "1232291902",
