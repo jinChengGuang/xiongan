@@ -1,58 +1,63 @@
-<div class="container-fluid top bg-white h-45 f-s-12 lh-45 fixed t-0 z-index-100 ">
-  <div class="row">
-    <div class="col-2"><</div>
-    <div class="col-10  p-l-p23 ">个人中心</div>
+<div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
+  <div class="row tab h-45 lh-45 bg-fff">
+    <div class="col-2 ">
+      <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
+    </div>
+    <div class="col-8 middle ta-c">
+      <span>个人中心</span>
+    </div>
+    <div class="col-2"></div>
   </div>
 </div>
 <div class="container-fluid img h-130 bg-169bd5 text-center m-t-46">
   <img src="http://img5.imgtn.bdimg.com/it/u=4267222417,1017407570&fm=200&gp=0.jpg" class='br-h w50 h50 m-t-10'>
-  <p class='mt-2'>某某某</p>
+  <p class='mt-2'>{{list.nick}}</p>
 </div>
 <div class="container-fluid bg-white m-b-50 f-s-9">
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">我的简历</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/resume" class='db w-100'>我的简历</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/resume"><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">我的投递</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/mailing" class='db w-100'>我的投递</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/mailing"><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">面试邀请</div>
-    <span class = 'in-block absolute h-7 w-7 bg-044 br-h'> </span>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/invitation_receive" class='db w-100'>面试邀请</a></div>
+    <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-93' v-for='n in status' v-show='n.status = 1'> </span>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/invitation_receive"><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">岗位收藏</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/collect" class='db w-100'>岗位收藏</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/collect"><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">我的报名培训</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/my_cultivate" class='db w-100'>我的报名培训</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/my_cultivate"><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-e3 p-y-p3 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
-    <div class="col-10 p-x-0">联系我们</div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
+    <div class="col-10 p-x-0"><a href="/front/jobseeker/link" class='db w-100'>联系我们</a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/link"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-e3 p-y-p3 " @click='switch_1'>
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon">&#xe897;</i>
     </div>
@@ -60,6 +65,50 @@
     <div class="col-1 text-center align-self-center p-x-0"><a href="###"><i class="icon">&#xe630;</i></a></div>
   </div> 
 </div>
-<style>
+<%- f1%>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:[],
+      show:true,
+      datail:[],
+      status:[]
+    },
+    mounted(){
+      this.ajax.get('/user/detail',(res)=>{
+        this.list = res.data
+        console.log(this.list)
+      },(err)=>{
+      })
+      this.ajax.get('/user/invite/record',(res)=>{
+        this.datail = res.data
+        for(var i=0;i<this.datail.length;i++){
+          this.status.push(this.datail[i].status)
+        }
 
-</style>
+        console.log(this.status)
+      },(err)=>{
+      })
+    },
+    methods: {
+      switch_1(){
+        weui.confirm('', {
+            title: '确认要切换身份吗?',
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function(){ console.log('no') }
+            }, {
+                label: '确定',
+                type: 'primary',
+                onClick: function(){ window.location.href='/front/login/identity' }
+            }]
+        });
+      },
+      go(){
+        window.history.go(-1);
+      }
+    }
+  })
+</script>

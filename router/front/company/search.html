@@ -2,54 +2,74 @@
   <div class="row mt-1">
     <div class="col-1  p-0 pl-2 icon mt-2 f-s-12">&#xe86c;</div>
     <div class="col-10 pl-3">
-      <input type="autocomplete" class='bg-fff w-100 f-s-7 h-30 p-l-l10'  placeholder="搜索职位公司">
-      <span class='icon pr t-48 l-2 f-s-13'>&#xe7fd;</span>
+      <form action="#">
+        <input type="search" class='bg-fff w-100 f-s-7 h-30 p-l-l10' placeholder="搜索职位公司" v-model='keyword'>
+      </form>
+      <span class='icon pr t-28 l-2 f-s-12'>&#xe7fd;</span>
     </div>
-    <div class="col-1 p-0 icon none m-t-5">&#xe7c1;</div>
+    <div class="col-1 p-0 icon none m-t-8"><a href="/front/company/recruit_list">&#xe7c1;</a></div>
   </div>
 </div>
 
-<div class="container-fluid content-one bg-fff w-95 br-7">
-  <div class="row pt-2 f-s-8">
+<ul class="container-fluid content-one bg-fff w-95 br-7">
+  <li class="row pt-2 f-s-8">
     <div class="col-1 pl-2 icon m-t-p1 f-s-10">&#xe73f;</div>
     <div class="col-11 pl-2">热门职业</div>
-  </div>
-  <div class='cont f-s-7 p-y-p3'>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>产品经理</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>运营</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>电焊工</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>java</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>产品经理</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>运营</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>电焊工</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>java</a></span>
-  </div>
-</div>
+  </li>
+  <li class='cont f-s-7 p-y-p3' >
+    <span class='bor-sol bor-ccc br-5 p-p2 m-l-8 dinb m-t-8' v-for='(n,i) in list' @click='onsearch = i,keyword = n.name'>{{n.name}}</span>
+  </li>
+</ul>
 
-<div class="container-fluid content-tow bg-fff w-95 br-7 m-t-10">
-  <div class="row pt-2 f-s-8">
+<ul class="container-fluid content-tow bg-fff w-95 br-7 m-t-10">
+  <li class="row pt-2 f-s-8">
     <div class="col-1 pl-2 icon m-t-p1 f-s-10">&#xe73f;</div>
     <div class="col-11 pl-2">热门公司</div>
-  </div>
-  <div class='cont f-s-7 p-y-p3'>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>产品经理</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>运营</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>电焊工</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>java</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>产品经理</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="" class='t-c-ccc' style='text-decoration:none'>运营</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>电焊工</a></span>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>java</a></span>
-  </div>
-</div>
+  </li>
+  <li class='cont f-s-7 p-y-p3'>
+    <span class='bor-sol bor-ccc br-5 p-p2 m-l-8 dinb m-t-8' v-for='(n,i) in datail' @click='search = i,keyword = n.name'>{{n.name}}</span>
+  </li>
+</ul>
 
-<div class="container-fluid content-three bg-fff w-95 br-7 m-t-10">
-  <div class="row pt-2  f-s-8">
+<ul class="container-fluid content-three bg-fff w-95 br-7 m-t-10">
+  <li class="row pt-2  f-s-8">
     <div class="col-1 pl-2 icon  m-t-p1 f-s-10">&#xe73f;</div>
-    <div class="col-10 pl-2"></div>
+    <div class="col-10 pl-2">最近搜索</div>
     <div class="col-1 pl-1 icon">&#xe7c1;</div>
-  </div>
-  <div class='cont f-s-7 p-y-p3'>
-    <span class='bor-sol bor-ccc br-5 p-p2 m-l-4 dinb m-t-8'><a href="###" class='t-c-ccc' style='text-decoration:none'>产品经理</a></span>
-  </div>
-</div>
+  </li>
+  <li class='cont f-s-7 p-y-p3'>
+    <span class='bor-sol bor-ccc br-5 p-p2 m-l-8 dinb m-t-8' v-for='(n,i) in history' @click='hist = i, keyword = n.keyword'>{{n.keyword}}</span>
+  </li>
+</ul>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:[],
+      datail:[],
+      history:[],
+      keyword:''
+    },
+    mounted(){
+      this.ajax.get('/job/search/hot',(res)=>{
+        this.list = res.data
+        console.log(this.list)
+      },(err)=>{
+      })
+      this.ajax.get('/company/search/hot',(res)=>{
+        this.datail = res.data
+        console.log(this.datail)
+      },(err)=>{
+      })
+      this.ajax.get('/search/history/list',(res)=>{
+        this.history = res.data
+        console.log(this.history)
+      },(err)=>{
+      })
+    },
+    
+    methods: {
+
+    }
+  })
+</script>

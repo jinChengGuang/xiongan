@@ -8,7 +8,7 @@ const AJAX = {
   load (url) {
     return new Promise((resolve, reject) => {
       Vue.http.get(Vue.conf.url.restful + '/' + url, null).then((res) => {
-        if (parseInt(res.body.result) === 0) {
+        if (parseInt(res.body.errcode) === 0) {
           resolve(res.body)
           return
         }
@@ -24,7 +24,7 @@ const AJAX = {
    */
   get (url, callSuccess, callLogicError) {
     Vue.http.get( url, null).then((res) => {
-      if (parseInt(res.body.result) === 0) {
+      if (parseInt(res.body.errcode) === 0) {
         callSuccess(res.body)
         return
       }
@@ -40,7 +40,7 @@ const AJAX = {
    */
   delete (url, callSuccess, callLogicError) {
     Vue.http.delete(url, null).then((res) => {
-      if (parseInt(res.body.result) === 0) {
+      if (parseInt(res.body.errcode) === 0) {
         callSuccess(res.body)
         return
       }
@@ -61,7 +61,7 @@ const AJAX = {
    */
   post (url, args, callSuccess, callLogicError) {
     Vue.http.post(url, args).then((res) => {
-      if (parseInt(res.body.result) === 0) {
+      if (parseInt(res.body.errcode) === 0) {
         callSuccess(res.body)
         return
       }
@@ -77,7 +77,7 @@ const AJAX = {
    */
   put (url, args, callSuccess, callLogicError) {
     Vue.http.put(url, args).then((res) => {
-      if (parseInt(res.body.result) === 0) {
+      if (parseInt(res.body.errcode) === 0) {
         callSuccess(res.body)
         return
       }
@@ -98,7 +98,7 @@ const AJAX = {
    */
   upload (url, args, callSuccess, callLogicError) {
     Vue.http.post(Vue.conf.url.upload + '/' + url, args).then((res) => {
-      if (parseInt(res.body.result) === 0) {
+      if (parseInt(res.body.errcode) === 0) {
         callSuccess(res.body)
         return
       }

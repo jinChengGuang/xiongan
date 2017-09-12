@@ -42,7 +42,15 @@ exports.get = {
     ctx.result.ok.data = ['20人以下','20-99人','100-499人','500-999人','1000-9999人','10000人以上' ]
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+/**
+   * 经验要求列表
+   */
+  '/experience/list': async (ctx, next) => {
+    ctx.result.ok.data = ['无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
+    $.flush(ctx, ctx.result.ok)
+  },
+
+/**
    * 职位列表
    */
   '/job/all/list': async (ctx, next) => {
@@ -51,34 +59,34 @@ exports.get = {
     let params = []
     let sql=''
     if(name){
-      where = where == '' ? ' where (name = ? or cname = ? )' : where + ' and (name = ? or cname = ? )'
+      where = where + ' and (name = ? or cname = ? )'
       params.push(name,name)
     }
     if(area){
-      where = where == '' ? ' where area = ?' : where + ' and area = ? '
+      where =  where + ' and area = ? '
       params.push(area)
     }
     if(pay){
-      where = where == '' ? ' where pay = ?' : where + ' and pay = ? '
+      where =  where + ' and pay = ? '
       params.push(pay)
     }
     if(time){
         let a = $.time.betweenDay().start/1000-(time-1)*60*60*24
-        where = where == '' ? ' where time>?' : where + ' and time > ? '
+        where =  where + ' and time > ? '
         params.push(a)
     }
     if(benefit){
       let a  = benefit.split("|")
        for(let v of a ){
-        where = where == '' ? ' where benefit like "%'+ v + '%"' : where + ' and benefit like "%'+ v + '%"'
+        where = ' and benefit like "%'+ v + '%"'
       }
     }
-    sql= 'select * from job' + where +'and examine = 1 and status=1 order by issue_time' 
+    sql= 'select * from job where examine = 1 and status=1 ' + where +'order by issue_time' 
     let job = await $.mysql.query($.conf.mysql.main, sql, params)
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+/**
    * 搜索为你推荐
    */
   '/search/recommend': async (ctx, next) => {
@@ -86,11 +94,11 @@ exports.get = {
     let data = []
     let where = ''
     if(name){
-      await $.mysql.push($.conf.mysql.main, 'insert into history (uid,keyword) ', [ uid,name ])
+      await $.mysql.push($.conf.mysql.main, 'insert into history (uid,keyword) values (?,?)', [ uid,name ])
       for(let v of name ){
-        where = where == '' ? ' where name like "%'+ v + '%" or cname like "%' + v + '%"' : where + ' or name like "%'+ v + '%" or cname like "%' + v + '%"'
+        where =  where + ' and (name like "%'+ v + '%" or cname like "%' + v + '%")'
       }
-      let sql= 'select * from job ' + where +' and examine = 1 and status=1 order by issue_time' 
+      let sql= 'select * from job where examine = 1 and status=1 ' + where +' order by issue_time' 
       let job = await $.mysql.query($.conf.mysql.main, sql, [null])
       ctx.result.ok.data = job
       $.flush(ctx, ctx.result.ok)
@@ -205,7 +213,8 @@ exports.get = {
     let id = ctx.params.id
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id = ? ', [id])
     let job = await $.mysql.query($.conf.mysql.main, 'select * from job where cid = ? and examine = 1 and status=1 order by issue_time desc', [id])
-    ctx.result.ok.data = [company[0],job]
+    let industry = await $.mysql.query($.conf.mysql.main, 'select * from industry where id=?',[company[0].iid])
+    ctx.result.ok.data = [company[0],job,industry[0]]
     $.flush(ctx, ctx.result.ok)
   },
   /**

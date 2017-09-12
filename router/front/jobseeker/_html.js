@@ -39,32 +39,22 @@ exports.get = {
   },
   // 求职个人中心
   '/front/jobseeker/user_home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/user_home')
   },
   // 求职列表搜索
   '/front/jobseeker/jobseeker_list': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/jobseeker_list')
   },
   // 职位详情
   '/front/jobseeker/jobseeker_detail': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/jobseeker_detail')
   },
   // 我的投递
   '/front/jobseeker/mailing': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/mailing')
   },
     // 岗位收藏
   '/front/jobseeker/collect': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/jobseeker/collect')
   },
   //我的简历
