@@ -19,7 +19,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司名称</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="公司名称" value="和社区" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="公司名称" v-model='list.name' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -30,8 +30,7 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司性质</label>
       <div class="col-6 p-x-0 align-self-center">
         <select disabled class="t-c-0c4 border">
-          <option value="1" >有限公司</option>
-          <option value="2" selected>有限责任公司</option>
+          <option v-model='list.kind'>{{list.kind}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -42,13 +41,8 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">所属行业</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select disabled class="t-c-0c4 border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
-        </select>
         <select class="mt-2 t-c-0c4 border" disabled>
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
+          <option v-model='list.bname'>{{list.bname}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -60,8 +54,7 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司规模</label>
       <div class="col-6 p-x-0 align-self-center">
         <select disabled class="t-c-0c4 border">
-          <option value="1">有限公司</option>
-          <option value="2">有限责任公司</option>
+          <option v-model='list.scope'>{{list.scope}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-right">
@@ -72,7 +65,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">注册地址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司地址" value="保定" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司地址" v-model='list.address' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -82,7 +75,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司网址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司网址" value="保定" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司网址" v-model='list.website' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -92,7 +85,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司邮箱</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司邮箱" value="保定" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写公司邮箱" v-model='list.email' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -102,7 +95,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人姓名</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写联系人姓名" value="保定" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写联系人姓名" v-model='list.contact_name' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -112,7 +105,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人电话</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写联系人电话" value="保定" readonly>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-0c4" placeholder="请填写联系人电话" v-model='list.contact_mobile' readonly>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -122,7 +115,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司简介</label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0 t-c-0c4" readonly>保定保定保定</textarea>
+        <textarea rows="3" class="border-0 t-c-0c4" v-model='list.summary' readonly>保定保定保定</textarea>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -185,3 +178,22 @@ body{ background-color: #fff!important; }
       </div>
     </div>
 </div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    list:[],
+  },
+  mounted(){
+    this.ajax.get('/company/test/detail',(res)=>{
+      this.list = res.data[0]
+      console.log(JSON.stringify(this.list))
+    },(err)=>{
+      alert(err.errmsg)
+    })
+  },
+  methods: {
+  }
+})
+</script>

@@ -49,6 +49,7 @@
 .w-w50{width:50px;}
 
 .w-w70{width:70px;}
+.w-w1{width: 1px;}
 
 
 .m-p-l-35{margin-left:3.5%;}
@@ -436,6 +437,7 @@
 
 .br-h{border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
 /* height */
+.h-14{height:14px;}
 .h-16{height:16px;}
 .h-18{height:18px;}
 .h-20{height:20px;}
@@ -474,6 +476,7 @@
 .h-7{ height:7px; }
 
 /* line-height */
+.lh-14{line-height:14px;}
 .lh-16{line-height:16px;}
 .lh-18{line-height:18px;}
 .lh-20{line-height:20px;}

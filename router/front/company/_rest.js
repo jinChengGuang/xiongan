@@ -22,6 +22,13 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
+   * 经验要求
+   */
+  '/experience/list': async (ctx, next) => {
+    ctx.result.ok.data = ['不限','可接受无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
    * 福利待遇列表
    */
   '/benefit/list': async (ctx, next) => {
@@ -304,6 +311,23 @@ exports.get = {
     ctx.result.ok.data = red
     $.flush(ctx, ctx.result.ok)
   },
+   /**
+   * 职位类型列表
+   */
+  '/jobtype/list': async (ctx, next) => {
+    let data = await $.mysql.query($.conf.mysql.main, 'select * from job_type', [null])
+    ctx.result.ok.data = data
+    $.flush(ctx, ctx.result.ok)
+  },
+/**
+ * 企业认证详情
+ */
+'/company/test/detail': async (ctx, next) => {
+  let id = ctx.company.id
+  let data = await $.mysql.query($.conf.mysql.main, 'select A.*,B.name as bname from company A, industry B where A.iid=B.id and A.id = ?', [id])
+  ctx.result.ok.data = data
+  $.flush(ctx, ctx.result.ok)
+}
   /**
    * 系统通知消息红点
    */

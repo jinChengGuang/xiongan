@@ -2,18 +2,43 @@
   <form action="#" class="m-50-auto-0 w-80">
     <div class="input-group mt-3">
       <span class="input-group-addon icon border-0" id="basic-addon1">&#xe745;</span>
-      <input type="text" class="from-control w-100" placeholder="请输入账号">
+      <input type="text" class="from-control w-100 in-out" placeholder="请输入账号" v-model='company.username'>
     </div>
     <div class="input-group mt-3">
       <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input type="password" class="from-control w-100" placeholder="请输入密码">
+      <input type="password" class="from-control w-100 in-out" id='psd' placeholder="请输入密码" v-model='company.password'>
     </div>
     <div class="input-group mt-3">
       <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input type="password" class="from-control w-100" placeholder="请确认密码">
+      <input type="password" class="from-control w-100 in-out" id='repeat' placeholder="请确认密码">
     </div>
     <div class="text-center">
-      <a href="/front/login/login" class="btn btn-warning mt-3 w-100 t-c-white">注册</a>
+      <!--<a href="/front/login/login" class="btn btn-warning mt-3 w-100 t-c-white">注册</a>-->
+      <button class="btn btn-warning mt-3 w-100 t-c-white" @click='login'>注册</button>
     </div>
   </form>
 </div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data:{
+      company:{},
+    },
+    methods:{
+      login(){
+        let psd = document.getElementById('psd').value
+        let req = document.getElementById('repeat').value
+        if(psd != req){
+          alert('两次密码不一致')
+          return false
+        }
+        this.ajax.post('/company/register',this.company,(res)=>{
+          // setTimeout("window.location.href='/front/login/login'",1500)
+        },(err)=>{
+
+        })
+      },
+    }
+  })
+</script>
