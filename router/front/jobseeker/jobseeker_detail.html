@@ -2,7 +2,7 @@
 <div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
   <div class="row tab h-45 lh-45 bg-fff">
     <div class="col-2 ">
-      <i class="icon back f-s-15 v-a">&#xe86c;</i>
+      <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
     </div>
     <div class="col-8 middle ta-c">
       <span>职位详情</span>
@@ -10,72 +10,131 @@
     <div class="col-2"></div>
   </div>
 </div>
-
 <!--职位详情-->
-<div class='container-fluid m-b-8'>
+<div class='container-fluid m-b-8 m-t-50'>
   <ul class="f-s-8 m-b-0">
-    <li class=" bg-white bor-r-5 p-10 pr row">
+    <li v-for="one in list" class=" bg-white bor-r-5 p-10 pr row">
       <p class="w-100 m-b-10">
-        <span class="f-s-10 f-w-6">电商产品经理</span>
-        <span class="float-right">今天</span>
+        <span class="f-s-10 f-w-6"> {{one.name}} </span>
+        <span class="float-right">{{one.issue_time}}</span>
       </p>
       <p class="w-100 m-b-5">
-        <span class="t-c-ff5">3000-5000</span>
+        <span class="t-c-ff5">{{one.pay}}</span>
       </p>
       <p class="w-100 m-b-5">
-        <span><i class="icon">&#xe621;</i>保定 北市区</span>
-        <span><i class="icon">&#xe86a;</i>大专及以上</span>
-        <span><i class="icon">&#xe68c;</i>经验不限</span>
+        <span><i class="icon">&#xe621;</i>{{one.area}}</span>
+        <span><i class="icon">&#xe86a;</i>{{one.education}}</span>
+        <span><i class="icon">&#xe68c;</i>{{one.experience}}</span>
       </p>
-      <p class="w-100 m-b-5">
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
-        <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
+      <p class="w-100 m-b-5" >
+        <span class="bor p-x-2 m-l-3 bor-sol bor-ccc t-c-d br-5 p-l-5 f-s-5 dinb m-t-5" v-for='n in arry'>{{n}}</span>
       </p>
       <p class="w-100 m-b-5">
         <i class="icon">&#xe621;</i>
-        <span>保定市和社区外包有限公司</span>
-        <span class="icon p-l-f2">&#xe7c4;</span>
-        <span class='collect-1'>收藏</span>
+        <span><a href="/front/company/company_list">{{one.cname}}</a></span>
+        <span class="icon p-l-f2"><a href="/front/company/company_list">&#xe7c4;</a></span>
+        <span class='collect-1 dinb h-h25 w-w60 ta-c lh-25 br-5 bor-sol bor-ccc right' @click='cancel(one.id)' v-if='show_1==true'>收藏</span>
+        <span class='collect-1 dinb h-h25 w-w60 ta-c lh-25 br-5 bor-sol bor-ccc right bg-d t-c-fff' v-if='show_1==false'>收藏</span>
       </p>
     </li>
   </ul>
 </div>
 <!--岗位职责-->
-<div class="container-fluid content bg-fff bor-t-sol bor-ccc bor-b-sol bor-ccc m-b-3">
-  <div class='row p-y-p2 p-l-10 f-s-8 bor-b-sol bor-ccc '>
-    <i class="icon f-s-8 p-y-3 p-r-r3 m-t-3">&#xe723;</i>
-    <span>岗位职责</span>
+<div v-for="one in list">
+  <div class="container-fluid content bg-fff bor-t-sol bor-ccc bor-b-sol bor-ccc m-b-3" >
+    <div class='row p-y-p2 p-l-10 f-s-8 bor-b-sol bor-ccc '>
+      <i class="icon f-s-8 p-y-3 p-r-r3 m-t-3">&#xe723;</i>
+      <span>岗位职责</span>
+    </div>
+    <div class='content_1 f-s-6 t-c-666'>
+      <p class='m-t-5' id='a'>{{statement}}</p>
+    </div>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-show='one.statement.length > 80'>
+      <i class="icon" >&#xe7c3;</i>
+    </div>
   </div>
-  <div class='content_1 f-s-6 t-c-666'>
-    <p class='m-t-5'>1.的伺服电机复合大师v符合vuvUI是v失败v句;</p>
-    <p class='m-t-5'>2.待付款你打了if快到家后内容没我聪明复健科品PVC肯定就是</p>
-    <p class='m-t-5'>3.贷款都没感觉东坡额皮肤什么看v没放假</p>
-  </div>
-  <div class='bottom ta-c t-c-009 f-s-12'>
-    <i class="icon">&#xe7c3;</i>
-  </div>
-</div>
-
-<!--任职资格-->
-<div class="container-fluid content bg-fff bor-t-sol bor-ccc bor-b-sol bor-ccc m-b-3">
-  <div class='row p-y-p2 p-l-10 f-s-8 bor-b-sol bor-ccc '>
-    <i class="icon f-s-8 p-y-3 p-r-r3 m-t-3">&#xe723;</i>
-    <span>任职资格</span>
-  </div>
-  <div class='content_1 f-s-6 t-c-666'>
-    <p>1.的伺服电机复合大师v符合vuvUI是v失败v句;</p>
-    <p>2.待付款你打了if快到家后内容没我聪明复健科品PVC肯定就是</p>
-    <p>3.贷款都没感觉东坡额皮肤什么看v没放假</p>
-  </div>
-  <div class='bottom ta-c t-c-009 f-s-12'>
-    <i class="icon">&#xe7c3;</i>
+  <!--任职资格-->
+  <div class="container-fluid content bg-fff bor-t-sol bor-ccc bor-b-sol bor-ccc m-b-50">
+    <div class='row p-y-p2 p-l-10 f-s-8 bor-b-sol bor-ccc' id='icon'>
+      <i class="icon f-s-8 p-y-3 p-r-r3 m-t-3">&#xe723;</i>
+      <span>任职资格</span>
+    </div>
+    <div class='content_1 f-s-6 t-c-666'>
+      <p class='pt-3'>{{requirements}}</p>
+    </div>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-show='one.requirements.length > 80'>
+      <i class="icon">&#xe7c3;</i>
+    </div>
   </div>
 </div>
+<div class='container-fluid bg-d w-100 ta-c h-h45 lh-45 t-c-fff f-s-8 pf b-0' @click='record(list[0].id)'>投递</div>
 
-<style>
-/*热门岗位1*/
- .collect-1{ display: inline-block; height:25px; width:60px; text-align: center; line-height: 25px; border-radius: 5px; border: 1px solid #21a0d7; color:#21a0d7; float: right;}
- .collect-1:hover{ background:#21a0d7; color: #fff;}
-
-</style>
+<script> 
+  new Vue({
+    el:'#app',
+    data:{
+      list:[],
+      benefit:[],
+      arry:[],
+      statement:'',
+      statement_length:'',
+      requirements:'',
+      requirements_length:'',
+      show_1:true,
+      resume:[]
+    },
+    mounted(){
+      this.ajax.get('/job/detail/2',(res)=>{
+        this.list = res.data
+        this.arry = res.data[0].benefit.split('|')
+        this.statement = res.data[0].statement
+        this.statement_length = res.data[0].statement
+        this.requirements = res.data[0].requirements
+        this.requirements_length = res.data[0].requirements
+      },(err)=>{
+        
+      })
+      // 个人简历
+      this.ajax.get('/user/resume',(res)=>{
+        this.resume = res.data[0]
+      },(err)=>{
+        
+      })
+    },
+    methods: {
+      block(){
+        if(this.statement == this.statement_length && this.statement.length > 80){
+          this.statement = this.statement.substring(0,80)+'...'
+        }else{
+          this.statement = this.statement_length
+        }
+      },
+      content(){
+        if(this.requirements == this.requirements_length && this.requirements.length > 80){
+          this.requirements = this.requirements.substring(0,80)+'...'
+        }else{
+          this.requirements = this.requirements_length
+        }
+      },
+      // 收藏
+      cancel(jid){
+        this.ajax.post('/collect/job',{ jid: jid},(res)=>{
+        window.alert('收藏成功')
+        this.show_1 = false
+        },(err)=>{
+        })
+      },
+      // 投递
+      record(jid){
+        this.ajax.post('/add/resume/record',{jid:jid, rid:this.resume.id}, (res)=>{
+          console.log(jid)
+          console.log(this.resume.id)
+          window.alert('投递成功')
+        })
+      },
+      go(){
+        window.history.go(-1);
+      }
+    }
+  })
+</script>

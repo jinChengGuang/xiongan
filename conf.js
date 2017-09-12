@@ -41,7 +41,7 @@ const conf = {
         host:       "localhost",
         port:       6379
       },
-      domain:       '192.168.1.45',
+      domain:       '192.168.0.100',
       path:         '/',
     },
     mysql: {
@@ -76,13 +76,13 @@ const conf = {
   // -------------------------------------------------------------------------- Pro
   production: {
     accept:         "http://localhost",
-    uptemp:         "uptemp",
+    uptemp:         "c:\\uptemp",
     session: {
       redis: {
         host:       "localhost",
         port:       6379
       },
-      domain:       '192.168.0.100',
+      domain:       '192.168.0.97',
       path:         '/',
     },
     mysql: {

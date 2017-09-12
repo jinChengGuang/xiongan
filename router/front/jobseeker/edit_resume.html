@@ -152,12 +152,17 @@ new Vue({
     }, (res) => {
       console.log(res.errmsg)
     })
+    this.ajax.get('/user/resume', (res) => {
+      this.data = res.data[0]
+    }, (res) => {
+      console.log(res.errmsg)
+    })
   },
   methods: {
     add(){
       this.data.head = head.value
      this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
-     this.ajax.post('/add/resume', this.data,(res) => {
+     this.ajax.put('/edit/basis', this.data,(res) => {
       console.log('提交成功')
       window.location.href='/front/jobseeker/job'
       }, (res) => {

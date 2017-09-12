@@ -9,11 +9,33 @@
   </div>
   <form action="#">
     <div class="from-group bor-b-sol bor-f1 p-y-p2 f-s-8 m-t-50">
-      <textarea cols="30" rows="10" class="w-100 border-0 in-out" placeholder="[示例] 本人工作2年，性格开朗熟练掌握各种技能，待人友好，为人诚恳。"></textarea>
+      <textarea v-model='data.evaluate' cols="30" rows="10" class="w-100 border-0 in-out" placeholder="[示例] 本人工作2年，性格开朗熟练掌握各种技能，待人友好，为人诚恳。"></textarea>
     </div>
 
     <div class="row">
-      <a href="/front/jobseeker/assess_ok" class="btn br-0 bg-primary t-c-white m-10-auto">保存</a>
+      <a @click='next' class="btn br-0 bg-primary t-c-white m-10-auto">保存</a>
     </div>
   </form>
 </div>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    data:{},
+  },
+  mounted () {
+  },
+  methods: {
+    next(){
+      // 另一个页面传进来的值
+      this.data.id = 1
+      this.ajax.put('/evaluate/add', this.data,(res) => {
+        console.log('提交成功')
+        window.location.href='/front/jobseeker/assess_ok'
+        }, (res) => {
+          console.log(res.errmsg)
+        })
+    }
+  }
+})
+</script>
