@@ -3,7 +3,7 @@ body{ background-color: #fff!important; }
 .bg-light{ background-color: #fff!important; height: 40px; line-height: 40px; border-bottom: 1px solid #f1f1f1; }
 .file{ background-color: #fff; width: 100px; height: 100px; border: 1px solid #f1f1f1; }
 </style>
-<div class="container-fluid">
+<div class="container-fluid bg-white">
   <div class="row bg-light justify-content-left fixed-top">
     <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
     <div class="col-8 text-center">企业认证</div>
@@ -12,7 +12,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司名称</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="公司名称">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="公司名称" v-model='group.name'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -22,7 +22,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司性质</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border">
+        <select class="border" v-model='group.kind'>
           <option v-for='t in type'>{{t}}</option>
         </select>
       </div>
@@ -38,7 +38,7 @@ body{ background-color: #fff!important; }
           <option :value='0'>请选择</option>
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
-        <select class="mt-2 border" id='mcat'>
+        <select class="mt-2 border" id='mcat' v-model='group.iid'>
           <option :value='0'>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
@@ -49,9 +49,23 @@ body{ background-color: #fff!important; }
     </div>
 
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0">成立年份</label>
+      <div class="col-6 p-x-0 align-self-center">
+        <select class="border" v-model='group.age'>
+          <option>1989</option>
+          <option>1990</option>
+          <option>1991</option>
+        </select>
+      </div>
+      <div class="col-1 align-self-center text-right">
+        <span class="t-c-e20">*</span>  
+      </div>
+    </div>
+
+    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司规模</label>
       <div class="col-6 p-x-0 align-self-center">
-        <select class="border">
+        <select class="border" v-model='group.scope'>
           <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
@@ -63,7 +77,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">注册地址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司地址">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司地址" v-model='group.address'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -73,7 +87,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司网址</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址" id='website'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址" id='website' v-model='group.website'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -83,7 +97,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司邮箱</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱" id='email'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱" id='email' v-model='group.email'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -93,7 +107,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人姓名</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人姓名">
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人姓名" v-model='group.contact_name'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -103,7 +117,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人电话</label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话" id='mobile'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话" id='mobile' v-model='group.contact_mobile'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -113,7 +127,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司简介</label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0"></textarea>
+        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0" v-model='group.summary'></textarea>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -123,7 +137,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">上传营业执照</label>
       <div class="col-6 p-x-0 file">
-        <input type="file">
+        <input type="file" v-mobile='group.certificate'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -133,7 +147,8 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">上传法人身份证原件</label>
       <div class="col-6 p-x-0 file">
-        <input type="file">
+        <input type="file" v-model='group.idcard_front'>
+        <input type="file" v-model='group.idcard_reverse'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -143,7 +158,7 @@ body{ background-color: #fff!important; }
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">上传公司logo</label>
       <div class="col-6 p-x-0 file">
-        <input type="file">
+        <input type="file" v-model='group.logo'>
       </div>
       <div class="col-1 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -167,6 +182,7 @@ new Vue({
    smallall:[],
    type:[],
    scope:[],
+   group:[]
   },
   mounted(){
     this.ajax.get('/company/industry/list',(res)=>{
@@ -189,17 +205,15 @@ new Vue({
     //性质
     this.ajax.get('/company/kind/list',(res)=>{
       this.type = res.data
-      console.log(JSON.stringify(this.type))
     },(err)=>{
       alert(err.errmsg)
     })
-    // //规模
-    // this.ajax.get('/company/scope/list',(res)=>{
-    //   this.scope = res.data
-    //   console.log(JSON.stringify(this.scope))
-    // },(err)=>{
-    //   alert(err.errmsg)
-    // })
+    //规模
+    this.ajax.get('/company/scope/list',(res)=>{
+      this.scope = res.data
+    },(err)=>{
+      alert(err.errmsg)
+    })
   },
   methods: {
     linkage (){
@@ -219,15 +233,14 @@ new Vue({
       let email = document.getElementById('email').value
       let mobile = document.getElementById('mobile').value
       let group = document.getElementsByClassName('form-control-plaintext')
-      console.log(group)
       let webreg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/
       let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
       let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
-      for(let i=0; i<group.length; i++){
-        if(group[i].value == ''){
-          alert('不能为空')
-        }
-      }
+      // for(let i=0; i<group.length; i++){
+      //   if(group[i].value == ''){
+      //     alert('不能为空')
+      //   }
+      // }
       if(!webreg.test(website)){
         alert('输入的网址格式不正确')
         return false
@@ -236,9 +249,12 @@ new Vue({
         return false
       }else if(!mobreg.test(mobile)){
         alert('输入的手机号格式不正确')
-      }else{
-        alert('成功')
       }
+      this.ajax.put('/company/add',this.group,(res)=>{
+        alert('成功')
+      },(err)=>{
+        alert(err.errmsg)
+      })
     }
   }
 })

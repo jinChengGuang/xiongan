@@ -2,7 +2,6 @@
 body{ background-color: #fff!important; }
 .bg-light{ background-color: #fff!important; height: 40px; line-height: 40px; border-bottom: 1px solid #f1f1f1; }
 .file{ background-color: #fff; width: 100px; height: 100px; border: 1px solid #f1f1f1; }
-
 </style>
 <div class="container-fluid bg-white">
   <div class="row bg-light justify-content-left fixed-top">
@@ -49,8 +48,8 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">薪资水平</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.pay'>
-          <!--<option>2000-4000</option>-->
-          <option v-for='list in pay'>{{list}}</option>
+          <option>2000-4000</option>
+          <!--<option v-for='list in pay'>{{list}}</option>-->
         </select>
       </div>
       <div class="col-2 align-self-center text-right">
@@ -91,8 +90,8 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">工作区域</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.area'>
-          <!--<option>保定</option>-->
-          <option v-for='a in area'>{{a}}</option>
+          <option>保定</option>
+          <!--<option v-for='a in area'>{{a}}</option>-->
         </select> 
       </div>
       <div class="col-2 align-self-center text-right">
@@ -104,8 +103,8 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">学历要求</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.education'>
-          <!--<option>本科</option>-->
-          <option v-for='e in education'>{{e}}</option>
+          <option>本科</option>
+          <!--<option v-for='e in education'>{{e}}</option>-->
         </select>
       </div>
       <div class="col-2 align-self-center text-right">
@@ -117,8 +116,8 @@ body{ background-color: #fff!important; }
       <label for="" class="col-4 col-from-label align-self-center m-b-0">经验要求</label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.experience'>
-          <!--<option value="1">3年以上</option>-->
-          <option v-for='exper in exper'>{{exper}}</option>
+          <option value="1">3年以上</option>
+          <!--<option v-for='exper in exper'>{{exper}}</option>-->
         </select>
       </div>
       <div class="col-2 align-self-center text-right">
@@ -216,39 +215,49 @@ new Vue({
     },(err)=>{
 
     })
-    //学历列表
-    this.ajax.get('/education/list',(res)=>{
-      this.education = res.data
-      console.log(JSON.stringify(this.education))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-    //薪资要求
-    this.ajax.get('/pay/list',(res)=>{
-      this.pay = res.data
-      console.log(JSON.stringify(this.pay))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-  //  区域列表
-    this.ajax.get('/area/list',(res)=>{
-      this.area = res.data
-      console.log(JSON.stringify(this.area))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
-    // 经验要求
-    this.ajax.get('/experience/list',(res)=>{
-      this.exper = res.data
-      console.log(JSON.stringify(this.exper))
-    },(err)=>{
-      console.log(err.errmsg)
-    }),
+  //   //学历列表
+  //   this.ajax.get('/education/list',(res)=>{
+  //     this.education = res.data
+  //     console.log(JSON.stringify(this.education))
+  //   },(err)=>{
+  //     console.log(err.errmsg)
+  //   }),
+  //   //薪资要求
+  //   this.ajax.get('/pay/list',(res)=>{
+  //     this.pay = res.data
+  //     console.log(JSON.stringify(this.pay))
+  //   },(err)=>{
+  //     console.log(err.errmsg)
+  //   }),
+  // //  区域列表
+  //   this.ajax.get('/area/list',(res)=>{
+  //     this.area = res.data
+  //     console.log(JSON.stringify(this.area))
+  //   },(err)=>{
+  //     console.log(err.errmsg)
+  //   }),
+  //   // 经验要求
+  //   this.ajax.get('/experience/list',(res)=>{
+  //     this.exper = res.data
+  //     console.log(JSON.stringify(this.exper))
+  //   },(err)=>{
+  //     console.log(err.errmsg)
+  //   }),
+
   $(function(){
     $('#span>span').click(function(){
       let index = $(this).index()
-      let p = $('#p').html( $('#span>span').eq(index).html())
-      console.log(p)
+      let html = $('#span>span').eq(index).html()
+      let p = ''
+      p += html
+      if($(this).hasClass('red')){
+        $('#p').html('')
+        $('#span>span').eq(index).removeClass('red')
+      }else{
+        $('#p').append(p+'|')
+        console.log($('#p').html())
+        $('#span>span').eq(index).addClass('red')
+      }
     })
   })
   },

@@ -327,7 +327,7 @@ exports.get = {
   let data = await $.mysql.query($.conf.mysql.main, 'select A.*,B.name as bname from company A, industry B where A.iid=B.id and A.id = ?', [id])
   ctx.result.ok.data = data
   $.flush(ctx, ctx.result.ok)
-}
+},
   /**
    * 系统通知消息红点
    */
