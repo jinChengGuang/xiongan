@@ -1,5 +1,5 @@
 <!--顶部导航栏-->
-<div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
+<div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-1030">
   <div class="row tab h-45 lh-45 bg-fff">
     <div class="col-2 ">
       <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
@@ -72,7 +72,6 @@
     mounted(){
       this.ajax.get('/user/collect/list',(res)=>{
         this.list = res.data
-        console.log(this.list)
       },(err)=>{
       })
     },
@@ -80,7 +79,7 @@
       collect(jid,i){
         this.ajax.post('/collect/job',{ jid: jid},(res)=>{
         this.list[i].iscollect=true
-        window.alert('收藏成功')
+        weui.toast('收藏成功', 2000);
         },(err)=>{
 
         })
@@ -89,7 +88,7 @@
         this.ajax.delete('/collect/delete/'+ jid,(res)=>{
         this.list[i].iscollect=false
         this.show = false
-        window.alert('取消收藏')
+        weui.toast('取消收藏', 2000);
         },(err)=>{
 
         })

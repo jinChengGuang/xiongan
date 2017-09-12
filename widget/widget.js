@@ -65,7 +65,7 @@ module.exports = function () {
 </div>
     `
     ctx.state.fjob = `
-  <div class="container-fluid py-1 bottom" style='font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;'>
+  <div class="container-fluid py-1 bottom" style='font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 1000; border-top:#dcdddd solid 1px;'>
     <div class="row">
     <div class="col" style='text-align: center; padding:0;'>
       <a href="/front/jobseeker/home" style='display: block; width: 100%; height: 100%; color: #323232;'>

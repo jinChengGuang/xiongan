@@ -67,7 +67,6 @@
     </div>
   </div>
 </div>
-<div class='container-fluid bg-d w-100 ta-c h-h45 lh-45 t-c-fff f-s-8 pf b-0' @click='record(list[0].id)'>投递</div>
 
 <script> 
   new Vue({
@@ -92,13 +91,6 @@
         this.requirements = res.data[0].requirements
         this.requirements_length = res.data[0].requirements
       },(err)=>{
-        
-      })
-      // 个人简历
-      this.ajax.get('/user/resume',(res)=>{
-        this.resume = res.data[0]
-      },(err)=>{
-        
       })
     },
     methods: {
@@ -122,12 +114,6 @@
         weui.toast('收藏成功', 2000);
         this.show_1 = false
         },(err)=>{
-        })
-      },
-      // 投递
-      record(jid){
-        this.ajax.post('/add/resume/record',{jid:jid, rid:this.resume.id}, (res)=>{
-          weui.toast('投递成功', 2000);
         })
       },
       go(){
