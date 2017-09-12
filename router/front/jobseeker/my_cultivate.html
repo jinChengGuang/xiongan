@@ -1,15 +1,16 @@
 <!--顶部导航栏-->
-<div class="container-fluid">
-  <div class="fixed-top">
-    <div class="row tab">
-      <div class="col-2">
-        <i class="icon">&#xe86c;</i>
-      </div>
-      <div class="col-8 middle">
-        <span>我的报名培训</span>
-      </div>
-      <div class="col-2"></div>
+<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
+    <div class="col-8 text-center">
+      <span>课程详情</span>
+    </div>
+    <div class="col-2"></div>
+  </div>
 </div>
 
 <!--空页-->
@@ -19,79 +20,47 @@
 <!--报名列表-->
 <div class="box m-t-55">
   <ul class="f-s-8 m-b-80">
-    <li class="m-t-10 p-10 bg-white br-5">
+    <li class="m-t-10 p-10 bg-white br-5" v-for='n in list'>
       <p class="p-b-p5 m-b-0">
-        <span class="f-w-b f-s-10">瑞安机电</span>
+        <span class="f-w-b f-s-10">{{n.culname}}</span>
         <i class="icon"></i>
       </p>
       <p class="p-b-p5 m-b-0">
-        <span>您于2017年8月30日报名的XXX待审核</span>
+        <span>您于{{n.apply_time}}报名的{{n.culname}}待审核</span>
       </p>
       <p class="text-right m-b-0">
-        <button type="button" class="btn btn-sm btn-secondary">取消报名</button>
-        <a name="" id="" class="btn btn-sm btn-primary" href="#" role="button">联系客服</a>
-      </p>
-    </li>
-    <li class="m-t-10 p-10 bg-white br-5">
-      <p class="p-b-p5 m-b-0">
-        <span class="f-w-b f-s-10">瑞安机电</span>
-        <i class="icon"></i>
-      </p>
-      <p class="p-b-p5 m-b-0">
-        <span>您于2017年8月30日报名的XXX待审核</span>
-      </p>
-      <p class="text-right m-b-0">
-        <button type="button" class="btn btn-sm btn-secondary">取消报名</button>
-        <a name="" id="" class="btn btn-sm btn-primary" href="#" role="button">联系客服</a>
+        <button type="button" class="btn btn-sm btn-secondary" @click='cancel(n.id)'>取消报名</button>
+        <a name="" id="" class="btn btn-sm btn-primary" href="tel:n.mobile" role="button">联系客服</a>
       </p>
     </li>
   </ul>
 </div>
-  
-  <!--底部导航栏-->
-    <div class="container-fluid py-1 bottom">
-      <div class="row">
-        <div class="col">
-          <i class="icon notbig">&#xe7c9;</i>
-          <p class="mb-0">首页</p>
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe788;</i>
-          <p class="mb-0">招聘</p>
-        </div>
-        <div class="col">
-          <i class="icon big">&#xe7df;</i>
-          <p class="mb-0 play">雄安直播</p>
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe603;</i>
-          <p class="mb-0">培训</p>
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe81f;</i>
-          <p class="mb-0">我的</p>
-        </div>
-      </div>
-    </div>
-</div>
-<style>
-  .top{ position:fixed; top:0; left:0; z-index: 10;}
-  .tab { height:45px; line-height:45px; background-color: #fff;}
-  .tab .middle{text-align: center;}
-  .tab .back { font-size: 1.5rem!important; vertical-align: middle;}
-
-
-
- 
-
-  .bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-
-</style>
-<script>
-  
+<%- fjob%>
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    list:[],
+  },
+  mounted () {
+    this.ajax.get('/cultivate/list', (res) => {
+      this.list = res.data
+      console.log(this.list)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+    cancel(id){
+      console.log(111)
+      this.ajax.put('/cancel/cultivate/record',{id:id},(res) => {
+        window.alert('取消成功')
+        setTimeout(window.location.reload(),1500)
+      }, (err) => {
+        console.log(err)
+      })
+    }
+  }
+})
 </script>
+ 

@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------- Package
 const _ = require('lodash')
 // ---------------------------------------------------------------------------- GET
-exports.get = {
+exports.get =  {
   // -------------------------------------------------------------------------- enter
   // 简历记录
   '/front/company/resume_record': async (ctx, next) => {
@@ -51,8 +51,6 @@ exports.get = {
   },
     // 企业个人中心
   '/front/company/compan_home': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/compan_home')
   },
   // 搜索页
@@ -63,8 +61,6 @@ exports.get = {
   },
   // 公司详情
   '/front/company/company_list': async (ctx, next) => {
-    ctx.state.name = 'liuzihao, zhangfule'
-    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/company_list')
   },
    //企业认证

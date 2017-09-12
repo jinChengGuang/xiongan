@@ -57,7 +57,15 @@ exports.get = {
     ctx.result.ok.data = ['20人以下','20-99人','100-499人','500-999人','1000-9999人','10000人以上' ]
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+/**
+   * 经验要求列表
+   */
+  '/experience/list': async (ctx, next) => {
+    ctx.result.ok.data = ['无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
+    $.flush(ctx, ctx.result.ok)
+  },
+
+/**
    * 职位列表
    */
   '/job/all/list': async (ctx, next) => {
@@ -79,7 +87,7 @@ exports.get = {
     }
     if(time){
         let a = $.time.betweenDay().start/1000-(time-1)*60*60*24
-        where =  where + ' and time > ? '
+        where =  where + ' and issue_time > ? '
         params.push(a)
     }
     if(benefit){
@@ -93,11 +101,12 @@ exports.get = {
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+/**
    * 搜索为你推荐
    */
   '/search/recommend': async (ctx, next) => {
     let {name} = ctx.get
+    let uid = ctx.user.id
     let data = []
     let where = ''
     if(name){
@@ -109,7 +118,10 @@ exports.get = {
       let job = await $.mysql.query($.conf.mysql.main, sql, [null])
       ctx.result.ok.data = job
       $.flush(ctx, ctx.result.ok)
+      return
     }
+    ctx.result.ok.data = data
+    $.flush(ctx, ctx.result.ok)
   },
   /**
    * 首页直播
@@ -235,7 +247,8 @@ exports.get = {
     let id = ctx.params.id
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id = ? ', [id])
     let job = await $.mysql.query($.conf.mysql.main, 'select * from job where cid = ? and examine = 1 and status=1 order by issue_time desc', [id])
-    ctx.result.ok.data = [company[0],job]
+    let industry = await $.mysql.query($.conf.mysql.main, 'select * from industry where id=?',[company[0].iid])
+    ctx.result.ok.data = [company[0],job,industry[0]]
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -256,11 +269,20 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
+   * 我发出的邀请
+   */
+  '/user/invite/record': async (ctx, next) => {
+    let cid = ctx.company.id
+    let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume_record where cid = ? and status = 1 ', [cid])
+    ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
    * 职位简历记录
    */
   '/job/resume/record/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,c.name as jname from resume_record A,resume B,job C where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? order by sort desc  ', [id,id])
+    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname from resume_record A,resume B,job C where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? order by sort desc  ', [id,id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -278,7 +300,25 @@ exports.get = {
    */
   '/msg/red': async (ctx, next) => {
     let cid = ctx.company.id
-    let red = await $.mysql.query($.conf.mysql.main, 'select * from msg where isread = 0  and cid=?', [cid])
+    let red = await $.mysql.query($.conf.mysql.main, 'select * from msg where isread = 0 and cid=?', [cid])
+    ctx.result.ok.data = red
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 系统通知消息红点
+   */
+  '/examine/msg/red': async (ctx, next) => {
+    let cid = ctx.company.id
+    let red = await $.mysql.query($.conf.mysql.main, 'select * from msg where isread = 0 and type in (0,1) and cid=?', [cid])
+    ctx.result.ok.data = red
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 用户投递消息红点
+   */
+  '/user/msg/red': async (ctx, next) => {
+    let cid = ctx.company.id
+    let red = await $.mysql.query($.conf.mysql.main, 'select * from msg where isread = 0 and type = 2 and cid=?', [cid])
     ctx.result.ok.data = red
     $.flush(ctx, ctx.result.ok)
   },
@@ -303,11 +343,11 @@ exports.post = {
     let { culid, culname} = ctx.post
     let apply_time = $.time10()
     if(cid){
-      let data=await $.mysql.push($.conf.mysql.main, 'insert into apply_record (culid,culname,cid,apply_time) values(?,?,?,?)', [culid,culname,cid,apply_time])
+      let data=await $.mysql.push($.conf.mysql.main, 'insert into apply_record (culid,culname,cid,apply_time) values (?,?,?,?)', [culid,culname,cid,apply_time])
       ctx.result.ok.data = data
       $.flush(ctx, ctx.result.ok)
     }else{
-      let data=await $.mysql.push($.conf.mysql.main, 'insert into apply_record (culid,culname,uid,apply_time) values(?,?,?,?) ', [culid,culname,uid,apply_time])
+      let data=await $.mysql.push($.conf.mysql.main, 'insert into apply_record (culid,culname,uid,apply_time) values (?,?,?,?)', [culid,culname,uid,apply_time])
       ctx.result.ok.data = data
       $.flush(ctx, ctx.result.ok)
     }
@@ -335,9 +375,9 @@ exports.put = {
   '/cancel/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
     let cid = ctx.company.id
-    let { id } = ctx.post
+    let { id } = ctx.put
     let cancle_time = $.time10()
-    let data=await $.mysql.push($.conf.mysql.main, 'update apply_record set status = 2 and cancle_time=? where id =? ', [cancle_time,id ])
+    let data = await $.mysql.push($.conf.mysql.main, 'update apply_record set status=1, cancle_time=? where id =? ', [cancle_time,id])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },

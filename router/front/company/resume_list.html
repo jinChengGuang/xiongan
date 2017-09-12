@@ -2,7 +2,9 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
       <span>简历列表</span>
@@ -13,160 +15,66 @@
 <!--简历列表-->
 <div>
   <ul class="m-t-55 m-b-80 f-s-8">
-    <li class="m-10 p-10 bg-white br-5 pr row">
+    <li class="m-10 p-10 bg-white br-5 pr row" v-for='n in list'>
       <div class="col-2 p-0">
-        <img class="w-100 pa" style="top:30%" src="../../../skins/img/baba.png" alt="">
+        <img class="w-100 pa" style="top:30%" :src="n.head " alt="">
       </div>
       <div class="col-10 p-0">
         <p class="lh-25 mb-0">
-          <span>王XXX</span>
+          <span>{{n.uname}}</span>
         </p>
         <p class="lh-25 mb-0">
           <span>学历：</span>
-          <span>本科</span>
+          <span>{{n.education}}</span>
         </p>
         <p class="lh-25 mb-0">
-          <span>工作经验</span>
-          <span>1年</span>
+          <span>工作经验:</span>
+          <span>{{n.experience}}</span>
         </p>
         <p class="lh-25 mb-0">
-          <span>工位电话</span>
+          <span>申请职位:</span>
+          <span>{{n.jname}}</span>
+        </p>
+        <p class="lh-25 mb-0">
+          <span>联系电话:</span>
           <a href="###">
-            <span>电商产品经理电话</span>
+            <a href='tel:n.mobile'>{{n.usermobile}}</span>
             <i class="icon">&#xe760;</i>
           </a>
         </p>
         <p class="lh-25 mb-0">
-          <span>投递日期</span>
-          <span>2017/08/19</span>
+          <span>投递日期:</span>
+          <span>{{n.time}}</span>
         </p>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;">邀请</a>
-        <a href="###" class="pa delete" style="right:5%; top:0;">
+        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
+        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-646 br-5 " style="right:0; top:0;" v-show='n.status == 1'>已邀请</a>
+        <a href="###" class="pa delete" style="right:5%; top:0;" @click='show1(n.id)' v-show='n.status != 1'>
           <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
         </a>
-        <i class="icon pa f-s-15 t-c-299" style="bottom:0; right:0">&#xe727;</i>
-      </div>
-    </li>
-    <li class="m-10 p-10 bg-white br-5 pr row">
-      <div class="col-2 p-0">
-        <img class="w-100 pa" style="top:30%" src="../../../skins/img/baba.png" alt="">
-      </div>
-      <div class="col-10 p-0">
-        <p class="lh-25 mb-0">
-          <span>王XXX</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>学历：</span>
-          <span>本科</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工作经验</span>
-          <span>1年</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工位电话</span>
-          <a href="###">
-            <span>电商产品经理电话</span>
-            <i class="icon">&#xe760;</i>
-          </a>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>投递日期</span>
-          <span>2017/08/19</span>
-        </p>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;">邀请</a>
-        <a href="###" class="pa delete" style="right:5%; top:0;">
-          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
+        <a href="###" class=' pa f-s-15 t-c-666' style="bottom:0; right:0" @click='mark(n.id)' :class="{'t-c-d':n.sort==1}">
+          <i class="icon">&#xe7f2;</i>
         </a>
-        <i class="icon pa f-s-15 t-c-299" style="bottom:0; right:0">&#xe727;</i>
-      </div>
-    </li>
-    <li class="m-10 p-10 bg-white br-5 pr row">
-      <div class="col-2 p-0">
-        <img class="w-100 pa" style="top:30%" src="../../../skins/img/baba.png" alt="">
-      </div>
-      <div class="col-10 p-0">
-        <p class="lh-25 mb-0">
-          <span>王XXX</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>学历：</span>
-          <span>本科</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工作经验</span>
-          <span>1年</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工位电话</span>
-          <a href="###">
-            <span>电商产品经理电话</span>
-            <i class="icon">&#xe760;</i>
-          </a>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>投递日期</span>
-          <span>2017/08/19</span>
-        </p>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;">邀请</a>
-        <a href="###" class="pa delete" style="right:5%; top:0;">
-          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
-        </a>
-        <i class="icon pa f-s-15 t-c-299" style="bottom:0; right:0">&#xe727;</i>
-      </div>
-    </li>
-    <li class="m-10 p-10 bg-white br-5 pr row">
-      <div class="col-2 p-0">
-        <img class="w-100 pa" style="top:30%" src="../../../skins/img/baba.png" alt="">
-      </div>
-      <div class="col-10 p-0">
-        <p class="lh-25 mb-0">
-          <span>王XXX</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>学历：</span>
-          <span>本科</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工作经验</span>
-          <span>1年</span>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>工位电话</span>
-          <a href="###">
-            <span>电商产品经理电话</span>
-            <i class="icon">&#xe760;</i>
-          </a>
-        </p>
-        <p class="lh-25 mb-0">
-          <span>投递日期</span>
-          <span>2017/08/19</span>
-        </p>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;">邀请</a>
-        <a href="###" class="pa delete" style="right:5%; top:0;">
-          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
-        </a>
-        <i class="icon pa f-s-15 t-c-299" style="bottom:0; right:0">&#xe727;</i>
+        
       </div>
     </li>
   </ul>
 </div>
 <!--邀请弹层-->
 <div id="dialog2" style="display: none;">
-  <div class="weui-mask"></div>
-  <div class="backbox">
-    <div class="title">邀请模板</div>
+  <div class="weui-mask z-1030" @click='notshow2'></div>
+  <div class="backbox w-80 br-5 bg-white fixed z-1040 p-10 f-s-8" style='top:25%; left: 10%; '>
+    <div class='w-100 lh-25 text-center m-b-10 f-s-10'>邀请模板</div>
     <p>
       <span>联系人：</span>
       <span>何先生</span>
     </p>
     <p>
       <span>联系电话：</span>
-      <span>13730125689</span>
+      <input type="text" class='bor-0 bor-b-sol bor-eee' v-model='p.mobile'>
     </p>
     <p>
       <span>面试时间：</span>
-      <span>2017/8/31 10:00:00</span>
+      <input type="datetime_local" class='bor-0 bor-b-sol bor-eee' placeholder="请选择面试时间" v-model='p.interviewtime'>
     </p>
     <p>
       <span>面试地址：</span>
@@ -174,41 +82,97 @@
     </p>
       <p>
       <span>备注：</span>
-      <span>哈哈哈哈</span>
+      <input type="text" placeholder="请输入备注信息" class='bor-0 bor-b-sol bor-eee' v-model='p.remark'>
     </p>
+    <button type="button" name="" id="" class="btn btn-primary p-y-3 p-x-15 m-l-p35" @click='invite'>发送</button>
   </div>
 </div>
 <!--删除弹框-->
 <div id="dialog1" style="display: none;">
-  <div class="weui-mask"></div>
+  <div class="weui-mask z-1030" @click='notshow1'></div>
   <div class="weui-dialog f-s-8 br-5">
     <div class="weui-dialog__hd"><strong class="weui-dialog__title">111</strong></div>
     <div class="weui-dialog__bd">您是否要进行此操作？</div>
     <div class="weui-dialog__ft">
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+      <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" id='cancel'>取消</a>
+      <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='delete'>确认</a>
     </div>
   </div>
 </div>
 <%- f%>
 <script>
-  let a = document.getElementsByClassName('delete')
-  let dialog1 = document.getElementById('dialog1')
-  let weuimask = document.getElementsByClassName('weui-mask')
-  let cancel = document.getElementsByClassName('weui-dialog__btn_default')
-  for(let one of a){
-    one.onclick = function(){
+new Vue({
+  el: '#app',
+  data: {
+    id: '1',
+    list : [],
+    p:{
+      interviewtime:'',
+      mobile:'',
+      address:'',
+      remark:'',
+      id:''
+    },
+    deleteId:''
+  },
+  mounted () {
+    let cancel = document.getElementById('cancel')
+    let del = document.getElementById('delete')
+    cancel.onclick = this.notshow1
+    del.onclick = this.delete
+    this.ajax.get('/job/resume/record/' + this.id, (res) => {
+      this.list = res.data
+      console.log(this.list)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+    show2(n){
+      let dialog2 = document.getElementById('dialog2')
+      dialog2.style.display = 'block'
+      this.p.id = n.id
+      this.p.address = n.address
+      this.p.mobile = n.mobile
+    },
+    notshow2(){
+      let dialog2 = document.getElementById('dialog2')
+      dialog2.style.display = 'none'
+      this.p.id = ''
+      this.p.address = ''
+      this.p.mobile = ''
+    },
+    invite(){
+      this.ajax.put('/invite/resume',this.p,(res) => {
+        setTimeout(window.location.reload(),1500)
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    show1(id){
+      let dialog1 = document.getElementById('dialog1')
       dialog1.style.display = 'block'
-    }
-  }
-  for(let one of weuimask){
-    one.onclick = function(){
+      this.deleteId = id
+    },
+    notshow1(){
+      let dialog1 = document.getElementById('dialog1')
       dialog1.style.display = 'none'
+      this.deleteId = ''
+    },
+    delete(){
+      this.ajax.put('/delete/resume',{id:this.deleteId},(res) => {
+        setTimeout(window.location.reload(),1500)
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    mark(id){
+      this.ajax.put('/mark/resume',{id:id},(res) => {
+        setTimeout(window.location.reload(),1500)
+      }, (err) => {
+        console.log(err)
+      })
     }
-  }
-  for(let one of cancel){
-    one.onclick = function(){
-      dialog1.style.display = 'none'
-    }
-  }
+  }                                          
+})
 </script>

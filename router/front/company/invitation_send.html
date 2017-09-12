@@ -2,7 +2,9 @@
 <div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
-      <i class="icon text-center f-s-15">&#xe86c;</i>
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
     </div>
     <div class="col-8 text-center">
       <span>发出的邀请</span>
@@ -17,99 +19,60 @@
 <!--中间内容-->
 <div>
   <ul class="m-t-55 m-b-80 f-s-8">
-    <li class="m-10 p-10 bg-white bor-r-5">
+    <li class="m-10 p-10 bg-white bor-r-5" v-for='one in list'>
       <p class="f-s-10 f-w-6 lh-25 mb-0">用户反馈通知</p>
-      <p class="lh-25 mb-0">8月28日</p>
+      <p class="lh-25 mb-0">{{one.invitetime}}</p>
       <p class="lh-25 mb-0">
         <span>姓名：</span>
-        <span>2017/08/28</span>
+        <span>{{one.username}}</span>
       </p>
       <p class="lh-25 mb-0">
         <span>学历：</span>
-        <span>本科</span>
+        <span>{{one.education}}</span>
       </p>
       <p class="lh-25 mb-0">
         <span>面试时间：</span>
-        <span>2017年8月28日 19:18</span>
+        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{one.interviewtime}}</span>
       </p>
       <p class="lh-25 mb-0">
         <span>联系电话：</span>
         <a href="###" class="t-c-2">
-          <span>12332125664</span>
+          <span>{{one.mobile}}</span>
           <i class="icon t-c-70a">&#xe75f;</i>
         </a>
       </p>
       <p class="lh-25 mb-0">
         <span>面试地址：</span>
-        <span>北二环于瑞祥大街交叉口东行50米和社区</span>
+        <span>{{one.address}}</span>
       </p>
       <p class="lh-25 mb-0">
         <span>注：</span>
-        <span>哈哈哈哈哈</span>
-      </p>
-    </li>
-    <li class="m-10 p-10 bg-white bor-r-5">
-      <p class="f-s-10 f-w-6 lh-25 mb-0">用户反馈通知</p>
-      <p class="lh-25 mb-0">8月28日</p>
-      <p class="lh-25 mb-0">
-        <span>姓名：</span>
-        <span>2017/08/28</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>学历：</span>
-        <span>本科</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>面试时间：</span>
-        <span>2017年8月28日 19:18</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>联系电话：</span>
-        <a href="###" class="t-c-2">
-          <span>12332125664</span>
-          <i class="icon t-c-70a">&#xe75f;</i>
-        </a>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>面试地址：</span>
-        <span>北二环于瑞祥大街交叉口东行50米和社区</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>注：</span>
-        <span>哈哈哈哈哈</span>
-      </p>
-    </li>
-    <li class="m-10 p-10 bg-white bor-r-5">
-      <p class="f-s-10 f-w-6 lh-25 mb-0">用户反馈通知</p>
-      <p class="lh-25 mb-0">8月28日</p>
-      <p class="lh-25 mb-0">
-        <span>姓名：</span>
-        <span>2017/08/28</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>学历：</span>
-        <span>本科</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>面试时间：</span>
-        <span>2017年8月28日 19:18</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>联系电话：</span>
-        <a href="###" class="t-c-2">
-          <span>12332125664</span>
-          <i class="icon t-c-70a">&#xe75f;</i>
-        </a>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>面试地址：</span>
-        <span>北二环于瑞祥大街交叉口东行50米和社区</span>
-      </p>
-      <p class="lh-25 mb-0">
-        <span>注：</span>
-        <span>哈哈哈哈哈</span>
+        <span>{{one.remark}}</span>
       </p>
     </li>
   </ul>
 </div>
 <%- f%>
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    type:0,
+    list:[],
+    id: '2'
+  },
+  mounted () {
+    this.ajax.get('/user/invite/record', (res) => {
+      this.list = res.data
+      console.log(this.list)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  methods: {
+    loadAfter(){
+      
+    }
+  }
+})
+</script>
