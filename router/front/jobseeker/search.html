@@ -1,13 +1,13 @@
 <div class="container-fluid top h-40">
   <div class="row mt-1">
-    <div class="col-1  p-0 pl-2 icon mt-2 f-s-12">&#xe86c;</div>
+    <div class="col-1  p-0 pl-2 icon mt-2 f-s-12" @click='go'>&#xe86c;</div>
     <div class="col-10 pl-3">
       <form action="#">
         <input type="text" class='bg-fff w-100 f-s-7 h-30 p-l-l10' placeholder="搜索职位公司" v-model='keyword'>
       </form>
       <span class='icon pr t-28 l-2 f-s-12'>&#xe7fd;</span>
     </div>
-    <div class="col-1 p-0 icon none m-t-8"><a href="front/jobseeker/jobseeker_list">&#xe7c1;</a></div>
+    <div class="col-1 p-0 icon none m-t-8"><a href="/front/jobseeker/jobseeker_list">&#xe7c1;</a></div>
   </div>
 </div>
 
@@ -74,9 +74,10 @@
       },(err)=>{
       })
     },
-    
     methods: {
-
+      go(){
+        window.history.go(-1);
+      }
     }
   })
 </script>
