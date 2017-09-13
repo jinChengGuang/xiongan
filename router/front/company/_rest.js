@@ -166,7 +166,7 @@ exports.get = {
   /**
    * 培训列表
    */
-  '/cultivate/list': async (ctx, next) => {
+  '/cultivate/lists': async (ctx, next) => {
     let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate ' , [null])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
@@ -175,7 +175,9 @@ exports.get = {
    * 培训详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [ctx.params.id])
+    let id = ctx.params.id
+    let cultivate = await 
+    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
   },
@@ -364,6 +366,7 @@ exports.post = {
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
     let cid = ctx.company.id
+    
     let { culid, culname} = ctx.post
     let apply_time = $.time10()
     if(cid){

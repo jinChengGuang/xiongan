@@ -44,17 +44,19 @@
         </p>
         <p class="lh-25 mb-0">
           <span>投递日期:</span>
-          <span>{{n.time}}</span>
+          <span>{{time.dateFormat('yyyy/MM/dd', n.time)}}</span>
         </p>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
-        <a href="###" class="pa p-x-5 f-s-5 t-c-white bg-646 br-5 " style="right:0; top:0;" v-show='n.status == 1'>已邀请</a>
-        <a href="###" class="pa delete" style="right:5%; top:0;" @click='show1(n.id)' v-show='n.status != 1'>
+        <a class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
+        <a class="pa p-x-5 f-s-5 t-c-white bg-646 br-5 " style="right:0; top:0;" v-show='n.status == 1'>已邀请</a>
+        <a class="pa delete" style="right:5%; top:0;" @click='show1(n.id)' v-show='n.status != 1'>
           <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
         </a>
-        <a href="###" class=' pa f-s-15 t-c-666' style="bottom:0; right:0" @click='mark(n.id)' :class="{'t-c-d':n.sort==1}">
+        <a class=' pa f-s-15 t-c-666' style="bottom:0; right:0" @click='mark(n.id)' v-show='n.sort == 0'>
           <i class="icon">&#xe7f2;</i>
         </a>
-        
+        <a class=' pa f-s-15 t-c-666 t-c-0a0' style="bottom:0; right:0" v-show='n.sort == 1'>
+          <i class="icon">&#xe7f2;</i>
+        </a>
       </div>
     </li>
   </ul>
@@ -104,7 +106,7 @@
 new Vue({
   el: '#app',
   data: {
-    id: '1',
+    id: '',
     list : [],
     p:{
       interviewtime:'',
@@ -116,6 +118,7 @@ new Vue({
     deleteId:''
   },
   mounted () {
+    this.id = this.query.get('id')
     let cancel = document.getElementById('cancel')
     let del = document.getElementById('delete')
     cancel.onclick = this.notshow1
@@ -144,6 +147,7 @@ new Vue({
     },
     invite(){
       this.ajax.put('/invite/resume',this.p,(res) => {
+        // weui.toast('邀请成功', 2000);
         setTimeout(window.location.reload(),1500)
       }, (err) => {
         console.log(err)
@@ -161,6 +165,7 @@ new Vue({
     },
     delete(){
       this.ajax.put('/delete/resume',{id:this.deleteId},(res) => {
+        // weui.toast('删除成功', 2000);
         setTimeout(window.location.reload(),1500)
       }, (err) => {
         console.log(err)
@@ -168,7 +173,7 @@ new Vue({
     },
     mark(id){
       this.ajax.put('/mark/resume',{id:id},(res) => {
-        setTimeout(window.location.reload(),1500)
+        weui.toast('标记成功', 2000);
       }, (err) => {
         console.log(err)
       })

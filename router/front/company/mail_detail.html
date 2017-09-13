@@ -15,31 +15,31 @@
   <ul>
     <li class="m-y-5 m-x-10 bg-white bor-r-5 f-s-8 p-10" v-for='n in list'>
       <a href="/front/company/put_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 1'>
-        <p class="text-right m-b-5">{{n.time}}</p>
+        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
         <p class="m-b-5">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/com_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 0'>
-        <p class="text-right m-b-5">{{n.time}}</p>
+        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
         <p class="m-b-5">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/station" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 0'>
-        <p class="text-right m-b-5">{{n.time}}</p>
+        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
         <p class="m-b-5">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/recruit_list" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 1'>
-        <p class="text-right m-b-5">{{n.time}}</p>
+        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
         <p class="m-b-5">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/jobseeker/resume_detail" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 2'>
-        <p class="text-right m-b-5">{{n.time}}</p>
+        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
         <p class="m-b-5">
           <span>{{n.content}}</span>
         </p>
@@ -53,10 +53,11 @@
 new Vue({
   el: '#app',
   data: {
-    type : 'examine',
+    type : '',
     list : []
   },
   mounted () {
+    this.type = this.query.get('type')
     this.ajax.get('/msg/detail/' + this.type, (res) => {
       this.list = res.data
     }, (err) => {

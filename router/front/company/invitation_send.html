@@ -21,7 +21,7 @@
   <ul class="m-t-55 m-b-80 f-s-8">
     <li class="m-10 p-10 bg-white bor-r-5" v-for='one in list'>
       <p class="f-s-10 f-w-6 lh-25 mb-0">用户反馈通知</p>
-      <p class="lh-25 mb-0">{{one.invitetime}}</p>
+      <p class="lh-25 mb-0">{{time.dateFormat('yyyy/MM/dd', one.invitetime)}}</p>
       <p class="lh-25 mb-0">
         <span>姓名：</span>
         <span>{{one.username}}</span>
@@ -32,7 +32,7 @@
       </p>
       <p class="lh-25 mb-0">
         <span>面试时间：</span>
-        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{one.interviewtime}}</span>
+        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{time.dateFormat('yyyy/MM/dd', one.interviewtime)}}</span>
       </p>
       <p class="lh-25 mb-0">
         <span>联系电话：</span>
@@ -59,12 +59,10 @@ new Vue({
   data: {
     type:0,
     list:[],
-    id: '2'
   },
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
       console.log(err)
     })
