@@ -58,7 +58,7 @@
   </p>
   <p class="p-y-7 px-0">
     <span>开课时间：</span>
-    <span>{{cultivate.class_starttime}}</span>
+    <span>{{time.dateFormat('yyyy/MM/dd', cultivate.class_starttime)}}</span>
   </p>
 </div>
 <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3" @click='signUp(cultivate.id,cultivate.name)'>报名</button>
@@ -66,10 +66,11 @@
 new Vue({
   el: '#app',
   data: {
-    id:'2',
+    id:'',
     cultivate:[],
   },
   mounted () {
+    this.id = this.query.get('id')
     this.ajax.get('/cultivate/detail/' + this.id,(res) => {
         this.cultivate = res.data[0]
         console.log(this.cultivate)
@@ -79,10 +80,8 @@ new Vue({
   },
   methods: {
     signUp(id,name){
-      console.log(id)
       this.ajax.post('/add/cultivate/record',{culid:id,culname:name},(res) => {
-        
-        window.alert('报名成功')
+        weui.toast('报名成功', 1000);
       }, (err) => {
         console.log(err)
       })

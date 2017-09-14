@@ -28,7 +28,7 @@
   <ul class="list f-s-8">
     <li class="m-t-10 p-10 bg-white br-5" v-for='n in list'>
       <p class="f-w-b f-s-10  m-b-2">用户反馈通知</p>
-      <p class="m-b-2">{{n.invitetime}}</p>
+      <p class="m-b-2">{{time.dateFormat( 'yyyy-MM-dd', n.invitetime)}}</p>
       <p class="m-b-2">
         <span>Hi,{{n.uname}}！您的简历符合我们的需求</span>
       </p>
@@ -39,11 +39,11 @@
       </p>
       <p class="m-b-2">
         <span>面试时间：</span>
-        <span>{{n.interviewtime}}</span>
+        <span>{{time.dateFormat( 'yyyy/MM/dd', n.interviewtime)}}</span>
       </p>
       <p class="m-b-2">
         <span>联系电话：</span>
-        <a href="###" class="t-c-666">
+        <a  class="t-c-666">
           <span>{{n.mobile}}</span>
           <i class="icon t-c-1ea">&#xe75f;</i>
           <span>王女士</span>
@@ -76,7 +76,6 @@ new Vue({
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
       console.log(err)
     })
@@ -84,7 +83,7 @@ new Vue({
   methods: {
     signUp(){
       this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
-        window.alert('报名成功')
+        weui.toast('报名成功', 2000);
       }, (err) => {
         console.log(err)
       })
