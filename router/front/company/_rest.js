@@ -381,7 +381,6 @@ exports.post = {
    */
   '/job/add': async (ctx, next) => {
     let cid = ctx.company.id
-    console.log(cid)
     let cname = ctx.company.name
     let { name,jtid, pay, area,benefit,education,experience,address,statement,requirements,status } = ctx.post
     let data = await $.mysql.push($.conf.mysql.main, 'insert into job (cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status)values(?,?,?,?,?,?,?,?,?,?,?,?,?)', [cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status])
