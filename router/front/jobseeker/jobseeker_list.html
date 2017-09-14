@@ -11,10 +11,10 @@
 <!--过滤-->
 <div class="container-fluid box m-t-50 pr">
   <div class="row row-one h-40 lh-40 bg-fff">
-    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(time)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6 bor-0"><a href="###" class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(benefit)">福利待遇<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(time)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6 bor-0"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(benefit)">福利待遇<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
   </div>
 </div>
 
@@ -23,16 +23,16 @@
   <div class='datail p-10 bg-fff m-t-3 pr oh d-block clear p-b-50'>
     <ul class='m-b-0'>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n'>{{n}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n' :class="{'bg-d': p.area == n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n'>{{n}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-d': p.pay == n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == benefit' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.benefit = p.benefit? p.benefit + '|' + n : n">{{n}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="join(n)" :class="{'bg-d': n.checked}">{{n.name}}</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value'>{{n.name}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value' :class="{'bg-d': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>
     <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-d pa b-0 l-0' @click='search'>确定</button>
@@ -135,11 +135,11 @@
       },
       type:'',
       msg:[],
+      beneAry:[],
     },
     mounted(){
       this.ajax.get('/job/all/list?name=' + this.p.name,(res)=>{
         this.list = res.data
-        console.log(this.list)
       },(err)=>{
         console.log(err)
       }),
@@ -208,6 +208,21 @@
           }]
         })
       },
+      join(bene){
+        bene.checked = !bene.checked
+        if(bene.checked){
+          this.beneAry.push(bene.name)
+        }else{
+          for(let i=0;i<this.beneAry.length;i++){
+            if(this.beneAry[i] == bene.name){
+              this.beneAry.splice(i,1)
+              break
+            }
+          }
+        }
+        this.p.benefit = this.beneAry.join('|')
+        console.log(this.p.benefit)
+      }
     }
   })
 </script>

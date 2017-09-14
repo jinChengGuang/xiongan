@@ -37,7 +37,7 @@
       </p>
       <p class="text-center p-0 w-100 m-b-5">
         <button type="button" class="btn btn-secondary p-y-3 p-x-15 f-s-8 m-l-p3" @click = 'lose(job.id)'>删除</button>
-        <a name="" id="" class="btn btn-secondary p-y-3 p-x-15 f-s-8 m-l-p3" href="#" role="button">编辑</a>
+        <a name="" id="" class="btn btn-secondary p-y-3 p-x-15 f-s-8 m-l-p3" role="button">编辑</a>
         <button type="button" class="btn btn-primary p-y-3 p-x-15 f-s-8 m-l-p3" @click = 'update(job.id)'>刷新</button>
       </p>
     </li>
@@ -67,8 +67,8 @@ new Vue({
     },
     lose(id){
       this.ajax.put('/delete/job', {id:id}, (res) => {
-        weui.toast('删除成功',500);
-        setTimeout(window.location.reload(),1500)
+        weui.toast('删除成功',1000);
+        setTimeout("window.location.reload()",2000)
       }, (err) => {
         console.log(err)
       })
@@ -76,7 +76,7 @@ new Vue({
     update(id){
       this.ajax.put('/update/resumetime', {id:id}, (res) => {
         weui.toast('更新成功', 500);
-        setTimeout(window.location.reload(),1500)
+        setTimeout("window.location.reload()",2000)
       }, (err) => {
         console.log(err)
       })

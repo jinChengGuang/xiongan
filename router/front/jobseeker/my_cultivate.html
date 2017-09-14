@@ -53,7 +53,7 @@ new Vue({
     cancel(id){
       this.ajax.put('/cancel/cultivate/record',{id:id},(res) => {
         weui.toast('取消成功', 500);
-        setTimeout(window.location.reload(),1500)
+        setTimeout("window.location.reload()",1500)
       }, (err) => {
         console.log(err)
       })
