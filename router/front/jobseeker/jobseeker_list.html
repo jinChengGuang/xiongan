@@ -1,26 +1,26 @@
-<div class="container-fluid header pf t-0 h-45 lh-45 bg-ccc z-100 fixed-top" >
+<div class="container-fluid header pf t-0 h-45 lh-45 bg-eee z-100 fixed-top" >
   <div class="row">
     <div class="col-1 icon icon_1 mt-3 pl-2" style='font-size:18px;' @click='switch_1'>&#xe873;</div>
     <div class="col-10 pl-2" >
       <input type="autocomplete" placeholder="搜索职位/公司" class='h-28 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'v-model="p.name" @focus='link'>
       <span class='icon' style='position: absolute; top:40%; left:5%;'>&#xe7fd;</span>
     </div>
-    <div class="col-1 icon pl-0 mt-3 letter" style='font-size:18px; position: relative'><a href='/front/company/mail'>&#xe7d5;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:34%;' v-show='msg.length != 0'></span></div>
+    <div class="col-1 icon pl-0 mt-3 letter" style='font-size:18px; position: relative'><a href='/front/jobseeker/invitation_receive'>&#xe7d5;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:34%;' v-for='n in status' v-show='n.status = 1'></span></div>
   </div>
 </div>
 <!--过滤-->
-<div class="container-fluid box m-t-50 pr">
+<div class="container-fluid box t-45 pf z-100">
   <div class="row row-one h-40 lh-40 bg-fff">
-    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(time)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6 bor-0"><a  class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(benefit)">福利待遇<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(time_1)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 screen p-0 f-s-6 bor-0"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(benefit)">福利待遇<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
   </div>
 </div>
 
 <!--弹层-->
-<div class='window container-fluid p-0 h-400 bg-rgba w-100 pa t-14 z-100' id='pop' style='display: none;'>
-  <div class='datail p-10 bg-fff m-t-3 pr oh d-block clear p-b-50'>
+<div class='window container-fluid p-0 bg-rgba w-100  t-14 z-100 dn pf t-85' id='pop'>
+  <div class='datail p-10 bg-fff m-t-3 pr oh d-block clear p-b-50 z-10030'>
     <ul class='m-b-0'>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n' :class="{'bg-d': p.area == n}">{{n}}</span>
@@ -31,22 +31,25 @@
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == benefit' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="join(n)" :class="{'bg-d': n.checked}">{{n.name}}</span>
       </li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time' v-for='n in arry'>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value' :class="{'bg-d': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>
     <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-d pa b-0 l-0' @click='search'>确定</button>
   </div>
+  <div class='bg-rgba w-100 ' :style="{height:body_h + 'px'}"  @click='none_1' id='pop1'></div>
 </div>
 
 <!--热门岗位1-->
-<div v-show='list.length != 0'>
+<div v-show='list.length != 0' style='margin-top:100px'>
   <ul class="m-t-p3 m-b-80 f-s-8">
     <li class="m-10 p-10 bg-white bor-r-5 pr row" v-for='n in list'>
-      <a href="/front/jobseeker/jobseeker_detail" class='w-100 '>
+      <a :href="'/front/jobseeker/jobseeker_detail?id='+n.id" class='w-100 '>
         <p class="w-100 m-b-10">
           <span class="f-s-10 f-w-6">{{n.name}}</span>
-          <span class="float-right">{{n.issue_time}}</span>
+          <span class='f-s-8 f-w-6 float-right' v-if='start < n.issue_time'>今天</span>
+          <span class='f-s-8 f-w-6 float-right' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
+          <span class="float-right" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
         </p>
         <p class="w-100 m-b-5">
           <span class="t-c-ff5">{{n.pay}}</span>
@@ -61,7 +64,7 @@
         </p>
         <p class="w-100 m-b-5">
           <i class="icon">&#xe621;</i>
-          <span><a href="/front/company/company_list">{{n.cname}}</a></span>
+          <span>{{n.cname}}</span>
         </p>
       </a>
     </li>
@@ -69,13 +72,13 @@
 </div>
 
 <!--过滤为空-->
-<div class='null' v-show="list.length == 0 && type=='filter'">
+<div class='null m-t-p33' v-show="list.length == 0 && type=='filter'">
   <div class='none w-w200 h-200 m-l-f16 m-t-p30 m-b-b3'>
     <img src="../../../skins/img/none.png">
   </div>
 </div>
 <!--搜索为空-->
-<div class='null' v-show="list.length == 0 && type != 'filter'">
+<div class='null m-t-p33' v-show="list.length == 0 && type != 'filter'">
   <div class='none w-w200 h-200 m-l-f16 m-t-p5 m-b-b3'>
     <img src="../../../skins/img/none.png">
   </div>
@@ -89,25 +92,25 @@
     <ul class="m-t-p3 m-b-80 f-s-8">
       <li class="m-10 p-10 bg-white bor-r-5 pr row" v-for='n in recommend'>
         <p class="w-100 m-b-10">
-          <span class="f-s-10 f-w-6">电商产品经理</span>
-          <span class="float-right">今天</span>
+          <span class="f-s-10 f-w-6">{{n.name}}</span>
+          <span class='f-s-8 f-w-6 float-right' v-if='start < n.issue_time'>今天</span>
+          <span class='f-s-8 f-w-6 float-right' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
+          <span class="float-right" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span class="t-c-ff5">3000-5000</span>
+          <span class="t-c-ff5">{{n.pay}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span><i class="icon">&#xe621;</i>保定 北市区</span>
-          <span><i class="icon">&#xe86a;</i>大专及以上</span>
-          <span><i class="icon">&#xe68c;</i>经验不限</span>
+          <span><i class="icon">&#xe621;</i>{{n.area}}</span>
+          <span><i class="icon">&#xe86a;</i>{{n.education}}</span>
+          <span><i class="icon">&#xe68c;</i>{{n.experience}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">五险一金</span>
-          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">周日单休</span>
-          <span class="bor p-0 bor-sol bor-ccc t-c-d br-5 f-s-5 dinb m-t-5">法定节假</span>
+          <span class="bor p-x-2 m-l-3 bor-sol bor-ccc t-c-d br-5 p-l-5 f-s-5 dinb m-t-5" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5">
           <i class="icon">&#xe621;</i>
-          <span>保定市和社区外包有限公司</span>
+          <span>{{n.cname}}</span>
         </p>
       </li>
     </ul>
@@ -123,7 +126,7 @@
       recommend:[],
       area:[],
       pay:[],
-      time:[{value:'',name:'全部'},{value:1,name:'今天'},{value:3,name:'三天以内'},{value:7,name:'七天以内'},{value:15,name:'半个月内'},{value:30,name:'一个月内'}],
+      time_1:[{value:'',name:'全部'},{value:1,name:'今天'},{value:3,name:'三天以内'},{value:7,name:'七天以内'},{value:15,name:'半个月内'},{value:30,name:'一个月内'}],
       benefit:[],
       arry:[],
       p:{
@@ -135,39 +138,46 @@
       },
       type:'',
       msg:[],
+      body_h:null,
+      start:new Date().setHours(0,0,0,0)/1000,
+      status:[],
+      datail:[]
       beneAry:[],
     },
     mounted(){
+      this.p.name = this.query.get('name')
+      this.body_h = document.body.scrollHeight
       this.ajax.get('/job/all/list?name=' + this.p.name,(res)=>{
         this.list = res.data
       },(err)=>{
-        console.log(err)
       }),
       this.ajax.get('/search/recommend?name=' + this.p.name,(res)=>{
         this.recommend = res.data
       },(err)=>{
-        console.log(err)
       }),
       this.ajax.get('/area/list',(res)=>{
         this.area = res.data
       },(err)=>{
-        console.log(err)
       })
       this.ajax.get('/pay/list',(res)=>{
         this.pay = res.data
       },(err)=>{
-        console.log(err)
       })
       this.ajax.get('/msg/red',(res)=>{
         this.msg = res.data
       },(err)=>{
-        console.log(err)
       })
       this.ajax.get('/benefit/list',(res)=>{
         this.benefit = res.data
-        console.log(this.benefit)
       },(err)=>{
-        console.log(err)
+      })
+      this.ajax.get('/user/invite/record',(res)=>{
+        this.datail = res.data
+        for(var i=0;i<this.datail.length;i++){
+          this.status.push(this.datail[i].status)
+        }
+        console.log(this.status)
+      },(err)=>{
       })
     },
     methods: {
@@ -184,7 +194,6 @@
           this.list = res.data
           pop.style.display = 'none'
         },(err)=>{
-          console.log(err)
         })
         this.p.area = ''
         this.p.pay = ''
@@ -193,6 +202,10 @@
       },
       link(){
         window.location.href = '/front/jobseeker/search'
+      },
+      none_1(){
+        let pop = document.getElementById('pop')
+        pop.style.display = 'none'
       },
       switch_1(){
         weui.confirm('', {
