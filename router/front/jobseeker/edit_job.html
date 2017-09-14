@@ -1,22 +1,25 @@
-<style>
-  body{ background-color: #fff!important; }
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-  .btn{ color: #fff; background-color: #199ed8; border-radius: 0px; margin: 10px auto; }
-  .jump{ color: #666; }
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
-    <div class="col-8 text-center">求职意向</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>编辑求职意向</span>
+    </div>
+    <div class="col-2"></div>
   </div>
-
-  <form action="#" class="m-t-50 f-s-9">
+</div>
+<div class="container-fluid m-t-46 bg-white">
+  <form action="#" class="f-s-9">
     <div class="from-group bor-b-sol bor-eee p-y-p2">
       <div class="row">
         <div class="col-4">期望职位</div>
         <div class="col-6 text-right none">
           <a href="/front/jobseeker/job_content" class="jump">
-            <span>请选择职位类别</span>
+            <span>{{data.jtname}}</span>
             <i class="icon">&#xe7c4;</i>
           </a>
         </div>
@@ -57,7 +60,7 @@
     </div>
 
     <div class="row">
-      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto" >下一步</a>
+      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto">确定</a>
     </div>
   </form>
 </div>
@@ -88,13 +91,12 @@ new Vue({
   },
   methods: {
     next(){
-      // 另一个页面传进来的值
-      this.data.id = 1
-      this.data.jtid = 4
+      if(this.query.get('id')){
+        this.data.jtid = this.query.get('id')
+      }
       this.ajax.put('/add/wanted', this.data,(res) => {
-        console.log('提交成功')
-        // window.location.href='/front/jobseeker/assess'
-        window.location.href='/front/jobseeker/assess'
+        weui.toast('提交成功', 2000);
+        window.location.href='/front/jobseeker/resume_detail'
         }, (res) => {
           console.log(res.errmsg)
         })
