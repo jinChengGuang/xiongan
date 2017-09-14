@@ -2,14 +2,14 @@
   <div class="row  bg-eee">
     <div class="col-1 icon icon_1 mt-3 pl-2" style='font-size:18px;' @click='switch_1'>&#xe873;</div>
     <div class="col-10 pl-2" >
-      <input type="autocomplete" placeholder="搜索职位/公司" class='h-28 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'@focus='link'>
+      <input type="autocomplete" placeholder="搜索职位/公司" class='h-28 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%; margin-top:15px;'@focus='link'>
       <span class='icon' style='position: absolute; top:40%; left:5%;'>&#xe7fd;</span>
     </div>
     <div class="col-1 icon pl-0 mt-3 letter" style='font-size:18px; position: relative'><a href='/front/company/mail'>&#xe7d5;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:34%;' v-show='msg.length != 0'></span></div>
   </div>
 </div>
 <!--轮播图-->
-<div id="carouselId" class="carousel slide mt-4" data-ride="carousel">
+<div id="carouselId" class="carousel slide mt-5" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" class="active"></li>
   </ol>
@@ -102,8 +102,11 @@ new Vue({
     swiper:[],
     benefit:[],
     status:['未开始','正在开始','已结束'],
-    start:new Date().setHours(0, 0, 0, 0) / 1000
+    start:new Date().setHours(0, 0, 0, 0) / 1000,
     msg:[],
+    datail:[],
+    status_1:[],
+
   },
   mounted () {
     this.ajax.get('/home/swiper', (res) => {
