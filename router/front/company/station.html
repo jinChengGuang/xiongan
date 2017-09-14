@@ -55,7 +55,6 @@
       </label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.pay'>
-          <!--<option>2000-4000</option>-->
           <option v-for='list in pay' :value='list'>{{list}}</option>
         </select>
       </div>
@@ -69,23 +68,10 @@
         <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center">
-        <p>更多</p>
-        <p id="p"></p>
-        <div id="span">
-          <span  class="border p-1 dinb mb-1" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-e20': v.checked==true}" >{{v.name}}</span>
+        <p class="text-right mb-0 f-s-6 show">更多>></p>
+        <div id="span" class="oh">
+          <span class="border p-1 dinb mb-1 mr-1" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-e20': v.checked==true}" >{{v.name}}</span>
         </div>
-        <!--<select class="border" v-model='jobs.benefit' id="select" @change='select'>
-          
-            <input type="checkbox">
-            五险一金
-          
-            <input type="checkbox">
-            双休
-          
-            <input type="checkbox">
-            节日福利-->
-          <!--<option v-for='list in pay'>{{list}}</option>-->
-        </select> 
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -98,7 +84,7 @@
       </label>
       <div class="col-6 p-x-0 align-self-center">
         <select class="border" v-model='jobs.area'>
-          <!--<option>保定</option>-->
+          <option>请选择</option>
           <option v-for='a in area' :value='a'>{{a}}</option>
         </select> 
       </div>
@@ -154,7 +140,7 @@
         <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0" v-model='jobs.statement'></textarea>
+        <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0 w-100" v-model='jobs.statement'></textarea>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -166,7 +152,7 @@
         <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的任职资格，保证真实有效" class="border-0" v-model='jobs.requirements'></textarea>
+        <textarea rows="3" placeholder="请填写完整的任职资格，保证真实有效" class="border-0 w-100" v-model='jobs.requirements'></textarea>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -197,7 +183,6 @@
 
     <div class="row fixed-bottom">
       <a href="javascript:void(0)" class="btn br-0 w-100 bg-primary t-c-white" @click="add">确定</a>
-      <!--<a href="/front/company/job_send" class="btn br-0 w-100 bg-primary t-c-white">确定</a>-->
     </div>
   </form>
 </div>
@@ -215,11 +200,7 @@ new Vue({
     three: [],
     threecat:[],
     area:[],
-    li:[
-      {name:'五险一金',checked:false},
-      {name:'双休',checked:false},
-      {name:'节日福利',checked:false}
-    ],
+    li:[],
     exper:[],
     education: [],
     pay: [],
@@ -228,7 +209,6 @@ new Vue({
     //职位类型
     this.ajax.get('/jobtype/list',(res)=>{
       this.list = res.data
-      console.log(JSON.stringify(this.list))
       for(let i of this.list){
         if(i.bid == 0 && i.mid == 0){
           this.one.push(i)
@@ -264,36 +244,32 @@ new Vue({
       this.exper = res.data
     },(err)=>{
       console.log(err.errmsg)
+    }),
+    // 福利待遇
+    this.ajax.get('/benefit/list',(res)=>{
+      this.li = res.data
+    },(err)=>{
+      console.log(err.errmsg)
     })
-
-  // $(function(){
-  //   $('#span>span').click(function(){
-  //     let index = $(this).index()
-  //     let html = $('#span>span').eq(index).html()
-  //     let p = ''
-  //     p += html
-  //     if($(this).hasClass('red')){
-  //       $('#p').html('')
-  //       $('#span>span').eq(index).removeClass('red')
-  //     }else{
-  //       $('#p').append(p+'|')
-  //       console.log($('#p').html())
-  //       $('#span>span').eq(index).addClass('red')
-  //     }
-  //   })
-  // })
+    $(function(){
+      $('#span').css('height','70px')
+      $('.show').click(function(){
+        $('#span').css('height','320px')
+      })
+    })
   },
   methods: {
     add(){
-      // let a=''
-      // for(let v of li){
-      //   if(v.checjked==true)[
-      //     let a  = v.name.split("|")
-      //   ]
-      // }
-      this.jobs.benefit = $('#p').html()
+      let a=''
+      let b= ''
+      for(let v of this.li){
+        if(v.checked==true){
+          a += v.name +'|'
+          b = a.substring(0,a.length-1)
+        }
+      }
+      this.jobs.benefit = b
       this.ajax.post('/job/add',this.jobs,(res)=>{
-        alert(res)
         weui.toast('发布成功', 1500)
         setTimeout("window.location.href='/front/company/job_send'",1500)
       },(err)=>{
@@ -307,12 +283,6 @@ new Vue({
         this.li[i].checked=true
       }
       
-    },
-    select(){
-      let input = $(':input')
-      let inp = input.eq(-1).remove()
-      // let select = document.getElementById('select')
-      console.log(inp)
     },
     //联动
     linkage(){

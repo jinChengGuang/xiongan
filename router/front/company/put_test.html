@@ -162,7 +162,6 @@ new Vue({
   mounted(){
     this.ajax.get('/company/test/detail',(res)=>{
       this.list = res.data[0]
-      console.log(JSON.stringify(this.list))
     },(err)=>{
       alert(err.errmsg)
     })
