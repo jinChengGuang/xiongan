@@ -43,7 +43,7 @@
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2">
-      <a @click='next' class="btn br-0 bg-primary t-c-white m-10-auto">保存</a>
+      <a @click='next' class="btn br-0 bg-primary t-c-white m-10-auto" >保存</a>
     </div>
  </div>
 </div>
@@ -51,12 +51,14 @@
 new Vue({
   el: '#app',
   data: {
-    data:{}
+    data:{},
+    sc:false
   },
   mounted () {
-    this.ajax.get('/user/resume/experience/1',(res) => {
+    this.ajax.get('/user/experience/detail/'+this.query.get('id'),(res) => {
       this.data = res.data[0]
-      console.log(this.data)
+      this.data.start = this.time.dateFormat('yyyy-MM-dd',this.data.start)
+      this.data.end = this.time.dateFormat('yyyy-MM-dd',this.data.end)
       }, (res) => {
         console.log(res.errmsg)
     })

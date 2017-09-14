@@ -119,7 +119,7 @@ exports.get = {
     if(name){
       await $.mysql.push($.conf.mysql.main, 'insert into history (uid,keyword) values (?,?)', [ uid,name ])
       for(let v of name ){
-        where =  where + ' and (name like "%'+ v + '%" or cname like "%' + v + '%")'
+        where = where + ( name.indexOf(v) == 0? ' and (name like "%'+ v + '%" or cname like "%' + v + '%")' : ' or (name like "%'+ v + '%" or cname like "%' + v + '%")')
       }
       let sql= 'select * from job where examine = 1 and status=1 ' + where +' order by issue_time' 
       let job = await $.mysql.query($.conf.mysql.main, sql, [null])
@@ -166,7 +166,7 @@ exports.get = {
   /**
    * 培训列表
    */
-  '/cultivate/list': async (ctx, next) => {
+  '/cultivate/lists': async (ctx, next) => {
     let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate ' , [null])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
@@ -175,7 +175,9 @@ exports.get = {
    * 培训详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [ctx.params.id])
+    let id = ctx.params.id
+    let cultivate = await 
+    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
   },
@@ -192,7 +194,7 @@ exports.get = {
    */
   '/search/history/list': async (ctx, next) => {
     let uid = ctx.user.id
-    let history = await $.mysql.query($.conf.mysql.main, 'select * from history where uid =? order by id desc' , [uid])
+    let history = await $.mysql.query($.conf.mysql.main, 'select * from history where uid =? order by id desc limit 0,15' , [uid])
     ctx.result.ok.data = history
     $.flush(ctx, ctx.result.ok)
   },
@@ -364,6 +366,7 @@ exports.post = {
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
     let cid = ctx.company.id
+    
     let { culid, culname} = ctx.post
     let apply_time = $.time10()
     if(cid){
@@ -488,6 +491,15 @@ exports.put = {
 exports.delete = {
   '/': async (ctx, next) => {
     ctx.result.ok.data = ctx.delete
+    $.flush(ctx, ctx.result.ok)
+  },
+    /**
+   * 删除所搜
+   */
+  '/history/delete': async (ctx, next) => {
+    let uid = ctx.user.id
+    let data=await $.mysql.push($.conf.mysql.main, 'delete from history where uid =? ', [uid])
+    ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   }
 }

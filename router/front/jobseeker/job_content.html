@@ -26,7 +26,7 @@
           <span @click='onsmall(v.id)'>{{v.name}}</span>
           <i class="icon right">&#xe7c3;</i>
             <ul class="child" >
-              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id)'>{{i.name}}</li>
+              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)'>{{i.name}}</li>
             </ul>
         </li>
       </ul>
@@ -72,9 +72,9 @@ new Vue({
         }
       }
     },
-    choose(id){
+    choose(id,name){
       // console.log(window.location.history)
-      window.location.href='/front/jobseeker/job?id='+id
+      window.location.href='/front/jobseeker/edit_job?id='+id+'&name='+ name
     }
   }
 })

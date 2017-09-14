@@ -19,7 +19,7 @@
         <div class="col-4">期望职位</div>
         <div class="col-6 text-right none">
           <a href="/front/jobseeker/job_content" class="jump">
-            <span>请选择职位类别</span>
+            <span>{{name}}</span>
             <i class="icon">&#xe7c4;</i>
           </a>
         </div>
@@ -34,7 +34,6 @@
         <div class="col-4">期望薪资</div>
         <div class="col-6 text-right none">
           <select v-model='data.pay'>
-            <option value="0">请选择</option>
             <option v-for='v in pay' :value="v" >{{v}}</option>
           </select>
         </div>
@@ -48,9 +47,7 @@
         <div class="col-4">求职地区</div>
         <div class="col-6 text-right none">
           <select v-model='data.want_area'>
-            <option value="0">请选择</option>
             <option v-for='v in area' :value="v" >{{v}}</option>
-
           </select>
         </div>
         <div class="col-2 align-self-center text-center none">
@@ -60,7 +57,7 @@
     </div>
 
     <div class="row">
-      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto">下一步</a>
+      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto" >下一步</a>
     </div>
   </form>
 </div>
@@ -70,9 +67,13 @@ new Vue({
   data: {
     pay:[],
     data:{},
-    area:[]
+    area:[],
+    name:'请选择职位类别'
   },
   mounted () {
+    if(this.query.get('name')){
+      this.name=this.query.get('name')
+    }
     this.ajax.get('/pay/list', (res) => {
       this.pay = res.data
     }, (res) => {
@@ -86,12 +87,10 @@ new Vue({
   },
   methods: {
     next(){
-      // 另一个页面传进来的值
-      this.data.id = 1
-      this.data.jtid = 4
+      this.data.jtid = this.query.get('id')
       this.ajax.put('/add/wanted', this.data,(res) => {
-        console.log('提交成功')
-        window.location.href='/front/jobseeker/assess'
+        weui.toast('添加成功', 2000);
+          setTimeout(function () {window.location.href='/front/jobseeker/assess'}, 2000)
         }, (res) => {
           console.log(res.errmsg)
         })

@@ -17,15 +17,6 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 个人简历
-   */
-'/user/resume': async (ctx, next) => {
-    let uid = ctx.user.id
-    let resume = await $.mysql.query($.conf.mysql.main, 'select * from resume where uid=?', [uid])
-    ctx.result.ok.data = resume
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
    * 我的面试邀请
    */
   '/user/invite/record': async (ctx, next) => {
@@ -45,9 +36,6 @@ exports.get = {
     for(let v of record){
       v.iscollect=true
       if(time-v.time>2592000){
-
-        console.log(time-v.time)
-        console.log(222222222)
         await $.mysql.push($.conf.mysql.main, 'delete from collect where id =? ', [ v.id ])
       }else{
         data.push(v)
@@ -59,9 +47,9 @@ exports.get = {
   /**
    * 用户工作经历列表
    */
-  '/user/resume/experience/:id': async (ctx, next) => {
-    let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  experience_record where rid = ?', [id])
+  '/user/resume/experience': async (ctx, next) => {
+    let uid = ctx.user.id
+    let record = await $.mysql.query($.conf.mysql.main, 'select * from  experience_record where uid = ?', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -69,7 +57,7 @@ exports.get = {
    * 用户工作经历详情
    */
   '/user/experience/detail/:id': async (ctx, next) => {
-    let id = ctx.params.id
+     let id = ctx.params.id
     let record = await $.mysql.query($.conf.mysql.main, 'select * from  experience_record where id = ?', [id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
@@ -79,16 +67,16 @@ exports.get = {
    */
   '/user/resume': async (ctx, next) => {
     let uid = ctx.user.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume where uid = ?', [uid])
-    ctx.result.ok.data = record
+    let resume = await $.mysql.query($.conf.mysql.main, 'select A.* , B.name as jtname from resume A, job_type B  where A.uid=? and A.jtid = B.id ', [uid])
+    ctx.result.ok.data = resume
     $.flush(ctx, ctx.result.ok)
   },
   /**
    * 用户教育经历列表
    */
-  '/user/resume/education/:id': async (ctx, next) => {
-    let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  education_record where rid = ?', [id])
+  '/user/resume/education': async (ctx, next) => {
+    let uid = ctx.user.id
+    let record = await $.mysql.query($.conf.mysql.main, 'select * from  education_record where uid = ?', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -160,8 +148,11 @@ exports.post = {
    * 发布简历教育经历
    */
   '/add/education': async (ctx, next) => {
-    let { rid, start,end,school,speciality }= ctx.post
-    let data=await $.mysql.push($.conf.mysql.main, 'insert into education_record (rid, start,end,school,speciality) values (?,?,?,?,?) ', [ rid, start,end,school,speciality])
+    let uid = ctx.user.id
+    let resumedata = await $.mysql.query($.conf.mysql.main, 'select * from resume where uid =? ', [uid])
+    let rid = resumedata[0].id
+    let { start,end,school,speciality,education }= ctx.post
+    let data=await $.mysql.push($.conf.mysql.main, 'insert into education_record (rid, start,end,school,speciality,education,uid) values (?,?,?,?,?,?,?) ', [ rid, start,end,school,speciality,education,uid])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
@@ -169,30 +160,34 @@ exports.post = {
    * 发布简历工作经历
    */
   '/add/experience': async (ctx, next) => {
-    let { rid, start,end,company,job }= ctx.post
-    let data=await $.mysql.push($.conf.mysql.main, 'insert into experience_record (rid, start,end,company,job) values (?,?,?,?,?) ', [ rid, start,end,company,job])
+    let uid = ctx.user.id
+    let resumedata = await $.mysql.query($.conf.mysql.main, 'select * from resume where uid =? ', [uid])
+    let rid = resumedata[0].id
+    let { start,end,company,job }= ctx.post
+    let data=await $.mysql.push($.conf.mysql.main, 'insert into experience_record (rid, start,end,company,job,uid) values (?,?,?,?,?,?) ', [ rid, start,end,company,job,uid])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   }
 }
 // ---------------------------------------------------------------------------- PUT
 exports.put = {
-  /**
-   * 编辑/添加简历求职意向
+  /**               
+   * 编辑 / 添加简历求职意向
    */
   '/add/wanted': async (ctx, next) => {
-    let { id,jtid,pay,want_area }= ctx.put
-    let data=await $.mysql.push($.conf.mysql.main, 'update resume set jtid = ?,pay=?,want_area=? where id =? ', [ jtid, pay ,want_area, id ])
+    let uid = ctx.user.id
+    let { jtid, pay, want_area } = ctx.put
+    let data=await $.mysql.push($.conf.mysql.main, 'update resume set jtid = ?, pay=?, want_area=? where uid =? ', [ jtid, pay ,want_area, uid ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
    /**
-   * 编辑简历基本下信息
+   * 编辑简历基本信息
    */
   '/edit/basis': async (ctx, next) => {
     let uid = ctx.user.id
-    let { name, sex, head, birthday, education, experience, area, mobile, email,id }= ctx.put
-    let data=await $.mysql.push($.conf.mysql.main, 'update resume set uid=?,name=?,sex=?,head=?,birthday=?,education=?,experience=?,area=?,mobile=?,email=? where id =? ', [ uid,name,sex,head,birthday, education,experience,area,mobile,email,id ])
+    let { name, sex, head, birthday, education, experience, area, mobile, email }= ctx.put
+    let data=await $.mysql.push($.conf.mysql.main, 'update resume set name=?,sex=?,head=?,birthday=?,education=?,experience=?,area=?,mobile=?,email=? where uid =? ', [ name,sex,head,birthday, education,experience,area,mobile,email,uid ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
@@ -200,8 +195,9 @@ exports.put = {
    * 编辑简历个人评价
    */
   '/evaluate/add': async (ctx, next) => {
-    let { evaluate,id }= ctx.put
-    let data=await $.mysql.push($.conf.mysql.main, 'update resume set evaluate = ? where id =? ', [ evaluate ,id ])
+    let uid = ctx.user.id
+    let { evaluate}= ctx.put
+    let data=await $.mysql.push($.conf.mysql.main, 'update resume set evaluate = ? where uid =? ', [ evaluate ,uid ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
@@ -209,8 +205,8 @@ exports.put = {
    * 编辑简历教育经历
    */
   '/education/edit': async (ctx, next) => {
-    let { start,end,school,speciality,id }= ctx.post
-    let data=await $.mysql.push($.conf.mysql.main, 'update education_record set start = ?,end =?,school =?,speciality=? where id =? ', [ start,end,school,speciality,id ])
+    let { start,end,school,speciality,education,id }= ctx.post
+    let data=await $.mysql.push($.conf.mysql.main, 'update education_record set start = ?,end =?,school =?,speciality=?,education=? where id =? ', [ start,end,school,speciality,education,id ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
@@ -249,7 +245,6 @@ exports.delete = {
    * 删除收藏
    */
   '/collect/delete/:jid': async (ctx, next) => {
-    console.log(2)
     let id = ctx.params.jid
     let uid = ctx.user.id
     let data=await $.mysql.push($.conf.mysql.main, 'delete from collect  where jid =? and uid =? ', [ id,uid ])

@@ -1,13 +1,13 @@
 <div class="container-fluid top h-40">
   <div class="row mt-1">
-    <div class="col-1  p-0 pl-2 icon mt-2 f-s-12">&#xe86c;</div>
+    <div class="col-1  p-0 pl-2 icon mt-2 f-s-12" @click='go'>&#xe86c;</div>
     <div class="col-10 pl-3">
       <form action="#">
         <input type="text" class='bg-fff w-100 f-s-7 h-30 p-l-l10' placeholder="搜索职位公司" v-model='keyword'>
       </form>
       <span class='icon pr t-28 l-2 f-s-12'>&#xe7fd;</span>
     </div>
-    <div class="col-1 p-0 icon none m-t-8"><a href="/front/company/recruit_list">&#xe7c1;</a></div>
+    <div class="col-1 p-0 f-s-10 icon none mt-2"><a href="/front/company/recruit_list">&#xe7c1;</a></div>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
   <li class="row pt-2  f-s-8">
     <div class="col-1 pl-2 icon  m-t-p1 f-s-10">&#xe73f;</div>
     <div class="col-10 pl-2">最近搜索</div>
-    <div class="col-1 pl-1 icon">&#xe7c1;</div>
+    <div class="col-1 pl-1 icon" @click='history_1'>&#xe7c1;</div>
   </li>
   <li class='cont f-s-7 p-y-p3'>
     <span class='bor-sol bor-ccc br-5 p-p2 m-l-8 dinb m-t-8' v-for='(n,i) in history' @click='hist = i, keyword = n.keyword'>{{n.keyword}}</span>
@@ -48,12 +48,13 @@
       list:[],
       datail:[],
       history:[],
-      keyword:''
+      keyword:'',
+      start:new Date().setHours(0,0,0,0)/1000
     },
     watch:{
       keyword(curVal, oldVal){
         if(curVal){
-          setTimeout("window.location.href = '/front/company/recruit_list?name=' + this.keyword",1000)
+          setTimeout(window.location.href = '/front/company/recruit_list?name=' + this.keyword,1000)
         }
       }
     },
@@ -74,9 +75,17 @@
       },(err)=>{
       })
     },
-    
     methods: {
-
+      go(){
+        window.history.go(-1);
+      },
+      history_1(){
+        this.ajax.delete('/history/delete',(res)=>{
+          weui.toast('删除成功', 2000);
+          setTimeout('window.location.reload()',1500)
+          },(err)=>{
+        })
+      }
     }
   })
 </script>

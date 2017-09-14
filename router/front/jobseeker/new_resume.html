@@ -64,8 +64,7 @@
       <label for="" class="col-4 col-from-label align-self-center m-b-0">最高学历</label>
       <div class="col-6 p-x-0 align-self-center text-right">
         <select v-model='data.education' >
-          <option>请选择最高学历</option>
-          <option v-for ="v in experience" :value="v">{{v}}</option>
+          <option v-for ="v in education" :value="v">{{v}}</option>
         </select>
       </div>
       <div class="col-2 align-self-center text-right">
@@ -77,7 +76,6 @@
       <label for="" class="col-4 col-from-label align-self-center m-b-0">工作经验</label>
       <div class="col-6 p-x-0 align-self-center text-right">
         <select v-model='data.experience'>
-          <option>请选择工作经验</option>
           <option v-for ="v in kind" :value="v">{{v}}</option>
         </select>
       </div>
@@ -92,7 +90,6 @@
         <div class="row">
           <div class="col-6 p-x-0 ">
             <select  v-model='data.area'>
-              <option>请选择现居住地</option>
               <option v-for ="v in area" :value="v">{{v}}</option>
             </select>
           </div>
@@ -123,7 +120,7 @@
       </div>
     </div>
     <div class="row">
-      <a @click='add' class="btn br-0 bg-primary t-c-white m-10-auto">下一步</a>
+      <a @click='add' class="btn br-0 bg-primary t-c-white m-10-auto" >下一步</a>
     </div>
   </form>
 </div>
@@ -131,14 +128,30 @@
 new Vue({
   el: '#app',
   data: {
-    data: {},
+    data: {
+      head:[],
+      name:'',
+      sex:0,
+      birthday:0,
+      experience:'',
+      education:'',
+      area:'',
+      mobile:'',
+      email:''
+    },
     experience:[],
+    education:[],
     area:[],
     kind:[]
   },
   mounted () {
     this.ajax.get('/experience/list', (res) => {
       this.experience = res.data
+    }, (res) => {
+      console.log(res.errmsg)
+    })
+    this.ajax.get('/education/list', (res) => {
+      this.education = res.data
     }, (res) => {
       console.log(res.errmsg)
     })
@@ -156,10 +169,10 @@ new Vue({
   methods: {
     add(){
       this.data.head = head.value
-     this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
-     this.ajax.post('/add/resume', this.data,(res) => {
-      console.log('提交成功')
-      window.location.href='/front/jobseeker/job'
+      this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
+      this.ajax.post('/add/resume', this.data,(res) => {
+      weui.toast('添加成功', 2000);
+      setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)
       }, (res) => {
         console.log(res.errmsg)
       })

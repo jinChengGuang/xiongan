@@ -19,7 +19,7 @@
         <div class="col-4">期望职位</div>
         <div class="col-6 text-right none">
           <a href="/front/jobseeker/job_content" class="jump">
-            <span>请选择职位类别</span>
+            <span>{{data.jtname}}</span>
             <i class="icon">&#xe7c4;</i>
           </a>
         </div>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="row">
-      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto">下一步</a>
+      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto">确定</a>
     </div>
   </form>
 </div>
@@ -91,13 +91,12 @@ new Vue({
   },
   methods: {
     next(){
-      // 另一个页面传进来的值
-      this.data.id = 1
-      this.data.jtid = 4
+      if(this.query.get('id')){
+        this.data.jtid = this.query.get('id')
+      }
       this.ajax.put('/add/wanted', this.data,(res) => {
-        console.log('提交成功')
-        // window.location.href='/front/jobseeker/assess'
-        window.location.href='/front/jobseeker/assess'
+        weui.toast('提交成功', 2000);
+        window.location.href='/front/jobseeker/resume_detail'
         }, (res) => {
           console.log(res.errmsg)
         })

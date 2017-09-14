@@ -54,7 +54,7 @@
   <div class="container-fluid w-100 bg-white m-t-p5 f-s-6">
     <div class="row bor-b-sol bor-eee">
       <div class="col p-y-10 p-x-15 bor-r-sol bor-eee" v-for='cult in list' v-show='type == cult.type'>
-        <a href="/front/company/ruian_detail" class="d-block w-100 h-100 t-c-0a0">
+        <a href="'/front/company/ruian_detail?id=' + cult.id" class="d-block w-100 h-100 t-c-0a0">
           <div class="float-left w-30 text-center p-t-p13">
             <i class="icon f-s-15">&#xe731;</i>
           </div>
@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="border-0 w-100 text-center p-y-10 p-x-15 d-block clear oh">
-      <a href="/front/company/ruian_detail" class="d-block w-100 h-100 t-c-0a0">
+      <a href="'/front/company/ruian_detail?id=' + cult.id" class="d-block w-100 h-100 t-c-0a0">
         <i class="icon f-s-15 float-left m-t-p5 m-l-p30">&#xe731;</i>
         <div class="float-right w-60 text-left p-l-10">
           <p class="m-0 p-y-5 px-0">农林牧场</p>
@@ -95,7 +95,7 @@
         <img class="w-100 h-150" :src="cul.img" alt="">
         <p class="p-y-5 p-x-15 mb-0">
           <span>{{cul.name}}</span>
-          <!--<span class="float-right">{{new Date(cul.class_starttime*1000).format('yyyy-MM-dd hh:mm:ss')}}</span>-->
+          <span class="float-right">{{time.dateFormat( 'yyyy/MM/dd', cul.class_starttime)}}</span>
         </p>
         <p class="p-y-5 p-x-15 mb-0">
           <i class="icon f-s-10">&#xe621;</i>
@@ -116,9 +116,8 @@ new Vue({
     tab:[{id:0,name:'瑞安机电培训'},{id:1,name:'职称考试'},{id:2,name:'企业培训'}]
   },
   mounted () {
-    this.ajax.get('/cultivate/list', (res) => {
+    this.ajax.get('/cultivate/lists', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
       console.log(err)
     })
