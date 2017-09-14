@@ -47,11 +47,17 @@ exports.get =  {
   '/front/company/home': async (ctx, next) => {
     await ctx.render('/front/company/home')
   },
-  // 招聘列表搜索
+    // 招聘列表搜索
   '/front/company/recruit_list': async (ctx, next) => {
     ctx.state.name = 'liuzihao, zhangfule'
     ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
     await ctx.render('/front/company/recruit_list')
+  },
+  // 我的报名培训
+  '/front/company/my_cultivate': async (ctx, next) => {
+    ctx.state.name = 'liuzihao, zhangfule'
+    ctx.state.html = '<div><a href="http://www.baidu.com">百度</a></div>'
+    await ctx.render('/front/company/my_cultivate')
   },
     // 企业个人中心
   '/front/company/compan_home': async (ctx, next) => {
