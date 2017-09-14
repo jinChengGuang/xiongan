@@ -91,6 +91,10 @@ exports.get = {
    '/front/jobseeker/job': async (ctx, next) => {
     await ctx.render('/front/jobseeker/job')
   },
+  //编辑个人评价
+   '/front/jobseeker/edit_assess': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/edit_assess')
+  },
   //个人评价
    '/front/jobseeker/assess': async (ctx, next) => {
     await ctx.render('/front/jobseeker/assess')

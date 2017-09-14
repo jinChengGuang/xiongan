@@ -17,7 +17,7 @@
     <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
       <div class="col-10 f-w-b">个人资料</div>
       <div class="col-2 text-right">
-        <a href="/front/jobseeker/edit_resume">
+        <a href="/front/jobseeker/edit_resume?type=edit">
           <i class="icon">&#xe7fc;</i>
         </a>
       </div>
@@ -26,7 +26,7 @@
     <div class="row bor-t-sol bor-f1">
       <div class="col-12 p-y-p1">
         <span>{{data.name}}</span>
-        <span>{{data.sex}}</span>
+        <span>{{sex[data.sex]}}</span>
         <span>{{data.age}}</span>
       </div>
       <div class="w-100"></div>
@@ -46,14 +46,14 @@
     <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
       <div class="col-10 f-w-b">求职意向</div>
       <div class="col-2 text-right">
-        <a href="/front/jobseeker/edit_job">
+        <a href="/front/jobseeker/edit_job?type=edit">
           <i class="icon">&#xe7fc;</i>
         </a>
       </div>
     </div>
     <div class="row bor-t-sol bor-f1">
       <div class="col-12 p-y-p1">
-        <span>{{data.jtid}}</span>
+        <span>{{data.jtname}}</span>
       </div>
       <div class="col-12 p-y-p1">
         <span>{{data.want_area}}</span>
@@ -65,7 +65,7 @@
     <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
       <div class="col-10 f-w-b">个人评价</div>
       <div class="col-2 text-right">
-        <a href="#">
+        <a href="/front/jobseeker/edit_assess">
           <i class="icon">&#xe7fc;</i>
         </a>
       </div>
@@ -73,7 +73,7 @@
 
     <div class="row border_b">
       <div class="col-12">
-        <span>本人工作2年，性格开朗熟练掌握各种技能</span>
+        <span>{{data.evaluate}}</span>
       </div>
     </div>
 
@@ -88,10 +88,10 @@
 
    <div class="row pt-2 pb-2" style=" border-top: 1px solid #f1f1f1;" v-for='v in education'>
     <div class="col-8">
-      <span>{{v.start}}-{{v.end}}</span>
+      <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
     <div class="col-2 text-right none">
-      <a href="/front/jobseeker/edit_education">
+      <a :href='"/front/jobseeker/edit_education?id="+v.id'>
         <i class="icon">&#xe803;</i>
       </a>
     </div>
@@ -114,10 +114,10 @@
 
   <div class="row pt-2 pb-2" style=" border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;" v-for='v in experience'>
     <div class="col-8">
-      <span>{{v.strat}}-{{v.end}}</span>
+      <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
     <div class="col-2 text-right none">
-      <a href="/front/jobseeker/edit_experience">
+      <a :href='"/front/jobseeker/edit_experience?id="+v.id'>
         <i class="icon">&#xe803;</i>
       </a>
     </div>
@@ -135,21 +135,23 @@ new Vue({
   data: {
     data: {},
     experience:[],
-    education:[]
+    education:[],
+    sex:['男','女']
   },
   mounted () {
-    this.ajax.get('/user/resume/experience/1', (res) => {
+    this.ajax.get('/user/resume/experience/'+this.query.get('id'), (res) => {
       this.experience = res.data
     }, (res) => {
       console.log(res.errmsg)
     })
-    this.ajax.get('/user/resume/education/1', (res) => {
+    this.ajax.get('/user/resume/education/' + this.query.get('id'), (res) => {
       this.education = res.data
     }, (res) => {
       console.log(res.errmsg)
     })
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
+      console.log(this.data)
     }, (res) => {
       console.log(res.errmsg)
     })
@@ -157,8 +159,9 @@ new Vue({
   methods: {
     delexp(id){
      this.ajax.delete('/experience/delete/'+id,(res) => {
-      console.log('删除成功')
-      window.location.reload()
+        weui.toast('收藏成功', 2000);
+       setTimeout('window.location.reload()', 1000)
+      
       }, (res) => {
         console.log(res.errmsg)
       })

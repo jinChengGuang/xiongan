@@ -1,36 +1,32 @@
-<style>
-  body{ background-color: #fff!important; }
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-  .list-unstyled li{ height: 40px; line-height: 40px; background-color: #f2f4f5; border-bottom: 1px solid #e4e4e4; }
-  .col-7 i{ color: #8a8a8a; font-size: 14px; }
-  .list{ display: none; }
-  .list li { padding-top: 1%; padding-bottom: 1%; border-bottom: 1px solid #f1f1f1; }
-  .list li ul.child { display:none;}
-  .list li.active ul.child { display:block;}
-  .child{ font-size: 14px; background: #f2f4f5; display: none; }
-  .cur{ background-color: #fff!important; }
-  .active{ color:#169bd5;}
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="/front/jobseeker/job" class="icon t-c-999">&#xe7b9;</a></div>
-    <div class="col-8 text-center">选择期望职位</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>选择期望职位</span>
+    </div>
+    <div class="col-2"></div>
   </div>
-
-  <div class="row m-t-50">
+</div>
+<div class="container-fluid m-t-46">
+  <div class="row">
     <div class="col-5 none">
       <ul class="list-unstyled text-center">
-        <li v-for='v in big' @click='onbig(v.id)'>{{v.name}}</li>
+        <li v-for='v in big' @click='onbig(v.id)' class="bg-f3f h-40 lh-40 bor-b-sol bor-aaa">{{v.name}}</li>
       </ul>
     </div>
-    <div class="col-7 none pl-1 pr-1">
+    <div class="col-7 none pl-1 pr-1 bg-white">
       <ul class="list">
         <li v-for='v in middle'  >
           <i class="icon">&#xe806;</i>
           <span @click='onsmall(v.id)'>{{v.name}}</span>
           <i class="icon right">&#xe7c3;</i>
             <ul class="child" >
-              <li v-for='i in small' v-show='v.id==i.mid' @click='choose(i.id)'>{{i.name}}</li>
+              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)'>{{i.name}}</li>
             </ul>
         </li>
       </ul>
@@ -76,9 +72,9 @@ new Vue({
         }
       }
     },
-    choose(id){
+    choose(id,name){
       // console.log(window.location.history)
-      window.location.href='/front/jobseeker/job?id='+id
+      window.location.href='/front/jobseeker/edit_job?id='+id+'&name='+ name
     }
   }
 })

@@ -1,12 +1,19 @@
-<style>
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
-    <div class="col-8 text-center">教育经历</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>编辑教育经历</span>
+    </div>
+    <div class="col-2"></div>
   </div>
-  <div class="m-t-50 bg-white">
+</div>
+<div class="container-fluid m-t-46">
+  <div class="bg-white">
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">学校名称</div>
       <div class="col-8 text-right">
@@ -18,8 +25,7 @@
       <div class="col-4">学历/学位</div>
       <div class="col-8 text-right">
         <select>
-          <option value="0">请选择</option>
-          <option :value="v" v-for='v in education'> {{v}} </option>
+          <option :value="v" v-for='v in education' v-model='data.education'> {{v}} </option>
         </select>
       </div>
     </div>
@@ -27,14 +33,14 @@
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">开始时间</div>
       <div class="col-8 text-right">
-        <input type="date" v-model='data.start'>
+        <input type="date" v-model='data.start' class="text-right">
       </div>
     </div>
 
     <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
       <div class="col-4">结束时间</div>
       <div class="col-8 text-right">
-        <input type="date" v-model='data.end'>
+        <input type="date" v-model='data.end' class="text-right">
       </div>
     </div>
 
@@ -58,9 +64,10 @@ new Vue({
     education:[]
   },
   mounted () {
-    this.ajax.get('/user/education/detail/2',(res) => {
+    this.ajax.get('/user/education/detail/'+this.query.get('id'),(res) => {
       this.data = res.data[0]
-      console.log(this.data)
+      this.data.start = this.time.dateFormat('yyyy-MM-dd',this.data.start)
+      this.data.end = this.time.dateFormat('yyyy-MM-dd',this.data.end)
       }, (res) => {
         console.log(res.errmsg)
     })
@@ -72,8 +79,6 @@ new Vue({
   },
   methods: {
     next(){
-      // 另一个页面传进来的值
-      this.data.rid = 1
       this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
       this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
       this.ajax.post('/add/education', this.data,(res) => {
