@@ -24,9 +24,10 @@ new Vue({
   methods: {
     login () {
       this.ajax.get('/company/login/'+this.user.username + '/' + this.user.password, (res) => {
-        console.log(res)
+        weui.toast('登陆成功', 1500)
+        setTimeout("window.location.href='/front/company/home'",1500)
       }, (err) => {
-        alert(err.errmsg)
+        weui.toast(err.errmsg)
       })
     }
   }

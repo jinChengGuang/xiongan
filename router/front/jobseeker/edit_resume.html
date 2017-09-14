@@ -1,13 +1,19 @@
-<style>
-  body{ background-color: #fff!important; }
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon">&#xe7c5;</a></div>
-    <div class="col-8 text-center">我的简历</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>编辑个人基本资料</span>
+    </div>
+    <div class="col-2"></div>
   </div>
-  <form action="#" class="m-t-50 f-s-8">
+</div>
+<div class="container-fluid m-t-46 bg-white">
+  <form action="#" class=" f-s-8">
     <div class="row bg-32a p-t-p5 p-b-5">
       <div class="col-12 text-center">
         <input type="file" class="in-out" id = 'head' >
@@ -88,15 +94,11 @@
 
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">现居住地</label>
-      <div class="col-6 p-x-0 align-self-center text-left">
-        <div class="row">
-          <div class="col-6 p-x-0 ">
-            <select  v-model='data.area'>
-              <option>请选择现居住地</option>
-              <option v-for ="v in area" :value="v">{{v}}</option>
-            </select>
-          </div>
-        </div>
+      <div class="col-6 p-x-0 align-self-center text-right">
+        <select v-model='data.area' class="text-right">
+          <option>请选择现居住地</option>
+          <option v-for ="v in area" :value="v">{{v}}</option>
+        </select>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  

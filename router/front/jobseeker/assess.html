@@ -1,14 +1,20 @@
-<style>
-  body{ background-color: #fff!important; }
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
-    <div class="col-8 text-center">个人评价</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>个人评价</span>
+    </div>
+    <div class="col-2"></div>
   </div>
+</div>
+<div class="container-fluid bg-white m-t-46">
   <form action="#">
-    <div class="from-group bor-b-sol bor-f1 p-y-p2 f-s-8 m-t-50">
+    <div class="from-group bor-b-sol bor-f1 p-y-p2 f-s-8">
       <textarea v-model='data.evaluate' cols="30" rows="10" class="w-100 border-0 in-out" placeholder="[示例] 本人工作2年，性格开朗熟练掌握各种技能，待人友好，为人诚恳。"></textarea>
     </div>
 
