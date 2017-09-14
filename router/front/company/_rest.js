@@ -32,7 +32,7 @@ exports.get = {
    * 福利待遇列表
    */
   '/benefit/list': async (ctx, next) => {
-    ctx.result.ok.data = [{name:'五险一金',checked:false},{name:'五险一金',checked:false},{name:'年底双薪',checked:false},{name:'绩效奖金',checked:false},{name:'年终分红',checked:false},{name:'股票期权',checked:false},{name:'加班补助',checked:false},{name:'全勤奖',checked:false},{name:'包吃包住',checked:false},{name:'交通补助',checked:false},{name:'餐补',checked:false},{name:'房补',checked:false},{name:'通讯补贴',checked:false},{name:'采暖补贴',checked:false},{name:'带薪年假',checked:false},{name:'弹性工作',checked:false},{name:'补充医疗保险',checked:false},{name:'定期体检',checked:false},{name:'免费班车',checked:false},{name:'员工旅游',checked:false},{name:'高温补贴',checked:false},{name:'节日福利',checked:false}]
+    ctx.result.ok.data = [{name:'五险一金',checked:false},{name:'年底双薪',checked:false},{name:'绩效奖金',checked:false},{name:'年终分红',checked:false},{name:'股票期权',checked:false},{name:'加班补助',checked:false},{name:'全勤奖',checked:false},{name:'包吃包住',checked:false},{name:'交通补助',checked:false},{name:'餐补',checked:false},{name:'房补',checked:false},{name:'通讯补贴',checked:false},{name:'采暖补贴',checked:false},{name:'带薪年假',checked:false},{name:'弹性工作',checked:false},{name:'补充医疗保险',checked:false},{name:'定期体检',checked:false},{name:'免费班车',checked:false},{name:'员工旅游',checked:false},{name:'高温补贴',checked:false},{name:'节日福利',checked:false}]
     $.flush(ctx, ctx.result.ok)
   },
    /**
@@ -389,7 +389,7 @@ exports.post = {
     let data = await $.mysql.push($.conf.mysql.main, 'insert into job (cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status)values(?,?,?,?,?,?,?,?,?,?,?,?,?)', [cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status])
     let content = '您于'+$.time.format('yyyy-mm-dd')+'发布的'+name+'岗位等待审核，审核结果会在1-2个工作日之内通知您，请注意查看'
     let time = $.time10()
-    await $.mysql.push($.conf.mysql.main, 'insert into msg (cid ,content,time)values(?,?,?)', [id ,content.time])
+    await $.mysql.push($.conf.mysql.main, 'insert into msg (cid ,content,time)values(?,?,?)', [cid ,content,time])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   }

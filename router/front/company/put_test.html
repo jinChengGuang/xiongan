@@ -1,20 +1,18 @@
-<style>
-body{ background-color: #fff!important; }
-.bg-light{ background-color: #fff!important; height: 40px; line-height: 40px; border-bottom: 1px solid #f1f1f1; }
-.file{ background-color: #fff; width: 100px; height: 100px; border: 1px solid #f1f1f1; }
-/*底部导航*/
-.bottom {font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;}
-  .bottom .col { text-align: center; padding:0;}
-  .big { position:absolute; top:-50%; left:27%; font-size:2rem!important;}
-  .bottom .play { padding-top:29%;}
-  .mb-0{ font-size:0.8rem;}
-  .bottom .notbig{ font-size:1rem!important;}
-</style>
-<div class="container-fluid">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
-    <div class="col-8 text-center">企业认证</div>
+<!--顶部导航栏-->
+<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
+  <div class="row h-45 lh-45 bg-white">
+    <div class="col-2 ">
+      <a href="javascript:history.go(-1)" class='t-c-0a0'>
+        <i class="icon text-center f-s-15">&#xe86c;</i>
+      </a>
+    </div>
+    <div class="col-8 text-center">
+      <span>企业认证</span>
+    </div>
+    <div class="col-2"></div>
   </div>
+</div>
+<div class="container-fluid bg-white">
   <form action="#" class="m-t-40 m-b-60 f-s-8">
     <div class="from-group bor-b-sol bor-eee p-y-p2 row">
       <label for="" class="col-4 col-from-label align-self-center m-b-0">公司名称</label>
@@ -152,31 +150,7 @@ body{ background-color: #fff!important; }
       </div>
     </div>
   </form>
-  <!--底部导航栏-->
-    <div class="container-fluid py-1 bottom">
-      <div class="row">
-        <div class="col">
-          <i class="icon notbig">&#xe7c9;</i>
-          <p class="mb-0">首页</p >
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe788;</i>
-          <p class="mb-0">招聘</p >
-        </div>
-        <div class="col">
-          <i class="icon big">&#xe7df;</i>
-          <p class="mb-0 play">雄安直播</p >
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe603;</i>
-          <p class="mb-0">培训</p >
-        </div>
-        <div class="col">
-          <i class="icon notbig">&#xe81f;</i>
-          <p class="mb-0">我的</p >
-        </div>
-      </div>
-    </div>
+  <%- f %>
 </div>
 
 <script>
@@ -188,7 +162,6 @@ new Vue({
   mounted(){
     this.ajax.get('/company/test/detail',(res)=>{
       this.list = res.data[0]
-      console.log(JSON.stringify(this.list))
     },(err)=>{
       alert(err.errmsg)
     })

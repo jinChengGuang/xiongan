@@ -13,8 +13,7 @@
       <input type="password" class="from-control w-100" placeholder="请确认密码">
     </div>
     <div class="text-center">
-      <button class="btn btn-warning mt-3 w-100 t-c-white" @click='forget'>保存</button>
-      <!--<a href="/front/login/login" class="btn btn-warning mt-3 w-100 t-c-white">保存</a>-->
+      <a href='javascript:void(0)' class="btn btn-warning mt-3 w-100 t-c-white" @click='forget'>保存</a>
       <span class="text-right db f-s-8">点击保存，请使用新密码登陆</span>
     </div>
   </form>
@@ -28,11 +27,11 @@ new Vue({
   },
   methods: {
     forget () {
-      console.log(this.user)
       this.ajax.put('/company/change',this.user, (res) => {
-        console.log(res)
+        weui.toast('修改成功', 1500)
+        setTimeout("window.location.href='/front/login/login'",1500)
       }, (err) => {
-        alert(err.errmsg)
+        weui.toast(err.errmsg)
       })
     }
   }
