@@ -249,7 +249,6 @@ exports.delete = {
    * 删除收藏
    */
   '/collect/delete/:jid': async (ctx, next) => {
-    console.log(2)
     let id = ctx.params.jid
     let uid = ctx.user.id
     let data=await $.mysql.push($.conf.mysql.main, 'delete from collect  where jid =? and uid =? ', [ id,uid ])
