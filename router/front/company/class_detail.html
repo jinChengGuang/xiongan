@@ -34,7 +34,7 @@
   </div>
   <p class="p-y-5 p-x-15 mb-0">
     <span>{{cultivate.name}}</span>
-    <span class="float-right">{{time.dateFormat('yyyy-MM-dd',cultivate.class_starttime)}}</span>
+    <span class="float-right">{{time.dateFormat('yyyy/MM/dd', cultivate.class_starttime)}}</span>
   </p>
   <p class="p-y-5 p-x-15 mb-0">
     <i class="icon">&#xe621;</i>
@@ -57,12 +57,12 @@ new Vue({
   data: {
     type:0,
     cultivate:[],
-    id: '2'
+    id: ''
   },
   mounted () {
+    this.id = this.query.get('id')
     this.ajax.get('/cultivate/detail/' + this.id, (res) => {
       this.cultivate = res.data[0]
-      console.log(this.cultivate)
     }, (err) => {
       console.log(err)
     })
@@ -70,7 +70,7 @@ new Vue({
   methods: {
     signUp(){
       this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
-        window.alert('报名成功')
+        weui.toast('报名成功', 2000);
       }, (err) => {
         console.log(err)
       })

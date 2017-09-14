@@ -34,7 +34,7 @@
   </div>
   <p class="p-y-5 p-x-15 mb-0">
     <span>{{cultivate.name}}</span>
-    <span class="float-right">{{cultivate.class_starttime}}</span>
+    <span class="float-right">{{time.dateFormat( 'yyyy-MM-dd', cultivate.class_starttime)}}</span>
   </p>
   <p class="p-y-5 p-x-15 mb-0">
     <i class="icon">&#xe621;</i>
@@ -45,7 +45,7 @@
   2、培训后人员快速上岗，薪酬提升明显
   我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。</p>
   <p style="text-align: center;">
-    <a name="" id="" class="btn btn-primary p-y-3 p-x-30 m-y-10" href="#" role="button" @click='signUp'>报名</a>
+    <a name="" id="" class="btn btn-primary p-y-3 p-x-30 m-y-10"  role="button" @click='signUp'>报名</a>
   </p>
   
 </div>
@@ -57,12 +57,12 @@ new Vue({
   data: {
     type:0,
     cultivate:[],
-    id: '2'
+    id: ''
   },
   mounted () {
+    this.id = this.query.get('id')
     this.ajax.get('/cultivate/detail/' + this.id, (res) => {
       this.cultivate = res.data[0]
-      console.log(this.cultivate)
     }, (err) => {
       console.log(err)
     })
@@ -70,7 +70,7 @@ new Vue({
   methods: {
     signUp(){
       this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
-        window.alert('报名成功')
+        weui.toast('报名成功', 2000);
       }, (err) => {
         console.log(err)
       })

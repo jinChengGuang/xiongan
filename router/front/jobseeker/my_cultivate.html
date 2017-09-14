@@ -26,7 +26,7 @@
         <i class="icon"></i>
       </p>
       <p class="p-b-p5 m-b-0">
-        <span>您于{{n.apply_time}}报名的{{n.culname}}待审核</span>
+        <span>您于{{time.dateFormat( 'yyyy-MM-dd', n.apply_time)}}报名的{{n.culname}}待审核</span>
       </p>
       <p class="text-right m-b-0">
         <button type="button" class="btn btn-sm btn-secondary" @click='cancel(n.id)'>取消报名</button>
@@ -45,17 +45,15 @@ new Vue({
   mounted () {
     this.ajax.get('/cultivate/list', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
       console.log(err)
     })
   },
   methods: {
     cancel(id){
-      console.log(111)
       this.ajax.put('/cancel/cultivate/record',{id:id},(res) => {
-        window.alert('取消成功')
-        setTimeout(window.location.reload(),1500)
+        weui.toast('取消成功', 500);
+        setTimeout("window.location.reload()",1500)
       }, (err) => {
         console.log(err)
       })

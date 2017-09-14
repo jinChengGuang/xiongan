@@ -32,7 +32,7 @@ exports.get = {
    * 福利待遇列表
    */
   '/benefit/list': async (ctx, next) => {
-    ctx.result.ok.data = ['五险一金','年底双薪','绩效奖金','年终分红','股票期权','加班补助','全勤奖','包吃包住','交通补助','餐补','房补','通讯补贴','采暖补贴','带薪年假','弹性工作','补充医疗保险','定期体检','免费班车','员工旅游','高温补贴','节日福利']
+    ctx.result.ok.data = [{name:'五险一金',checked:false},{name:'五险一金',checked:false},{name:'年底双薪',checked:false},{name:'绩效奖金',checked:false},{name:'年终分红',checked:false},{name:'股票期权',checked:false},{name:'加班补助',checked:false},{name:'全勤奖',checked:false},{name:'包吃包住',checked:false},{name:'交通补助',checked:false},{name:'餐补',checked:false},{name:'房补',checked:false},{name:'通讯补贴',checked:false},{name:'采暖补贴',checked:false},{name:'带薪年假',checked:false},{name:'弹性工作',checked:false},{name:'补充医疗保险',checked:false},{name:'定期体检',checked:false},{name:'免费班车',checked:false},{name:'员工旅游',checked:false},{name:'高温补贴',checked:false},{name:'节日福利',checked:false}]
     $.flush(ctx, ctx.result.ok)
   },
    /**
@@ -166,7 +166,7 @@ exports.get = {
   /**
    * 培训列表
    */
-  '/cultivate/list': async (ctx, next) => {
+  '/cultivate/lists': async (ctx, next) => {
     let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate ' , [null])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
@@ -175,7 +175,9 @@ exports.get = {
    * 培训详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [ctx.params.id])
+    let id = ctx.params.id
+    let cultivate = await 
+    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
     ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
   },
@@ -364,6 +366,7 @@ exports.post = {
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
     let cid = ctx.company.id
+    
     let { culid, culname} = ctx.post
     let apply_time = $.time10()
     if(cid){
