@@ -1,52 +1,44 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>发出的邀请</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--没有列表是显示图片-->
-<div class="empty w-100 m-t-p50 text-center" style="display: none;">
-  <img class="w-70" src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="">
+<div class="empty w-100 m-t-p50 text-center" style="display: none;" v-show='list.length == 0'>
+  <img src="../../../skins/img/toudi.png"class='h-h140 w-w140'>
+  <p class='m-t-6 t-c-666 f-s-f13'>您还没有发出过邀请</p>
 </div>
 <!--中间内容-->
-<div>
+<div v-show='list.length != 0'>
   <ul class="m-t-55 m-b-80 f-s-8">
     <li class="m-10 p-10 bg-white bor-r-5" v-for='one in list'>
-      <p class="f-s-10 f-w-6 lh-25 mb-0">用户反馈通知</p>
-      <p class="lh-25 mb-0">{{time.dateFormat('yyyy/MM/dd', one.invitetime)}}</p>
-      <p class="lh-25 mb-0">
-        <span>姓名：</span>
-        <span>{{one.username}}</span>
+      <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start <one.invitetime'>今天</span>
+      <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start-86400<one.invitetime && one.invitetime< start'>昨天</span>
+      <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start-86400>one.invitetime'>{{time.dateFormat('yyyy/MM/dd',one.invitetime)}}</span>
+      <!--<p class="lh-25 mb-0 float-right">{{time.dateFormat('yyyy/MM/dd', one.invitetime)}}</p>-->
+      <p class="f-s-f16 f-w-6 lh-25 mb-0 t-c-000">用户反馈通知</p>
+      <p class="lh-25 mb-0 f-s-f14">
+        <span class=' t-c-666'>姓名：</span>
+        <span class='t-c-00'>{{one.contact_name}}</span>
       </p>
-      <p class="lh-25 mb-0">
+      <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>学历：</span>
         <span>{{one.education}}</span>
       </p>
-      <p class="lh-25 mb-0">
+      <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>面试时间：</span>
-        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{time.dateFormat('yyyy/MM/dd', one.interviewtime)}}</span>
+        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{time.dateFormat('yyyy年MM月dd日', one.interviewtime)}}</span>
       </p>
-      <p class="lh-25 mb-0">
+      <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>联系电话：</span>
         <a class="t-c-2">
           <span>{{one.mobile}}</span>
-          <i class="icon t-c-70a">&#xe75f;</i>
+          <i class="icon t-c-70a f-s-f18" style='color: #1eaa39'>&#xe845;</i>
         </a>
       </p>
-      <p class="lh-25 mb-0">
+      <p class="lh-25 mb-0 f-s-f14  t-c-666">
         <span>面试地址：</span>
         <span>{{one.address}}</span>
       </p>
-      <p class="lh-25 mb-0">
-        <span>注：</span>
+      <p class="lh-25 mb-0  t-c-666 f-s-f11 t-c-999">
+        <span class='f-s-f11'>注：</span>
         <span>{{one.remark}}</span>
       </p>
     </li>
@@ -59,10 +51,13 @@ new Vue({
   data: {
     type:0,
     list:[],
+    start:new Date().setHours(0, 0, 0, 0) / 1000,
+    name:'我发出的邀请'
   },
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {
       this.list = res.data
+      console.log(this.list)
     }, (err) => {
       console.log(err)
     })

@@ -1,32 +1,46 @@
-<div class="container-fluid header pf t-0 h-45 lh-45 bg-eee z-100 fixed-top" >
-  <div class="row">
-    <div class="col-1 icon icon_1 mt-3 pl-2" style='font-size:18px;' @click='switch_1'>&#xe873;</div>
-    <div class="col-10 pl-2" >
-      <input type="autocomplete" placeholder="搜索职位/公司" class='h-28 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%; margin-top:15px;'v-model="p.name" @focus='link'>
-      <span class='icon' style='position: absolute; top:40%; left:5%;'>&#xe7fd;</span>
+<div class="container-fluid header pf t-0 h-45 lh-45 bg-ef  z-1030  fixed-top" >
+  <div class="row  bg-eee">
+    <div class="col-1 icon icon_1 mt-3 f-s-f22 pl-2 t-c-7c88" @click='switch_1'>&#xe90b;</div>
+    <div class="col-10 pl-3 " >
+      <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'v-model="p.name" @focus='link'>
+      <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
     </div>
-    <div class="col-1 icon pl-0 mt-3 letter" style='font-size:18px; position: relative'><a href='/front/company/mail'>&#xe7d5;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:34%;' v-show='msg.length != 0'></span></div>
+    <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%; 'v-for='n in status' v-show='n.status = 1'></span></div>
   </div>
 </div>
 <!--过滤-->
-<div class="container-fluid box t-45  pf z-100">
+<div class="container-fluid box t-45  pf z-100 bor-b-sol bor-ea">
   <div class="row row-one h-40 lh-40 bg-fff">
-    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-ccc t-c-0a0' @click="show(time_1)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
-    <div class="col-3 screen p-0 f-s-6 bor-0"><a href="/front/company/job_send" class='dinb w-100 ta-c h-26 lh-26 m-t-p6  t-c-0a0'>发布岗位</a></div>
+    <!--地区-->
+    <div id='aera' class="col-3 f-s-f13 screen p-0 f-s-6" v-show="p.area == ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(area)">地区<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    
+    <div class="col-3 f-s-f13 screen p-0 f-s-6 t-c-00bb" v-show="p.area != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(area)">{{p.area}}</a></div>
+
+<!--薪资-->
+    <div id='pay' class="col-3 f-s-f13 screen p-0 f-s-6" v-show="p.pay == ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(pay)">薪资<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+
+    <div class="col-3 f-s-f13 screen p-0 f-s-6 t-c-00bb" v-show="p.pay != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(pay)">{{p.pay}}</a></div>
+
+    <div id='time_1' class="col-3 f-s-f13 screen p-0 f-s-6"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">发布时间<i class='icon p-l-3'>&#xe7c3;</i></a></div>
+    <div  class="col-3 f-s-f13 screen p-0 f-s-6 bor-0"><a href="/front/company/station" class='dinb ta-c h-26 lh-26 br-8 m-t-p6  t-c-0a0 w-w65 h-h23 bg-ff6 m-l-f9 t-c-fff'>发布岗位</a></div>
   </div>
 </div>
 
 <!--弹层-->
-<div class='window container-fluid p-0 bg-rgba w-100  t-14 z-100 dn pf t-85' id='pop' id='pop' style='display: none;'>
-  <div class='datail h-150 bg-fff m-t-3 pr'>
+<div class='window container-fluid p-0  w-100  t-14 z-100 dn pf t-85' id='pop' id='pop' style='display: none;'>
+  <div class='datail p-10 bg-f5f5 pr oh d-block clear p-b-50 z-10030'>
     <ul class='m-b-0'>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n'>{{n}}</span></li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay' v-for='n in arry'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n'>{{n}}</span></li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'><span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value'>{{n.name}}</span></li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n':class="{'bg-00b': p.area == n}">{{n}}</span>
+      </li>
+      <li class='float-left p-l-f2  .p-r-f2  ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n}">{{n}}</span>
+      </li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value':class="{'bg-00b': n.checked}">{{n.name}}</span>
+      </li>
     </ul>
-    <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-d pa b-0 l-0' @click='search'>确定</button>
+    <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-00b pa b-0 l-0' @click='search'>确定</button>
   </div>
   <div class='bg-rgba w-100 ' :style="{height:body_h + 'px'}"  @click='none_1' id='pop1'></div>
 </div>
@@ -34,28 +48,29 @@
 <!--热门岗位1-->
 <div v-show='list.length != 0' style='margin-top:100px'>
   <ul class="m-t-p3 m-b-80 f-s-8">
-    <li class="m-10 p-10 bg-white bor-r-5 pr row" v-for='n in list'>
+    <li class="m-10 m-t-8 p-10 bg-white br-5 pr row" v-for='n in list'>
       <a :href="'/front/company/company_detail?id='+n.id" class='w-100 '>
         <p class="w-100 m-b-10">
-          <span class="f-s-10 f-w-6">{{n.name}}</span>
-          <span class='f-s-8 f-w-6 float-right' v-if='start < n.issue_time'>今天</span>
-          <span class='f-s-8 f-w-6 float-right' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
-          <span class="float-right" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
+          <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232">{{n.name}}</span>
+          <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < n.issue_time'>今天</span>
+          <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
+          <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span class="t-c-ff5">{{n.pay}}</span>
+          <span class="t-c-ff4 f-s-f15">{{n.pay}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span><i class="icon">&#xe621;</i>{{n.area}}</span>
-          <span><i class="icon">&#xe86a;</i>{{n.education}}</span>
-          <span><i class="icon">&#xe68c;</i>{{n.experience}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 p-r-3">&#xe8e0;</i>{{n.area}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e3;</i>{{n.education}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
         </p>
-        <p class="w-100 m-b-5">
-          <span class="bor p-x-2 m-l-3 bor-sol bor-ccc t-c-d br-5 p-l-5 f-s-5 dinb m-t-5" v-for="i in n.benefit.split('|')">{{i}}</span>
+        <p class="w-100 m-b-5 f-s-f11">
+          <span class="bor p-x-2 m-l-3 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
-        <p class="w-100 m-b-5">
-          <i class="icon">&#xe621;</i>
-          <span>{{n.cname}}</span>
+        <p class="w-100 m-b-5 m-t-15">
+          <img src="n.logo" class='br-h h-h32 w-w32'>
+          <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
+          <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
         </p>
       </a>
     </li>
@@ -64,50 +79,63 @@
 
 <!--过滤为空-->
 <div class='null m-t-p33' v-show="list.length == 0 && type=='filter'">
-  <div class='none w-w200 h-200 m-l-f19 m-t-p30 m-b-b3'>
-    <img src="../../../skins/img/none.png">
+  <div class='none text-center'>
+    <img src="../../../skins/img/0_3.png" class='h-h140 w-w140'>
+    <p class='m-t-6 t-c-999'>没有符合条件的结果</p>
+    <p class='t-c-999'>重新筛选试试~</p>
   </div>
 </div>
 <!--搜索为空-->
 <div class='null  m-t-p33' v-show="list.length == 0 && type != 'filter'">
-  <div class='none w-w200 h-200 m-l-f19 m-t-p5 m-b-b3'>
-    <img src="../../../skins/img/none.png">
+  <div class='none text-center'>
+    <img src="../../../skins/img/0_3.png" class='h-h140 w-w140'>
+    <p class='m-t-6 t-c-999'>没有符合条件的结果</p>
+    <p class='t-c-999'>重新筛选试试~</p>
   </div>
-  <div class="company m-b-b3">
+  <div class="company">
     <div class='post container-fluid h-40 w-100 bg-fff m-t-p10 f-s-8 lh-40 bor-b-sol bor-ccc'>
-      <span class="icon p-r-r3">&#xe8b0;</span>
-      <span class='t-c-666 f-s-8'>该公司职位</span>
+      <span class="icon p-r-r2 t-c-7c88 f-s-f15">&#xe8ef;</span>
+      <span class='t-c-666 f-s-8 t-c-7c88'>该公司职位</span>
     </div>
   </div>
   <div>
-    <ul class="m-t-p3 m-b-80 f-s-8">
-      <li class="m-10 p-10 bg-white bor-r-5 pr row" v-for='n in recommend'>
-        <p class="w-100 m-b-10">
-          <span class="f-s-10 f-w-6">{{n.name}}</span>
-          <span class='f-s-8 f-w-6 float-right' v-if='start < n.issue_time'>今天</span>
-          <span class='f-s-8 f-w-6 float-right' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
-          <span class="float-right" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
-        </p>
-        <p class="w-100 m-b-5">
-          <span class="t-c-ff5">{{n.pay}}</span>
-        </p>
-        <p class="w-100 m-b-5">
-          <span><i class="icon">&#xe621;</i>{{n.area}}</span>
-          <span><i class="icon">&#xe86a;</i>{{n.education}}</span>
-          <span><i class="icon">&#xe68c;</i>{{n.experience}}</span>
-        </p>
-        <p class="w-100 m-b-5">
-          <span class="bor p-x-2 m-l-3 bor-sol bor-ccc t-c-d br-5 p-l-5 f-s-5 dinb m-t-5" v-for="i in n.benefit.split('|')">{{i}}</span>
-        </p>
-        <p class="w-100 m-b-5">
-          <i class="icon">&#xe621;</i>
-          <span>{{n.cname}}</span>
-        </p>
+    <ul class=" m-b-80 f-s-8 p-x-15">
+      <li class="m-b-8 p-10 bg-white br-5 pr row" v-for='n in recommend'>
+        <a :href="'/front/company/company_detail?id='+n.id" class='w-100 '>
+          <p class="w-100 m-b-10">
+            <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232">{{n.name}}</span>
+            <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < n.issue_time'>今天</span>
+            <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
+            <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
+          </p>
+          <p class="w-100 m-b-5">
+            <span class="t-c-ff4 f-s-f15">{{n.pay}}</span>
+          </p>
+          <p class="w-100 m-b-5">
+            <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 p-r-3">&#xe8e0;</i>{{n.area}}</span>
+            <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e3;</i>{{n.education}}</span>
+            <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
+          </p>
+          <p class="w-100 m-b-5 f-s-f11">
+            <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
+          </p>
+          <p class="w-100 m-b-5 m-t-15">
+            <img src="n.logo" class='br-h h-h32 w-w32'>
+            <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
+            <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
+          </p>
+        </a>
       </li>
     </ul>
   </div>
 </div>
 <%- f%>
+
+<style>
+  #aera:hover{color:#00bbf4}
+</style>
+
+
 
 <script> 
 new Vue({
@@ -128,7 +156,11 @@ new Vue({
     type:'',
     msg:[],
     body_h:null,
-    start:new Date().setHours(0,0,0,0)/1000
+    start:new Date().setHours(0,0,0,0)/1000,
+    status:[],
+    datail:[],
+
+
   },
   mounted(){
     console.log(this.time.dateFormat)
@@ -159,6 +191,14 @@ new Vue({
     },(err)=>{
       console.log(err)
     })
+    this.ajax.get('/user/invite/record',(res)=>{
+      this.datail = res.data
+      for(var i=0;i<this.datail.length;i++){
+        this.status.push(this.datail[i].status)
+      }
+      console.log(this.status)
+    },(err)=>{
+  })
   },
   methods: {
     show(ary){
