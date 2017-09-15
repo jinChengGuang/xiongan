@@ -1,13 +1,6 @@
 // ---------------------------------------------------------------------------- GET
 exports.get = {
   /**
-   * 企业信息
-   */
-'/company/detail': async (ctx, next) => {
-    ctx.result.ok.data = ctx.company
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
    * 区域列表
    */
   '/area/list': async (ctx, next) => {
@@ -88,29 +81,29 @@ exports.get = {
     let params = []
     let sql=''
     if(name){
-      where = where + ' and (name = ? or cname = ? )'
+      where = where + ' and (A.name = ? or A.cname = ? )'
       params.push(name,name)
     }
     if(area){
-      where =  where + ' and area = ? '
+      where =  where + ' and A.area = ? '
       params.push(area)
     }
     if(pay){
-      where =  where + ' and pay = ? '
+      where =  where + ' and A.pay = ? '
       params.push(pay)
     }
     if(time){
         let a = $.time.betweenDay().start/1000-(time-1)*60*60*24
-        where =  where + ' and issue_time > ? '
+        where =  where + ' and A.issue_time > ? '
         params.push(a)
     }
     if(benefit){
       let a  = benefit.split("|")
        for(let v of a ){
-        where = ' and benefit like "%'+ v + '%"'
+        where = ' and A.benefit like "%'+ v + '%"'
       }
     }
-    sql= 'select * from job where examine = 1 and status=1 ' + where +'order by issue_time' 
+    sql= 'select A.* , B.logo from job A, company B where A.examine = 1 and A.status=1 and A.cid =  B.id ' + where +'order by issue_time' 
     let job = await $.mysql.query($.conf.mysql.main, sql, params)
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
@@ -179,22 +172,13 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 瑞安课程详情
+   * 培训详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select A.*,B.class_starttime as time,B.name as name,B.content as content,B.address as address  from school_detail A,cultivate B where A.culid = ? and A.culid = B.id ', [id])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
-    ctx.result.ok.data = [cultivate,swiper]
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
-   * 学校详情
-   */
-  '/school/detail': async (ctx, next) => {
-    let detail = await $.mysql.query($.conf.mysql.main, 'select * from school_detail where culid =0 ' , [null])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
-    ctx.result.ok.data = [detail,swiper]
+    let cultivate = await 
+    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
+    ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -229,27 +213,17 @@ exports.get = {
   '/msg/detail/:type': async (ctx, next) => {
     let cid = ctx.company.id
     let type = ctx.params.type
-    console.log(type)
     if(type=='examine'){
       await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 0 or type = 1 and cid =? ', [ cid ])
       let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type in (0,1) and cid =?', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     }else{
-      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [cid])
-      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [cid])
+      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [type, cid ])
+      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [type,cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     } 
-  },
-  /**
-   * 站内信列表
-   */
-  '/msg/list': async (ctx, next) => {
-    let cid = ctx.company.id
-    let msg = await $.mysql.query($.conf.mysql.main, 'select * from  msg where cid=?', [cid])
-    ctx.result.ok.data = msg
-    $.flush(ctx, ctx.result.ok)
   },
   /**
    * 热门搜索公司

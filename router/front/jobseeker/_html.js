@@ -7,6 +7,10 @@ exports.get = {
   '/front/jobseeker/my_cultivate': async (ctx, next) => {
     await ctx.render('/front/jobseeker/my_cultivate')
   },
+  // 公司详情
+  '/front/jobseeker/job_company_list': async (ctx, next) => {
+    await ctx.render('/front/jobseeker/job_company_list')
+  },
   // 编辑教育经历
   '/front/jobseeker/edit_education': async (ctx, next) => {
     await ctx.render('/front/jobseeker/edit_education')
