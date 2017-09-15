@@ -357,6 +357,24 @@ exports.get = {
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
+  /**
+   * 学校详情
+   */
+  '/school/detail': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = 0 ', [null])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
+    ctx.result.ok.data = [detail,swiper]
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 课程详情
+   */
+  '/cultivate/detail/:id': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = ? ', [ctx.params.id])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = ? ', [ctx.params.id])
+    ctx.result.ok.data = [detail,swiper]
+    $.flush(ctx, ctx.result.ok)
+  },
 }
 // ---------------------------------------------------------------------------- POST
 exports.post = {

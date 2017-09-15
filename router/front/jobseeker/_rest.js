@@ -205,7 +205,7 @@ exports.put = {
    * 编辑简历教育经历
    */
   '/education/edit': async (ctx, next) => {
-    let { start,end,school,speciality,education,id }= ctx.post
+    let { start,end,school,speciality,education,id }= ctx.put
     let data=await $.mysql.push($.conf.mysql.main, 'update education_record set start = ?,end =?,school =?,speciality=?,education=? where id =? ', [ start,end,school,speciality,education,id ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)

@@ -1,65 +1,34 @@
-<!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
+<%- tname %>
+<div class="container-fluid m-t-46 bg-white p-x-30 ">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">期望职位</div>
+    <div class="col-9 text-right p-x-0">
+      <a href="/front/jobseeker/job_content?type=add" class="jump">
+        <span>{{jtname}}</span>
+        <i class="icon">&#xe7c4;</i>
       </a>
     </div>
-    <div class="col-8 text-center">
-      <span>求职意向</span>
+  </div>
+
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">期望薪资</div>
+    <div class="col-9 text-right none">
+      <select v-model='data.pay'>
+        <option v-for='v in pay' :value="v" >{{v}}</option>
+      </select>
     </div>
-    <div class="col-2"></div>
+  </div>
+    <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+      <div class="col-3 bor-r-sol bor-eae p-x-0">求职地区</div>
+      <div class="col-9 text-right none">
+        <select v-model='data.want_area'>
+          <option v-for='v in area' :value="v" >{{v}}</option>
+        </select>
+      </div>
   </div>
 </div>
-<div class="container-fluid bg-white m-t-46">
-  <form action="#" class="f-s-9">
-    <div class="from-group bor-b-sol bor-eee p-y-p2">
-      <div class="row">
-        <div class="col-4">期望职位</div>
-        <div class="col-6 text-right none">
-          <a href="/front/jobseeker/job_content" class="jump">
-            <span>{{name}}</span>
-            <i class="icon">&#xe7c4;</i>
-          </a>
-        </div>
-        <div class="col-2 align-self-center text-center none">
-          <span class="t-c-e20">*</span>  
-        </div>
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2">
-      <div class="row">
-        <div class="col-4">期望薪资</div>
-        <div class="col-6 text-right none">
-          <select v-model='data.pay'>
-            <option v-for='v in pay' :value="v" >{{v}}</option>
-          </select>
-        </div>
-        <div class="col-2 align-self-center text-center none">
-          <span class="t-c-e20">*</span>  
-        </div>
-      </div>
-    </div>
-     <div class="from-group bor-b-sol bor-eee p-y-p2">
-      <div class="row">
-        <div class="col-4">求职地区</div>
-        <div class="col-6 text-right none">
-          <select v-model='data.want_area'>
-            <option v-for='v in area' :value="v" >{{v}}</option>
-          </select>
-        </div>
-        <div class="col-2 align-self-center text-center none">
-          <span class="t-c-e20">*</span>  
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <a @click='next' class="btn br-0 bg-32a t-c-white m-10-auto" >下一步</a>
-    </div>
-  </form>
+<div class="row item pt-3">
+  <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">保存</button>
 </div>
 <script>
 new Vue({
@@ -68,11 +37,12 @@ new Vue({
     pay:[],
     data:{},
     area:[],
-    name:'请选择职位类别'
+    name:'求职意向',
+    jtname:'请选择职位类型'
   },
   mounted () {
     if(this.query.get('name')){
-      this.name=this.query.get('name')
+      this.jtname=this.query.get('name')
     }
     this.ajax.get('/pay/list', (res) => {
       this.pay = res.data

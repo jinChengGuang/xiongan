@@ -1,82 +1,65 @@
-<!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>个人评价</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
-<div class="container-fluid m-t-46">
+<%- tname %>
+<div class="container-fluid m-t-46 none">
   <div class="row bg-white">
-    <i class="icon f-s-30 t-c-009 ma mt-4">&#xe680;</i>
-    <p class="w-100 text-center mt-3">个人基本简历已创建完成!</p>
+    <i class="icon f-s-30 t-c-009 ma mt-3">&#xe680;</i>
+    <p class="w-100 text-center mt-3 t-c-666">个人基本简历已创建完成!</p>
   </div>
 
-  <div class="row mt-1 bg-white f-s-9 pt-2 pb-2">
-    <div class="col-10">教育经历</div>
-    <div class="col-2">
-      <a href="/front/jobseeker/teach">
-        <i class="icon t-c-0c4">&#xe7ba;</i>
-      </a>
-    </div>
-  </div>
-
-<div class="box">
-  <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;" v-for='v in education'>
-    <div class="col-8">
-      <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
-    </div>
-    <div class="col-2 text-right none">
-      <a :href='"/front/jobseeker/edit_education?id="+v.id'>
-        <i class="icon">&#xe803;</i>
-      </a>
-    </div>
-    <div class="col-2 text-left">
-      <i class="icon" @click='deledu(v.id)'>&#xe7f9;</i>
-    </div>
-    <div class="w-100"></div>
-    <div class="col-12">{{v.school}}</div>
-    <div class="col-12">{{v.speciality}}</div>
-  </div>
-</div>
-
-
-  <div class="row mt-1 bg-white f-s-9 pt-2 pb-2">
-    <div class="col-10">工作经历</div>
-    <div class="col-2">
-      <a href="/front/jobseeker/work">
-        <i class="icon t-c-0c4">&#xe7ba;</i>
-      </a>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="row pt-2 pb-2" style="background-color: #fff; border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;" v-for='v in experience'>
-      <div class="col-8">
-        <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
-      </div>
-      <div class="col-2 text-right none">
-        <a :href='"/front/jobseeker/edit_experience?id="+v.id'>
-          <i class="icon">&#xe803;</i>
+  <div class="box bg-white">
+    <div class="row mt-2 bg-white  pt-2 pb-2  p-x-10 ">
+      <div class="col-10 t-c-00b f-s-9 ">教育经历</div>
+      <div class="col-2 none text-center">
+        <a href="/front/jobseeker/teach?type=add" class="icon t-c-00b f-s-10">
+          &#xe7ba;
         </a>
       </div>
-      <div class="col-2 text-left">
-        <i class="icon" @click='delexp(v.id)'>&#xe7f9;</i>
-      </div>
-      <div class="w-100"></div>
-      <div class="col-12">{{v.company}}</div>
-      <div class="col-12">{{v.job}}</div>
     </div>
-</div>
+    <div class="row pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10"  v-for='v in education'>
+      <div class="col-10 none">
+        <span>{{time.dateFormat('yyyy.MM',v.start)}}-{{time.dateFormat('yyyy.MM',v.end)}}</span>
+        <span class='p-l-15'>{{v.education}}</span>
+      </div>
+      <div class="col-1 none ">
+        <a :href='"/front/jobseeker/edit_education?type=add&id="+v.id'>
+          <i class="icon t-c-00b f-s-f16">&#xe901;</i>
+        </a>
+      </div>
+      <div class="col-1 none text-left">
+        <i class="icon t-c-00b f-s-f16" @click='deledu(v.id)'>&#xe904;</i>
+      </div>
+      <div class="col-12 none">{{v.school}}</div>
+      <div class="col-12 none">{{v.speciality}}</div>
+    </div>
+  </div>
 
-  <div class="row item pt-2 pb-2">
-    <a href="/front/jobseeker/resume_detail" class="btn br-0 bg-primary t-c-white m-10-auto">确定</a>
+  <div class="box bg-white">
+    <div class="row bor-t-sol bor-c4 bg-white f-s-9 pt-2 pb-2  p-x-10">
+      <div class="col-10 t-c-00b">工作经历</div>
+      <div class="col-2 none text-center">
+        <a href="/front/jobseeker/work?type=add">
+          <i class="icon t-c-00b f-s-10">&#xe7ba;</i>
+        </a>
+      </div>
+    </div>
+    <div class="row pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10" v-for='v in experience'>
+      <div class="col-10 none">
+        <span>{{time.dateFormat('yyyy.MM',v.start)}}-{{time.dateFormat('yyyy.MM',v.end)}}</span>
+      </div>
+      <div class="col-1 text-left none">
+        <a :href='"/front/jobseeker/edit_experience?type=add&id="+v.id'>
+          <i class="icon t-c-00b f-s-f16">&#xe901;</i>
+        </a>
+      </div>
+      <div class="col-1 text-left none">
+        <i class="icon t-c-00b f-s-f16" @click='delexp(v.id)'>&#xe904;</i>
+      </div>
+      <div class="col-12 none">{{v.company}}</div>
+      <div class="col-12 none">{{v.job}}</div>
+    </div>
+  </div>
+
+  <div class="row item pt-3">
+    <a href="/front/jobseeker/resume_detail" class="btn bg-00b t-c-white m-10-auto p-x-30">确定</a>
   </div>
 </div>
 <script>
@@ -86,7 +69,7 @@ new Vue({
     data: {},
     experience:[],
     education:[],
-    ids:null
+    name:'我的简历'
   },
   mounted () {
     this.ajax.get('/user/resume/experience', (res) => {
@@ -103,16 +86,16 @@ new Vue({
   methods: {
     delexp(id){
      this.ajax.delete('/experience/delete/'+id,(res) => {
-      console.log('删除成功')
-      window.location.reload()
+      weui.toast('删除成功', 2000);
+      setTimeout("window.location.reload()",2000)
       }, (res) => {
         console.log(res.errmsg)
       })
     },
     deledu(id){
      this.ajax.delete('/education/delete/'+id,(res) => {
-      console.log('删除成功')
-      window.location.reload()
+      weui.toast('删除成功', 2000);
+      setTimeout("window.location.reload()",2000)
       }, (res) => {
         console.log(res.errmsg)
       })

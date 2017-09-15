@@ -1,32 +1,23 @@
-<!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>选择期望职位</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname %>
 <div class="container-fluid m-t-46">
-  <div class="row">
-    <div class="col-5 none">
-      <ul class="list-unstyled text-center">
-        <li v-for='v in big' @click='onbig(v.id)' class="bg-f3f h-40 lh-40 bor-b-sol bor-aaa">{{v.name}}</li>
+  <div class="row p-t-10 " :style="{height:cat_height + 'px'}">
+    <div class="col-5 none bg-f3f8" >
+      <ul class="list-unstyled text-center bor-r-sol bor-eae">
+        <li class="h-50 lh-50 bor-b-sol  bor-eae">全部</li>
+        <li v-for='v in big' @click='onbig(v.id)' :class="{'bg-white': bigid == v.id,'t-c-00b': bigid == v.id }" class="h-50 lh-50 bor-b-sol bor-eae" >{{v.name}}</li>
       </ul>
     </div>
-    <div class="col-7 none pl-1 pr-1 bg-white">
-      <ul class="list">
-        <li v-for='v in middle'  >
-          <i class="icon">&#xe806;</i>
-          <span @click='onsmall(v.id)'>{{v.name}}</span>
-          <i class="icon right">&#xe7c3;</i>
-            <ul class="child" >
-              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)'>{{i.name}}</li>
+    <div class="col-7 bg-white none">
+      <ul class="list ">
+        <li v-for='v in middle' class='h-50 lh-50 bor-b-sol bor-eae t-c-999 w-100' @click='onsmall(v.id)'  >
+          <i class="icon p-l-10">&#xe806;</i>
+          <span :class="{'t-c-00b': mid == v.id }">{{v.name}}</span>
+          <i class="icon right p-y-15 p-r-10 t-c-00b" v-if='mid == v.id'>&#xe7c2;</i>
+          <i class="icon right p-y-15 p-r-10 " v-else>&#xe7c3;</i>
+            <ul class="child h-50 lh-50 bor-b-sol bor-eae t-c-999" >
+              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)'>
+                <span  class='p-l-25' @click='choose(i.id,i.name)'>{{i.name}}</span>
+              </li>
             </ul>
         </li>
       </ul>
@@ -41,7 +32,12 @@ new Vue({
     type:[],
     big:[],
     middle:[],
-    small:[]
+    small:[],
+    bigid:null,
+    mid:null,
+    sid:null,
+    cat_height: window.screen.height,
+    name:'职位类型'
   },
   mounted () {
     this.ajax.get('/jobtype/list', (res) => {
@@ -58,6 +54,7 @@ new Vue({
   methods: {
     onbig(id){
       this.middle=[]
+      this.bigid = id
       for(let v of this.experience){
         if(v.bid==id&& v.mid ==0 ){
           this.middle.push(v)
@@ -65,6 +62,7 @@ new Vue({
       }
     },
     onsmall(id){
+      this.mid=id
       this.small=[]
      for(let v of this.experience){
         if(v.mid ==id ){
@@ -74,7 +72,12 @@ new Vue({
     },
     choose(id,name){
       // console.log(window.location.history)
-      window.location.href='/front/jobseeker/edit_job?id='+id+'&name='+ name
+      if(this.query.get('type')){
+        window.location.href='/front/jobseeker/job?id='+id+'&name='+ name
+      }
+      else{
+        window.location.href='/front/jobseeker/edit_job?id='+id+'&name='+ name
+      }
     }
   }
 })
