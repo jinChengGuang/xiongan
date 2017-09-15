@@ -15,6 +15,13 @@ exports.get = {
       $.flush(ctx, ctx.result.e4001)
     }
   },
+  /**
+    * 公司信息
+   */
+  '/company/detail': async (ctx, next) => {
+    ctx.result.ok.data = ctx.company
+    $.flush(ctx, ctx.result.ok)
+  },
 }
 // ---------------------------------------------------------------------------- POST
 exports.post = {
@@ -40,7 +47,8 @@ exports.put = {
    *  忘记密码
    */
   '/company/change': async (ctx, next) => {
-    let { username,newpassword } = ctx.put
+    let username = ctx.company.username
+    let {newpassword } = ctx.put
     let data = await $.mysql.push($.conf.mysql.main, 'update company set password=? where username=?', [newpassword,username])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
@@ -50,7 +58,6 @@ exports.put = {
    */
   '/forgot/password': async (ctx, next) => {
     let username = ctx.company.username
-    console.log(username)
     let { oldpassword,newpassword } = ctx.put
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where username = ?', [username])
     if(company[0].password!= oldpassword){

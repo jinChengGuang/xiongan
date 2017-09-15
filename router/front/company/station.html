@@ -3,180 +3,213 @@
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
       <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
+        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
       </a>
     </div>
     <div class="col-8 text-center">
-      <span>岗位发布</span>
+      <span class="t-c-32 f-s-f17">岗位发布</span>
     </div>
     <div class="col-2"></div>
   </div>
 </div>
-<div class="container-fluid bg-white m-t-46">
-  <form action="#" class="m-b-38 f-s-8">
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">职位类型
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" id="bcat" @click='linkage'>
-          <option>请选择</option>
-          <option v-for='o in one' :value='o.id'> {{o.name}} </option>
-        </select><br/>
-        <select class="mt-2 border" id='mcat' @click='link'>
-          <option>请选择</option>
-          <option v-for='t in twocat' :value='t.id'> {{t.name}} </option>
-        </select><br/>
-        <select class="mt-2 border" v-model='jobs.jtid' id='cat'>
-          <option value='0'>请选择</option>
-          <option v-for='n in threecat' :value='n.id'> {{n.name}} </option>
-        </select>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>  
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">职位名称
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写职位名称" v-model='jobs.name'>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
+<div class="container-fluid bg-white m-t-53 m-b-38">
+  <form action="#" class="f-s-8">
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">职位类型
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center pr">
+          <i class="icon pa r-22 t-7 t-c-bf">&#xe62e;</i>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id="bcat" @click='linkage'>
+            <option>请选择</option>
+            <option v-for='o in one' :value='o.id'> {{o.name}} </option>
+          </select><br/>
+          <i class="icon pa r-22 t-44 t-c-bf">&#xe62e;</i>
+          <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' @click='link'>
+            <option>请选择</option>
+            <option v-for='t in twocat' :value='t.id'> {{t.name}} </option>
+          </select><br/>
+          <i class="icon pa r-22 b-p7 t-c-bf">&#xe62e;</i>
+          <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.jtid' id='cat'>
+            <option value='0'>请选择</option>
+            <option v-for='n in threecat' :value='n.id'> {{n.name}} </option>
+          </select>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>  
       </div>
     </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">薪资水平
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.pay'>
-          <option v-for='list in pay' :value='list'>{{list}}</option>
-        </select>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0" >福利待遇
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <p class="text-right mb-0 f-s-6 show">更多>></p>
-        <div id="span" class="oh">
-          <span class="border p-1 dinb mb-1 mr-1" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-e20': v.checked==true}" >{{v.name}}</span>
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">职位名称
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写职位名称" v-model='jobs.name'>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
         </div>
       </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
     </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">工作区域
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.area'>
-          <option>请选择</option>
-          <option v-for='a in area' :value='a'>{{a}}</option>
-        </select> 
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">学历要求
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.education'>
-          <!--<option>本科</option>-->
-          <option v-for='e in education' :value='e'>{{e}}</option>
-        </select>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">经验要求
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='jobs.experience'>
-          <!--<option value="1">3年以上</option>-->
-          <option v-for='exper in exper'>{{exper}}</option>
-        </select>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">工作地址
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写详细地址" v-model='jobs.address'>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">岗位职责
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0 w-100" v-model='jobs.statement'></textarea>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">任职资格
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的任职资格，保证真实有效" class="border-0 w-100" v-model='jobs.requirements'></textarea>
-      </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
-      </div>
-    </div>
-
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">是否公开
-        <span class="w-w1 dinb bg-a4a h-17 v-a ml-1"></span>
-      </label>
-      <div class="col-6 p-x-0">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="isopen" value="1" v-model='jobs.status'> 公开
-          </label>
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">薪资水平
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center pr">
+          <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.pay'>
+            <option v-for='list in pay' :value='list'>{{list}}</option>
+          </select>
         </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="isopen" value="2" v-model='jobs.status'> 仅对自己可见
-          </label>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
         </div>
       </div>
-      <div class="col-2 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15" >福利待遇
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center">
+          <p class="text-right mb-0 f-s-6 show">更多>></p>
+          <div id="span" class="oh">
+            <span class="border p-1 dinb mb-1 mr-1" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-e20': v.checked==true}" >{{v.name}}</span>
+          </div>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">工作区域
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center pr">
+          <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.area'>
+            <option>请选择</option>
+            <option v-for='a in area' :value='a'>{{a}}</option>
+          </select> 
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">学历要求
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center pr">
+          <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.education'>
+            <!--<option>本科</option>-->
+            <option v-for='e in education' :value='e'>{{e}}</option>
+          </select>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">经验要求
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0 align-self-center pr">
+          <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.experience'>
+            <!--<option value="1">3年以上</option>-->
+            <option v-for='exper in exper'>{{exper}}</option>
+          </select>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">工作地址
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写详细地址" v-model='jobs.address'>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">岗位职责
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0 w-100" v-model='jobs.statement'></textarea>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">岗位要求
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <textarea rows="3" placeholder="请填写完整的岗位要求，保证真实有效" class="border-0 w-100" v-model='jobs.requirements'></textarea>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">是否公开
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label custom-radio">
+              <input class="custom-control-input" type="radio" name="radio" value="1" v-model='jobs.status'>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description align-self-center">公开</span>
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label custom-radio">
+              <input class="custom-control-input" type="radio" name="radio" value="2" v-model='jobs.status'>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">仅对自己可见</span>
+            </label>
+          </div>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
       </div>
     </div>
 
