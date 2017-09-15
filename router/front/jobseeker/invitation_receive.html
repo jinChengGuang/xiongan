@@ -1,63 +1,47 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>面试邀请</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
-<!--提示-->
-<div class="row bg-white m-t-45 bor-t-sol bor-f1">
-  <div class="col-10 t-c-019 f-s-8 align-self-center p-l-p7">系统将自动清除30天以上的记录！</div>
-  <div class="col-2">
-    <i class="icon">&#xe7b9;</i>
-  </div>
-</div>
+<%- tname%>
+
 <!--没有列表是显示图片-->
-<div class="w-100 m-t-p30 text-center" style="display: none;">
-  <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="" class="w-70">
+<div class="w-100 m-t-p35 text-center" v-show='list.length == 0'>
+  <img src="../../../skins/img/empty2.jpg" alt="" class="w-70">
+  <p class='w-100 text-center t-c-999 f-s-f12 mb-0 m-t-10'>暂无面试邀请</p>
+  <p class='w-100 text-center t-c-999 f-s-f12 mb-0'>快去投递简历吧~</p>
 </div>
 <!--中间内容-->
-<div class="m-b-60">
+<div class="m-b-80 m-t-55" v-show='list.length != 0'>
   <ul class="list f-s-8">
-    <li class="m-t-10 p-10 bg-white br-5" v-for='n in list'>
-      <p class="f-w-b f-s-10  m-b-2">用户反馈通知</p>
-      <p class="m-b-2">{{time.dateFormat( 'yyyy-MM-dd', n.invitetime)}}</p>
-      <p class="m-b-2">
+    <li class="p-10 bg-white br-5 w-95 " style="margin:0 auto; margin-top:10px;" v-for='n in list'>
+      <p class="f-w-b f-s-f16  m-b-2">面试邀请</p>
+      <p class="f-s-f15 t-c-f420 my-1">{{time.dateFormat( 'M月dd日', n.invitetime)}}</p>
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>Hi,{{n.uname}}！您的简历符合我们的需求</span>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>面试岗位：</span>
         <span>{{n.jname}}</span>
         <a :href="'/front/jobseeker/jobseeker_detail?jid=' + n.jid">查看</a>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>面试时间：</span>
         <span>{{time.dateFormat( 'yyyy/MM/dd', n.interviewtime)}}</span>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>联系电话：</span>
         <a  class="t-c-666">
           <span>{{n.mobile}}</span>
-          <i class="icon t-c-1ea">&#xe75f;</i>
+          <i class="icon t-c-1ea f-s-f15">&#xe75f;</i>
           <span>王女士</span>
         </a>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>公司名称：</span>
         <span>{{n.cname}}</span>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-000">
         <span>面试地址：</span>
         <span>{{n.address}}</span>
       </p>
-      <p class="m-b-2">
+      <p class="m-b-2 f-s-f14 t-c-999">
         <span>注：</span>
         <span>{{n.remark}}</span>
       </p>
@@ -72,10 +56,12 @@ new Vue({
   el: '#app',
   data: {
     list:[],
+    name:'面试邀请'
   },
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {
       this.list = res.data
+      console.log(this.list)
     }, (err) => {
       console.log(err)
     })

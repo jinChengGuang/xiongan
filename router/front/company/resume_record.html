@@ -1,40 +1,29 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-<div class="row h-45 lh-45 bg-white">
-  <div class="col-2 ">
-    <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-  </div>
-  <div class="col-8 text-center">
-    <span>简历记录</span>
-  </div>
-  <div class="col-2"></div>
-</div>
-</div>
+<%- tname%>
 <!--没有列表是显示图片-->
-<div class="m-t-p5 text-center w-100" style="display: none;">
-<img class="w-70" src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="">
+<div class="m-t-p30 text-center w-100" v-show='record.length == 0'>
+  <img class="w-70" src="../../../skins/img/empty.jpg" alt="">
+  <p class='f-s-f14 t-c-989'>您还没有收到任何简历呦！</p>
 </div>
 <!--中间内容-->
 <div>
-<ul class="m-t-55 m-b-80 f-s-8">
-  <li class="m-10 p-10 bg-white br-5" v-for = ' rec in record'>
+<ul class="m-b-80 f-s-f15 m-t-55" v-show='record.length != 0'>
+  <li class="m-t-10 m-x-10 p-x-10 bg-white br-5 p-y-5" v-for ='rec in record'>
     <a :href="'/front/company/resume_list?id=' + rec.id" class="d-block w-100 h-100 t-c-0a0">
-      <p class="lh-25 mb-0">
-        <i>111</i>
+      <p class="lh-30 my-1 mb-0">
+        <i class='icon m-x-5 f-s-f18'>&#xe8ee;</i>
         <span>{{rec.name}}</span>
       </p>
-      <p class="lh-25 mb-0">
-        <i>111</i>
+      <p class="li-30 my-1 mb-0">
+        <i class='icon m-x-5 f-s-f18'>&#xe906;</i>
         <span>{{time.dateFormat('yyyy/MM/dd', rec.issue_time)}}</span>
       </p>
-      <p class="lh-25 mb-0">
-        <i>111</i>
+      <p class="li-30 my-1 mb-0">
+        <i class='icon m-x-5 f-s-f18'>&#xe90e;</i>
         <span>有{{rec.count}}人投递简历</span>
       </p>
-      <p class="lh-25 mb-0">
-        <i>111</i>
+      <p class="li-30 my-1 mb-0">
+        <i class='icon m-x-5 f-s-f18'>&#xe8e0;</i>
         <span>{{rec.address}}</span>
       </p>
     </a>
@@ -46,6 +35,7 @@ new Vue({
   el: '#app',
   data: {
     record : [],
+    name:'简历记录'
   },
   mounted () {
     this.ajax.get('/company/resume/record', (res) => {

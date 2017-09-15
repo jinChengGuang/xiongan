@@ -1,62 +1,46 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>简历列表</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--简历列表-->
 <div>
   <ul class="m-t-55 m-b-80 f-s-8">
     <li class="m-10 p-10 bg-white br-5 pr row" v-for='n in list'>
-      <div class="col-2 p-0">
-        <img class="w-100 pa" style="top:30%" :src="n.head " alt="">
+      <div class="p-0">
+        <!--<img class="w-100 pa" style="top:30%" :src="n.uhead " alt="">-->
+        <img class="w50 h-h50 pa br-h" style="top:5%; left:5%;" src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKUS3XYMj6PNDaLW4s9EpCM7uUCx3MgHCvdtFBC4KqdibxEbfzhhAlriaialhO2Glbx6vUQNDj1qYIow/0 " alt="">
       </div>
-      <div class="col-10 p-0">
-        <p class="lh-25 mb-0">
+      <div class="p-0 w-100">
+        <p class="lh-25 mb-0 pa f-w-b f-s-f16" style="top:5%; left:25%;">
           <span>{{n.uname}}</span>
         </p>
-        <p class="lh-25 mb-0">
-          <span>学历：</span>
-          <span>{{n.education}}</span>
+        <p class="lh-25 mb-0 pa f-s-f12" style="top:25%; left:25%;">
+          <span>{{n.education + ' | '}}{{n.experience}}</span>
         </p>
-        <p class="lh-25 mb-0">
-          <span>工作经验:</span>
-          <span>{{n.experience}}</span>
-        </p>
-        <p class="lh-25 mb-0">
+        <p class="lh-25 mb-0 f-s-f14 m-t-p20 m-l-f5">
           <span>申请职位:</span>
           <span>{{n.jname}}</span>
         </p>
-        <p class="lh-25 mb-0">
+        <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
           <span>联系电话:</span>
           <a >
             <a href='tel:n.mobile'>{{n.usermobile}}</span>
             <i class="icon">&#xe760;</i>
           </a>
         </p>
-        <p class="lh-25 mb-0">
+        <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
           <span>投递日期:</span>
           <span>{{time.dateFormat('yyyy/MM/dd', n.time)}}</span>
         </p>
-        <a class="pa p-x-5 f-s-5 t-c-white bg-299 br-5 " style="right:16%; top:0;" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
-        <a class="pa p-x-5 f-s-5 t-c-white bg-646 br-5 " style="right:0; top:0;" v-show='n.status == 1'>已邀请</a>
-        <a class="pa delete" style="right:5%; top:0;" @click='show1(n.id)' v-show='n.status != 1' >
-          <i class="icon" style="font-size: 1.2rem; color:red;">&#xe7f9;</i>
-        </a>
-        <a class=' pa f-s-15' style="bottom:0; right:0" @click='mark(n.id)' v-show='n.sort == 0' >
-          <i class="icon  t-c-0a0">&#xe7f2;</i>
-        </a>
-        <a class=' pa f-s-15 ' style="bottom:0; right:0" v-show='n.sort == 1' >
-          <i class="icon t-c-d">&#xe7f2;</i>
-        </a>
+        <p class='m-t-10 mb-0'>
+          <a class="delete p-x-15 p-y-3 f-s-f14 bg-ccc br-5 t-c-fff m-l-p52"  @click='show1(n.id)' v-show='n.status != 1' >删除</a>
+          <a class=" p-x-15 p-y-3 f-s-f14 bg-00abef br-5 t-c-fff m-l-f3" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
+          <a class=" p-x-15 p-y-3 f-s-f14 bg-ccc br-5 t-c-fff m-l-p73" v-show='n.status == 1'>已邀请</a>
+          <a class=' pa f-s-15' style="top:-9px; right:30px" @click='mark(n.id)' v-show='n.sort == 0' >
+            <i class="icon  t-c-0a0">&#xe7f2;</i>
+          </a>
+          <a class=' pa f-s-15 ' style="top:-9px; right:30px" v-show='n.sort == 1' >
+            <i class="icon t-c-d">&#xe7f2;</i>
+          </a>
+        </p>
       </div>
     </li>
   </ul>
@@ -115,7 +99,8 @@ new Vue({
       remark:'',
       id:''
     },
-    deleteId:''
+    deleteId:'',
+    name:'简历列表'
   },
   mounted () {
     this.id = this.query.get('id')

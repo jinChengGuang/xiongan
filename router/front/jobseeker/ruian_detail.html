@@ -1,87 +1,75 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>瑞安详情</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--轮播图-->
-<div id="carouselId" class="carousel slide m-t-46" data-ride="carousel">
+<div id="carouselId" class="carousel slide m-t-46 h-150" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselId" data-slide-to="0" class="active"></li>
     <li data-target="#carouselId" data-slide-to="1"></li>
     <li data-target="#carouselId" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner" role="listbox" style="height:150px">
-    <div class="carousel-item active">
-      <img src="../../../skins/img/bk1.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img src="../../../skins/img/bk2.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img src="../../../skins/img/bk3.jpg" alt="Third slide">
+    <div class="carousel-item active" v-for='n in swiper'>
+      <img :src="n.url" alt="First slide" class='w-100'>
     </div>
   </div>
 </div>
-<!--学校简介-->
+<!--课程简介-->
 <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
-  <p class="p-y-5 px-0 bor-b-sol bor-eee mb-0 t-c-009">
-    <i class="icon f-s-15 align-middle">&#xe829;</i>
-    <span class="f-s-9">课程简介</span>
+  <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+    <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+    <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程简介</span>
   </p>
-  <p class="p-y-7 px-0 mb-0">瑞安机电职业技能培训学校位于雄安新区（原雄县），我校具备人劳局核发的办学许可证、民政局核发的法人登记书、河北省安全厅核发的三级安全生产培训资质，是新区内唯一一家拥有高危作业培训资质的学校，每年培训的专业技能人员都在1000人次以上。
-办学范围：农林牧渔、电工（高压、低压）、电焊、建筑工（高处作业）、机械制造工、商业（电子商务）、办事人员业务培训（计算机应用）。</p>
+  <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
 </div>
 <!--课程的优势-->
-<div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
-  <p class="p-y-5 px-0 bor-b-sol bor-eee mb-0 t-c-009">
-    <i class="icon f-s-15 align-middle">&#xe829;</i>
-    <span class="f-s-9">课程优势</span>
+<div class="bg-white m-t-5 py-0 p-x-15 f-s-8" :class="{'m-b-80': detail.time == 0}">
+  <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+    <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+    <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程优势</span>
   </p>
-  <p class="p-y-7 px-0 mb-0">1、师资雄厚，实训能力强
-我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。2、培训后人员快速上岗，薪酬提升明显
-我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。</p>
+  <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.merit}}</p>
 </div>
 <!--开课时间-->
-<div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-85">
-  <p class="p-y-5 px-0 bor-b-sol bor-eee mb-0 t-c-009">
-    <i class="icon f-s-15 align-middle">&#xe829;</i>
-    <span class="f-s-9">课程时间</span>
+<div class="bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80" v-show="detail.class_starttime != 0">
+  <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+    <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+    <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程时间</span>
   </p>
-  <p class="p-y-7 px-0">
+  <p class="p-t-8 p-b-5 px-0 mb-0 t-c-666">
+    <span>课程名称：</span>
+    <span>{{detail.name}}</span>
+  </p>
+  <p class="p-b-10 px-0 mb-0 t-c-666">
     <span>开课时间：</span>
-    <span>{{time.dateFormat( 'yyyy-MM-dd', cultivate.class_starttime)}}</span>
+    <span>{{time.dateFormat('yyyy/MM/dd', detail.time)}}</span>
   </p>
 </div>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3" @click='signUp(cultivate.id,cultivate.name)'>报名</button>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3" @click='signUp(detail.id,detail.name)'>报名</button>
 <script>
 new Vue({
   el: '#app',
   data: {
     id:'',
     cultivate:[],
+    name: '瑞安详情',
+    swiper:[],
+    detail:[]
   },
   mounted () {
     this.id = this.query.get('id')
     this.ajax.get('/cultivate/detail/' + this.id,(res) => {
-        this.cultivate = res.data[0]
+        this.cultivate = res.data
+        this.swiper = this.cultivate[1]
+        this.detail = this.cultivate[0][0]
+        console.log(this.cultivate)
       }, (err) => {
         console.log(err)
       })
   },
   methods: {
     signUp(id,name){
-      console.log(id)
       this.ajax.post('/add/cultivate/record',{culid:id,culname:name},(res) => {
-        weui.toast('报名成功', 2000);
+        weui.toast('报名成功', 1000);
       }, (err) => {
         console.log(err)
       })

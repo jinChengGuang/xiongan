@@ -1,46 +1,36 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <i class="icon text-center f-s-15" @click='go'>&#xe86c;</i>
-    </div>
-    <div class="col-8 text-center">
-      <span>站内信详情</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--通知详情列表-->
-<div class="container-fluid m-t-50 p-0 m-b-80">
+<div class="container-fluid m-t-55 p-0 m-b-80">
   <ul>
-    <li class="m-y-5 m-x-10 bg-white bor-r-5 f-s-8 p-10" v-for='n in list'>
+    <li class="m-b-10 m-x-10 bg-white bor-r-5 f-s-8 p-10 br-5" v-for='n in list'>
       <a href="/front/company/put_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 1'>
-        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
-        <p class="m-b-5">
+        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/com_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 0'>
-        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
-        <p class="m-b-5">
+        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/station" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 0'>
-        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
-        <p class="m-b-5">
+        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/recruit_list" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 1'>
-        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
-        <p class="m-b-5">
+        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/jobseeker/resume_detail" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 2'>
-        <p class="text-right m-b-5">{{time.dateFormat('yyyy/MM/dd', n.time)}}</p>
-        <p class="m-b-5">
+        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
@@ -54,10 +44,12 @@ new Vue({
   el: '#app',
   data: {
     type : '',
-    list : []
+    list : [],
+    name:'',
   },
   mounted () {
     this.type = this.query.get('type')
+    this.name = this.type == 'user'? '用户投递通知':'系统通知'
     this.ajax.get('/msg/detail/' + this.type, (res) => {
       this.list = res.data
     }, (err) => {

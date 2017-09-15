@@ -100,6 +100,20 @@ module.exports = function () {
   </div>
 </div>
     `
+  ctx.state.tname = `
+    <div class="container-fluid fixed-top bor-b-sol bor-eae  align-middle  f-s-17">
+      <div class="row h-45 lh-45 bg-white">
+        <div class="col-2 ">
+          <a href="javascript:history.go(-1)" class='t-c-0a0'>
+            <i class="icon text-center f-s-f22 va-m">&#xe90f;</i>
+          </a>
+        </div>
+        <div class="col-8 text-center va-m">
+          <span>{{name}}</span>
+        </div>
+      </div>
+    </div>
+  `
     /**
      * 向后传递
      */

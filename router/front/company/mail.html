@@ -1,39 +1,34 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>站内信</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--空页-->
-<div class="m-t-p50 text-center w-100" style="display: none;">
-  <img class="w-70" src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="">
+<div class="m-t-p45 text-center w-100" v-show='list.length == 0'>
+  <img class="w-70" src="../../../skins/img/empty1.jpg" alt="">
+  <p class='t-c-999 f-s-f14'>您还没有收到任何站内信呦！</p>
 </div>
 <!--通知条-->
-<div class="container-fluid m-t-50">
-  <a href="/front/company/mail_detail?type = examine" class="d-block w-100 h-100 t-c-0a0">
-    <div class="row p-y-10 p-x-15 bg-white f-s-8 m-t-5">
-      <div class="col-10 p-0">系统通知
+<div class="container-fluid m-t-55" v-show='list.length > 0'>
+  <a href="/front/company/mail_detail?type=examine" class="d-block w-94 h-100 t-c-0a0 m-l-f3">
+    <div class="row p-y-10 p-x-15 bg-white f-s-8 br-5">
+      <div class="col-2 px-0">
+        <i class="icon f-s-f30" style='color:#fe9b28'>&#xe8f4;</i>
+      </div>
+      <div class="col-8 p-0 m-t-5">系统通知
         <span class="weui-badge weui-badge_dot align-top" v-show = 'examine.length > 0'></span>
       </div>
-      <div class="col-2 p-0 text-right">
+      <div class="col-2 p-0 text-right m-t-5">
         <i class="icon">&#xe630;</i>
       </div>
     </div>
   </a>
-  <a href="/front/company/mail_detail?type = user" class="d-block w-100 h-100 t-c-0a0">
-    <div class="row p-y-10 p-x-15 bg-white f-s-8 m-t-5">
-      <div class="col-10 p-0">用户投递通知
+  <a href="/front/company/mail_detail?type=user" class="d-block w-94 h-100 t-c-0a0 m-l-f3 m-t-10">
+    <div class="row p-y-10 p-x-15 bg-white f-s-8 br-5">
+      <div class="col-2 px-0">
+        <i class="icon f-s-f30" style='color:#00abef;'>&#xe8f2;</i>
+      </div>
+      <div class="col-8 p-0 m-t-5">用户投递通知
         <span class="weui-badge weui-badge_dot align-top" v-show = 'user.length > 0'></span>
       </div>
-      <div class="col-2 p-0 text-right">
+      <div class="col-2 p-0 text-right m-t-5">
         <i class="icon">&#xe630;</i>
       </div>
     </div>
@@ -45,16 +40,26 @@ new Vue({
   el: '#app',
   data: {
     examine:[],
-    user:[]
+    user:[],
+    list:[],
+    name:'站内信'
   },
   mounted () {
     this.ajax.get('/examine/msg/red', (res) => {
       this.examine = res.data
+      console.log(this.examine)
     }, (err) => {
       console.log(err)
     })
     this.ajax.get('/user/msg/red', (res) => {
       this.user = res.data
+      console.log(this.user)
+    }, (err) => {
+      console.log(err)
+    })
+    this.ajax.get('/msg/list', (res) => {
+      this.list = res.data
+      console.log(this.list)
     }, (err) => {
       console.log(err)
     })

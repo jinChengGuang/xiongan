@@ -1,67 +1,59 @@
-<div class="container-fluid top pf t-0 l-0 bor-b-sol bor-ccc z-100">
-  <div class="row tab h-45 lh-45 bg-fff">
-    <div class="col-2 ">
-      <i class="icon back f-s-15 v-a" @click='go'>&#xe86c;</i>
-    </div>
-    <div class="col-8 middle ta-c">
-      <span>个人中心</span>
-    </div>
-    <div class="col-2"></div>
+<%- tname%>
+<div>
+  <img src="../../../skins/img/seehome.jpg" class='w-100 h-150 m-t-45'>
+  <div class='w75 h75 br-h bg-white pa' style='top:14%; left:39%;'>
+    <img :src="list.head" alt="" class='w-100 h-100 br-h'>
   </div>
 </div>
-<div class="container-fluid img h-130 bg-169bd5 text-center m-t-46">
-  <img src="http://img5.imgtn.bdimg.com/it/u=4267222417,1017407570&fm=200&gp=0.jpg" class='br-h w50 h50 m-t-10'>
-  <p class='mt-2'>{{list.nick}}</p>
-</div>
-<div class="container-fluid bg-white m-b-50 f-s-9">
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+<div class="container-fluid bg-white m-b-80 f-s-9 m-t-5">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe900;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/resume_detail" class='db w-100'>我的简历</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/resume_detail" class='db w-100 t-c-2b2 va-m m-l-10'>我的简历</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/resume_detail"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fb;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/mailing" class='db w-100'>我的投递</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/mailing" class='db w-100 t-c-2b2 va-m m-l-10'>我的投递</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/mailing"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fe;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/invitation_receive" class='db w-100'>面试邀请</a></div>
-    <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-93' v-for='n in status' v-show='n.status = 1'> </span>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/invitation_receive" class='db w-100 t-c-2b2 va-m m-l-10'>面试邀请</a></div>
+    <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-105' v-for='n in status' v-show='n.status = 1'> </span>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/invitation_receive"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fd;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/collect" class='db w-100'>岗位收藏</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/collect" class='db w-100 t-c-2b2 va-m m-l-10'>岗位收藏</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/collect"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8ea;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/my_cultivate" class='db w-100'>我的报名培训</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/my_cultivate" class='db w-100 t-c-2b2 va-m m-l-10'>我的报名培训</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/my_cultivate"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 ">
+  <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fa;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/jobseeker/link" class='db w-100'>联系我们</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/link" class='db w-100 t-c-2b2 va-m m-l-10'>联系我们</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/link"><i class="icon">&#xe630;</i></a></div>
   </div>
-  <div class="row bor-t-sol bor-e3 p-y-p3 " @click='switch_1'>
+  <div class="row bor-t-sol bor-f1 p-y-p4 " @click='switch_1'>
     <div class="col-1 text-center align-self-center p-x-0">
-      <i class="icon">&#xe897;</i>
+      <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe90b;</i>
     </div>
-    <div class="col-10 p-x-0">切换身份</div>
+    <div class="col-10 p-x-0 f-s-f15 p-l-10">切换身份</div>
     <div class="col-1 text-center align-self-center p-x-0"><a ><i class="icon">&#xe630;</i></a></div>
   </div> 
 </div>
@@ -73,7 +65,8 @@
       list:[],
       show:true,
       datail:[],
-      status:[]
+      status:[],
+      name:'个人中心'
     },
     mounted(){
       this.ajax.get('/user/detail',(res)=>{

@@ -1,105 +1,89 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>培训列表</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--顶部navbar-->
 <div class="container-fluid bg-white f-s-8 fixed-top m-t-46">
   <div class="row">
     <div v-for="t in tab" @click="type = t.id" class="col p-y-10 text-center p-x-0">
-      <span :class="{'bor-b-sol':type == t.id,'bor-eee':type == t.id,'p-b-11': type== t.id}">{{t.name}}</span>
+      <span :class="{'bor-b-sol':type == t.id,'bor-00baf3':type == t.id,'p-b-11': type== t.id,'t-c-00baf3': type== t.id}">{{t.name}}</span>
     </div>
   </div>
 </div>
 <!--瑞安-->
 <div class="m-t-85" v-show='type == 0'>
   <!--轮播图-->
-  <div id="carouselId" class="carousel slide" data-ride="carousel">
+  <div id="carouselId" class="carousel slide h-150" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselId" data-slide-to="0" class="active"></li>
       <li data-target="#carouselId" data-slide-to="1"></li>
       <li data-target="#carouselId" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox" style="height:150px">
-      <div class="carousel-item active">
-        <img src="../../../skins/img/bk1.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../skins/img/bk2.jpg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../skins/img/bk3.jpg" alt="Third slide">
+      <div class="carousel-item active w-100" v-for='n in images'>
+        <img :src="n.url" alt="First slide" class='w-100'>
       </div>
     </div>
   </div>
   <!--学校简介-->
   <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
-    <p class="p-y-5 px-0 bg-white t-c-009 mb-0">
-      <i class="icon f-s-15 va-m">&#xe829;</i>
-      <span class="f-s-9">学校简介</span>
+    <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">学校简介</span>
     </p>
-    <p class="p-y-8 px-0 mb-0">瑞安机电职业技能培训学校位于雄安新区（原雄县），我校具备人劳局核发的办学许可证、民政局核发的法人登记书、河北省安全厅核发的三级安全生产培训资质，是新区内唯一一家拥有高危作业培训资质的学校，每年培训的专业技能人员都在1000人次以上。
-  办学范围：农林牧渔、电工（高压、低压）、电焊、建筑工（高处作业）、机械制造工、商业（电子商务）、办事人员业务培训（计算机应用）。</p>
+    <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
   </div>
   <!--培训列表-->
-  <div class="container-fluid w-100 bg-white m-t-p5 f-s-6">
-    <div class="row bor-b-sol bor-eee">
-      <div class="col p-y-10 p-x-15 bor-r-sol bor-eee" v-for='cult in list' v-show='type == cult.type'>
+  <div class="container-fluid w-100 bg-white m-t-5 f-s-6">
+    <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">培训课程</span>
+    </p>
+    <div class="row p-x-10">
+      <div class="col-6 p-y-15 bor-b-sol bor-e0e px-0" v-for='cult in ruian'>
         <a :href="'/front/company/ruian_detail?id='+ cult.id" class="d-block w-100 h-100 t-c-0a0">
-          <div class="float-left w-30 text-center p-t-p13">
-            <i class="icon f-s-15">&#xe731;</i>
+          <div class="w-55 text-left float-left p-l-5">
+            <p class="m-0 p-y-5 px-0 f-s-f15 f-w-d">{{cult.name}}</p>
+            <p class="m-0 p-y-5 px-0 t-c-666">高压、低压</p>
           </div>
-          <div class="">
-            <p class="m-0 p-y-5 px-0">农林牧场</p>
-            <p class="m-0 p-y-5 px-0">高压、低压</p>
+          <div class="w-45 p-t-p5 float-right ">
+            <img src="../../../skins/img/class.jpg" alt="" class='w-90'>
           </div>
         </a>
       </div>
     </div>
-    <!--<div class="border-0 w-100 text-center p-y-10 p-x-15 d-block clear oh">
-      <a href="/front/company/ruian_detail" class="d-block w-100 h-100 t-c-0a0">
-        <i class="icon f-s-15 float-left m-t-p5 m-l-p30">&#xe731;</i>
-        <div class="float-right w-60 text-left p-l-10">
-          <p class="m-0 p-y-5 px-0">农林牧场</p>
-          <p class="m-0 p-y-5 px-0">高压、低压</p>
+    <div class="row p-x-10 p-y-15" v-if='last'>
+      <a :href="'/front/company/ruian_detail?id='+ last.id" class="d-block w-100 h-100 t-c-0a0">
+        <div class="w-45 p-t-10 p-r-10 float-left text-right">
+          <img src="../../../skins/img/class.jpg" alt="" class='w-40'>
+        </div>
+        <div class="w-55 text-left float-right p-l-5">
+          <p class="m-0 p-y-5 px-0 f-s-f15 f-w-d">{{last.name}}</p>
+          <p class="m-0 p-y-5 px-0 t-c-666">高压、低压</p>
         </div>
       </a>
-    </div>-->
+    </div>
   </div>
   <!--我们的优势-->
   <div class=" bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80">
-    <p class="p-y-5 px-0 bg-white t-c-009 mb-0">
-      <i class="icon f-s-15 va-m">&#xe829;</i>
-      <span class="f-s-9">优势</span>
+    <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">优势</span>
     </p>
-    <p class="p-y-8 px-0 mb-0">1、师资雄厚，实训能力强
-  我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。
-  2、培训后人员快速上岗，薪酬提升明显
-  我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。</p>
+    <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.merit}}</p>
   </div>
 </div>
 <!--职称考试/企业培训-->
-<div class="m-b-80 m-t-85">
+<div class="m-b-80 m-t-85" v-show='type != 0'>
   <ul>
     <li v-for="cul in list" class="w-100 bg-white f-s-8 m-b-5" v-show="cul.type == type"> 
       <a :href="'/front/company/class_detail?id=' + cul.id " class="d-block w-100 h-100 t-c-0a0">
-        <img class="w-100 h-150" :src="cul.img" alt="">
+        <img class="w-100 h-135" :src="cul.img" alt="">
         <p class="p-y-5 p-x-15 mb-0">
-          <span>{{cul.name}}</span>
-          <span class="float-right">{{time.dateFormat('yyyy/MM/dd', cul.class_starttime)}}</span>
+          <span class='f-s-f16 f-w-d'>{{cul.name}}</span>
+          <span class="float-right f-s-f12 t-c-666">{{time.dateFormat('yyyy/MM/dd', cul.class_starttime)}}</span>
         </p>
-        <p class="p-y-5 p-x-15 mb-0">
-          <i class="icon f-s-10">&#xe621;</i>
-          <span>{{cul.address}}</span>
+        <p class="p-y-5 p-r-15 p-l-12 mb-0">
+          <i class="icon f-s-f20 t-c-00baf3 va-m">&#xe8e0;</i>
+          <span class='f-s-f12 t-c-666 va-m'>{{cul.address}}</span>
         </p>
       </a>
     </li>
@@ -113,12 +97,35 @@ new Vue({
   data: {
     type:0,
     list:[],
-    tab:[{id:0,name:'瑞安机电培训'},{id:1,name:'职称考试'},{id:2,name:'企业培训'}]
+    tab:[{id:0,name:'瑞安机电培训'},{id:1,name:'职称考试'},{id:2,name:'企业培训'}],
+    name:'培训列表',
+    school:[],
+    images:[],
+    detail:[],
+    ruian:[],
+    last:''
   },
   mounted () {
     this.ajax.get('/cultivate/lists', (res) => {
       this.list = res.data
-      console.log(this.list)
+      for(let n of this.list){
+        if(n.type == 0){
+          this.ruian.push(n)
+        }
+      }
+      if(this.ruian.length%2 == 1){
+        this.last = this.ruian.pop()
+      }
+      console.log(this.ruian)
+      console.log(this.last)
+    }, (err) => {
+      console.log(err)
+    })
+    this.ajax.get('/school/detail', (res) => {
+      this.school = res.data
+      console.log(this.school)
+      this.images = this.school[1]
+      this.detail = this.school[0][0]
     }, (err) => {
       console.log(err)
     })
