@@ -1,13 +1,6 @@
 // ---------------------------------------------------------------------------- GET
 exports.get = {
   /**
-   * 企业信息
-   */
-'/company/detail': async (ctx, next) => {
-    ctx.result.ok.data = ctx.company
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
    * 区域列表
    */
   '/area/list': async (ctx, next) => {
@@ -179,22 +172,13 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 瑞安课程详情
+   * 培训详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select A.*,B.class_starttime as time,B.name as name,B.content as content,B.address as address  from school_detail A,cultivate B where A.culid = ? and A.culid = B.id ', [id])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
-    ctx.result.ok.data = [cultivate,swiper]
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
-   * 学校详情
-   */
-  '/school/detail': async (ctx, next) => {
-    let detail = await $.mysql.query($.conf.mysql.main, 'select * from school_detail where culid =0 ' , [null])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
-    ctx.result.ok.data = [detail,swiper]
+    let cultivate = await 
+    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
+    ctx.result.ok.data = cultivate
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -229,27 +213,17 @@ exports.get = {
   '/msg/detail/:type': async (ctx, next) => {
     let cid = ctx.company.id
     let type = ctx.params.type
-    console.log(type)
     if(type=='examine'){
       await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 0 or type = 1 and cid =? ', [ cid ])
       let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type in (0,1) and cid =?', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     }else{
-      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [cid])
-      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [cid])
+      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [type, cid ])
+      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [type,cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     } 
-  },
-  /**
-   * 站内信列表
-   */
-  '/msg/list': async (ctx, next) => {
-    let cid = ctx.company.id
-    let msg = await $.mysql.query($.conf.mysql.main, 'select * from  msg where cid=?', [cid])
-    ctx.result.ok.data = msg
-    $.flush(ctx, ctx.result.ok)
   },
   /**
    * 热门搜索公司
@@ -381,6 +355,24 @@ exports.get = {
     let cid = ctx.company.id
     let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume_record where cid = ? and status = 1 ', [cid])
     ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 学校详情
+   */
+  '/school/detail': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = 0 ', [null])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
+    ctx.result.ok.data = [detail,swiper]
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 课程详情
+   */
+  '/cultivate/detail/:id': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = ? ', [ctx.params.id])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = ? ', [ctx.params.id])
+    ctx.result.ok.data = [detail,swiper]
     $.flush(ctx, ctx.result.ok)
   },
 }

@@ -1,67 +1,52 @@
-<!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
+<%- tname %>
+<div class="container-fluid m-t-46 bg-white p-x-30">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">学校名称</div>
+    <div class="col-9 text-right">
+      <input type="text" class="border-0 text-right" placeholder="请输入学校名称" v-model='data.school'>
     </div>
-    <div class="col-8 text-center">
-      <span>编辑教育经历</span>
+  </div>
+
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">学历/学位</div>
+    <div class="col-9 text-right">
+      <select v-model='data.education'>
+        <option :value="v" v-for='v in education' > {{v}} </option>
+      </select>
     </div>
-    <div class="col-2"></div>
+  </div>
+
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">开始时间</div>
+    <div class="col-9 text-right">
+      <input type="date" v-model='data.start' class="text-right">
+    </div>
+  </div>
+
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">结束时间</div>
+    <div class="col-9 text-right">
+      <input type="date" v-model='data.end' class="text-right">
+    </div>
+  </div>
+
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="col-3 bor-r-sol bor-eae p-x-0">专业</div>
+    <div class="col-9 text-right">
+      <input type="text" class="border-0 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
+    </div>
   </div>
 </div>
-<div class="container-fluid m-t-46">
-  <div class="bg-white">
-    <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
-      <div class="col-4">学校名称</div>
-      <div class="col-8 text-right">
-        <input type="text" class="border-0 text-right" placeholder="请输入学校名称" v-model='data.school'>
-      </div>
-    </div>
-
-    <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
-      <div class="col-4">学历/学位</div>
-      <div class="col-8 text-right">
-        <select>
-          <option :value="v" v-for='v in education' v-model='data.education'> {{v}} </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
-      <div class="col-4">开始时间</div>
-      <div class="col-8 text-right">
-        <input type="date" v-model='data.start' class="text-right">
-      </div>
-    </div>
-
-    <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
-      <div class="col-4">结束时间</div>
-      <div class="col-8 text-right">
-        <input type="date" v-model='data.end' class="text-right">
-      </div>
-    </div>
-
-    <div class="row bg-white f-s-9 pt-2 pb-2 bor-b-sol bor-f1">
-      <div class="col-4">专业</div>
-      <div class="col-8 text-right">
-        <input type="text" class="border-0 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
-      </div>
-    </div>
-
-    <div class="row bg-white f-s-9 pt-2 pb-2">
-      <a @click='next' class="btn br-0 bg-primary t-c-white m-10-auto" >保存</a>
-    </div>
- </div>
+<div class="row item pt-3">
+  <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
 </div>
 <script>
 new Vue({
   el: '#app',
   data: {
     data:{},
-    education:[]
+    education:[],
+    name:'教育经历'
   },
   mounted () {
     this.ajax.get('/user/education/detail/'+this.query.get('id'),(res) => {
@@ -81,9 +66,11 @@ new Vue({
     next(){
       this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
       this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
-      this.ajax.post('/add/education', this.data,(res) => {
-        console.log('提交成功')
-        window.history.go(-1)
+      this.ajax.put('/education/edit', this.data,(res) => {
+      weui.toast('提交成功', 2000);
+      if(this.query.get('type')){
+        setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
+      }
         }, (res) => {
           console.log(res.errmsg)
         })
