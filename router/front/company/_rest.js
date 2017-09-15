@@ -81,29 +81,29 @@ exports.get = {
     let params = []
     let sql=''
     if(name){
-      where = where + ' and (name = ? or cname = ? )'
+      where = where + ' and (A.name = ? or A.cname = ? )'
       params.push(name,name)
     }
     if(area){
-      where =  where + ' and area = ? '
+      where =  where + ' and A.area = ? '
       params.push(area)
     }
     if(pay){
-      where =  where + ' and pay = ? '
+      where =  where + ' and A.pay = ? '
       params.push(pay)
     }
     if(time){
         let a = $.time.betweenDay().start/1000-(time-1)*60*60*24
-        where =  where + ' and issue_time > ? '
+        where =  where + ' and A.issue_time > ? '
         params.push(a)
     }
     if(benefit){
       let a  = benefit.split("|")
        for(let v of a ){
-        where = ' and benefit like "%'+ v + '%"'
+        where = ' and A.benefit like "%'+ v + '%"'
       }
     }
-    sql= 'select * from job where examine = 1 and status=1 ' + where +'order by issue_time' 
+    sql= 'select A.* , B.logo from job A, company B where A.examine = 1 and A.status=1 and A.cid =  B.id ' + where +'order by issue_time' 
     let job = await $.mysql.query($.conf.mysql.main, sql, params)
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
@@ -355,6 +355,24 @@ exports.get = {
     let cid = ctx.company.id
     let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume_record where cid = ? and status = 1 ', [cid])
     ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 学校详情
+   */
+  '/school/detail': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = 0 ', [null])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
+    ctx.result.ok.data = [detail,swiper]
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 课程详情
+   */
+  '/cultivate/detail/:id': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = ? ', [ctx.params.id])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = ? ', [ctx.params.id])
+    ctx.result.ok.data = [detail,swiper]
     $.flush(ctx, ctx.result.ok)
   },
 }

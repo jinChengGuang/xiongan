@@ -1,48 +1,27 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>联系我们</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
-<div class="m-t-46 bg-white">
-  <!--轮播图-->
-  <div id="carouselId" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselId" data-slide-to="1"></li>
-      <li data-target="#carouselId" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox" style="height:150px">
-      <div class="carousel-item active">
-        <img src="../../../skins/img/bk1.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../skins/img/bk2.jpg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../skins/img/bk3.jpg" alt="Third slide">
-      </div>
-    </div>
-  </div> 
+<%- tname%>
+<!--轮播图-->
+<img src="../../../skins/img/linkImg.jpg" alt="" class="h-150 m-t-45">
+<div class='bg-white'>
   <!--介绍-->
-  <p class="f-s-8 p-y-10 p-x-15">
+  <p class="f-s-f14 p-y-10 p-x-15 t-c-666 t-ind mb-0">
     1、师资雄厚，实训能力强
   我们去年和保定技师学院、第一职业中学等十几家学校，签订了师资输出、市场调查、就业信息等几个方面的资源共享战略协议，切实扩展、增强了我们的实训能力。
   2、培训后人员快速上岗，薪酬提升明显
   我校本身就处于一为政府和企业提供一站式的综合服务平台中，与我校沟通合作京津冀企业一千多家，包括金融、地产、加工制造、服务业等，基本覆盖各行各业，能够快速把培训出来技能人才输送出去，经我校培训后薪资、待遇都有了大幅度提升。
   </p>
   <!--联系我们-->
-  <p class="w-100 text-center f-s-8 p-y-10 p-x-15">
-    <span><a href="tel:03126785555"></a>客服电话：0312-678-5555</span>
-    <i class="icon">&#xe75f;</i>
+  <p class="w-100 text-center f-s-f15 p-b-10 p-x-15 t-c-323">
+    <span>客服电话：<a class='t-c-f970' href="tel:03126785555">0312-678-5555</a></span>
+    <!--<i class="icon">&#xe75f;</i>-->
   </p>
 </div>
 <%- fjob%>
+<script> 
+new Vue({
+  el: '#app',
+  data: {
+    name:'面试邀请'
+  }
+})
+</script>

@@ -1,134 +1,126 @@
-<style>
-  body{ background-color: #fff!important; }
-  .bg-light{ background-color: #fff!important; height: 50px; line-height: 50px; border-bottom: 1px solid #f1f1f1; }
-</style>
-<div class="container-fluid f-s-8">
-  <div class="row bg-light justify-content-left fixed-top">
-    <div class="col-2 text-center"><a href="javascript:history.go(-1)" class="icon t-c-999">&#xe7c5;</a></div>
-    <div class="col-8 text-center">简历详情</div>
-  </div>
-  <div class="row m-t-50">
-      <div class="col-12 text-center">
-        <input type="file">
-        <span class="text-center db" >{{data.name}}</span>
+<%- tname %>
+<div class="container-fluid f-s-8 m-t-46 bg-white t-c-666 f-s-f14 none m-b-80">
+   <div class="row p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
+      <div class="col-12 text-center p-t-p9" >
+        <img class=" w-30 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
+        <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
+        <input type="file" class="dn" id = 'head' @change='upload'>
       </div>
     </div>
 
-    <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
-      <div class="col-10 f-w-b">个人资料</div>
+    <div class="row f-s-f17 pt-2 pb-2 p-x-12">
+      <div class="col-10 t-c-00b f-s-9">个人基本信息</div>
       <div class="col-2 text-right">
-        <a href="/front/jobseeker/edit_resume?type=edit">
-          <i class="icon">&#xe7fc;</i>
+        <a href="/front/jobseeker/edit_resume">
+          <i class="icon t-c-00b">&#xe901;</i>
         </a>
       </div>
     </div>
 
-    <div class="row bor-t-sol bor-f1">
-      <div class="col-12 p-y-p1">
-        <span>{{data.name}}</span>
-        <span>{{sex[data.sex]}}</span>
+    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12">
+      <div class="col-12 none p-y-p1">
+        <span class='f-s-f16 t-c-333 p-r-r3'>{{data.name}}</span>
+        <span class='p-x-5'>{{sex[data.sex]}}</span>
         <span>{{data.age}}</span>
       </div>
-      <div class="w-100"></div>
-      <div class="col-12 p-y-p1">
-        <i class="icon">&#xe795;</i>
+      <div class="col-12 p-y-p1 none">
+        <i class="icon">&#xe8fa;</i>
         <span>{{data.mobile}}</span>
       </div>
-      <div class="w-100"></div>
-      <div class="col-12 p-y-p1">
+      <div class="col-12 p-y-p1 none">
+        <i class="icon">&#xe905;</i>
+        <span>{{data.email}}</span>
+      </div>
+      <div class="col-12 p-y-p1 none">
         <span>{{data.experience}}</span>
       </div>
-      <div class="w-100"></div>
-      <div class="col-12 p-y-p1">
+      <div class="col-12 p-y-p1 none">
         <span>{{data.area}}</span>
       </div>
     </div>
-    <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
-      <div class="col-10 f-w-b">求职意向</div>
+    <div class="row f-s-f17 pt-2 pb-2 p-x-12  bor-t-sol bor-c4 p-x-12">
+      <div class="col-10 t-c-00b f-s-9">求职意向</div>
       <div class="col-2 text-right">
         <a href="/front/jobseeker/edit_job?type=edit">
-          <i class="icon">&#xe7fc;</i>
+          <i class="icon t-c-00b">&#xe901;</i>
         </a>
       </div>
     </div>
-    <div class="row bor-t-sol bor-f1">
-      <div class="col-12 p-y-p1">
+    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12">
+      <div class="col-12 p-y-p1 none">
         <span>{{data.jtname}}</span>
       </div>
-      <div class="col-12 p-y-p1">
+      <div class="col-12 p-y-p1 none">
         <span>{{data.want_area}}</span>
       </div>
-      <div class="col-12 p-y-p1">
+      <div class="col-12 p-y-p1 none">
         <span>{{data.pay}}</span>
       </div>
     </div>
-    <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
-      <div class="col-10 f-w-b">个人评价</div>
+    <div class="row f-s-f17 pt-2 pb-2 p-x-12  bor-t-sol bor-c4 p-x-12">
+      <div class="col-10 t-c-00b f-s-9">个人评价</div>
       <div class="col-2 text-right">
         <a href="/front/jobseeker/edit_assess">
-          <i class="icon">&#xe7fc;</i>
+          <i class="icon t-c-00b">&#xe901;</i>
         </a>
       </div>
     </div>
 
-    <div class="row border_b">
-      <div class="col-12">
-        <span>{{data.evaluate}}</span>
-      </div>
+    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none">
+      <span>{{data.evaluate}}</span>
     </div>
 
-    <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
-    <div class="col-10 f-w-b">教育经历</div>
+    <div class="row f-s-f17 pt-2 pb-2 p-x-12  bor-t-sol bor-c4 p-x-12">
+    <div class="col-10 t-c-00b f-s-9">教育经历</div>
     <div class="col-2 text-right">
       <a href="/front/jobseeker/teach">
-        <i class="icon">&#xe7ba;</i>
+        <i class="icon t-c-00b">&#xe7ba;</i>
       </a>
     </div>
   </div>
 
-   <div class="row pt-2 pb-2" style=" border-top: 1px solid #f1f1f1;" v-for='v in education'>
-    <div class="col-8">
+   <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none"   v-for='v in education'>
+    <div class="col-10 none">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
-    <div class="col-2 text-right none">
+    <div class="col-1 text-right none">
       <a :href='"/front/jobseeker/edit_education?id="+v.id'>
-        <i class="icon">&#xe803;</i>
+        <i class="icon t-c-00b">&#xe803;</i>
       </a>
     </div>
-    <div class="col-2 text-left">
-      <i class="icon" @click='deledu(v.id)'>&#xe7f9;</i>
+    <div class="col-1 text-right none">
+      <i class="icon t-c-00b" @click='deledu(v.id)'>&#xe7f9;</i>
     </div>
-    <div class="w-100"></div>
-    <div class="col-12">{{v.school}}</div>
-    <div class="col-12">{{v.speciality}}</div>
+    <div class="col-12 none">{{v.school}}</div>
+    <div class="col-12 none">{{v.speciality}}</div>
   </div>
 
-  <div class="row mt-1 item pt-2 pb-2 bor-t-sol bor-f1">
-    <div class="col-10 f-w-b">工作经历</div>
+  <div class="row f-s-f17 pt-2 pb-2 p-x-12  bor-t-sol bor-c4 p-x-12">
+    <div class="col-10 t-c-00b f-s-9">工作经历</div>
     <div class="col-2 text-right">
       <a href="/front/jobseeker/work">
-        <i class="icon">&#xe7ba;</i>
+        <i class="icon t-c-00b f-s-10">&#xe7ba;</i>
       </a>
     </div>
   </div>
 
-  <div class="row pt-2 pb-2" style=" border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;" v-for='v in experience'>
-    <div class="col-8">
+  <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none" v-for='v in experience'>
+    <div class="col-10 none">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
-    <div class="col-2 text-right none">
+    <div class="col-1 text-right none">
       <a :href='"/front/jobseeker/edit_experience?id="+v.id'>
-        <i class="icon">&#xe803;</i>
+        <i class="icon t-c-00b">&#xe803;</i>
       </a>
     </div>
-    <div class="col-2 text-left">
-      <i class="icon" @click='delexp(v.id)'>&#xe7f9;</i>
+    <div class="col-1 text-right none">
+      <i class="icon t-c-00b" @click='delexp(v.id)'>&#xe7f9;</i>
     </div>
-    <div class="w-100"></div>
-    <div class="col-12">{{v.company}}</div>
-    <div class="col-12">{{v.job}}</div>
+    <div class="col-12 none">{{v.company}}</div>
+    <div class="col-12 none">{{v.job}}</div>
   </div>
 </div>
+<%- fjob%>
 <script>
 new Vue({
   el: '#app',
@@ -136,7 +128,8 @@ new Vue({
     data: {},
     experience:[],
     education:[],
-    sex:['男','女']
+    sex:['男','女'],
+    name:'我的简历'
   },
   mounted () {
     this.ajax.get('/user/resume/experience/'+this.query.get('id'), (res) => {
@@ -151,7 +144,8 @@ new Vue({
     })
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
-      console.log(this.data)
+      let date = new Date()
+      this.data.age = date.getFullYear()-this.time.dateFormat('yyyy',this.data.birthday)
     }, (res) => {
       console.log(res.errmsg)
     })
@@ -173,7 +167,13 @@ new Vue({
       }, (res) => {
         console.log(res.errmsg)
       })
-    }
+    },
+    openfile () {
+     $(head).click()
+		},
+    upload(){
+      this.data.head = head.value
+    },
   }
 })
 </script>
