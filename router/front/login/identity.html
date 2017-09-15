@@ -1,20 +1,73 @@
-<style>
-body{ background-color: #fff!important; }
-</style>
-<div class="container-fluid">
+<div class="container-fluid bg-white" :style="{height:height + 'px'}">
   <div class="row">
-    <div class="col-12">
-      <p class="m-20-auto text-center">请选择当前您进入新区前沿的身份<br/><span class="f-s-8">之后你可以在首页、招聘、求职左上角点击切换身份的图标还可以在“我的 - 身份切换” 中切换</span></p>
+    <div class="col-12 m-20-auto text-center">
+      <p class="f-s-f19 f-w-b mb-0">请选择当前您进入新区前沿的身份</p>
+      <span class="f-s-8 db t-c-98">之后你可以在首页、招聘、求职左上角点击切换身份的图标还可以在“我的 - 身份切换” 中切换</span>
     </div>
   </div>
   <div class="row">
-    <div class="col-6 text-center bor-r-sol bor-aaa">
-      <img src="../../../skins/img/1.jpg" class="img_fluid w-75">
-      <a href="/front/jobseeker/home" class="btn btn-primary mt-3 br-25">我要找工作</a>
+    <div class="col-5 text-center h-p45">
+      <img src="../../../skins/img/identity_02.png" class="img_fluid w-60 m-b-b20 m-t-p25">
+      <a href="javascript:void(0)" class="btn bg-00b mt-3 br-5 t-c-white w-100" @click='work'>我要找工作</a>
     </div>
-    <div class="col-6 text-center">
-      <img src="../../../skins/img/1.jpg" class="img_fluid w-75">
-      <a href="/front/company/home" class="btn btn-primary mt-3 br-25">我要找人</a>
+    <div class="col-2 text-center p-x-0 h-p45">
+      <img src="../../../skins/img/line_03.png" class="img_fluid h-200">
+    </div>
+    <div class="col-5 text-center h-p45">
+      <img src="../../../skins/img/identity_01.png" class="img_fluid w-60 m-b-b20 m-t-p25">
+      <a href="javascript:void(0)" class="btn bg-00b mt-3 br-5 t-c-white w-100" @click='company'>我要招人</a>
     </div>
   </div>
 </div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    height:'',
+    list:{}
+  },
+  mounted(){
+    this.height = document.body.scrollHeight
+    this.ajax.get('/company/test/detail',(res)=>{
+      this.list = res.data[0]
+      },(err)=>{
+        weui.toast(err.errmsg)
+      })
+  },
+  methods: {
+   work(){
+     weui.confirm('', {
+       title: '您是否先填写资料?',
+       buttons: [{
+         label: '取消',
+         type: 'default',
+         onClick: function(){ window.location.href='/front/jobseeker/home'}
+       }, {
+         label: '确定',
+         type: 'primary',
+         onClick: function(){ window.location.href='/front/jobseeker/new_resume'}
+       }]
+     })
+   },
+   company(){
+     if(this.list.name==''){
+      weui.confirm('', {
+        title: '您是否先填写资料?',
+        buttons: [{
+          label: '取消',
+          type: 'default',
+          onClick: function(){ window.location.href='/front/jobseeker/home'}
+        }, {
+          label: '确定',
+          type: 'primary',
+          onClick: function(){ window.location.href='/front/jobseeker/new_resume'}
+        }]
+      })
+     }else{
+       window.location.href='/front/jobseeker/home'
+     }
+   },
+  }
+})
+</script>

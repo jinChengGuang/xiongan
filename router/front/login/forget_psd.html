@@ -1,32 +1,63 @@
-<div class="container-fluid">
-  <form action="#" class="m-50-auto-0 w-80">
-    <div class="input-group mt-3">
-      <span class="input-group-addon icon border-0" id="basic-addon1">&#xe745;</span>
-      <input type="text" class="from-control w-100" placeholder="请输入账号" v-model='user.username'>
+<div class="container-fluid pr" :style="{height:height + 'px',background:bg , backgroundSize:size}">
+  <div class="row p-t-p20 text-center">
+    <div class="col-12">
+      <img src='../../../skins/img/bg_01.png' class="img-fluid w-50">
     </div>
-    <div class="input-group mt-3">
-      <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input type="password" class="from-control w-100" placeholder="请输入密码" v-model='user.newpassword'>
-    </div>
-    <div class="input-group mt-3">
-      <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input type="password" class="from-control w-100" placeholder="请确认密码">
-    </div>
-    <div class="text-center">
-      <a href='javascript:void(0)' class="btn btn-warning mt-3 w-100 t-c-white" @click='forget'>保存</a>
-      <span class="text-right db f-s-8">点击保存，请使用新密码登陆</span>
-    </div>
-  </form>
+  </div>
+  <div class="container-fluid text-center">
+    <form action="#" class="w-85 pa t-25 text-center p-t-p6">
+      <div class="input-group h-50 lh-50">
+        <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p5 f-s-f18" id="basic-addon1">&#xe745;
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </span>
+        <input type="text" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" placeholder="请输入账号" v-model='list.username' readonly>
+      </div>
+      <div class="input-group mt-3 h-50 lh-50">
+        <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p5 f-s-f18" id="basic-addon1">&#xe74f;
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </span>
+        <input type="password" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" placeholder="请输入密码" id='new' v-model='user.newpassword'>
+      </div>
+      <div class="input-group mt-3 h-50 lh-50">
+        <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p5 f-s-f18" id="basic-addon1">&#xe74f;
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </span>
+        <input type="password" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" placeholder="请确认密码" id='psd'>
+      </div>
+      <div class="text-center">
+        <a href='javascript:void(0)' class="btn bg-00b mt-4 w-100 t-c-white h-h50 lh-32" @click='forget'>保存</a>
+        <span class="text-right db f-s-8 t-c-fff mt-3">点击保存，请使用新密码登陆</span>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
 new Vue({
   el: '#app',
   data: {
-    user: {}
+    user: {},
+    height:'',
+    bg:'url(../../../skins/img/bg.jpg) no-repeat',
+    size: '100% 100%',
+    list:{},
   },
+  mounted(){
+      this.height = document.body.scrollHeight
+      this.ajax.get('/company/test/detail',(res)=>{
+        this.list = res.data[0]
+      },(err)=>{
+        weui.toast(err.errmsg)
+      })
+    },
   methods: {
     forget () {
+      let first = $('#new').val()
+      let psd = $('#psd').val()
+      if(first != psd){
+        weui.toast('两次密码输入不一致',1500)
+        return false
+      }
       this.ajax.put('/company/change',this.user, (res) => {
         weui.toast('修改成功', 1500)
         setTimeout("window.location.href='/front/login/login'",1500)

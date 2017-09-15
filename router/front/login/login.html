@@ -1,29 +1,60 @@
-<div class="container-fluid">
-  <form action="#" class="m-50-auto-0 w-80">
-    <div class="input-group mt-3">
-      <span class="input-group-addon icon border-0" id="basic-addon1">&#xe745;</span>
-      <input v-model='user.username' type="text" class="from-control w-100 in-out" placeholder="请输入账号">
+<div class="container-fluid pr" :style="{height:height + 'px',background:bg , backgroundSize:size}">
+  <div class="row">
+    <div class="col-12 text-right p-t-p6">
+      <a href="/front/login/register" class="t-c-white f-s-8">还没账号? 注册</a>
     </div>
-    <div class="input-group mt-3">
-      <span class="input-group-addon icon border-0" id="basic-addon1">&#xe74f;</span>
-      <input v-model='user.password' type="password" class="from-control w-100 in-out" placeholder="请输入密码">
+  </div>
+  <div class="row p-t-p20 text-center">
+    <div class="col-12">
+      <img src='../../../skins/img/bg_01.png' class="img-fluid w-50">
     </div>
-    <div class="text-center">
-      <botton class="btn btn-warning mt-3 w-100 t-c-white" @click='login'>登陆</botton>
-      <a href="/front/login/forget_psd" class="text-right db f-s-8">*忘记登陆密码</a>
-    </div>
-  </form>
+  </div>
+  <div class="container-fluid text-center">
+    <form action="#" class="w-85 pa t-30 text-center p-t-p6">
+      <div class="input-group h-50 lh-50">
+        <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p5 f-s-f18" id="basic-addon1">&#xe745;
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </span>
+        <input v-model='user.username' type="text" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" id="username" placeholder="请输入账号">
+      </div>
+      <div class="input-group h-50 lh-50 mt-3">
+        <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p4 f-s-f18" id="basic-addon1">&#xe74f;
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 m-t-3"></span>
+        </span>
+        <input v-model='user.password' type="password" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" id="password" placeholder="请输入密码">
+      </div>
+      <div class="text-center">
+        <a href='javascript:void(0)' class="btn bg-00b mt-5 w-100 t-c-white h-h50 lh-32" @click='login'>登陆</a>
+        <a href="/front/login/forget_psd" class="text-right db f-s-8 t-c-fff mt-3">*忘记登陆密码</a>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
 new Vue({
   el: '#app',
   data: {
-    user: {}
+    user: {},
+    height:'',
+    bg:'url(../../../skins/img/bg.jpg) no-repeat',
+    size: '100% 100%',
   },
+  mounted(){
+      this.height = document.body.scrollHeight
+    },
   methods: {
     login () {
-      this.ajax.get('/company/login/'+this.user.username + '/' + this.user.password, (res) => {
+      let username = $('#username').val()
+      let password = $('#password').val()
+      if(username == ''){
+        weui.toast('账号不能为空')
+        return false
+      }else if(password == ''){
+        weui.toast('密码不能为空')
+        return false
+      }
+      this.ajax.get('/company/login/'+ this.user.username + '/' + this.user.password, (res) => {
         weui.toast('登陆成功', 1500)
         setTimeout("window.location.href='/front/company/home'",1500)
       }, (err) => {

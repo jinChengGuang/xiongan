@@ -3,175 +3,270 @@
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
       <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
+        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
       </a>
     </div>
     <div class="col-8 text-center">
-      <span>企业认证</span>
+      <span class="t-c-32 f-s-f17">企业认证</span>
     </div>
     <div class="col-2"></div>
   </div>
 </div>
-<div class="container-fluid bg-white m-t-46">
+<div class="container-fluid bg-white m-t-53 m-b-45">
   <form action="#" class="f-s-8">
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司名称</label>
-      <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="公司名称" v-model='group.name'>
-      </div>
-      <div class="col-1 align-self-center text-right">
-        <span class="t-c-e20">*</span>  
+    <div class="row">
+      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司名称
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+        </label>
+        <div class="col-6 p-x-0">
+          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 h-24 t-c-666 f-s-f14" placeholder="公司名称" v-model='group.name'>
+        </div>
+        <div class="col-2 align-self-center text-right">
+          <span class="t-c-e20">*</span>  
+        </div>
       </div>
     </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司性质</label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='group.kind'>
-          <option v-for='t in type'>{{t}}</option>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司性质
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
+      <div class="col-6 p-x-0 align-self-center pr">
+        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind'>
+          <option value=' ' v-if='false'>请选择公司性质</option>
+          <option v-for='t in type' :value='t'>{{t}}</option>
         </select>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">所属行业</label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" id='bcat' @click="linkage">
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">所属行业
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
+      <div class="col-6 p-x-0 align-self-center pr">
+        <i class="icon pa r-22 t-11 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='bcat' @click="linkage">
           <option :value='0'>请选择</option>
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
-        <select class="mt-2 border" id='mcat' v-model='group.iid'>
+        <i class="icon pa r-22 b-p12 t-c-bf">&#xe62e;</i>
+        <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid'>
           <option :value='0'>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">成立年份</label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='group.age'>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">成立年份
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
+      <div class="col-6 p-x-0 align-self-center pr">
+        <input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />
+        <!--<i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
           <option>1989</option>
           <option>1990</option>
           <option>1991</option>
-        </select>
+        </select>-->
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司规模</label>
-      <div class="col-6 p-x-0 align-self-center">
-        <select class="border" v-model='group.scope'>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司规模
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
+      <div class="col-6 p-x-0 align-self-center pr">
+        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope'>
           <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">注册地址</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">注册地址
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司地址" v-model='group.address'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写公司地址" v-model='group.address'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司网址</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司网址
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司网址" id='website' v-model='group.website'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写公司网址" id='website' v-model='group.website'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司邮箱</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司邮箱
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写公司邮箱" id='email' v-model='group.email'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写公司邮箱" id='email' v-model='group.email'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人姓名</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">联系人姓名
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人姓名" v-model='group.contact_name'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写联系人姓名" v-model='group.contact_name'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">联系人电话</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">联系人电话
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写联系人电话" id='mobile' v-model='group.contact_mobile'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写联系人电话" id='mobile' v-model='group.contact_mobile'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">公司简介</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司简介
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0" v-model='group.summary'></textarea>
+        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0 t-c-666 f-s-f14" v-model='group.summary'></textarea>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
-<!--
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传营业执照</label>
+  </div>
+
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传营业执照
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0 file">
-        <input type="file" v-mobile='group.certificate'>
+        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+          <img src="../../../skins/img/1.jpg" class="w-100" >
+        </div>
+        <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
+          <i class="icon">&#xe7ba;</i>
+        </div>
+        <input type="file" class="dn" id = 'head' @change='upload'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传法人身份证原件</label>
+  <div class="row">
+    <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传法人身份证原件
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0 file">
-        <input type="file" v-model='group.idcard_front'>
-        <input type="file" v-model='group.idcard_reverse'>
+
+        <div class="float-left">
+          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+            <img src="../../../skins/img/1.jpg" class="w-100" >
+          </div>
+          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
+            <i>正面</i>
+          </div>
+          <input type="file" class="dn" id = 'head' @change='upload'>
+        </div>
+
+        <div class="float-left m-l-10">
+          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+            <img src="../../../skins/img/1.jpg" class="w-100" >
+          </div>
+          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
+            <i>反面</i>
+          </div>
+          <input type="file" class="dn" id = 'head' @change='upload'>
+        </div>
+
+
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
+  </div>
 
-    <div class="from-group bor-b-sol bor-eee p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0">上传公司logo</label>
+  <div class="row">
+    <div class="from-group w-95 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传公司logo
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      </label>
       <div class="col-6 p-x-0 file">
-        <input type="file" v-model='group.logo'>
+        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+          <img src="../../../skins/img/1.jpg" class="w-100" >
+        </div>
+        <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
+          <i class="icon">&#xe7ba;</i>
+        </div>
+        <input type="file" class="dn" id = 'head' @change='upload'>
       </div>
-      <div class="col-1 align-self-center text-right">
+      <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
       </div>
-    </div>-->
+    </div>
+  </div>
 
     <div class="row fixed-bottom">
-      <button class="btn br-0 w-100 bg-primary t-c-white" @click='submit'>确定</button>
+      <a href="javascript:void(0)" class="btn br-0 w-100 bg-00b t-c-white" @click='submit'>确定</a>
       <!--<a href="/front/company/station" class="btn br-0 w-100 bg-primary t-c-white">确定</a>-->
     </div>
   </form>
@@ -187,7 +282,9 @@ new Vue({
    smallall:[],
    type:[],
    scope:[],
-   group:[]
+   group:{
+     head:''
+   },
   },
   mounted(){
     this.ajax.get('/company/industry/list',(res)=>{
@@ -205,22 +302,28 @@ new Vue({
       this.big = bigcat
       this.smallall = smallall
     },(err)=>{
-      alert(err.errmsg)
+      weui.toast(err.errmsg)
     }),
     //性质
     this.ajax.get('/company/kind/list',(res)=>{
       this.type = res.data
     },(err)=>{
-      alert(err.errmsg)
+      weui.toast(err.errmsg)
     })
     //规模
     this.ajax.get('/company/scope/list',(res)=>{
       this.scope = res.data
     },(err)=>{
-      alert(err.errmsg)
+      weui.toast(err.errmsg)
     })
   },
   methods: {
+    openfile () {
+     $(head).click()
+		},
+    upload(){
+      this.group.head = head.value
+    },
     linkage (){
       let bcat = document.getElementById('bcat')
       let mcat = document.getElementById('mcat')
@@ -247,20 +350,71 @@ new Vue({
       //   }
       // }
       if(!webreg.test(website)){
-        alert('输入的网址格式不正确')
+        weui.toast('输入的网址格式不正确')
         return false
       }else if(!emareg.test(email)){
-        alert('输入的邮箱格式不正确')
+        weui.toast('输入的邮箱格式不正确')
         return false
       }else if(!mobreg.test(mobile)){
-        alert('输入的手机号格式不正确')
+        weui.toast('输入的手机号格式不正确')
+        return false
+      }else{
+        return true
       }
-      this.ajax.put('/company/add',this.group,(res)=>{
-        alert('成功')
-      },(err)=>{
-        alert(err.errmsg)
+
+  //     weui.confirm('', {
+  //     title: '确认要切换身份吗?',
+  //     buttons: [{
+  //     label: '取消',
+  //     type: 'default',
+  //     onClick: function(){ console.log('no') }
+  //   }, {
+  //     label: '确定',
+  //     type: 'primary',
+  //     onClick: function(){ 
+  //       this.ajax.put('/company/add',this.group,(res)=>{
+  //             weui.toast('提交成功,请等待审核', 2000);
+  //           },(err)=>{
+  //             weui.toast(err.errmsg)
+  //           })
+  //      }
+  //   }]
+  // })
+
+
+      weui.confirm('',{
+        title:'您是否确定执行比操作?',
+        buttons: [{
+          label: '取消',
+          type: 'default',
+          onClick: function(){console.log('no')}
+        },{
+          label: '确定',
+          type: 'primary',
+          onClick: function(){
+            this.ajax.put('/company/add',this.group,(res)=>{
+              weui.toast('提交成功,请等待审核', 2000);
+            },(err)=>{
+              weui.toast(err.errmsg)
+            })
+          }
+        }]
       })
+      
     }
   }
 })
+</script>
+
+<script>
+  $(function(){
+      $('.yearpicker').datepicker({  
+          startView: 'decade',  
+            minView: 'decade',  
+            format: 'yyyy',  
+            maxViewMode: 2,  
+            minViewMode:2,  
+            autoclose: true  
+          });  
+    })
 </script>
