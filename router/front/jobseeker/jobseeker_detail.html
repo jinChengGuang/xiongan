@@ -75,11 +75,13 @@
       statement_length:'',
       requirements:'',
       requirements_length:'',
-      show_1:true,
+      show_1:'',
       resume:[],
+      resume_1:[],
       start:new Date().setHours(0,0,0,0)/1000,
       // record:[]
-      name:'职位详情'
+      name:'职位详情',
+      datail_1:[],
     },
     mounted(){
       this.ajax.get('/job/detail/'+this.query.get('id'),(res)=>{
@@ -91,17 +93,23 @@
         this.requirements_length = res.data[0].requirements
       },(err)=>{
         
+      }),
+      // 是否收藏
+      this.ajax.get('/user/collect/collect_list',(res)=>{
+        this.datail_1 = res.data
+        if(this.datail_1){
+          this.show_1 = false
+        }else{
+          this.show_1 = true
+        }
       })
       // 个人简历
-      this.ajax.get('/user/resume',(res)=>{
-        this.resume = res.data[0]
+      this.ajax.get('/user/resume/datail',(res)=>{
+        this.resume_1 = res.data
+        console.log(this.resume_1)
       },(err)=>{
-        
+
       })
-      // this.ajax.get('/user/resume/record',(res)=>{
-      //   this.record = res.data[0]
-      //   console.log(this.record)
-      // })
     },
     methods: {
       block(){
@@ -121,16 +129,34 @@
       // 收藏
       cancel(jid){
         this.ajax.post('/collect/job',{ jid: jid},(res)=>{
-        weui.toast('收藏成功', 2000);
-        this.show_1 = false
+        weui.toast('收藏成功', 1500);
+        setTimeout('window.location.reload()',2000)
         },(err)=>{
         })
       },
       // 投递
       record(jid){
-        this.ajax.post('/add/resume/record',{jid:jid, rid:this.resume.id}, (res)=>{
+        if(this.resume_1 == 0){
+          alert('您还没有简历,请创建简历')
+          setTimeout("window.location.href='/front/jobseeker/new_resume'",2000)
+        }else{
+          this.ajax.post('/add/resume/record',{jid:jid, rid:this.resume_1[0].id}, (res)=>{
           weui.toast('投递成功', 2000);
-        })
+          })
+        }
+
+
+
+
+
+        // if(this.resume == 0){
+        //   alert('请您填写简历')
+        // }else{
+        //   this.ajax.post('/add/resume/record',{jid:jid, rid:this.resume.id}, (res)=>{
+        //   weui.toast('投递成功', 2000);
+        // })
+        // }
+
       },
       go(){
         window.history.go(-1);

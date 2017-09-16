@@ -56,7 +56,8 @@ new Vue({
   el: '#app',
   data: {
     list:[],
-    name:'面试邀请'
+    name:'面试邀请',
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {

@@ -2,7 +2,7 @@
   <div class="row  bg-eee">
     <div class="col-1 icon icon_1 mt-3 f-s-f22 pl-2 t-c-7c88" @click='switch_1'>&#xe90b;</div>
     <div class="col-10 pl-3 " >
-      <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'v-model="p.name" @focus='link'>
+      <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'v-model="p.name" @focus='link'>
       <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
     </div>
     <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%; 'v-for='n in status' v-show='n.status = 1'></span></div>
@@ -171,7 +171,7 @@ new Vue({
     start:new Date().setHours(0,0,0,0)/1000,
     status:[],
     datail:[],
-
+    keyword:'recruit'
 
   },
   mounted(){

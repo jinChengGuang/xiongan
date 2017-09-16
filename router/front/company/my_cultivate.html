@@ -42,6 +42,7 @@ new Vue({
   el: '#app',
   data: {
     list:[],
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/cultivate/list', (res) => {

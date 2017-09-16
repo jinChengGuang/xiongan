@@ -129,7 +129,8 @@ new Vue({
     experience:[],
     education:[],
     sex:['男','女'],
-    name:'我的简历'
+    name:'我的简历',
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/user/resume/experience/'+this.query.get('id'), (res) => {

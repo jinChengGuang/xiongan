@@ -796,6 +796,7 @@
 .t-c-ff6e52{color: #ff6e52;}
 .t-c-1eaa39{color: #1eaa39;}
 .t-c-0bb20c{color: #0bb20c;}
+.t-c-01aaef{color: #01aaef;}
 
 /*top*/
 
@@ -825,6 +826,8 @@
 .l-18{left:18%}
 .l-27{left:27%}
 .l-30{left:30%}
+.l-40{left: 40%}
+.l-45{left: 45%}
 .l-93{left:93px}
 .l-105{left:105px}
 
@@ -971,6 +974,9 @@ i{font-style:normal;}
 .t-28{top:-28px;}
 /*new*/
 .t-0{ top : 0 }
+
+/*透明度*/
+.o-4{ opacity: .4;}
 
 .ellipsis{white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
 .clip{white-space:nowrap; text-overflow:clip; -o-text-overflow:clip; overflow:hidden;}

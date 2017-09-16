@@ -29,7 +29,7 @@
         </p>
       </a>
       <div class="icon right pa b-9 t-c-999 r-4 f-s-50" v-show='n.status == 2 || n.status == 0'>&#xe656;</div>
-      <div class='pa z-100 bg-rgba w-100 h-100 t-0 l-0' v-show='n.status == 2 || n.status == 0'></div>
+      <div class='pa bg-rgba w-100 h-100 t-0 l-0' v-show='n.status == 2 || n.status == 0'></div>
     </li>
   </ul>
 </div>
@@ -47,7 +47,8 @@
     data:{
       list:[],
       start:new Date().setHours(0,0,0,0)/1000,
-      name:'我的投递'
+      name:'我的投递',
+      keyword:'my'
     },
     mounted(){
       this.ajax.get('/user/resume/record',(res)=>{

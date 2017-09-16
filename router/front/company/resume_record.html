@@ -35,7 +35,8 @@ new Vue({
   el: '#app',
   data: {
     record : [],
-    name:'简历记录'
+    name:'简历记录',
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/company/resume/record', (res) => {

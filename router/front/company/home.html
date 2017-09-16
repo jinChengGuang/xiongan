@@ -2,7 +2,7 @@
   <div class="row  bg-eee">
     <div class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" @click='switch_1'>&#xe90b;</div>
     <div class="col-10 pl-3 " >
-      <input type="text" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'@focus='link'>
+      <input type="text" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'@focus='link'>
       <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
     </div>
     <div class="col-1 icon pl-0 mt-2 p-t-5 letter f-s-f22 pr" >
@@ -28,18 +28,18 @@
     <a href="/front/jobseeker/cultivate_list" class="col-6 p-0 bor-r-sol bor-f7">
       <div>
         <div class='float-left pl-3 w-w40 m-t-p15 t-c-0a0'>
-          <img src="../../../skins/img/0_1.png" class='h-h45 w-w45 br-h'>
+          <img src="../../../skins/img/0_2.png" class='h-h45 w-w45 br-h'>
         </div>
         <div class='w-60 w-60 float-right m-t-p10'>
           <p class='m-t-8 m-b-0 f-s-f16 f-w-600 t-c-32'>新区培训</p>
-          <p class='t-c-646 f-s-f12 p-t-3'>我们祝你就业</p>
+          <p class='t-c-646 f-s-f12 p-t-3'>我们助您就业</p>
         </div>
       </div>
     </a>
     <a href="/front/jobseeker/play" class="col-6 p-0">
       <div>
         <div class='float-left pl-3 w-w40 m-t-p15 t-c-0a0'>
-          <img src="../../../skins/img/0_2.png"  class='h-h45 w-w45 br-h'>
+          <img src="../../../skins/img/0_1.png"  class='h-h45 w-w45 br-h'>
         </div>
         <div class='w-60 float-right f-s-7 m-t-p10'>
           <p class='m-t-8 m-b-0 f-s-f16 f-w-600 t-c-32'>新区直播</p>
@@ -51,7 +51,7 @@
 </div>
 <!--直播-->
 <div class="container-fluid p-0 broadcast h-h125 pr">
-  <a :href="live.href">
+  <a :href="'/front/company/play?id='+live.href">
     <!--<img :src="live.img" class='w-100 h-h125'>-->
     <img src="../../../skins/img/zhibo.png" class='w-100 h-h125'>
   </a>
@@ -123,7 +123,7 @@ new Vue({
     msg:[],
     datail:[],
     status_1:[],
-
+    keyword:'home'
   },
   mounted () {
     this.ajax.get('/home/swiper', (res) => {

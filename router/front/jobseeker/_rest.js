@@ -105,6 +105,25 @@ exports.get = {
       $.flush(ctx, ctx.result.ok)
     }
   },
+   /**
+   * 收藏列表
+   */
+  '/user/collect/collect_list': async (ctx, next) => {
+    let uid = ctx.user.id
+    let time = $.time10()
+    let record = await $.mysql.query($.conf.mysql.main, 'select * from  collect where uid = ?', [uid])
+    ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 判断用户的简历
+   */
+  '/user/resume/datail': async (ctx, next) => {
+    let uid = ctx.user.id
+    let datail = await $.mysql.query($.conf.mysql.main, 'select * from resume where uid = ?', [uid])
+    ctx.result.ok.data = datail
+    $.flush(ctx, ctx.result.ok)
+  },
 }
 // ---------------------------------------------------------------------------- POST
 exports.post = {

@@ -2,7 +2,7 @@
   <div class="row  bg-eee">
     <div class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5"  @click='switch_1'>&#xe90b;</div>
     <div class="col-10 pl-3" >
-      <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee' style='padding-left: 10%;'@focus='link'>
+      <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'@focus='link'>
       <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
     </div>
     <div class="col-1 icon pl-0 mt-2 letter f-s-f22 pr p-t-5"><a href='/front/jobseeker/invitation_receive' class='t-c-7c88 f-s-f20'>&#xe7d5;<a ><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:8px; right:27%;' v-for='n in status' v-show='n.status = 1'></span></div>
@@ -26,18 +26,18 @@
     <a href="/front/jobseeker/cultivate_list" class="col-6 p-0 bor-r-sol bor-f7">
       <div>
         <div class='float-left pl-3 w-w40 m-t-p15 t-c-0a0'>
-          <img src="../../../skins/img/0_1.png" class='h-h45 w-w45 br-h'>
+          <img src="../../../skins/img/0_2.png" class='h-h45 w-w45 br-h'>
         </div>
         <div class='w-60 w-60 float-right m-t-p10'>
           <p class='m-t-8 m-b-0 f-s-f16 f-w-600 t-c-32'>新区培训</p>
-          <p class='t-c-646 f-s-f12 p-t-3'>我们祝你就业</p>
+          <p class='t-c-646 f-s-f12 p-t-3'>我们助您就业</p>
         </div>
       </div>
     </a>
     <a href="/front/jobseeker/play" class="col-6 p-0">
       <div>
         <div class='float-left pl-3 w-w40 m-t-p15 t-c-0a0'>
-          <img src="../../../skins/img/0_2.png" class='h-h45 w-w45 br-h'>
+          <img src="../../../skins/img/0_1.png" class='h-h45 w-w45 br-h'>
         </div>
         <div class='w-60 float-right f-s-7 m-t-p10'>
           <p class='m-t-8 m-b-0 f-s-f16 f-w-600 t-c-32'>新区直播</p>
@@ -120,7 +120,8 @@ new Vue({
     start:new Date().setHours(0, 0, 0, 0) / 1000,
     msg:[],
     datail:[],
-    status_1:[]
+    status_1:[],
+    keyword:'home'
   },
   mounted () {
     this.ajax.get('/home/swiper', (res) => {

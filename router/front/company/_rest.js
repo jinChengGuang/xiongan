@@ -183,7 +183,7 @@ exports.get = {
    */
   '/cultivate/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let cultivate = await $.mysql.query($.conf.mysql.main, 'select A.*,B.class_starttime as time,B.name as name,B.content as content,B.address as address  from school_detail A,cultivate B where A.culid = ? and A.culid = B.id ', [id])
+    let cultivate = await $.mysql.query($.conf.mysql.main, 'select A.*,B.class_starttime as time,B.name as name,B.content as content,B.address as address, B.id as culid from school_detail A,cultivate B where A.culid = ? and A.culid = B.id ', [id])
     let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
     ctx.result.ok.data = [cultivate,swiper]
     $.flush(ctx, ctx.result.ok)
@@ -235,11 +235,20 @@ exports.get = {
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     }else{
-      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [type, cid ])
-      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [type,cid])
+      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [cid ])
+      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     } 
+  },
+  /**
+   * 站内信列表
+   */
+  '/msg/list': async (ctx, next) => {
+    let cid = ctx.company.id
+    let msg = await $.mysql.query($.conf.mysql.main, 'select * from  msg where cid=?', [cid])
+    ctx.result.ok.data = msg
+    $.flush(ctx, ctx.result.ok)
   },
   /**
    * 热门搜索公司
@@ -364,7 +373,22 @@ exports.get = {
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
-
+  /**
+   * 课程是否已报名
+   */
+  '/cultivate/status': async (ctx, next) => {
+    let uid = ctx.user.id
+    let cid = ctx.company.id
+    let { culid } = ctx.get
+    let record
+    if(cid){
+      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where cid = ? and status = 1 and culid = ?', [cid, culid])
+    }else{
+      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where uid = ? and status = 1 and culid = ?', [uid, culid])
+    }
+    ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
 }
 // ---------------------------------------------------------------------------- POST
 exports.post = {
@@ -374,7 +398,7 @@ exports.post = {
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
     let cid = ctx.company.id
-    
+
     let { culid, culname} = ctx.post
     let apply_time = $.time10()
     if(cid){
@@ -393,8 +417,9 @@ exports.post = {
   '/job/add': async (ctx, next) => {
     let cid = ctx.company.id
     let cname = ctx.company.name
+    let issue_time = $.time10()
     let { name,jtid, pay, area,benefit,education,experience,address,statement,requirements,status } = ctx.post
-    let data = await $.mysql.push($.conf.mysql.main, 'insert into job (cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status)values(?,?,?,?,?,?,?,?,?,?,?,?,?)', [cid ,name,cname, jtid, pay, area,benefit,education,experience,address,statement,requirements,status])
+    let data = await $.mysql.push($.conf.mysql.main, 'insert into job (cid ,name,cname, jtid, pay, area, issue_time,benefit,education,experience,address,statement,requirements,status)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [cid ,name,cname, jtid, pay, area,issue_time,benefit,education,experience,address,statement,requirements,status])
     let content = '您于'+$.time.format('yyyy-mm-dd')+'发布的'+name+'岗位等待审核，审核结果会在1-2个工作日之内通知您，请注意查看'
     let time = $.time10()
     await $.mysql.push($.conf.mysql.main, 'insert into msg (cid ,content,time)values(?,?,?)', [cid ,content,time])
@@ -425,7 +450,7 @@ exports.put = {
     let data = await $.mysql.push($.conf.mysql.main, 'update company set name=?, kind=?, iid=?, age=?, scope=?, address=?, website=?, email=?, contact_name=?, contact_mobile=? ,summary=?, certificate=?, idcard_front=?, idcard_reverse=?, logo=?,examine = 0  where id =? ', [name, kind, iid, age, scope, address, website, email, contact_name, contact_mobile ,summary, certificate, idcard_front, idcard_reverse, logo, id])
     let content = '您于'+$.time.format('yyyy-mm-dd')+'申请的'+name+'企业认证等待审核，审核结果会在1-2个工作日之内通知您，请注意查看'
     let time = $.time10()
-    await $.mysql.push($.conf.mysql.main, 'insert into msg (cid ,content,time) values(?,?,?)', [id ,content.time])
+    await $.mysql.push($.conf.mysql.main, 'insert into msg (cid ,content,time) values(?,?,?)', [id ,content,time])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },

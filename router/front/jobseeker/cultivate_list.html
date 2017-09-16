@@ -103,7 +103,8 @@ new Vue({
     images:[],
     detail:[],
     ruian:[],
-    last:''
+    last:'',
+    keyword:'cultivate'
   },
   mounted () {
     this.ajax.get('/cultivate/lists', (res) => {

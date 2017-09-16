@@ -48,7 +48,8 @@
       list:[],
       show:true,
       start:new Date().setHours(0,0,0,0)/1000,
-      name:'岗位收藏'
+      name:'岗位收藏',
+      keyword:'my'
     },
     mounted(){
       this.ajax.get('/user/collect/list',(res)=>{

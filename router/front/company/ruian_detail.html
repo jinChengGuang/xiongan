@@ -44,7 +44,20 @@
     <span>{{time.dateFormat('yyyy/MM/dd', detail.time)}}</span>
   </p>
 </div>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3" @click='signUp(detail.id,detail.name)'>报名</button>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3" @click='show(detail.culid,detail.name)' v-if='status == 0'>报名</button>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3 bg-666" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</button>
+<!--弹框-->
+<div id="dialog" style="display: none;">
+  <div class="weui-mask z-1030" @click='cancel'></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd">您确定要进行此操作吗？</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='cancel'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure'>确认</a>
+    </div>
+  </div>
+</div>
 <script>
 new Vue({
   el: '#app',
@@ -53,22 +66,59 @@ new Vue({
     cultivate:[],
     name: '瑞安详情',
     swiper:[],
-    detail:[]
+    detail:[],
+    company:[],
+    culStatus:[],
+    p:{
+      culid:0,
+      culname:''
+    },
+    status:0
   },
   mounted () {
     this.id = this.query.get('id')
     this.ajax.get('/cultivate/detail/' + this.id,(res) => {
-        this.cultivate = res.data
-        this.swiper = this.cultivate[1]
-        this.detail = this.cultivate[0][0]
-        console.log(this.cultivate)
-      }, (err) => {
-        console.log(err)
-      })
+      this.cultivate = res.data
+      this.swiper = this.cultivate[1]
+      this.detail = this.cultivate[0][0]
+    }, (err) => {
+      console.log(err)
+    })
+    this.ajax.get('/company/detail',(res) => {
+      this.company = res.data
+    }, (err) => {
+      console.log(err)
+    })
+    this.ajax.get('/cultivate/status?culid=' + this.detail.culid,(res) => {
+      this.culStatus = res.data
+      if(this.culStatus){
+        this.status = 1
+      }
+    }, (err) => {
+      console.log(err)
+    })
   },
   methods: {
-    signUp(id,name){
-      this.ajax.post('/add/cultivate/record',{culid:id,culname:name},(res) => {
+    show(id,name){
+      if(this.company){
+        let dialog = document.getElementById('dialog')
+        dialog.style.display = 'block'
+        this.p.culid = id
+        this.p.culname = name
+      }else{
+        weui.toast('请先进行登陆！', 1000);
+        setTimeout("window.location.href = '/front/login/login'",1500)
+      } 
+    },
+    cancel(){
+      let dialog = document.getElementById('dialog')
+      dialog.style.display = 'none'
+    },
+    sure(){
+      let dialog = document.getElementById('dialog')
+      dialog.style.display = 'none'
+      this.ajax.post('/add/cultivate/record',this.p,(res) => {
+        this.status = 1
         weui.toast('报名成功', 1000);
       }, (err) => {
         console.log(err)

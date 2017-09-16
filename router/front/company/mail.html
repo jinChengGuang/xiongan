@@ -42,7 +42,8 @@ new Vue({
     examine:[],
     user:[],
     list:[],
-    name:'站内信'
+    name:'站内信',
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/examine/msg/red', (res) => {

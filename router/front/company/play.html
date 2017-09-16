@@ -18,7 +18,8 @@ new Vue({
   el: '#app',
   data: {
     list : [],
-    status: ['即将开始','正在进行','已经结束']
+    status: ['即将开始','正在进行','已经结束'],
+    keyword:'play'
   },
   mounted () {
     this.ajax.get('/live/list', (res) => {

@@ -52,7 +52,8 @@ new Vue({
     type:0,
     list:[],
     start:new Date().setHours(0, 0, 0, 0) / 1000,
-    name:'我发出的邀请'
+    name:'我发出的邀请',
+    keyword:'my'
   },
   mounted () {
     this.ajax.get('/company/invite/record', (res) => {
