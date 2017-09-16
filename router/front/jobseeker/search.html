@@ -7,7 +7,7 @@
       </form>
       <span class='icon pr t-28 l-2 f-s-f15'>&#xe7fd;</span>
     </div>
-    <div class="col-2 f-s-f20 icon p-t-9 p-l-15"><a href="/front/company/recruit_list">&#xe90d;</a></div>
+    <div class="col-2 f-s-f20 icon p-t-9 p-l-15"><a href="/front/jobseeker/jobseeker_list">&#xe90d;</a></div>
   </div>
 </div>
 
@@ -33,7 +33,7 @@
 
 <ul class="container-fluid content-one bg-fff w-95 br-7 m-t-5 bor-sol bor-e1e mb-0">
   <li class="row pt-3 p-x-5 f-s-8">
-    <div class="col-1 pl-2 icon m-t-p1 f-s-f20 ">&#xe73f;</div>
+    <div class="col-1 pl-2 icon m-t-p1 f-s-f20  t-c-00baf3">&#xe8f0;</div>
     <div class="col-10 pl-2 f-s-f15 m-t-n3">最近搜索</div>
     <div class="col-1 pl-1 icon f-s-f20" @click='history_1'>&#xe7c1;</div>
   </li>
@@ -54,7 +54,7 @@
     watch:{
       keyword(curVal, oldVal){
         if(curVal){
-          setTimeout(window.location.href = '/front/company/recruit_list?name=' + this.keyword,1000)
+          setTimeout(window.location.href = '/front/jobseeker/jobseeker_list?name=' + this.keyword,1000)
         }
       }
     },

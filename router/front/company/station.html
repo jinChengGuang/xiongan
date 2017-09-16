@@ -81,7 +81,7 @@
         <div class="col-6 p-x-0 align-self-center">
           <p class="text-right mb-0 f-s-6 show">更多>></p>
           <div id="span" class="oh">
-            <span class="border p-1 dinb mb-1 mr-1" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-e20': v.checked==true}" >{{v.name}}</span>
+            <span class="border p-1 dinb mb-1 mr-1 h-30" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-00b': v.checked==true}" >{{v.name}}</span>
           </div>
         </div>
         <div class="col-2 align-self-center text-right">
@@ -215,7 +215,7 @@
 
 
     <div class="row fixed-bottom">
-      <a href="javascript:void(0)" class="btn br-0 w-100 bg-primary t-c-white" @click="add">确定</a>
+      <a href="javascript:void(0)" class="btn br-0 w-100 bg-00b t-c-white" @click="add">确定</a>
     </div>
   </form>
 </div>
@@ -287,12 +287,18 @@ new Vue({
     $(function(){
       $('#span').css('height','70px')
       $('.show').click(function(){
-        $('#span').css('height','320px')
+        let height = $('#span>span').length * 30
+        $('#span').css('height',height-200)
       })
     })
   },
   methods: {
     add(){
+      let input = $('input').val()
+      if(input == ''){
+        weui.toast('信息不能为空',1500)
+        return false
+      }
       let a=''
       let b= ''
       for(let v of this.li){

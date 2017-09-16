@@ -22,8 +22,8 @@
         <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
           <span>联系电话:</span>
           <a >
-            <a href='tel:n.mobile'>{{n.usermobile}}</span>
-            <i class="icon">&#xe760;</i>
+            <a href='tel:n.mobile' class='va-m'>{{n.usermobile}}</a>
+            <i class="icon t-c-1eaa39 f-s-f30 va-m">&#xe845;</i>
           </a>
         </p>
         <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
@@ -34,11 +34,11 @@
           <a class="delete p-x-15 p-y-3 f-s-f14 bg-ccc br-5 t-c-fff m-l-p52"  @click='show1(n.id)' v-show='n.status != 1' >删除</a>
           <a class=" p-x-15 p-y-3 f-s-f14 bg-00abef br-5 t-c-fff m-l-f3" @click = 'show2(n)' v-show='n.status == 0'>邀请</a>
           <a class=" p-x-15 p-y-3 f-s-f14 bg-ccc br-5 t-c-fff m-l-p73" v-show='n.status == 1'>已邀请</a>
-          <a class=' pa f-s-15' style="top:-9px; right:30px" @click='mark(n.id)' v-show='n.sort == 0' >
-            <i class="icon  t-c-0a0">&#xe7f2;</i>
+          <a class=' pa f-s-f40 ' style="top:-15px; right:10px" @click='mark(n.id)' v-show='n.sort == 0' >
+            <i class="icon  t-c-e5e">&#xe90c;</i>
           </a>
-          <a class=' pa f-s-15 ' style="top:-9px; right:30px" v-show='n.sort == 1' >
-            <i class="icon t-c-d">&#xe7f2;</i>
+          <a class=' pa f-s-f40' style="top:-15px; right:10px" v-show='n.sort == 1' >
+            <i class="icon t-c-ff6e52">&#xe90c;</i>
           </a>
         </p>
       </div>
@@ -52,7 +52,7 @@
     <div class='w-100 lh-25 text-center m-b-10 f-s-10'>邀请模板</div>
     <p>
       <span>联系人：</span>
-      <span>何先生</span>
+      <input type="text" class='bor-0 bor-b-sol bor-eee' v-model='p.linkname'>
     </p>
     <p>
       <span>联系电话：</span>
@@ -77,7 +77,7 @@
 <div id="dialog1" style="display: none;">
   <div class="weui-mask z-1030" @click='notshow1'></div>
   <div class="weui-dialog f-s-8 br-5">
-    <div class="weui-dialog__hd"><strong class="weui-dialog__title">111</strong></div>
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
     <div class="weui-dialog__bd">您是否要进行此操作？</div>
     <div class="weui-dialog__ft">
       <a  class="weui-dialog__btn weui-dialog__btn_default" id='cancel'>取消</a>
@@ -97,7 +97,8 @@ new Vue({
       mobile:'',
       address:'',
       remark:'',
-      id:''
+      id:'',
+      linkname:''
     },
     deleteId:'',
     name:'简历列表'
@@ -119,9 +120,13 @@ new Vue({
     show2(n){
       let dialog2 = document.getElementById('dialog2')
       dialog2.style.display = 'block'
+      if(this.p.id){
+
+      }
       this.p.id = n.id
       this.p.address = n.address
       this.p.mobile = n.mobile
+      this.p.linkname = n.linkname
     },
     notshow2(){
       let dialog2 = document.getElementById('dialog2')
@@ -129,8 +134,15 @@ new Vue({
       this.p.id = ''
       this.p.address = ''
       this.p.mobile = ''
+      this.p.linkname = ''
     },
     invite(){
+      if(this.p.address == '' || this.p.mobile == '' || this.p.linkname == ''){
+        let dialog2 = document.getElementById('dialog2')
+        dialog2.style.display = 'none'
+        weui.alert('填写的信息不完全，请重新填写！', { title: '提示' });
+        return
+      }
       this.ajax.put('/invite/resume',this.p,(res) => {
         weui.toast('邀请成功', 500);
         setTimeout("window.location.reload()",1500)

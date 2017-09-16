@@ -29,35 +29,35 @@ module.exports = function () {
     </div>
     `
     ctx.state.f = `
-  <div class="container-fluid py-1 bottom" style='font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 10; border-top:#dcdddd solid 1px;'>
-    <div class="row">
+  <div class="container-fluid py-1 bottom" style="font-size:12px; background:url('/../skins/img/bottom.png') no-repeat; background-size:100% 100%; position: fixed; bottom: 0; left: 0; z-index: 10; height:75px">
+    <div class="row m-t-30">
     <div class="col" style='text-align: center; padding:0;'>
-      <a href="/front/company/home" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe7c9;</i>
+      <a href="/front/company/home" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8e6;</i>
         <p class="mb-0" style='font-size:0.8rem;'>首页</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/recruit_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe788;</i>
+      <a href="/front/company/recruit_list" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8e5;</i>
         <p class="mb-0" style='font-size:0.8rem;'>招聘</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
       <a href="/front/company/play" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon big" style='position:absolute; top:-50%; left:27%; font-size:2rem!important;'>&#xe7df;</i>
+        <i class="icon big" style='position:absolute; top:-35%; left:27%; font-size:2rem!important; color:#ff7358'>&#xe8ff;</i>
         <p class="mb-0 play" style='padding-top:29%;' style='font-size:0.8rem;'>雄安直播</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/cultivate_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe603;</i>
+      <a href="/front/company/cultivate_list" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8e8;</i>
         <p class="mb-0" style='font-size:0.8rem;'>培训</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/company/compan_home" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe81f;</i>
+      <a href="/front/company/compan_home" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe81e;</i>
         <p class="mb-0" style='font-size:0.8rem;'>我的</p >
       </a>
     </div>
@@ -65,35 +65,35 @@ module.exports = function () {
 </div>
     `
     ctx.state.fjob = `
-  <div class="container-fluid py-1 bottom" style='font-size:12px; background-color: #fff; position: fixed; bottom: 0; left: 0; z-index: 1000; border-top:#dcdddd solid 1px;'>
-    <div class="row">
+  <div class="container-fluid py-1 bottom" style="font-size:12px; background:url('/../skins/img/bottom.png') no-repeat; background-size:100% 100%; position: fixed; bottom: 0; left: 0; z-index: 10; height:75px">
+    <div class="row m-t-30">
     <div class="col" style='text-align: center; padding:0;'>
-      <a href="/front/jobseeker/home" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe7c9;</i>
+      <a href="/front/jobseeker/home" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8e6;</i>
         <p class="mb-0" style='font-size:0.8rem;'>首页</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/jobseeker/jobseeker_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe788;</i>
+      <a href="/front/jobseeker/jobseeker_list" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8ec;</i>
         <p class="mb-0" style='font-size:0.8rem;'>求职</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/jobseeker/play" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon big" style='position:absolute; top:-50%; left:27%; font-size:2rem!important;'>&#xe7df;</i>
+      <a href="/front/jobseeker/play" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon big" style='position:absolute; top:-35%; left:27%; font-size:2rem!important; color:#ff7358'>&#xe8ff;</i>
         <p class="mb-0 play" style='padding-top:29%;' style='font-size:0.8rem;'>雄安直播</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/jobseeker/cultivate_list" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe603;</i>
+      <a href="/front/jobseeker/cultivate_list" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe8e8;</i>
         <p class="mb-0" style='font-size:0.8rem;'>培训</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>
-      <a href="/front/jobseeker/user_home" style='display: block; width: 100%; height: 100%; color: #323232;'>
-        <i class="icon notbig" style='font-size:1rem!important;'>&#xe81f;</i>
+      <a href="/front/jobseeker/user_home" style='display: block; width: 100%; height: 100%; color:#01aaef'>
+        <i class="icon notbig" style='font-size:1rem!important;'>&#xe81e;</i>
         <p class="mb-0" style='font-size:0.8rem;'>我的</p>
       </a>
     </div>
@@ -101,7 +101,7 @@ module.exports = function () {
 </div>
     `
   ctx.state.tname = `
-    <div class="container-fluid fixed-top bor-b-sol bor-eae  align-middle  f-s-17">
+    <div class="container-fluid fixed bor-b-sol bor-eae  align-middle f-s-17" style='z-index:530; top:0; left:0;'>
       <div class="row h-45 lh-45 bg-white">
         <div class="col-2 ">
           <a href="javascript:history.go(-1)" class='t-c-0a0'>

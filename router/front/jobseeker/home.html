@@ -49,7 +49,7 @@
 </div>
 <!--直播-->
 <div class="container-fluid p-0 broadcast h-h125 pr">
-  <a :href="live.href">
+  <a :href="'/front/jobseeker/play?id='+live.href">
     <!--<img :src="live.img" class='w-100 h-h125'>-->
     <img src="../../../skins/img/zhibo.png" class='w-100 h-h125'>
   </a>
@@ -60,7 +60,7 @@
   </div>
 </div>
 <!--热门岗位-->
-<div class='post container-fluid h-h45 w-100 bg-f5 f-s-g15 lh-45 t-c-00b text-center bor-b-sol bor-ccc'>————
+<div class='post container-fluid h-h45 w-100 bg-f5 f-s-g15 lh-45 t-c-00b text-center bor-b-sol bor-ea'>————
   <span class="icon">&#xe8b0;</span>
   <span >热门岗位</span>
 ————</div>
@@ -87,13 +87,25 @@
           <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in list.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
-          <img src="list.logo" class='br-h h-h32 w-w32'>
+          <img :src="list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
         </p>
       </a>
     </li>
   </ul>
+</div>
+<!--切换身份弹框-->
+<div id="dialog1" style="display: none;">
+  <div class="weui-mask z-1030" @click='notshow1'></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd">确认要切换身份吗?</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='notshow1'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure'>确认</a>
+    </div>
+  </div>
 </div>
 <%- fjob%>
 <script>
@@ -136,23 +148,20 @@ new Vue({
     })
   },
   methods: {
-        link(){
-        window.location.href = '/front/jobseeker/search'
-      },
+    link(){
+      window.location.href = '/front/jobseeker/search'
+    },
     switch_1(){
-      weui.confirm('', {
-      title: '确认要切换身份吗?',
-      buttons: [{
-      label: '取消',
-      type: 'default',
-      onClick: function(){ console.log('no') }
-    }, {
-      label: '确定',
-      type: 'primary',
-      onClick: function(){ window.location.href='/front/login/identity' }
-    }]
-  })
-  },
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'block'
+    },
+    notshow1(){
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'none'
+    },
+    sure(){
+      setTimeout(window.location.href='/front/login/identity',1500)
+    },
   }
 })
 </script>

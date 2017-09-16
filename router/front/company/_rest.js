@@ -1,6 +1,13 @@
 // ---------------------------------------------------------------------------- GET
 exports.get = {
   /**
+   * 企业信息
+   */
+  '/company/detail': async (ctx, next) => {
+    ctx.result.ok.data = ctx.company
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
    * 区域列表
    */
   '/area/list': async (ctx, next) => {
@@ -163,7 +170,7 @@ exports.get = {
     ctx.result.ok.data = live
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+/**
    * 培训列表
    */
   '/cultivate/lists': async (ctx, next) => {
@@ -172,13 +179,22 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 培训详情
+   * 瑞安课程详情
    */
   '/cultivate/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let cultivate = await 
-    $.mysql.query($.conf.mysql.main, 'select * from cultivate where id =? ' , [id])
-    ctx.result.ok.data = cultivate
+    let cultivate = await $.mysql.query($.conf.mysql.main, 'select A.*,B.class_starttime as time,B.name as name,B.content as content,B.address as address  from school_detail A,cultivate B where A.culid = ? and A.culid = B.id ', [id])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
+    ctx.result.ok.data = [cultivate,swiper]
+    $.flush(ctx, ctx.result.ok)
+  },
+/**
+ * 学校详情
+ */
+  '/school/detail': async (ctx, next) => {
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from school_detail where culid =0 ' , [null])
+    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
+    ctx.result.ok.data = [detail,swiper]
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -278,20 +294,11 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 我发出的邀请
-   */
-  '/user/invite/record': async (ctx, next) => {
-    let cid = ctx.company.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume_record where cid = ? and status = 1 ', [cid])
-    ctx.result.ok.data = record
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
    * 职位简历记录
    */
   '/job/resume/record/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname from resume_record A,resume B,job C where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? order by sort desc  ', [id,id])
+    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname,D.contact_name as linkname from resume_record A,resume B,job C, company D where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? and A.cid = D.id order by sort desc  ', [id,id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -349,32 +356,15 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 我发出的邀请
-   */
-  '/user/invite/record': async (ctx, next) => {
-    let cid = ctx.company.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  resume_record where cid = ? and status = 1 ', [cid])
-    ctx.result.ok.data = record
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
-   * 学校详情
-   */
-  '/school/detail': async (ctx, next) => {
-    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = 0 ', [null])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
-    ctx.result.ok.data = [detail,swiper]
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
-   * 课程详情
-   */
-  '/cultivate/detail/:id': async (ctx, next) => {
-    let detail = await $.mysql.query($.conf.mysql.main, 'select * from  school_detail where culid = ? ', [ctx.params.id])
-    let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = ? ', [ctx.params.id])
-    ctx.result.ok.data = [detail,swiper]
-    $.flush(ctx, ctx.result.ok)
-  },
+   * 我发出的邀请
+   */
+  '/company/invite/record': async (ctx, next) => {
+    let cid = ctx.company.id
+    let record = await $.mysql.query($.conf.mysql.main,'select A.*, B.name as uname, B.education as education from resume_record A, resume B where A.cid = ? and A.rid = B.id and A.status = 1', [cid])
+    ctx.result.ok.data = record
+    $.flush(ctx, ctx.result.ok)
+  },
+
 }
 // ---------------------------------------------------------------------------- POST
 exports.post = {
@@ -444,9 +434,9 @@ exports.put = {
    */
   '/invite/resume': async (ctx, next) => {
     let invitetime = $.time10()
-    let { interviewtime, mobile, address, remark, id } = ctx.put
+    let { interviewtime, mobile, address, remark, id, linkname } = ctx.put
     let resume = await $.mysql.query($.conf.mysql.main, 'select * from resume_record where id=?', [id])
-    let data=await $.mysql.push($.conf.mysql.main, 'update resume_record set status=1, invitetime=?, interviewtime=?,mobile =?,address=?,remark=?  where id =? ', [invitetime,interviewtime, mobile, address, remark, id])
+    let data=await $.mysql.push($.conf.mysql.main, 'update resume_record set status=1, invitetime=?, interviewtime=?,mobile =?,address=?,remark=?,linkname=?  where id =? ', [invitetime,interviewtime, mobile, address, remark, linkname, id])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },

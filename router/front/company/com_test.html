@@ -20,7 +20,7 @@
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
-          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 h-24 t-c-666 f-s-f14" placeholder="公司名称" v-model='group.name'>
+          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 h-24 t-c-666 f-s-f14" placeholder="公司名称" v-model='group.name' id='name'>
         </div>
         <div class="col-2 align-self-center text-right">
           <span class="t-c-e20">*</span>  
@@ -35,7 +35,7 @@
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind'>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind' id="kind">
           <option value=' ' v-if='false'>请选择公司性质</option>
           <option v-for='t in type' :value='t'>{{t}}</option>
         </select>
@@ -58,7 +58,7 @@
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
         <i class="icon pa r-22 b-p12 t-c-bf">&#xe62e;</i>
-        <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid'>
+        <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid' id='iid'>
           <option :value='0'>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
@@ -75,13 +75,13 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
-        <input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />
-        <!--<i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+        <!--<input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />-->
+        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
           <option>1989</option>
           <option>1990</option>
           <option>1991</option>
-        </select>-->
+        </select>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -96,7 +96,7 @@
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope'>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope' id='scope'>
           <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
@@ -112,7 +112,7 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写公司地址" v-model='group.address'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写公司地址" v-model='group.address' id="address">
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -154,7 +154,7 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写联系人姓名" v-model='group.contact_name'>
+        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-666 f-s-f14 h-24" placeholder="请填写联系人姓名" v-model='group.contact_name' id="contact_name">
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -182,7 +182,7 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0">
-        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0 t-c-666 f-s-f14" v-model='group.summary'></textarea>
+        <textarea rows="3" placeholder="请填写完整的公司概况，保证真实有效" class="border-0 t-c-666 f-s-f14" v-model='group.summary' id="summary"></textarea>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -196,13 +196,13 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 file">
-        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.certificate'>
           <img src="../../../skins/img/1.jpg" class="w-100" >
         </div>
         <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
           <i class="icon">&#xe7ba;</i>
         </div>
-        <input type="file" class="dn" id = 'head' @change='upload'>
+        <input type="file" class="dn" id = 'head' @change='upload' id="cert">
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -218,23 +218,23 @@
       <div class="col-6 p-x-0 file">
 
         <div class="float-left">
-          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.idcard_front'>
             <img src="../../../skins/img/1.jpg" class="w-100" >
           </div>
-          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
+          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile1' v-else>
             <i>正面</i>
           </div>
-          <input type="file" class="dn" id = 'head' @change='upload'>
+          <input type="file" class="dn" id = 'head1' @change='upload1' id="front">
         </div>
 
         <div class="float-left m-l-10">
-          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+          <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.idcard_reverse'>
             <img src="../../../skins/img/1.jpg" class="w-100" >
           </div>
-          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
+          <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile2' v-else>
             <i>反面</i>
           </div>
-          <input type="file" class="dn" id = 'head' @change='upload'>
+          <input type="file" class="dn" id = 'head2' @change='upload2' id="reverse">
         </div>
 
 
@@ -251,13 +251,13 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 file">
-        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.head'>
+        <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.logo'>
           <img src="../../../skins/img/1.jpg" class="w-100" >
         </div>
-        <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
+        <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile3' v-else>
           <i class="icon">&#xe7ba;</i>
         </div>
-        <input type="file" class="dn" id = 'head' @change='upload'>
+        <input type="file" class="dn" id = 'head3' @change='upload3' id='logo'>
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -283,7 +283,10 @@ new Vue({
    type:[],
    scope:[],
    group:{
-     head:''
+     certificate:'',
+     idcard_front:'',
+     idcard_reverse:'',
+     logo:''
    },
   },
   mounted(){
@@ -322,7 +325,25 @@ new Vue({
      $(head).click()
 		},
     upload(){
-      this.group.head = head.value
+      this.group.certificate = head.value
+    },
+    openfile1 () {
+     $(head1).click()
+		},
+    upload1(){
+      this.group.idcard_front = head1.value
+    },
+    openfile2 () {
+     $(head2).click()
+		},
+    upload2(){
+      this.group.idcard_reverse = head2.value
+    },
+    openfile3 () {
+     $(head3).click()
+		},
+    upload3(){
+      this.group.logo = head3.value
     },
     linkage (){
       let bcat = document.getElementById('bcat')
@@ -337,18 +358,58 @@ new Vue({
 			} 
     },
     submit(){
+      let name = $('#name').val()
+      let kind = $('#kind').val()
+      let iid = $('#iid').val()
+      let scope = $('#scope').val()
+      let address = $('#address').val()
+      let contact_name = $('#address').val()
+      let summary = $('#summary').val()
+      let cert = $('#cert').val()
+      let front = $('#front').val()
+      let reverse = $('#reverse').val()
+      let logo = $('#logo').val()
+      if(name == ''){
+        weui.toast('公司名称不能为空',1500)
+        return false
+      }else if(kind == 0){
+        weui.toast('公司性质不能为空',1500)
+        return false
+      }else if(iid == ''){
+        weui.toast('所属行业不能为空',1500)
+        return false
+      }else if(scope == ''){
+        weui.toast('公司规模不能为空',1500)
+        return false
+      }else if(address == ''){
+        weui.toast('注册地址不能为空',1500)
+        return false
+      }else if(contact_name == ''){
+        weui.toast('联系人姓名不能为空',1500)
+        return false
+      }else if(summary == ''){
+        weui.toast('公司简介不能为空',1500)
+        return false
+      }else if(cert == ''){
+        weui.toast('请上传营业执照',1500)
+        return false
+      }else if(front == ''){
+        weui.toast('请上传身份证正面',1500)
+        return false
+      }else if(reverse == ''){
+        weui.toast('请上传身份证反面',1500)
+        return false
+      }else if(logo == ''){
+        weui.toast('请上传公司logo',1500)
+        return false
+      }
+
       let website = document.getElementById('website').value
       let email = document.getElementById('email').value
       let mobile = document.getElementById('mobile').value
-      let group = document.getElementsByClassName('form-control-plaintext')
       let webreg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/
       let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
       let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
-      // for(let i=0; i<group.length; i++){
-      //   if(group[i].value == ''){
-      //     alert('不能为空')
-      //   }
-      // }
       if(!webreg.test(website)){
         weui.toast('输入的网址格式不正确')
         return false
@@ -358,48 +419,28 @@ new Vue({
       }else if(!mobreg.test(mobile)){
         weui.toast('输入的手机号格式不正确')
         return false
-      }else{
-        return true
       }
 
-  //     weui.confirm('', {
-  //     title: '确认要切换身份吗?',
-  //     buttons: [{
-  //     label: '取消',
-  //     type: 'default',
-  //     onClick: function(){ console.log('no') }
-  //   }, {
-  //     label: '确定',
-  //     type: 'primary',
-  //     onClick: function(){ 
-  //       this.ajax.put('/company/add',this.group,(res)=>{
-  //             weui.toast('提交成功,请等待审核', 2000);
-  //           },(err)=>{
-  //             weui.toast(err.errmsg)
-  //           })
-  //      }
-  //   }]
-  // })
-
-
-      weui.confirm('',{
-        title:'您是否确定执行比操作?',
-        buttons: [{
-          label: '取消',
-          type: 'default',
-          onClick: function(){console.log('no')}
-        },{
-          label: '确定',
-          type: 'primary',
-          onClick: function(){
-            this.ajax.put('/company/add',this.group,(res)=>{
-              weui.toast('提交成功,请等待审核', 2000);
-            },(err)=>{
-              weui.toast(err.errmsg)
-            })
-          }
-        }]
+      this.ajax.put('/company/add',this.group,(res)=>{
+        weui.toast('提交成功,请等待审核', 1500);
+        setTimeout("window.location.href='/front/company/station'",1500)
+      },(err)=>{
+        weui.toast(err.errmsg)
       })
+      // weui.confirm('',{
+      //   title:'您是否确定执行此操作?',
+      //   buttons: [{
+      //     label: '取消',
+      //     type: 'default',
+      //     onClick: function(){console.log('no')}
+      //   },{
+      //     label: '确定',
+      //     type: 'primary',
+      //     onClick: function(){
+            
+      //     }
+      //   }]
+      // })
       
     }
   }

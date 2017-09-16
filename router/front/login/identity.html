@@ -19,7 +19,30 @@
     </div>
   </div>
 </div>
-
+<!--用户弹框-->
+<div id="dialog1" style="display: none;">
+  <div class="weui-mask z-1030" @click='notshow1'></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd">您是否先填写资料?</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='canjob'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='surejob'>确认</a>
+    </div>
+  </div>
+</div>
+<!--企业弹框-->
+<div id="dialog2" style="display: none;">
+  <div class="weui-mask z-1030" @click='notshow2'></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd">您是否先填写资料?</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='cancompany'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='surecompany'>确认</a>
+    </div>
+  </div>
+</div>
 <script>
 new Vue({
   el: '#app',
@@ -37,36 +60,36 @@ new Vue({
   },
   methods: {
    work(){
-     weui.confirm('', {
-       title: '您是否先填写资料?',
-       buttons: [{
-         label: '取消',
-         type: 'default',
-         onClick: function(){ window.location.href='/front/jobseeker/home'}
-       }, {
-         label: '确定',
-         type: 'primary',
-         onClick: function(){ window.location.href='/front/jobseeker/new_resume'}
-       }]
-     })
+     let dialog1 = document.getElementById('dialog1')
+     dialog1.style.display = 'block'
+   },
+   canjob(){
+     window.location.href='/front/jobseeker/home'
+   },
+   surejob(){
+      window.location.href='/front/jobseeker/new_resume'
+   },
+   notshow1(){
+     let dialog1 = document.getElementById('dialog1')
+     dialog1.style.display = 'none'
    },
    company(){
      if(this.list.name==''){
-      weui.confirm('', {
-        title: '您是否先填写资料?',
-        buttons: [{
-          label: '取消',
-          type: 'default',
-          onClick: function(){ window.location.href='/front/jobseeker/home'}
-        }, {
-          label: '确定',
-          type: 'primary',
-          onClick: function(){ window.location.href='/front/jobseeker/new_resume'}
-        }]
-      })
+       let dialog2 = document.getElementById('dialog2')
+       dialog2.style.display = 'block'
      }else{
-       window.location.href='/front/jobseeker/home'
+       window.location.href='/front/company/home'
      }
+   },
+   cancompany(){
+     window.location.href='/front/company/home'
+   },
+   surecompany(){
+     window.location.href='/front/company/com_test'
+   },
+   notshow2(){
+     let dialog2 = document.getElementById('dialog2')
+     dialog2.style.display = 'none'
    },
   }
 })

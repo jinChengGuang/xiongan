@@ -16,7 +16,7 @@
       <p class="f-s-f16 f-w-6 lh-25 mb-0 t-c-000">用户反馈通知</p>
       <p class="lh-25 mb-0 f-s-f14">
         <span class=' t-c-666'>姓名：</span>
-        <span class='t-c-00'>{{one.contact_name}}</span>
+        <span class='t-c-00'>{{one.uname}}</span>
       </p>
       <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>学历：</span>
@@ -28,9 +28,9 @@
       </p>
       <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>联系电话：</span>
-        <a class="t-c-2">
           <span>{{one.mobile}}</span>
-          <i class="icon t-c-70a f-s-f18" style='color: #1eaa39'>&#xe845;</i>
+          <a class="t-c-2" href="tel:one.mobile">
+            <i class="icon t-c-70a f-s-f18" style='color: #1eaa39'>&#xe845;</i>
         </a>
       </p>
       <p class="lh-25 mb-0 f-s-f14  t-c-666">
@@ -55,7 +55,7 @@ new Vue({
     name:'我发出的邀请'
   },
   mounted () {
-    this.ajax.get('/user/invite/record', (res) => {
+    this.ajax.get('/company/invite/record', (res) => {
       this.list = res.data
       console.log(this.list)
     }, (err) => {

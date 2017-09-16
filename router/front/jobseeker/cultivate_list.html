@@ -42,7 +42,7 @@
         <a :href="'/front/jobseeker/ruian_detail?id='+ cult.id" class="d-block w-100 h-100 t-c-0a0">
           <div class="w-55 text-left float-left p-l-5">
             <p class="m-0 p-y-5 px-0 f-s-f15 f-w-d">{{cult.name}}</p>
-            <p class="m-0 p-y-5 px-0 t-c-666">高压、低压</p>
+            <p class="m-0 p-y-5 px-0 t-c-666">{{cult.keyword.replace(/\|/g,' ')}}</p>
           </div>
           <div class="w-45 p-t-p5 float-right ">
             <img src="../../../skins/img/class.jpg" alt="" class='w-90'>
@@ -57,7 +57,7 @@
         </div>
         <div class="w-55 text-left float-right p-l-5">
           <p class="m-0 p-y-5 px-0 f-s-f15 f-w-d">{{last.name}}</p>
-          <p class="m-0 p-y-5 px-0 t-c-666">高压、低压</p>
+          <p class="m-0 p-y-5 px-0 t-c-666">{{last.keyword.replace(/\|/g,' ')}}</p>
         </div>
       </a>
     </div>
@@ -123,9 +123,9 @@ new Vue({
     })
     this.ajax.get('/school/detail', (res) => {
       this.school = res.data
-      console.log(this.school)
       this.images = this.school[1]
       this.detail = this.school[0][0]
+      console.log(this.school)      
     }, (err) => {
       console.log(err)
     })
