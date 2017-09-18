@@ -1,6 +1,6 @@
 <%- tname %>
 <div class="container-fluid m-t-46 bg-white none">
-  <div class="row p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
+  <div class="p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
     <div class="col-12 text-center p-t-p9" >
       <img class=" w-30 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
       <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
@@ -9,8 +9,8 @@
   </div>
   <div class="box">
       
-    <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 ">
-      <div class="col-12 t-c-00b f-s-f17 m-x-12">个人基本信息</div>
+    <div class="f-s-9  bor-b-sol bor-eae pt-2 pb-2 ">
+      <div class="col-12 t-c-00b f-s-f17">个人基本信息</div>
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12 ">
@@ -27,14 +27,18 @@
       <label for="" class="col-3 bor-r-sol bor-eae p-x-0">性别</label>
       <div class="col-8 p-x-0 text-right">
         <div class="form-check form-check-inline m-b-0">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="isopen" value="0" v-model='data.sex' > 男
-          </label>
+          <label class="form-check-label custom-radio">
+          <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description align-self-center">男</span>
+        </label>
         </div>
         <div class="form-check form-check-inline m-b-0">
-          <label class="form-check-label m-b-0">
-            <input class="form-check-input" type="radio" name="isopen" value="1" v-model='data.sex'> 女
-          </label>
+          <label class="form-check-label custom-radio">
+          <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description align-self-center">女</span>
+        </label>
         </div>
       </div>
       <div class="col-1 align-self-center text-center p-x-0">
@@ -44,8 +48,8 @@
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
       <label class="col-3 bor-r-sol bor-eae p-x-0">出生年月</label>
-      <div class="col-8 text-right">
-        <input type="month" class="form-control form_datetime_2 " v-model='data.birthday'>
+      <div class="col-8 text-right p-x-0">
+        <input type="month" class="p-x-0 text-right" v-model='data.birthday'>
       </div>
       <div class="col-1 align-self-center text-center p-x-0">
         <span class="t-c-e20">*</span>  
@@ -110,8 +114,8 @@
   </div>
 </div>
 
-<div class="row item pt-3">
-  <button @click='add' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
+<div class="text-center">
+  <button @click='add' class="btn bg-00b t-c-white m-y-10 p-x-30">确定</button>
 </div>
 <script>
 new Vue({

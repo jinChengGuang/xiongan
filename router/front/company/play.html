@@ -1,7 +1,11 @@
 <!--直播-->
 <ul class="container-fluid p-0 m-b-85">
   <li class="pr m-b-10" v-for = 'n in list'>
-    <img :src="n.img" class='w-100 h-150'>
+    <!--<img :src="n.img" class='w-100 h-150'>-->
+    <div class="pr">
+      <img src='../../../skins/img/mv_02.png' class="w-100 h-150" />
+      <img src="../../../skins/img/open_03.png" class="pa t-25 l-0 w-12 l-45 o-4"/>
+    </div>
     <p class="pa t-4 l-0 bg-00b w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3 text-center" style="border-radius:0 50px 50px 0; top:4%; left:0;" v-if='n.status==0'>即将开始</p >
     <p class="pa t-4 l-0 bg-fcb w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3 text-center" style="border-radius:0 50px 50px 0; top:4%; left:0;" v-if='n.status==1'>正在进行</p >
     <p class="pa t-4 l-0 bg-ccc w-w70 h-26 f-s-7 lh-26 t-c-fff p-l-3 text-center" style="border-radius:0 50px 50px 0; top:4%; left:0;" v-if='n.status==2'>已经结束</p >

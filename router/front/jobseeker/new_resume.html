@@ -26,13 +26,17 @@
     <label for="" class="col-3 bor-r-sol bor-eae p-x-0">性别</label>
     <div class="col-8 p-x-0 text-right">
       <div class="form-check form-check-inline m-b-0">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="isopen" value="0" v-model='data.sex' > 男
+        <label class="form-check-label custom-radio">
+          <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description align-self-center">男</span>
         </label>
       </div>
       <div class="form-check form-check-inline m-b-0">
-        <label class="form-check-label m-b-0">
-          <input class="form-check-input" type="radio" name="isopen" value="1" v-model='data.sex'> 女
+        <label class="form-check-label custom-radio">
+          <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description align-self-center">女</span>
         </label>
       </div>
     </div>
@@ -44,7 +48,7 @@
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
     <label class="col-3 bor-r-sol bor-eae p-x-0">出生年月</label>
     <div class="col-8 text-right">
-      <input type="month" class="form-control form_datetime_2 " v-model='data.birthday'>
+      <input type="month" class="p-x-0 text-center" v-model='data.birthday'>
     </div>
     <div class="col-1 align-self-center text-center p-x-0">
       <span class="t-c-e20">*</span>  
@@ -53,8 +57,10 @@
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
     <label for="" class="col-3 bor-r-sol bor-eae p-x-0">最高学历</label>
-    <div class="col-8 p-x-0 align-self-center text-right">
-      <select v-model='data.education' >
+    <div class="col-8 p-x-0 align-self-center text-right pr">
+      <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
+      <select v-model='data.education' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
+        <option value=''>请选择学历</option>
         <option v-for ="v in education" :value="v">{{v}}</option>
       </select>
     </div>
@@ -65,8 +71,10 @@
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
     <label class="col-3 bor-r-sol bor-eae p-x-0">工作经验</label>
-    <div class="col-8 p-x-0 align-self-center text-right">
-      <select v-model='data.experience'>
+    <div class="col-8 p-x-0 align-self-center text-right pr">
+      <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
+      <select v-model='data.experience' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
+        <option value=''>请选择工作经验</option>
         <option v-for ="v in kind" :value="v">{{v}}</option>
       </select>
     </div>
@@ -77,8 +85,10 @@
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
     <label for="" class="col-3 bor-r-sol bor-eae p-x-0">现居住地</label>
-    <div class="col-8 p-x-0 align-self-center text-right">  
-      <select  v-model='data.area'>
+    <div class="col-8 p-x-0 align-self-center text-right pr">
+      <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i> 
+      <select  v-model='data.area' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
+        <option value=''>请选择现居住地</option>
         <option v-for ="v in area" :value="v">{{v}}</option>
       </select>
     </div>
@@ -108,14 +118,17 @@
   </div>
 </div>
 
-<div class="row item pt-3">
-  <button @click='add' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
+<div class="text-center">
+  <button @click='add' class="btn bg-00b t-c-white m-t-10 p-x-30">确定</button>
 </div>
 <script>
 new Vue({
   el: '#app',
   data: {
     data: {
+      education:'',
+      experience:'',
+      area:''
     },
     experience:[],
     education:[],
@@ -148,7 +161,8 @@ new Vue({
   methods: {
     add(){
       this.data.head = head.value
-      this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
+      this.data.birthday=parseInt(Date.parse(new Date(this.data.birthday).toString().slice(0,10)))
+      console.log(this.data.birthday)
       this.ajax.post('/add/resume', this.data,(res) => {
       weui.toast('添加成功', 2000);
       setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)

@@ -1,20 +1,20 @@
 <div class="container-fluid bg-white" :style="{height:height + 'px'}">
   <div class="row">
     <div class="col-12 m-20-auto text-center">
-      <p class="f-s-f19 f-w-b mb-0">请选择当前您进入新区前沿的身份</p>
+      <p class="f-s-f19 f-w-b mb-0">请选择当前您进入新区人才的身份</p>
       <span class="f-s-8 db t-c-98">之后你可以在首页、招聘、求职左上角点击切换身份的图标还可以在“我的 - 身份切换” 中切换</span>
     </div>
   </div>
   <div class="row">
     <div class="col-5 text-center h-p45">
-      <img src="../../../skins/img/identity_02.png" class="img_fluid w-60 m-b-b20 m-t-p25">
+      <img src="../../../skins/img/identity_02.jpg" class="img_fluid w-100 m-b-b20 m-t-p25">
       <a href="javascript:void(0)" class="btn bg-00b mt-3 br-5 t-c-white w-100" @click='work'>我要找工作</a>
     </div>
     <div class="col-2 text-center p-x-0 h-p45">
       <img src="../../../skins/img/line_03.png" class="img_fluid h-200">
     </div>
     <div class="col-5 text-center h-p45">
-      <img src="../../../skins/img/identity_01.png" class="img_fluid w-60 m-b-b20 m-t-p25">
+      <img src="../../../skins/img/identity_01.jpg" class="img_fluid w-100 m-b-b20 m-t-p25">
       <a href="javascript:void(0)" class="btn bg-00b mt-3 br-5 t-c-white w-100" @click='company'>我要招人</a>
     </div>
   </div>
@@ -48,20 +48,31 @@ new Vue({
   el: '#app',
   data: {
     height:'',
-    list:{}
+    list:{},
+    is:[]
   },
   mounted(){
     this.height = document.body.scrollHeight
-    this.ajax.get('/company/test/detail',(res)=>{
-      this.list = res.data[0]
-      },(err)=>{
-        weui.toast(err.errmsg)
-      })
+    // this.ajax.get('/company/test/detail',(res)=>{
+    //   this.list = res.data[0]
+    //   },(err)=>{
+    //     weui.toast(err.errmsg)
+    //   })
+    this.ajax.get('/user/resume/datail',(res)=>{
+      this.is = res.data
+    },(err)=>{
+      weui.toast(err.errmsg)
+    })
   },
   methods: {
    work(){
-     let dialog1 = document.getElementById('dialog1')
-     dialog1.style.display = 'block'
+     if(this.is.length === 0){
+       console.log(111)
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'block'
+     }else{
+       window.location.href='/front/jobseeker/home'
+     }
    },
    canjob(){
      window.location.href='/front/jobseeker/home'

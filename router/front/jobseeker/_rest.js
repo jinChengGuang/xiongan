@@ -105,7 +105,7 @@ exports.get = {
       $.flush(ctx, ctx.result.ok)
     }
   },
-     /**
+  /**
    * 收藏列表
    */
   '/user/collect/collect_list': async (ctx, next) => {
@@ -248,6 +248,7 @@ exports.delete = {
    */
   '/education/delete/:id': async (ctx, next) => {
     let id = ctx.params.id
+    console.log(id)
     let data=await $.mysql.push($.conf.mysql.main, 'delete from education_record where id =? ', [ id ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
@@ -257,6 +258,7 @@ exports.delete = {
    */
   '/experience/delete/:id': async (ctx, next) => {
     let id = ctx.params.id
+    console.log(id)
     let data=await $.mysql.push($.conf.mysql.main, 'delete from experience_record where id =? ', [ id ])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)

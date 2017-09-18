@@ -3,14 +3,15 @@
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">学校名称</div>
     <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入学校名称" v-model='data.school'>
+      <input type="text" class="border-0 text-right" placeholder="请输入学校名称" v-model='p.school'>
     </div>
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">学历/学位</div>
-    <div class="col-9 text-right">
-      <select  v-model='data.education'>
+    <div class="col-9 text-right pr p-x-0">
+      <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
+      <select  v-model='p.education' class="bg-ef br-3 h-24 w-50 t-c-666 f-s-f14 p-l-2">
         <option :value="v" v-for='v in education'> {{v}} </option>
       </select>
     </div>
@@ -18,33 +19,38 @@
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">开始时间</div>
-    <div class="col-9 text-right">
-      <input type="date" v-model='data.start' class="text-right">
+    <div class="col-9 text-right p-x-0">
+      <input type="date" v-model='p.start' class="text-right">
     </div>
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">结束时间</div>
-    <div class="col-9 text-right">
-      <input type="date" v-model='data.end' class="text-right">
+    <div class="col-9 text-right p-x-0">
+      <input type="date" v-model='p.end' class="text-right">
     </div>
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">专业</div>
     <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
+      <input type="text" class="border-0 text-right" placeholder="请输入专业名称" v-model='p.speciality'>
     </div>
   </div>
 </div>
-<div class="row item pt-3">
-  <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
+<div class="text-center">
+  <button @click='next' class="btn bg-00b t-c-white m-t-10 p-x-30">确定</button>
+</div>
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+  <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+  <p class="weui-toast__content">请将信息填写完整！</p > 
 </div>
 <script>
 new Vue({
   el: '#app',
   data: {
-    data:{},
+    p:{},
     education:[],
     name:'添加教育经历'
   },
@@ -57,14 +63,19 @@ new Vue({
   },
   methods: {
     next(){
-      this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
-      this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
-      this.ajax.post('/add/education', this.data,(res) => {
+      if(this.p.school == '' || this.p.education == '' || this.p.education == '' || !this.p.start || !this.p.end || this.p.speciality == ''){
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
+      }
+      this.p.start=(parseInt(new Date(this.p.start).getTime().toString().substr(0, 10)))
+      this.p.end=(parseInt(new Date(this.p.end).getTime().toString().substr(0, 10)))
+      this.ajax.post('/add/education', this.p,(res) => {
       weui.toast('提交成功', 2000);
       if(this.query.get('type')){
         setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
       }else{
-         setTimeout(function () { window.location.href='/front/jobseeker/resume-detail'}, 2000)
+         setTimeout(function () { window.location.href='/front/jobseeker/resume_detail'}, 2000)
       }
         }, (res) => {
           console.log(res.errmsg)
