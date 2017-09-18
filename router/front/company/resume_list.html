@@ -21,10 +21,10 @@
         </p>
         <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
           <span>联系电话:</span>
-          <a >
-            <a href='tel:n.mobile' class='va-m'>{{n.usermobile}}</a>
+          <span @click = "phone(n.usermobile)">
+            <a class='va-m'>{{n.usermobile}}</a>
             <i class="icon t-c-1eaa39 f-s-f30 va-m">&#xe845;</i>
-          </a>
+          </span>
         </p>
         <p class="lh-25 mb-0 f-s-f14 m-t-5 m-l-f5">
           <span>投递日期:</span>
@@ -85,6 +85,11 @@
     </div>
   </div>
 </div>
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+  <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+  <p class="weui-toast__content">请将内容填写完整！</p> 
+</div>
 <%- f%>
 <script>
 new Vue({
@@ -118,6 +123,9 @@ new Vue({
     })
   },
   methods: {
+    phone(date){
+      window.location.href = 'tel:' + date;
+    },
     show2(n){
       let dialog2 = document.getElementById('dialog2')
       dialog2.style.display = 'block'
@@ -138,10 +146,10 @@ new Vue({
       this.p.linkname = ''
     },
     invite(){
-      if(this.p.address == '' || this.p.mobile == '' || this.p.linkname == ''){
-        let dialog2 = document.getElementById('dialog2')
-        dialog2.style.display = 'none'
-        weui.alert('填写的信息不完全，请重新填写！', { title: '提示' });
+      if(this.p.interviewtime == '' || this.p.mobile == '' || this.p.remark == '' || this.p.mobile == ''){
+        let fail = document.getElementById('fail')
+        fail.style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
         return
       }
       this.ajax.put('/invite/resume',this.p,(res) => {

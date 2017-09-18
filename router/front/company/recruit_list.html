@@ -1,11 +1,14 @@
 <div class="container-fluid header pf t-0 h-45 lh-45 bg-ef  z-1030  fixed-top" >
   <div class="row  bg-eee">
-    <div class="col-1 icon icon_1 mt-3 f-s-f22 pl-2 t-c-7c88" @click='switch_1'>&#xe90b;</div>
+    <div class="col-1 icon icon_1 mt-3 f-s-f22 pl-2 t-c-7c88" @click='switch_1' v-if="!query.get('name')">&#xe90b;</div>
+    <a class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" v-if="query.get('name')" href='/front/company/recruit_list'>&#xe86c;</a>
     <div class="col-10 pl-3 " >
       <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'v-model="p.name" @focus='link'>
-      <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
+      <!--<span class="f-s-f20 icon pr" style='top:-41px; left:87%;'><a href="/front/company/recruit_list">&#xe90d;</a></span>-->
+      <span class='icon t-c-c1' style='position: absolute; top:34%; left:7%;'>&#xe7fd;</span>
     </div>
-    <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%; 'v-for='n in status' v-show='n.status = 1'></span></div>
+    <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%; 'v-for='n in status' v-show='n.status = 1'></span>
+    </div>
   </div>
 </div>
 <!--过滤-->
@@ -29,9 +32,15 @@
 <!--弹层-->
 <div class='window container-fluid p-0  w-100  t-14 z-100 dn pf t-85' id='pop' id='pop' style='display: none;'>
   <div class='datail p-10 bg-f5f5 pr oh d-block clear p-b-50 z-10030'>
-    <ul class='m-b-0'>
+    <ul class='m-b-0' style='list-style-type: none;'>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area'>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''":class="{'bg-00b': p.area == ''}">全部</span>
+      </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n':class="{'bg-00b': p.area == n}">{{n}}</span>
+      </li>
+      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay'>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''" :class="{'bg-00b': p.pay == ''}">全部</span>
       </li>
       <li class='float-left p-l-f2  .p-r-f2  ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n}">{{n}}</span>
@@ -175,11 +184,11 @@ new Vue({
 
   },
   mounted(){
-    console.log(this.time.dateFormat)
     this.body_h = document.body.scrollHeight
     this.p.name = this.query.get('name')
     this.ajax.get('/job/all/list?name=' + this.p.name,(res)=>{
       this.list = res.data
+      console.log(this.list)
     },(err)=>{
       console.log(err)
     }),
@@ -190,11 +199,13 @@ new Vue({
     }),
     this.ajax.get('/area/list',(res)=>{
       this.area = res.data
+      console.log(this.area)
     },(err)=>{
       console.log(err)
     })
     this.ajax.get('/pay/list',(res)=>{
       this.pay = res.data
+      console.log(this.pay)
     },(err)=>{
       console.log(err)
     })

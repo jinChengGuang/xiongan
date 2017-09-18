@@ -27,11 +27,9 @@
       </p>
       <p class="m-b-2 f-s-f14 t-c-000">
         <span>联系电话：</span>
-        <a class="t-c-666" href='n.mobile'>
-          <span class='va-m'>{{n.mobile}}</span>
-          <span class='va-m'>({{n.linkname}})</span>
-          <i class="icon t-c-1eaa39 f-s-f30 va-m">&#xe845;</i>
-        </a>
+        <span class='va-m'>{{n.mobile}}</span>
+        <span class='va-m'>({{n.linkname}})</span>
+        <i class="icon t-c-1eaa39 f-s-f30 va-m" @click='phone(n.mobile)'>&#xe845;</i>
       </p>
       <p class="m-b-2 f-s-f14 t-c-000">
         <span>公司名称：</span>
@@ -74,7 +72,10 @@ new Vue({
       }, (err) => {
         console.log(err)
       })
-    }
+    },
+    phone(date){
+      window.location.href = 'tel:' + date;
+    },
   }
 })
 </script>

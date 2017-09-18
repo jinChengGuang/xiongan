@@ -13,9 +13,7 @@
   <!--轮播图-->
   <div id="carouselId" class="carousel slide h-150" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselId" data-slide-to="1"></li>
-      <li data-target="#carouselId" data-slide-to="2"></li>
+      <li v-for='(n,i) in images' data-target="#carouselId" data-slide-to="i" class="active">{{i}}</li>
     </ol>
     <div class="carousel-inner" role="listbox" style="height:150px">
       <div class="carousel-item active w-100" v-for='n in images'>
@@ -26,7 +24,7 @@
   <!--学校简介-->
   <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8fc;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">学校简介</span>
     </p>
     <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
@@ -34,7 +32,7 @@
   <!--培训列表-->
   <div class="container-fluid w-100 bg-white m-t-5 f-s-6">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f9;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">培训课程</span>
     </p>
     <div class="row p-x-10">
@@ -65,7 +63,7 @@
   <!--我们的优势-->
   <div class=" bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f8;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">优势</span>
     </p>
     <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.merit}}</p>

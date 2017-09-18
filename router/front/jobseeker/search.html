@@ -1,13 +1,14 @@
 <div class="fixed-top h-h45 bor-b-sol bor-eae bg-efe">
   <div class="row mt-1">
     <div class="col-2 icon p-t-10 f-s-f20 text-center p-r-0 va-m" @click='go'>&#xe86c;</div>
-    <div class="col-8 px-0 ">
+    <div class="col-8 px-0">
       <form action="#">
-        <input type="text" class='bg-fff w-100 f-s-7 h-30 p-l-l10 br-5 m-t-3 va-m ' placeholder="搜索职位公司" v-model='keyword'>
+        <input type="text" class='bg-fff w-100 f-s-7 h-30 br-5 m-t-3 va-m' style='padding-left: 5%;' placeholder="搜索职位公司" v-model='keyword'>
       </form>
-      <span class='icon pr t-28 l-2 f-s-f15'>&#xe7fd;</span>
+      <!--<span class='icon pr t-28 l-2 f-s-f15'>&#xe7fd;</span>-->
+      <!--<span class="f-s-f20 icon pr" style='top:-26px; left:87%;'><a href="/front/company/recruit_list">&#xe90d;</a></span>-->
     </div>
-    <div class="col-2 f-s-f20 icon p-t-9 p-l-15"><a href="/front/jobseeker/jobseeker_list">&#xe90d;</a></div>
+    <div class="f-s-f14 col-2 p-t-7 p-l-5"><a class='t-c-ccc' :href="'/front/jobseeker/jobseeker_list?name='+keyword">搜索</a></div>
   </div>
 </div>
 
@@ -50,13 +51,6 @@
       history:[],
       keyword:'',
       start:new Date().setHours(0,0,0,0)/1000
-    },
-    watch:{
-      keyword(curVal, oldVal){
-        if(curVal){
-          setTimeout(window.location.href = '/front/jobseeker/jobseeker_list?name=' + this.keyword,1000)
-        }
-      }
     },
     mounted(){
       this.ajax.get('/job/search/hot',(res)=>{

@@ -65,14 +65,6 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
 /**
-   * 经验要求列表
-   */
-  '/experience/list': async (ctx, next) => {
-    ctx.result.ok.data = ['无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
-    $.flush(ctx, ctx.result.ok)
-  },
-
-/**
    * 职位列表
    */
   '/job/all/list': async (ctx, next) => {
