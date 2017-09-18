@@ -40,6 +40,11 @@
   <img src="../../../skins/img/shoucang.png" class='w-w150 h-h150 '>
   <p class='f-s-f14 t-c-999 m-b-3'>暂无岗位收藏记录</p>
 </div>
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+    <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+    <p class="weui-toast__content">取消收藏</p > 
+</div>
 <%- fjob%>
 <script>
   new Vue({
@@ -70,7 +75,12 @@
         this.ajax.delete('/collect/delete/'+ jid,(res)=>{
         this.list[i].iscollect=false
         this.show = false
-        weui.toast('取消收藏', 2000);
+        let fail = document.getElementById('fail')
+          fail.style.display = 'block'
+        setTimeout(function(){
+          fail.style.display = 'none'
+        },2000)
+        setTimeout(window.loction.reload(),2000)
         },(err)=>{
 
         })

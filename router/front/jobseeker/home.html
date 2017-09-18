@@ -8,14 +8,15 @@
     <div class="col-1 icon pl-0 mt-2 letter f-s-f22 pr p-t-5"><a href='/front/jobseeker/invitation_receive' class='t-c-7c88 f-s-f20'>&#xe7d5;<a ><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:8px; right:27%;' v-for='n in status' v-show='n.status = 1'></span></div>
   </div>
 </div>
+
 <!--轮播图-->
-<div id="carouselId" class="carousel slide m-t-45" data-ride="carousel">
+<div id="carouselId" class="carousel slide m-t-45" data-ride="carousel"  data-interval="2000">
   <ol class="carousel-indicators">
     <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" class="active"></li>
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item " v-for='(v,i) in swiper' :class="{'active': i == 0}">
-      <!--<img :src="v.url" class='w-100 h-h150'>-->
+      <!--< img :src="v.url" class='w-100 h-h150'>-->
       <img src="../../../skins/img/panner.jpg" class='w-100 h-h150'>
     </div>
   </div>
@@ -165,4 +166,5 @@ new Vue({
     },
   }
 })
+
 </script>
