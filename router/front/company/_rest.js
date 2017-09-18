@@ -18,7 +18,7 @@ exports.get = {
    * 经验要求列表
    */
   '/experience/list': async (ctx, next) => {
-    ctx.result.ok.data = ['无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
+    ctx.result.ok.data = ['不限','无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -26,13 +26,6 @@ exports.get = {
    */
   '/pay/list': async (ctx, next) => {
     ctx.result.ok.data = ['2000以下','2000-3000','3000-5000','5000-10000','10000以上']
-    $.flush(ctx, ctx.result.ok)
-  },
-  /**
-   * 经验要求
-   */
-  '/experience/list': async (ctx, next) => {
-    ctx.result.ok.data = ['不限','可接受无经验','1年以下','1-3年','3-5年','5-10年','10年以上']
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -46,7 +39,7 @@ exports.get = {
    * 学历要求列表
    */
   '/education/list': async (ctx, next) => {
-    ctx.result.ok.data = ['初中','中技','高中','中专','大专','本科','硕士','MBA','EMBA','博士','其他']
+    ctx.result.ok.data = ['不限','初中','中技','高中','中专','大专','本科','硕士','MBA','EMBA','博士','其他']
     $.flush(ctx, ctx.result.ok)
   },
    /**

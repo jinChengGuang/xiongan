@@ -2,9 +2,11 @@
 <div class="container-fluid f-s-8 m-t-46 bg-white t-c-666 f-s-f14 none m-b-80">
    <div class="row p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
       <div class="col-12 text-center p-t-p9" >
-        <img class=" w-30 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
-        <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
-        <input type="file" class="dn" id = 'head' @change='upload'>
+        <div class="w100 h100 br-h bg-white ma">
+          <img class="w100 h100 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
+          <i class="icon f-s-26 p-t-25" @click='openfile' v-else >&#xe81e;</i>
+          <input type="file" class="dn" id = 'head' @change='upload'>
+        </div>
       </div>
     </div>
 
@@ -24,11 +26,11 @@
         <span>{{data.age}}</span>
       </div>
       <div class="col-12 p-y-p1 none">
-        <i class="icon">&#xe8fa;</i>
+        <i class="icon f-s-10">&#xe8fa;</i>
         <span>{{data.mobile}}</span>
       </div>
       <div class="col-12 p-y-p1 none">
-        <i class="icon">&#xe905;</i>
+        <i class="icon f-s-10">&#xe905;</i>
         <span>{{data.email}}</span>
       </div>
       <div class="col-12 p-y-p1 none">
@@ -66,7 +68,7 @@
       </div>
     </div>
 
-    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none">
+    <div class="row bor-t-sol bor-eae p-y-p2 m-x-12 none">
       <span>{{data.evaluate}}</span>
     </div>
 
@@ -79,17 +81,15 @@
     </div>
   </div>
 
-   <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none"   v-for='v in education'>
-    <div class="col-10 none">
+   <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none" v-for='v in education'>
+    <div class="col-9 none">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
-    <div class="col-1 text-right none">
+    <div class="col-3 text-right none">
       <a :href='"/front/jobseeker/edit_education?id="+v.id'>
         <i class="icon t-c-00b">&#xe803;</i>
       </a>
-    </div>
-    <div class="col-1 text-right none">
-      <i class="icon t-c-00b" @click='deledu(v.id)'>&#xe7f9;</i>
+      <i class="icon t-c-00b p-l-5" @click='del1(v)'>&#xe7f9;</i>
     </div>
     <div class="col-12 none">{{v.school}}</div>
     <div class="col-12 none">{{v.speciality}}</div>
@@ -105,19 +105,31 @@
   </div>
 
   <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none" v-for='v in experience'>
-    <div class="col-10 none">
+    <div class="col-9 none">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
-    <div class="col-1 text-right none">
+    <div class="col-3 text-right none">
       <a :href='"/front/jobseeker/edit_experience?id="+v.id'>
         <i class="icon t-c-00b">&#xe803;</i>
       </a>
-    </div>
-    <div class="col-1 text-right none">
-      <i class="icon t-c-00b" @click='delexp(v.id)'>&#xe7f9;</i>
+      <i class="icon t-c-00b p-l-5" @click='del1(v)'>&#xe7f9;</i>
     </div>
     <div class="col-12 none">{{v.company}}</div>
     <div class="col-12 none">{{v.job}}</div>
+  </div>
+</div>
+<!--删除工作经历弹框-->
+<div id="dialog2" style="display: none;">
+  <div class="weui-mask z-1030"></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd" v-if="type == 'exp'">您确定要删除此工作经历吗?</div>
+    <div class="weui-dialog__bd" v-if="type == 'edu'">您确定要删除此教育经历吗?</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='can1'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='delexp' v-if="type == 'exp'">确认</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='deledu'  v-if="type == 'edu'">确认</a>
+    </div>
   </div>
 </div>
 <%- fjob%>
@@ -130,7 +142,9 @@ new Vue({
     education:[],
     sex:['男','女'],
     name:'我的简历',
-    keyword:'my'
+    keyword:'my',
+    delid:'',
+    type:''
   },
   mounted () {
     this.ajax.get('/user/resume/experience/'+this.query.get('id'), (res) => {
@@ -152,21 +166,21 @@ new Vue({
     })
   },
   methods: {
-    delexp(id){
-     this.ajax.delete('/experience/delete/'+id,(res) => {
-        weui.toast('收藏成功', 2000);
-       setTimeout('window.location.reload()', 1000)
+    delexp(){
+     this.ajax.delete('/experience/delete/'+this.delid,(res) => {
+        weui.toast('删除成功', 1500);
+       setTimeout('window.location.reload()', 1500)
       
       }, (res) => {
-        console.log(res.errmsg)
+        weui.toast(err.errmsg)
       })
     },
-    deledu(id){
-     this.ajax.delete('/education/delete/'+id,(res) => {
-      console.log('删除成功')
-      window.location.reload()
+    deledu(){
+     this.ajax.delete('/education/delete/'+this.delid,(res) => {
+      weui.toast('删除成功',1500)
+      setTimeout('window.location.reload()', 1500)
       }, (res) => {
-        console.log(res.errmsg)
+        weui.toast(err.errmsg)
       })
     },
     openfile () {
@@ -174,6 +188,29 @@ new Vue({
 		},
     upload(){
       this.data.head = head.value
+    },
+    // del(){
+    //   let dialog1 = document.getElementById('dialog1')
+    //   dialog1.style.display = 'block'
+    // },
+    can(){
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'none'
+    },
+
+    del1(v){
+      this.delid = v.id
+      if(v.school){
+        this.type = 'edu'
+      }else{
+        this.type = 'exp'
+      }
+      let dialog1 = document.getElementById('dialog2')
+      dialog1.style.display = 'block'
+    },
+    can1(){
+      let dialog1 = document.getElementById('dialog2')
+      dialog1.style.display = 'none'
     },
   }
 })

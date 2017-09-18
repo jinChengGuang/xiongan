@@ -31,6 +31,11 @@
 <div class="row item pt-3">
   <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">保存</button>
 </div>
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+  <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+  <p class="weui-toast__content">请将信息填写完整！</p > 
+</div>
 <script>
 new Vue({
   el: '#app',
@@ -43,6 +48,11 @@ new Vue({
   },
   methods: {
     next(){
+      if(this.data.company == '' || this.data.job == '' || !this.data.start || !this.data.end){
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
+      }
       this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
       this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
       this.ajax.post('/add/experience', this.data,(res) => {
@@ -50,7 +60,7 @@ new Vue({
       if(this.query.get('type')){
         setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
       }else{
-         setTimeout(function () { window.location.href='/front/jobseeker/resume-detail'}, 2000)
+         setTimeout(function () { window.location.href='/front/jobseeker/resume_detail'}, 2000)
       }
 
       }, (res) => {

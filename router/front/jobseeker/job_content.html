@@ -1,21 +1,22 @@
 <%- tname %>
 <div class="container-fluid m-t-46">
   <div class="row p-t-10 " :style="{height:cat_height + 'px'}">
-    <div class="col-5 none bg-f3f8" >
+    <div class="col-5 none bg-f3f" >
       <ul class="list-unstyled text-center bor-r-sol bor-eae">
-        <li class="h-50 lh-50 bor-b-sol  bor-eae">全部</li>
+        <li class="h-50 lh-50 bor-b-sol bor-t-sol bor-eae">全部</li>
         <li v-for='v in big' @click='onbig(v.id)' :class="{'bg-white': bigid == v.id,'t-c-00b': bigid == v.id }" class="h-50 lh-50 bor-b-sol bor-eae" >{{v.name}}</li>
       </ul>
     </div>
-    <div class="col-7 bg-white none">
-      <ul class="list ">
+    <div class="col-7 bg-white none bor-t-sol bor-eae">
+      <ul class="list">
         <li v-for='v in middle' class='h-50 lh-50 bor-b-sol bor-eae t-c-999 w-100' @click='onsmall(v.id)'  >
           <i class="icon p-l-10">&#xe806;</i>
           <span :class="{'t-c-00b': mid == v.id }">{{v.name}}</span>
           <i class="icon right p-y-15 p-r-10 t-c-00b" v-if='mid == v.id'>&#xe7c2;</i>
           <i class="icon right p-y-15 p-r-10 " v-else>&#xe7c3;</i>
-            <ul class="child h-50 lh-50 bor-b-sol bor-eae t-c-999" >
-              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)'>
+            <ul class="h-50 lh-50 t-c-999 bg-ef right_list">
+              <li v-for='i in small' v-if='v.id==i.mid' @click='choose(i.id,i.name)' class="bor-b-sol bor-eae">
+                <i class="icon p-l-10">&#xe806;</i>
                 <span  class='p-l-25' @click='choose(i.id,i.name)'>{{i.name}}</span>
               </li>
             </ul>

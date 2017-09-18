@@ -21,19 +21,19 @@
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
           <i class="icon pa r-22 t-7 t-c-bf">&#xe62e;</i>
-          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id="bcat" @click='linkage'>
-            <option>请选择</option>
-            <option v-for='o in one' :value='o.id'> {{o.name}} </option>
+          <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='o.id' @change='onbig(o.id)'>
+            <option value=''>请选择</option>
+            <option v-for='o in big' :value='o.id'> {{o.name}} </option>
           </select><br/>
           <i class="icon pa r-22 t-44 t-c-bf">&#xe62e;</i>
-          <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' @click='link'>
-            <option>请选择</option>
-            <option v-for='t in twocat' :value='t.id'> {{t.name}} </option>
+          <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='t.id' @change='onsmall(t.id)'>
+            <option value=''>请选择</option>
+            <option v-for='t in middle' :value='t.id'> {{t.name}} </option>
           </select><br/>
           <i class="icon pa r-22 b-p7 t-c-bf">&#xe62e;</i>
           <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.jtid' id='cat'>
-            <option value='0'>请选择</option>
-            <option v-for='n in threecat' :value='n.id'> {{n.name}} </option>
+            <option value=''>请选择</option>
+            <option v-for='n in small' :value='n.id'> {{n.name}} </option>
           </select>
         </div>
         <div class="col-2 align-self-center text-right">
@@ -64,6 +64,7 @@
         <div class="col-6 p-x-0 align-self-center pr">
           <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
           <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.pay'>
+            <option value=''>请选择薪资水平</option>
             <option v-for='list in pay' :value='list'>{{list}}</option>
           </select>
         </div>
@@ -98,7 +99,7 @@
         <div class="col-6 p-x-0 align-self-center pr">
           <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
           <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.area'>
-            <option>请选择</option>
+            <option value=''>请选择工作区域</option>
             <option v-for='a in area' :value='a'>{{a}}</option>
           </select> 
         </div>
@@ -116,7 +117,7 @@
         <div class="col-6 p-x-0 align-self-center pr">
           <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
           <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.education'>
-            <!--<option>本科</option>-->
+            <option value=''>请选择学历</option>
             <option v-for='e in education' :value='e'>{{e}}</option>
           </select>
         </div>
@@ -134,7 +135,7 @@
         <div class="col-6 p-x-0 align-self-center pr">
           <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
           <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.experience'>
-            <!--<option value="1">3年以上</option>-->
+            <option value=''>请选择经验</option>
             <option v-for='exper in exper'>{{exper}}</option>
           </select>
         </div>
@@ -225,31 +226,40 @@
 new Vue({
   el: '#app',
   data: {
-    jobs: {},
-    list: [],
-    one: [],
-    two: [],
-    twocat:[],
-    three: [],
-    threecat:[],
+    o:{
+      id:''
+    },
+    t:{
+      id:''
+    },
+    jobs: {
+      jtid:'',
+      pay:'',
+      area:'',
+      education:'',
+      experience:''
+    },
     area:[],
     li:[],
     exper:[],
     education: [],
     pay: [],
+    experience:[],
+    big:[],
+    middle:[],
+    small:[],
+    bigid:null,
+    mid:null,
+    sid:null,
   },
   mounted(){
     //职位类型
     this.ajax.get('/jobtype/list',(res)=>{
-      this.list = res.data
-      for(let i of this.list){
-        if(i.bid == 0 && i.mid == 0){
-          this.one.push(i)
-        }else if(i.bid!=0 && i.mid==0){
-          this.two.push(i)
-        }else{
-          this.three.push(i)
-        }      
+      this.experience = res.data
+      for(let v of this.experience){
+        if(v.bid == 0){
+          this.big.push(v)
+        }
       }
     },(err)=>{
 
@@ -309,7 +319,7 @@ new Vue({
       }
       this.jobs.benefit = b
       this.ajax.post('/job/add',this.jobs,(res)=>{
-        weui.toast('发布成功', 1500)
+        weui.toast('发布成功,请等待审核', 2000)
         setTimeout("window.location.href='/front/company/job_send'",1500)
       },(err)=>{
         console.log(err.errmsg)
@@ -324,25 +334,21 @@ new Vue({
       
     },
     //联动
-    linkage(){
-      let bcat = document.getElementById('bcat')
-      if(bcat.value !=0){
-        this.twocat=[]
-        for(let two of this.two){
-          if(two.bid == bcat.value){
-            this.twocat.push(two)
-          }
+     onbig(id){
+      this.middle=[]
+      this.bigid = id
+      for(let v of this.experience){
+        if(v.bid==id&& v.mid ==0 ){
+          this.middle.push(v)
         }
       }
     },
-    link(){
-      let mcat = document.getElementById('mcat')
-      if(mcat.value !=0 ){
-        this.threecat=[]
-        for(let three of this.three){
-          if(three.mid == mcat.value){
-            this.threecat.push(three)
-          }
+    onsmall(id){
+      this.mid=id
+      this.small=[]
+     for(let v of this.experience){
+        if(v.mid ==id ){
+          this.small.push(v)
         }
       }
     },

@@ -36,7 +36,7 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind' id="kind">
-          <option value=' ' v-if='false'>请选择公司性质</option>
+          <option value=''>请选择公司性质</option>
           <option v-for='t in type' :value='t'>{{t}}</option>
         </select>
       </div>
@@ -53,13 +53,13 @@
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-11 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='bcat' @click="linkage">
-          <option :value='0'>请选择</option>
+        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='bcat' @change="linkage">
+          <option value=''>请选择</option>
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
         <i class="icon pa r-22 b-p12 t-c-bf">&#xe62e;</i>
         <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid' id='iid'>
-          <option :value='0'>请选择</option>
+          <option value=''>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
       </div>
@@ -77,11 +77,13 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <!--<input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />-->
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
+        <input type="month" class="p-x-0 text-center bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
+        <!--<select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2">
+          <option value=''>请选择年份</option>
           <option>1989</option>
           <option>1990</option>
           <option>1991</option>
-        </select>
+        </select>-->
       </div>
       <div class="col-2 align-self-center text-right">
         <span class="t-c-e20">*</span>  
@@ -97,6 +99,7 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope' id='scope'>
+          <option value=''>请选择公司规模</option>
           <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
@@ -270,6 +273,40 @@
       <!--<a href="/front/company/station" class="btn br-0 w-100 bg-primary t-c-white">确定</a>-->
     </div>
   </form>
+
+  <!--用户弹框-->
+  <div id="dialog1" style="display: none;">
+    <div class="weui-mask z-1030"></div>
+    <div class="weui-dialog f-s-8 br-5">
+      <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+      <div class="weui-dialog__bd">您是否确定执行此操作?</div>
+      <div class="weui-dialog__ft">
+        <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='canjob'>取消</a>
+        <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='submit'>确认</a>
+      </div>
+    </div>
+  </div>
+
+  <!--有没有注册弹层-->
+      <div id="dialog2" style="display: none;">
+        <div class="weui-mask z-1030"></div>
+        <div class="weui-dialog f-s-8 br-5">
+          <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+          <div class="weui-dialog__bd">您还没有注册账号，去注册?</div>
+          <div class="weui-dialog__ft">
+            <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='can1'>取消</a>
+            <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='del1'>确认</a>
+          </div>
+        </div>
+      </div>
+
+
+  <!--失败弹层-->
+  <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' class='fail' id="fail">
+     <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+     <p class="weui-toast__content">取消操作</p > 
+  </div>
+
 </div>
 
 <script>
@@ -286,8 +323,13 @@ new Vue({
      certificate:'',
      idcard_front:'',
      idcard_reverse:'',
-     logo:''
+     logo:'',
+     iid:'',
+     kind:'',
+     age:'',
+     scope:''
    },
+   login:[]
   },
   mounted(){
     this.ajax.get('/company/industry/list',(res)=>{
@@ -305,22 +347,28 @@ new Vue({
       this.big = bigcat
       this.smallall = smallall
     },(err)=>{
-      weui.toast(err.errmsg)
+      console.log(err.errmsg)
     }),
     //性质
     this.ajax.get('/company/kind/list',(res)=>{
       this.type = res.data
     },(err)=>{
-      weui.toast(err.errmsg)
+      console.log(err.errmsg)
     })
     //规模
     this.ajax.get('/company/scope/list',(res)=>{
       this.scope = res.data
     },(err)=>{
-      weui.toast(err.errmsg)
+      console.log(err.errmsg)
     })
   },
   methods: {
+    del1(){
+      window.location.href = '/front/login/register'
+    },
+    can1(){
+      window.location.href = '/front/company/home'
+    },
     openfile () {
      $(head).click()
 		},
@@ -370,37 +418,39 @@ new Vue({
       let reverse = $('#reverse').val()
       let logo = $('#logo').val()
       if(name == ''){
-        weui.toast('公司名称不能为空',1500)
+        alert('公司名称不能为空',1500)
+        // document.getElementById('fail').style.display = 'block'
+        // setTimeout("document.getElementById('fail').style.display='none'",1500)
         return false
       }else if(kind == 0){
-        weui.toast('公司性质不能为空',1500)
+        alert('公司性质不能为空',1500)
         return false
       }else if(iid == ''){
-        weui.toast('所属行业不能为空',1500)
+        alert('所属行业不能为空',1500)
         return false
       }else if(scope == ''){
-        weui.toast('公司规模不能为空',1500)
+        alert('公司规模不能为空',1500)
         return false
       }else if(address == ''){
-        weui.toast('注册地址不能为空',1500)
+        alert('注册地址不能为空',1500)
         return false
       }else if(contact_name == ''){
-        weui.toast('联系人姓名不能为空',1500)
+        alert('联系人姓名不能为空',1500)
         return false
       }else if(summary == ''){
-        weui.toast('公司简介不能为空',1500)
+        alert('公司简介不能为空',1500)
         return false
       }else if(cert == ''){
-        weui.toast('请上传营业执照',1500)
+        alert('请上传营业执照',1500)
         return false
       }else if(front == ''){
-        weui.toast('请上传身份证正面',1500)
+        alert('请上传身份证正面',1500)
         return false
       }else if(reverse == ''){
-        weui.toast('请上传身份证反面',1500)
+        alert('请上传身份证反面',1500)
         return false
       }else if(logo == ''){
-        weui.toast('请上传公司logo',1500)
+        alert('请上传公司logo',1500)
         return false
       }
 
@@ -411,51 +461,33 @@ new Vue({
       let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
       let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
       if(!webreg.test(website)){
-        weui.toast('输入的网址格式不正确')
+        alert('输入的网址格式不正确')
         return false
       }else if(!emareg.test(email)){
-        weui.toast('输入的邮箱格式不正确')
+        alert('输入的邮箱格式不正确')
         return false
       }else if(!mobreg.test(mobile)){
-        weui.toast('输入的手机号格式不正确')
+        alert('输入的手机号格式不正确')
         return false
       }
 
+      let a = this.group.age.substring(0,4)
+      this.group.age = a
       this.ajax.put('/company/add',this.group,(res)=>{
         weui.toast('提交成功,请等待审核', 1500);
         setTimeout("window.location.href='/front/company/station'",1500)
       },(err)=>{
-        weui.toast(err.errmsg)
-      })
-      // weui.confirm('',{
-      //   title:'您是否确定执行此操作?',
-      //   buttons: [{
-      //     label: '取消',
-      //     type: 'default',
-      //     onClick: function(){console.log('no')}
-      //   },{
-      //     label: '确定',
-      //     type: 'primary',
-      //     onClick: function(){
-            
-      //     }
-      //   }]
-      // })
-      
-    }
+        console.log(err.errmsg)
+      })   
+    },
+    canjob(){
+     let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'none'
+   },
+   surejob(){
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'block'
+   },
   }
 })
-</script>
-
-<script>
-  $(function(){
-      $('.yearpicker').datepicker({  
-          startView: 'decade',  
-            minView: 'decade',  
-            format: 'yyyy',  
-            maxViewMode: 2,  
-            minViewMode:2,  
-            autoclose: true  
-          });  
-    })
 </script>

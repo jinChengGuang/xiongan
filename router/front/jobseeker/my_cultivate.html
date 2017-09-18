@@ -3,35 +3,50 @@
   <div class="row h-45 lh-45 bg-white">
     <div class="col-2 ">
       <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
+        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
       </a>
     </div>
     <div class="col-8 text-center">
-      <span>课程详情</span>
+      <span class="t-c-32 f-s-f17">我的报名培训</span>
     </div>
     <div class="col-2"></div>
   </div>
 </div>
 
 <!--空页-->
-<div class="w-100 m-t-p30 text-center" style="display: none;" >
-  <img src="http://img1.imgtn.bdimg.com/it/u=2200875053,59610386&fm=27&gp=0.jpg" alt="" class="w-70">
+<div class="w-100 m-t-p30 text-center" v-if='list.length==0' >
+  <img src="../../../skins/img/my_03.png" alt="" class="w-60">
+  <p class="text-center mt-5 t-c-98">您还没有培训记录哟!</p>
 </div>
 <!--报名列表-->
 <div class="box m-t-55">
   <ul class="f-s-8 m-b-80">
-    <li class="m-t-10 p-10 bg-white br-5" v-for='n in list'>
+    <li class="p-10 bg-white br-5 w-95 ma-10 " v-for='n in list'>
       <p class="p-b-p5 m-b-0">
-        <span class="f-w-b f-s-10">{{n.culname}}</span>
-        <i class="icon"></i>
+        <span class="f-w-b f-s-f16">{{n.culname}}</span>
+        <a :href="'/front/company/class_detail?id='+n.culid" class="float-right f-s-11"><i class="icon">&#xe7c4;</i></a>
       </p>
       <p class="p-b-p5 m-b-0">
         <span>您于{{time.dateFormat( 'yyyy-MM-dd', n.apply_time)}}报名的{{n.culname}}待审核</span>
       </p>
       <p class="text-right m-b-0">
-        <button type="button" class="btn btn-sm btn-secondary" @click='cancel(n.id)'>取消报名</button>
-        <a name="" id="" class="btn btn-sm btn-primary" href="tel:n.mobile" role="button">联系客服</a>
+        <button type="button" class="btn btn-sm bg-c6 t-c-white" @click='cancompany'>取消报名</button>
+        <a name="" id="" class="btn btn-sm bg-00b t-c-white" href="tel:n.mobile" role="button">联系客服</a>
       </p>
+
+       <!--企业弹框-->
+      <div id="dialog2" style="display: none;">
+        <div class="weui-mask z-1030"></div>
+        <div class="weui-dialog f-s-8 br-5">
+          <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+          <div class="weui-dialog__bd">您确定取消报名吗?</div>
+          <div class="weui-dialog__ft">
+            <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='surecompany'>取消</a>
+            <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='cancel(n.id)'>确认</a>
+          </div>
+        </div>
+      </div>
+
     </li>
   </ul>
 </div>
@@ -41,7 +56,6 @@ new Vue({
   el: '#app',
   data: {
     list:[],
-    keyword:'my'
   },
   mounted () {
     this.ajax.get('/cultivate/list', (res) => {
@@ -58,8 +72,15 @@ new Vue({
       }, (err) => {
         console.log(err)
       })
-    }
+    },
+    cancompany(){
+      let dialog2 = document.getElementById('dialog2')
+      dialog2.style.display = 'block'
+   },
+   surecompany(){
+      let dialog2 = document.getElementById('dialog2')
+      dialog2.style.display = 'none'
+   },
   }
 })
 </script>
- 
