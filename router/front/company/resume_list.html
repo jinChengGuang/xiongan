@@ -146,7 +146,7 @@ new Vue({
       this.p.linkname = ''
     },
     invite(){
-      if(this.p.address == '' || this.p.mobile == '' || this.p.linkname == ''){
+      if(this.p.interviewtime == '' || this.p.mobile == '' || this.p.remark == '' || this.p.mobile == ''){
         let fail = document.getElementById('fail')
         fail.style.display = 'block'
         setTimeout("document.getElementById('fail').style.display='none'",1500)
