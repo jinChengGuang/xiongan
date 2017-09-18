@@ -24,12 +24,12 @@
       </p>
       <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>面试时间：</span>
-        <span><a href="tel:one.interviewtime" class="t-c-0a0"></a></aaa>{{time.dateFormat('yyyy年MM月dd日', one.interviewtime)}}</span>
+        <span>{{time.dateFormat('yyyy年MM月dd日', one.interviewtime)}}</span>
       </p>
       <p class="lh-25 mb-0 f-s-f14 t-c-666">
         <span>联系电话：</span>
           <span>{{one.mobile}}</span>
-          <a class="t-c-2" href="tel:one.mobile">
+          <a class="t-c-2" @click='phone(one.mobile)'>
             <i class="icon t-c-70a f-s-f18" style='color: #1eaa39'>&#xe845;</i>
         </a>
       </p>
@@ -64,9 +64,9 @@ new Vue({
     })
   },
   methods: {
-    loadAfter(){
-      
-    }
+    phone(date){
+      window.location.href = 'tel:' + date;
+    },
   }
 })
 </script>

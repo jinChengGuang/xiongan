@@ -3,9 +3,7 @@
 <!--轮播图-->
 <div id="carouselId" class="carousel slide m-t-46 h-150" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselId" data-slide-to="1"></li>
-    <li data-target="#carouselId" data-slide-to="2"></li>
+    <li v-for='(n,i) in swiper' data-target="#carouselId" data-slide-to="i" class="active"></li>
   </ol>
   <div class="carousel-inner" role="listbox" style="height:150px">
     <div class="carousel-item active" v-for='n in swiper'>
@@ -44,8 +42,8 @@
     <span>{{time.dateFormat('yyyy/MM/dd', detail.time)}}</span>
   </p>
 </div>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3" @click='show(detail.culid,detail.name)' v-if='status == 0'>报名</button>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00baf3 bg-666" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</button>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00b" @click='show(detail.culid,detail.name)' v-if='status == 0'>报名</button>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block fixed-bottom p-y-3 bg-00b bg-666" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</button>
 <!--弹框-->
 <div id="dialog" style="display: none;">
   <div class="weui-mask z-1030" @click='cancel'></div>

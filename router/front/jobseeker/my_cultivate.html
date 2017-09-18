@@ -30,7 +30,7 @@
       </p>
       <p class="text-right m-b-0">
         <button type="button" class="btn btn-sm btn-secondary" @click='cancel(n.id)'>取消报名</button>
-        <a name="" id="" class="btn btn-sm btn-primary" href="tel:n.mobile" role="button">联系客服</a>
+        <a name="" id="" class="btn btn-sm btn-primary" @click='phone(n.mobile)' role="button">联系客服</a>
       </p>
     </li>
   </ul>
@@ -58,7 +58,10 @@ new Vue({
       }, (err) => {
         console.log(err)
       })
-    }
+    },
+    phone(date){
+      window.location.href = 'tel:' + date;
+    },
   }
 })
 </script>

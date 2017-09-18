@@ -3,9 +3,7 @@
 <!--轮播图-->
 <div id="carouselId" class="carousel slide h-150 m-t-46" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselId" data-slide-to="1"></li>
-    <li data-target="#carouselId" data-slide-to="2"></li>
+    <li v-for='(n,i) in swiper' data-target="#carouselId" data-slide-to="i" class="active">{{i}}</li>
   </ol>
   <div class="carousel-inner" role="listbox" style="height:150px">
     <div class="carousel-item active" v-for='n in swiper'>
@@ -23,8 +21,8 @@
   </p>
   <p class="p-t-8 p-b-10 p-x-15 mb-0 t-c-666">{{detail.content}}</p>
   <p style="text-align: center;">
-    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00baf3 f-s-f16" href="#" role="button" @click='show(detail.culid, detail.name)'  v-if='status == 0'>报名</a>
-    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00baf3 f-s-f16" href="#" role="button" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</a>
+    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00b f-s-f16" href="#" role="button" @click='show(detail.culid, detail.name)'  v-if='status == 0'>报名</a>
+    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00b f-s-f16" href="#" role="button" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</a>
   </p>
   
 </div>
@@ -37,6 +35,18 @@
     <div class="weui-dialog__ft">
       <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='cancel'>取消</a>
       <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure'>确认</a>
+    </div>
+  </div>
+</div>
+<!--失败弹层-->
+<div id="dialog1" style="display: none;">
+  <div class="weui-mask z-1030" @click='cancel1'></div>
+  <div class="weui-dialog f-s-8 br-5">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
+    <div class="weui-dialog__bd">是否先进行登录？</div>
+    <div class="weui-dialog__ft">
+      <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='cancel1'>取消</a>
+      <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure1'>确认</a>
     </div>
   </div>
 </div>
@@ -92,13 +102,20 @@ new Vue({
         this.p.culid = id
         this.p.culname = name
       }else{
-        weui.toast('请先进行登陆！', 1000);
-        setTimeout("window.location.href = '/front/login/login'",1500)
+        let dialog1 = document.getElementById('dialog1')
+        dialog1.style.display = 'block'
       } 
     },
     cancel(){
       let dialog = document.getElementById('dialog')
       dialog.style.display = 'none'
+    },
+    cancel1(){
+      let dialog1 = document.getElementById('dialog1')
+      dialog1.style.display = 'none'
+    },
+    sure1(){
+      window.location.href = '/front/login/login'
     },
     sure(){
       let dialog = document.getElementById('dialog')

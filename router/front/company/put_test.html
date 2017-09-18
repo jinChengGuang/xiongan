@@ -238,7 +238,7 @@
       </div>
     </div>
   </form>
-  <%- f %>
+  <%- f%>
 </div>
 
 <script>
@@ -247,8 +247,9 @@ new Vue({
   data: {
     list:[],
     group:{
-      head:''
-    }
+      head:'',
+    },
+    keyword:'my'
   },
   mounted(){
     this.ajax.get('/company/test/detail',(res)=>{

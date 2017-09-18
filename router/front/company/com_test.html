@@ -36,7 +36,7 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind' id="kind">
-          <option value=' ' v-if='false'>请选择公司性质</option>
+          <option value=''>请选择公司性质</option>
           <option v-for='t in type' :value='t'>{{t}}</option>
         </select>
       </div>
@@ -54,12 +54,12 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-11 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='bcat' @click="linkage">
-          <option :value='0'>请选择</option>
+          <option value=''>请选择</option>
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
         <i class="icon pa r-22 b-p12 t-c-bf">&#xe62e;</i>
         <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid' id='iid'>
-          <option :value='0'>请选择</option>
+          <option value=''>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
       </div>
@@ -78,6 +78,7 @@
         <!--<input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />-->
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
+          <option value=''>请选择年份</option>
           <option>1989</option>
           <option>1990</option>
           <option>1991</option>
@@ -97,6 +98,7 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope' id='scope'>
+          <option value=''>请选择公司规模</option>
           <option v-for='s in scope'>{{s}}</option>
         </select>
       </div>
@@ -286,7 +288,11 @@ new Vue({
      certificate:'',
      idcard_front:'',
      idcard_reverse:'',
-     logo:''
+     logo:'',
+     iid:'',
+     kind:'',
+     age:'',
+     scope:''
    },
   },
   mounted(){

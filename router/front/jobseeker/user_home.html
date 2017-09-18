@@ -1,16 +1,17 @@
 <%- tname%>
 <div>
   <img src="../../../skins/img/seehome.jpg" class='w-100 h-150 m-t-45'>
-  <div class='w75 h75 br-h bg-white pa' style='top:14%; left:39%;'>
+  <div class='w75 h75 br-h bg-white pa' style='top:12%; left:39%;'>
     <img :src="list.head" alt="" class='w-100 h-100 br-h'>
   </div>
+  <div class='pa w-100 text-center t-c-white' style='top:26%;'>{{list.nick}}</div>
 </div>
 <div class="container-fluid bg-white m-b-80 f-s-9 m-t-5">
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe900;</i>
     </div>
-    <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/resume_detail" class='db w-100 t-c-2b2 va-m m-l-10'>我的简历</a></div>
+    <div class="col-10 p-x-0 f-s-f15"><a @click='link' class='db w-100 t-c-2b2 va-m m-l-10'>我的简历</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/resume_detail"><i class="icon" style="color:#000;">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
@@ -80,6 +81,7 @@
       status:[],
       name:'个人中心',
       keyword:'my',
+      resume:[]
     },
     mounted(){
       this.ajax.get('/user/detail',(res)=>{
@@ -95,6 +97,10 @@
         console.log(this.status)
       },(err)=>{
       })
+      this.ajax.get('/user/resume/datail',(res)=>{
+        this.resume = res.data
+      },(err)=>{
+      })
     },
     methods:{
       show1(){
@@ -107,6 +113,13 @@
       },
       sure(){
         setTimeout(window.location.href='/front/login/identity',1500)
+      },
+      link(){
+        if(this.resume.length == 0){
+          window.location.href = '/front/jobseeker/new_resume'
+        }else{
+          window.location.href = '/front/jobseeker/edit_resume'
+        }
       }
     }
   })
