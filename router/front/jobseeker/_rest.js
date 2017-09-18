@@ -105,13 +105,14 @@ exports.get = {
       $.flush(ctx, ctx.result.ok)
     }
   },
-   /**
+     /**
    * 收藏列表
    */
   '/user/collect/collect_list': async (ctx, next) => {
+    let {jid} = ctx.get
     let uid = ctx.user.id
     let time = $.time10()
-    let record = await $.mysql.query($.conf.mysql.main, 'select * from  collect where uid = ?', [uid])
+    let record = await $.mysql.query($.conf.mysql.main, 'select * from  collect where uid = ? and jid = ?', [uid, jid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
