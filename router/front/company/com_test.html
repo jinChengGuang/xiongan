@@ -76,7 +76,7 @@
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <!--<input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />-->
-        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
+        <!--<i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>-->
         <input type="month" class="p-x-0 text-center bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
         <!--<select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2">
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
@@ -302,11 +302,11 @@
       </div>
 
 
-  <!--失败弹层-->
-  <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' class='fail' id="fail">
-     <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
-     <p class="weui-toast__content">取消操作</p > 
-  </div>
+        <!--失败弹层-->
+      <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+        <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+        <p class="weui-toast__content">请将信息填写完整！</p > 
+      </div>
 
 </div>
 
@@ -407,52 +407,58 @@ new Vue({
 			} 
     },
     submit(){
-      let name = $('#name').val()
-      let kind = $('#kind').val()
-      let iid = $('#iid').val()
-      let scope = $('#scope').val()
-      let address = $('#address').val()
-      let contact_name = $('#address').val()
-      let summary = $('#summary').val()
-      let cert = $('#cert').val()
-      let front = $('#front').val()
-      let reverse = $('#reverse').val()
-      let logo = $('#logo').val()
-      if(name == ''){
-        alert('公司名称不能为空',1500)
-        // document.getElementById('fail').style.display = 'block'
-        // setTimeout("document.getElementById('fail').style.display='none'",1500)
-        return false
-      }else if(kind == 0){
-        alert('公司性质不能为空',1500)
-        return false
-      }else if(iid == ''){
-        alert('所属行业不能为空',1500)
-        return false
-      }else if(scope == ''){
-        alert('公司规模不能为空',1500)
-        return false
-      }else if(address == ''){
-        alert('注册地址不能为空',1500)
-        return false
-      }else if(contact_name == ''){
-        alert('联系人姓名不能为空',1500)
-        return false
-      }else if(summary == ''){
-        alert('公司简介不能为空',1500)
-        return false
-      }else if(cert == ''){
-        alert('请上传营业执照',1500)
-        return false
-      }else if(front == ''){
-        alert('请上传身份证正面',1500)
-        return false
-      }else if(reverse == ''){
-        alert('请上传身份证反面',1500)
-        return false
-      }else if(logo == ''){
-        alert('请上传公司logo',1500)
-        return false
+      // let name = $('#name').val()
+      // let kind = $('#kind').val()
+      // let iid = $('#iid').val()
+      // let scope = $('#scope').val()
+      // let address = $('#address').val()
+      // let contact_name = $('#address').val()
+      // let summary = $('#summary').val()
+      // let cert = $('#cert').val()
+      // let front = $('#front').val()
+      // let reverse = $('#reverse').val()
+      // let logo = $('#logo').val()
+      // if(name == ''){
+      //   alert('公司名称不能为空',1500)
+      //   // document.getElementById('fail').style.display = 'block'
+      //   // setTimeout("document.getElementById('fail').style.display='none'",1500)
+      //   return false
+      // }else if(kind == 0){
+      //   alert('公司性质不能为空',1500)
+      //   return false
+      // }else if(iid == ''){
+      //   alert('所属行业不能为空',1500)
+      //   return false
+      // }else if(scope == ''){
+      //   alert('公司规模不能为空',1500)
+      //   return false
+      // }else if(address == ''){
+      //   alert('注册地址不能为空',1500)
+      //   return false
+      // }else if(contact_name == ''){
+      //   alert('联系人姓名不能为空',1500)
+      //   return false
+      // }else if(summary == ''){
+      //   alert('公司简介不能为空',1500)
+      //   return false
+      // }else if(cert == ''){
+      //   alert('请上传营业执照',1500)
+      //   return false
+      // }else if(front == ''){
+      //   alert('请上传身份证正面',1500)
+      //   return false
+      // }else if(reverse == ''){
+      //   alert('请上传身份证反面',1500)
+      //   return false
+      // }else if(logo == ''){
+      //   alert('请上传公司logo',1500)
+      //   return false
+      // }
+
+       if(this.group.name == '' || this.group.kind == '' || this.group.iid =='' || this.group.age == '' || this.group.scope == '' || this.group.address == '' || this.group.contact_name == '' || this.group.summary == '' || this.group.certificate == '' || this.group.idcard_front == '' || this.group.idcard_reverse == '' || this.group.logo == ''){
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
       }
 
       let website = document.getElementById('website').value
@@ -462,15 +468,16 @@ new Vue({
       let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
       let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
       if(!webreg.test(website)){
-        alert('输入的网址格式不正确')
+        weui.alert('输入的网址格式不正确')
         return false
       }else if(!emareg.test(email)){
-        alert('输入的邮箱格式不正确')
+        weui.alert('输入的邮箱格式不正确')
         return false
       }else if(!mobreg.test(mobile)){
-        alert('输入的手机号格式不正确')
+        weui.alert('输入的手机号格式不正确')
         return false
       }
+     
 
       let a = this.group.age.substring(0,4)
       this.group.age = a

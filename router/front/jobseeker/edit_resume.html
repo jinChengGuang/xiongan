@@ -117,6 +117,13 @@
 <div class="text-center">
   <button @click='add' class="btn bg-00b t-c-white m-y-10 p-x-30">确定</button>
 </div>
+
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+  <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+  <p class="weui-toast__content">请将信息填写完整！</p > 
+</div>
+
 <script>
 new Vue({
   el: '#app',
@@ -163,6 +170,11 @@ new Vue({
       this.data.head = head.value
     },
     add(){
+      if(this.data.name == '' || !this.data.birthday || this.data.education =='' || this.data.experience == '' || this.data.area == '' || this.data.mobile == '' || this.data.email == ''){
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
+      }
       this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
       this.ajax.put('/edit/basis', this.data,(res) => {
       weui.toast('编辑成功', 2000);

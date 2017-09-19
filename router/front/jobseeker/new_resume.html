@@ -13,7 +13,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label class="col-3 bor-r-sol bor-eae p-x-0">姓名</label>
+    <label class="col-3 bor-r-sol bor-eae m-b-0">姓名</label>
     <div class="col-8 text-right">
       <input type="text" class="form-control-plaintext border-0 w-100 text-right p-y-0 in-out" placeholder="请输入姓名" v-model='data.name'>
     </div>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label for="" class="col-3 bor-r-sol bor-eae p-x-0">性别</label>
+    <label for="" class="col-3 bor-r-sol bor-eae m-b-0">性别</label>
     <div class="col-8 p-x-0 text-right">
       <div class="form-check form-check-inline m-b-0">
         <label class="form-check-label custom-radio">
@@ -46,9 +46,10 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label class="col-3 bor-r-sol bor-eae p-x-0">出生年月</label>
-    <div class="col-8 text-right">
-      <input type="month" class="p-x-0 text-center" v-model='data.birthday'>
+    <label class="col-3 bor-r-sol bor-eae m-b-0 p-x-0">出生年月</label>
+    <div class="col-8 text-right p-x-0">
+      <!--<i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>-->
+      <input type="month" class="p-x-0 text-center bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2" v-model='data.birthday' placeholder="请选择出生年月">
     </div>
     <div class="col-1 align-self-center text-center p-x-0">
       <span class="t-c-e20">*</span>  
@@ -56,7 +57,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label for="" class="col-3 bor-r-sol bor-eae p-x-0">最高学历</label>
+    <label for="" class="col-3 bor-r-sol bor-eae m-b-0 p-x-0">最高学历</label>
     <div class="col-8 p-x-0 align-self-center text-right pr">
       <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
       <select v-model='data.education' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
@@ -70,7 +71,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label class="col-3 bor-r-sol bor-eae p-x-0">工作经验</label>
+    <label class="col-3 bor-r-sol bor-eae m-b-0 p-x-0">工作经验</label>
     <div class="col-8 p-x-0 align-self-center text-right pr">
       <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
       <select v-model='data.experience' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
@@ -84,7 +85,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label for="" class="col-3 bor-r-sol bor-eae p-x-0">现居住地</label>
+    <label for="" class="col-3 bor-r-sol bor-eae m-b-0 p-x-0">现居住地</label>
     <div class="col-8 p-x-0 align-self-center text-right pr">
       <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i> 
       <select  v-model='data.area' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
@@ -98,7 +99,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label for="" class="col-3 bor-r-sol bor-eae p-x-0">手机号码</label>
+    <label for="" class="col-3 bor-r-sol bor-eae m-b-0 p-x-0">手机号码</label>
     <div class="col-8 text-right">
       <input type="text"  v-model='data.mobile' class="form-control-plaintext border-0 w-100 text-right p-y-0 in-out" placeholder="请输入手机号码">
     </div>
@@ -108,7 +109,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-12">
-    <label for="" class="col-3 bor-r-sol bor-eae p-x-0">邮箱</label>
+    <label for="" class="col-3 bor-r-sol bor-eae m-b-0">邮箱</label>
     <div class="col-8 text-right">
       <input type="text" v-model='data.email' class="form-control-plaintext border-0 w-100 text-right p-y-0 in-out" placeholder="请输入邮箱">
     </div>
@@ -121,6 +122,13 @@
 <div class="text-center">
   <button @click='add' class="btn bg-00b t-c-white m-t-10 p-x-30">下一步</button>
 </div>
+
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+  <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+  <p class="weui-toast__content">请将信息填写完整！</p > 
+</div>
+
 <script>
 new Vue({
   el: '#app',
@@ -160,12 +168,18 @@ new Vue({
   },
   methods: {
     add(){
+      if(this.data.name == '' || this.data.sex == '' || this.data.birthday == '' || this.data.education =='' || this.data.experience == '' || this.data.area == '' || !this.data.mobile || !this.data.email){
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
+      }
       this.data.head = head.value
-      this.data.birthday=parseInt(Date.parse(new Date(this.data.birthday).toString().slice(0,10)))
+      this.data.birthday = (parseInt(new Date(this.data.birthday).getTime().toString().substr(0,10)))
+      // this.data.birthday=parseInt(Date.parse(new Date(this.data.birthday).toString().slice(0,10)))
       console.log(this.data.birthday)
       this.ajax.post('/add/resume', this.data,(res) => {
       weui.toast('添加成功', 2000);
-      setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)
+      // setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)
       }, (res) => {
         console.log(res.errmsg)
       })
