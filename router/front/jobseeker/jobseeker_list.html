@@ -6,7 +6,7 @@
       <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'v-model="p.name" @focus='link'>
       <span class='icon' style='position: absolute; top:34%; left:7%;'>&#xe7fd;</span>
     </div>
-    <div class="col-1 icon pl-0 mt-2 letter f-s-f22 pr p-t-5"><a href='/front/jobseeker/invitation_receive' class='t-c-7c88 f-s-f20'>&#xe7d5;<a ><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:8px; right:27%;' v-for='n in status' v-show='n.status = 1'></span>
+    <div class="col-1 icon pl-0 mt-2 letter f-s-f22 pr p-t-5"><a href='/front/jobseeker/invitation_receive' class='t-c-7c88 f-s-f20'>&#xe7d5;<a ><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:8px; right:27%;' v-show='msg.length != 0'></span>
     </div>
   </div>
 </div>
@@ -189,7 +189,7 @@
       status:[],
       datail:[],
       beneAry:[],
-      keyword:'recruit'
+      keyword:'recruit',
     },
     mounted(){
       this.p.name = this.query.get('name')
@@ -210,20 +210,12 @@
         this.pay = res.data
       },(err)=>{
       })
-      this.ajax.get('/msg/red',(res)=>{
+      this.ajax.get('/user/receive/notread',(res)=>{
         this.msg = res.data
       },(err)=>{
       })
       this.ajax.get('/benefit/list',(res)=>{
         this.benefit = res.data
-      },(err)=>{
-      })
-      this.ajax.get('/user/invite/record',(res)=>{
-        this.datail = res.data
-        for(var i=0;i<this.datail.length;i++){
-          this.status.push(this.datail[i].status)
-        }
-        console.log(this.status)
       },(err)=>{
       })
     },

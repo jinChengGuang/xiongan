@@ -312,6 +312,7 @@ exports.get = {
    */
   '/msg/red': async (ctx, next) => {
     let cid = ctx.company.id
+    let uid = ctx.user.id
     let red = await $.mysql.query($.conf.mysql.main, 'select * from msg where isread = 0 and cid=?', [cid])
     ctx.result.ok.data = red
     $.flush(ctx, ctx.result.ok)
