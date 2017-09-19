@@ -108,12 +108,14 @@ exports.get = {
     let uid = ctx.user.id
     let data = []
     let where = ''
+    let where1 = 'examine = 1 and status=1 '
     if(name){
       await $.mysql.push($.conf.mysql.main, 'insert into history (uid,keyword) values (?,?)', [ uid,name ])
       for(let v of name ){
-        where = where + ( name.indexOf(v) == 0? ' and (name like "%'+ v + '%" or cname like "%' + v + '%")' : ' or (name like "%'+ v + '%" or cname like "%' + v + '%")')
+        where = where + ( name.indexOf(v) == 0? (where1 + ' and (name like "%'+ v + '%" or cname like "%' + v + '%")') : ' or ' + (where1 + 'and (name like "%'+ v + '%" or cname like "%' + v + '%")'))
       }
-      let sql= 'select * from job where examine = 1 and status=1 ' + where +' order by issue_time' 
+      let sql= 'select * from job where ' + where +' order by issue_time' 
+      console.log(sql)
       let job = await $.mysql.query($.conf.mysql.main, sql, [null])
       ctx.result.ok.data = job
       $.flush(ctx, ctx.result.ok)
@@ -215,7 +217,7 @@ exports.get = {
     let cid = ctx.company.id
     let type = ctx.params.type
     if(type=='examine'){
-      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 0 or type = 1 and cid =? ', [ cid ])
+      await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type in (0,1) and cid =? ', [ cid ])
       let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type in (0,1) and cid =?', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
