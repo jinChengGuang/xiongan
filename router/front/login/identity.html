@@ -53,15 +53,15 @@ new Vue({
   },
   mounted(){
     this.height = document.body.scrollHeight
-    // this.ajax.get('/company/test/detail',(res)=>{
-    //   this.list = res.data[0]
-    //   },(err)=>{
-    //     weui.toast(err.errmsg)
-    //   })
+    this.ajax.get('/company/test/detail',(res)=>{
+      this.list = res.data[0]
+      },(err)=>{
+        console.log(err.errmsg)
+      })
     this.ajax.get('/user/resume/datail',(res)=>{
       this.is = res.data
     },(err)=>{
-      weui.toast(err.errmsg)
+      console.log(err.errmsg)
     })
   },
   methods: {

@@ -8,19 +8,12 @@ exports.get = {
     let password = ctx.params.password
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where username = ? and password = ?', [username, password])
     if(company.length > 0){
-       ctx.result.ok.data = company
-       $.flush(ctx, ctx.result.ok)
+        ctx.result.ok.data = company
+        $.flush(ctx, ctx.result.ok)
     }else{
-     ctx.result.e4001.errmsg = '账号或密码错误'
-      $.flush(ctx, ctx.result.e4001)
+        ctx.result.e4001.errmsg = '账号或密码错误'
+        $.flush(ctx, ctx.result.e4001)
     }
-  },
-  /**
-    * 公司信息
-   */
-  '/company/detail': async (ctx, next) => {
-    ctx.result.ok.data = ctx.company
-    $.flush(ctx, ctx.result.ok)
   },
 }
 // ---------------------------------------------------------------------------- POST

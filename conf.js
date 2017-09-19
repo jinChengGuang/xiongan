@@ -82,6 +82,7 @@ const conf = {
         host:       "localhost",
         port:       6379
       },
+
       domain:       '192.168.0.98',
       path:         '/',
     },
