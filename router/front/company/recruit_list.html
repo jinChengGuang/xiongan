@@ -7,7 +7,7 @@
       <!--<span class="f-s-f20 icon pr" style='top:-41px; left:87%;'><a href="/front/company/recruit_list">&#xe90d;</a></span>-->
       <span class='icon t-c-c1' style='position: absolute; top:34%; left:7%;'>&#xe7fd;</span>
     </div>
-    <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%; 'v-for='n in status' v-show='n.status = 1'></span>
+    <div class="col-1 icon pl-0 mt-3 letter f-s-f22 pr"><a href='/front/company/mail' class='t-c-7c88'>&#xe90a;<a><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:0; right:16%;' v-show='msg.length != 0'></span>
     </div>
   </div>
 </div>
@@ -178,7 +178,6 @@ new Vue({
     msg:[],
     body_h:null,
     start:new Date().setHours(0,0,0,0)/1000,
-    status:[],
     datail:[],
     keyword:'recruit'
 
@@ -214,14 +213,6 @@ new Vue({
     },(err)=>{
       console.log(err)
     })
-    this.ajax.get('/user/invite/record',(res)=>{
-      this.datail = res.data
-      for(var i=0;i<this.datail.length;i++){
-        this.status.push(this.datail[i].status)
-      }
-      console.log(this.status)
-    },(err)=>{
-  })
   },
   methods: {
     show(ary){
