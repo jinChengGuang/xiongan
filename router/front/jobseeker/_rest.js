@@ -5,7 +5,7 @@ exports.get = {
    */
 '/user/resume/record': async (ctx, next) => {
     let uid = ctx.user.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.* from  resume_record A,job B where uid = ? and A.jid = B.id', [uid])
+    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.* from  resume_record A,job B where uid = ? and A.jid = B.id order by time desc', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -21,6 +21,7 @@ exports.get = {
    */
   '/user/invite/record': async (ctx, next) => {
     let uid = ctx.user.id
+    await $.mysql.push($.conf.mysql.main, 'update resume_record set isread=1 where uid = ? and status = 1', [ uid ])
     let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.name as uname, C.name as jname from resume_record A,resume B,job C where A.rid = B.id and A.jid = C.id and A.uid = ? and A.status = 1 ', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
@@ -123,6 +124,16 @@ exports.get = {
     let uid = ctx.user.id
     let datail = await $.mysql.query($.conf.mysql.main, 'select * from resume where uid = ?', [uid])
     ctx.result.ok.data = datail
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+ * 
+ * 消息红点(面试邀请)
+ */
+  '/user/receive/notread': async (ctx, next) => {
+    let uid = ctx.user.id
+    let msg = await $.mysql.query($.conf.mysql.main, 'select * from resume_record where uid = ? and status = 1 and isread = 0', [uid])
+    ctx.result.ok.data = msg
     $.flush(ctx, ctx.result.ok)
   },
 }
