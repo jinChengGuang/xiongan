@@ -26,7 +26,7 @@
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fe;</i>
     </div>
     <div class="col-10 p-x-0 f-s-f15"><a href="/front/jobseeker/invitation_receive" class='db w-100 t-c-2b2 va-m m-l-10'>面试邀请</a></div>
-    <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-105' v-for='n in status' v-show='n.status = 1'> </span>
+    <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-105' v-show='msg.length != 0'> </span>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/jobseeker/invitation_receive"><i class="icon" style="color:#000;">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
@@ -81,7 +81,8 @@
       status:[],
       name:'个人中心',
       keyword:'my',
-      resume:[]
+      resume:[],
+      msg:[]
     },
     mounted(){
       this.ajax.get('/user/detail',(res)=>{
@@ -89,16 +90,12 @@
         console.log(this.list)
       },(err)=>{
       })
-      this.ajax.get('/user/invite/record',(res)=>{
-        this.datail = res.data
-        for(var i=0;i<this.datail.length;i++){
-          this.status.push(this.datail[i].status)
-        }
-        console.log(this.status)
-      },(err)=>{
-      })
       this.ajax.get('/user/resume/datail',(res)=>{
         this.resume = res.data
+      },(err)=>{
+      })
+      this.ajax.get('/user/receive/notread',(res)=>{
+        this.msg = res.data
       },(err)=>{
       })
     },
@@ -118,7 +115,7 @@
         if(this.resume.length == 0){
           window.location.href = '/front/jobseeker/new_resume'
         }else{
-          window.location.href = '/front/jobseeker/edit_resume'
+          window.location.href = '/front/jobseeker/resume_detail'
         }
       }
     }

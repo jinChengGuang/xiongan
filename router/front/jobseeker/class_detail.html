@@ -21,7 +21,7 @@
   </p>
   <p class="p-t-8 p-b-10 p-x-15 mb-0 t-c-666">{{detail.content}}</p>
   <p style="text-align: center;">
-    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00b f-s-f16" href="#" role="button" @click='show(detail.culid, detail.name)'  v-if='status == 0'>报名</a>
+    <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00b f-s-f16 bor-00baf3" href="#" role="button" @click='show(detail.culid, detail.name)'  v-if='status == 0'>报名</a>
     <a name="" id="" class="btn btn-primary p-y-5 p-x-40 m-y-10 bg-00b f-s-f16" href="#" role="button" v-if='status == 1' style='background-color: #cccccc!important; border-color:#cccccc;'>已报名</a>
   </p>
   
@@ -69,7 +69,7 @@ new Vue({
     })
     this.ajax.get('/cultivate/status?culid=' + this.detail.culid,(res) => {
       this.culStatus = res.data
-      if(this.culStatus){
+      if(this.culStatus.length != 0){
         this.status = 1
       }
     }, (err) => {
