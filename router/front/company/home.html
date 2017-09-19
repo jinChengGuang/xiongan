@@ -16,7 +16,7 @@
     <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" class="active"></li>
   </ol>
   <div class="carousel-inner" role="listbox">
-    <div class="carousel-item " v-for='(v,i) in swiper' :class="{'active': i == 0}">
+    <div class="carousel-item item" v-for='(v,i) in swiper' :class="{'active': i == 0}">
       <!--<img :src="v.url" class='w-100 h-h150'>-->
       <img src="../../../skins/img/panner.jpg" class='w-100 h-h150'>
     </div>
@@ -164,5 +164,4 @@ new Vue({
     },
   }
 })
-
 </script>

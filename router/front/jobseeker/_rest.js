@@ -127,9 +127,9 @@ exports.get = {
     $.flush(ctx, ctx.result.ok)
   },
   /**
-   * 
-   * 消息红点(面试邀请)
-   */
+ * 
+ * 消息红点(面试邀请)
+ */
   '/user/receive/notread': async (ctx, next) => {
     let uid = ctx.user.id
     let msg = await $.mysql.query($.conf.mysql.main, 'select * from resume_record where uid = ? and status = 1 and isread = 0', [uid])
