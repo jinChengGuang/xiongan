@@ -67,9 +67,8 @@ new Vue({
     }, (err) => {
       console.log(err)
     })
-    this.ajax.get('/cultivate/status?culid=' + this.detail.culid,(res) => {
+    this.ajax.get('/cultivate/status?culid=' + this.id,(res) => {
       this.culStatus = res.data
-      console.log(this.culStatus)
       if(this.culStatus.length != 0){
         this.status = 1
       }
@@ -89,8 +88,6 @@ new Vue({
       dialog.style.display = 'none'
     },
     sure(){
-      window.alert(this.p.culid)
-      window.alert(this.p.culname)
       let dialog = document.getElementById('dialog')
       dialog.style.display = 'none'
       this.ajax.post('/add/cultivate/record',this.p,(res) => {

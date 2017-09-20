@@ -20,7 +20,7 @@
         <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232">{{job.name}}</span>
         <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < job.issue_time'>今天</span>
         <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < job.issue_time && job.issue_time < start'>昨天</span>
-        <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > job.issue_time'> {{time.dateFormat('yyyy-MM-dd',job.issue_time)}}</span>
+        <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > job.issue_time'> {{time.dateFormat('MM/dd',job.issue_time)}}</span>
       </p>
       <p class="w-100 m-b-5">
         <span class="t-c-ff4 f-s-f15">{{job.pay}}</span>
@@ -33,12 +33,13 @@
       <p class="w-100 m-b-5 f-s-f11">
         <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for='n in job.benefit'>{{n}}</span>
       </p>
-      <p class="w-100 m-b-5 m-t-15">
+      <p class="w-100 m-b-5 m-t-15 pr">
         <img src="job.logo" class='br-h h-h32 w-w32'>
         <span class='f-s-f13 t-c-999' v-if='job.cname.length >14'>{{job.cname.substring(0,14)+'...'}}</span>
         <span class='f-s-f13 t-c-999' v-if='job.cname.length <14'>{{job.cname}}</span>
+        <i class="icon f-s-40 m-l-5 p-r-3 pa t-c-999" style='right:0%; bottom:-30%;' v-if='job.examine == 0'> &#xe920; </i>
       </p>
-      <p class="p-0 w-100 m-b-5" style='text-align: right'>
+      <p class="p-0 w-100 m-b-5" style='text-align: right' v-if ='job.examine == 1'>
         <button type="button" class="btn btn-secondary bg-ccc p-y-3 p-x-15 f-s-f14 m-l-5" @click = 'lose(job.id)'>删除</button>
         <a :href="'/front/company/station_edit?id=' + job.id" name="" id="" class="btn bg-ccc btn-secondary p-y-3 p-x-15 f-s-f14 m-l-5" role="button">编辑</a>
         <button type="button" class="btn p-y-3 p-x-15 bg-00a f-s-f14 m-l-5 t-c-fff" @click = 'update(job.id)'>刷新</button>
@@ -74,6 +75,7 @@ new Vue({
   mounted () {
     this.ajax.get('/company/job/list', (res) => {
       this.jobs = res.data
+      console.log(this.jobs)
       for(let job of this.jobs){
         job.benefit = job.benefit.split("|")
       }

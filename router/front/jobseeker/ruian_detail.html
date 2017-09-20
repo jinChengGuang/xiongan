@@ -81,7 +81,7 @@ new Vue({
     }, (err) => {
       console.log(err)
     })
-    this.ajax.get('/cultivate/status?culid=' + this.detail.culid,(res) => {
+    this.ajax.get('/cultivate/status?culid=' + this.id,(res) => {
       this.culStatus = res.data
       if(this.culStatus.length != 0){
         this.status = 1

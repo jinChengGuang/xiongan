@@ -15,12 +15,6 @@
     <span>客服电话：<a class='t-c-f970' href="tel:03126785555">0312-678-5555</a></span>
     <!--<i class="icon">&#xe75f;</i>-->
   </p>
-  <!--失败弹层-->
-  <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
-     <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
-     <p class="weui-toast__content">取消操作</p> 
-  </div>
-</div>
 
 <%- f%>
 <script> 
@@ -30,10 +24,5 @@ new Vue({
     name:'面试邀请',
     keyword:'my'
   },
-  mounted(){
-    console.log(111)
-    document.getElementById('fail').style.display = 'block'
-    setTimeout("document.getElementById('fail').style.display='none'",1500)
-  }
 })
 </script>

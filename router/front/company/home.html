@@ -13,12 +13,12 @@
 <!--轮播图-->
 <div id="carouselId" class="carousel slide m-t-45" data-ride="carousel" data-interval="2000">
   <ol class="carousel-indicators">
-    <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" class="active"></li>
+    <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" :class="{'active':i == 0}"></li>
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item item" v-for='(v,i) in swiper' :class="{'active': i == 0}">
       <!--<img :src="v.url" class='w-100 h-h150'>-->
-      <img src="../../../skins/img/panner.jpg" class='w-100 h-h150'>
+      <img src="../../../skins/img/banner.png" class='w-100 h-h150'>
     </div>
   </div>
 </div>
@@ -58,7 +58,7 @@
   <p class='pa t-6 l-0 bg-fd  w-w65 h-26 f-s-f11 lh-26 t-c-fff p-l-8' style='border-radius:0 50px 50px 0;'>{{status[live.status]}}</p>
   <div class='div pa b-0 h-32 w-100 lh-32 t-c-fff' style='background-color: rgba(0,0,0,0.5);'>
     <span class='float-left p-l-10 f-s-f15'>{{live.name}}</span>
-    <span class='float-right p-r-10 f-s-f11'>开讲时间:{{time.dateFormat('yyyy/MM/dd',live.time)}}</span>
+    <span class='float-right p-r-10 f-s-f11'>开讲时间:{{time.dateFormat('yyyy/MM/dd hh:mm',live.time)}}</span>
   </div>
 </div>
 <!--热门岗位-->
@@ -102,7 +102,7 @@
   <div class="weui-mask z-1030" @click='notshow1'></div>
   <div class="weui-dialog f-s-8 br-5">
     <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
-    <div class="weui-dialog__bd">确认要切换身份吗?</div>
+    <div class="weui-dialog__bd">您确定要切换到找工作身份吗？</div>
     <div class="weui-dialog__ft">
       <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='notshow1'>取消</a>
       <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure'>确认</a>

@@ -115,7 +115,6 @@ exports.get = {
         where = where + ( name.indexOf(v) == 0? (where1 + ' and (name like "%'+ v + '%" or cname like "%' + v + '%")') : ' or ' + (where1 + 'and (name like "%'+ v + '%" or cname like "%' + v + '%")'))
       }
       let sql= 'select * from job where ' + where +' order by issue_time' 
-      console.log(sql)
       let job = await $.mysql.query($.conf.mysql.main, sql, [null])
       ctx.result.ok.data = job
       $.flush(ctx, ctx.result.ok)
@@ -179,7 +178,7 @@ exports.get = {
  * 学校详情
  */
   '/school/detail': async (ctx, next) => {
-    let detail = await $.mysql.query($.conf.mysql.main, 'select * from school_detail where culid =0 ' , [null])
+    let detail = await $.mysql.query($.conf.mysql.main, 'select * from school_detail where culid = 0 ' , [null])
     let swiper = await $.mysql.query($.conf.mysql.main, 'select * from  class_swiper where culid = 0 ', [null])
     ctx.result.ok.data = [detail,swiper]
     $.flush(ctx, ctx.result.ok)
@@ -303,7 +302,7 @@ exports.get = {
    */
   '/company/job/list': async (ctx, next) => {
     let cid = ctx.company.id
-    let job = await $.mysql.query($.conf.mysql.main, 'select * from job where cid = ? and examine = 1 and status<2 order by issue_time desc', [cid])
+    let job = await $.mysql.query($.conf.mysql.main, 'select * from job where cid = ? and examine in (0,1) and status<2 order by issue_time desc', [cid])
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
   },
@@ -370,9 +369,9 @@ exports.get = {
     let { culid } = ctx.get
     let record
     if(cid){
-      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where cid = ? and status = 1 and culid = ?', [cid, culid])
+      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where cid = ? and status = 0 and culid = ?', [cid, culid])
     }else{
-      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where uid = ? and status = 1 and culid = ?', [uid, culid])
+      record = await $.mysql.query($.conf.mysql.main,'select * from apply_record where uid = ? and status = 0 and culid = ?', [uid, culid])
     }
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
@@ -385,7 +384,6 @@ exports.post = {
    */
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
-    console.log(uid)
     let cid = ctx.company.id
 
     let { culid, culname} = ctx.post

@@ -1,7 +1,7 @@
 <div class="container-fluid header pf t-0 h-45 lh-45 bg-ef  z-1030  fixed-top" >
   <div class="row">
     <div class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" @click='switch_1' v-if="!query.get('name')">&#xe90b;</div>
-    <a class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" v-if="query.get('name')" href='/front/jobseeker/jobseeker_list'>&#xe86c;</a>
+    <a class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" v-if="query.get('name')" href='/front/jobseeker/jobseeker_list'>&#xe90f;</a>
     <div class="col-10 pl-3" >
       <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'v-model="p.name" @focus='link'>
       <span class='icon' style='position: absolute; top:34%; left:7%;'>&#xe7fd;</span>
@@ -22,9 +22,9 @@
 
     <div class="col-3 f-s-f13 screen p-0 f-s-6 t-c-00bb" v-show="p.pay != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(pay)">{{p.pay}}</a></div>
 <!--发布时间-->
-    <div class="col-3 f-s-f13 screen p-0 f-s-6" ><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
+    <div class="col-3 f-s-f13 screen p-0 f-s-6" v-if="p.time == ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">发布时间<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
 
-    <!--<div class="col-3 f-s-f13 screen p-0 f-s-6" v-show="p.time != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">{{p.time}}</a></div>-->
+    <div class="col-3 f-s-f13 screen p-0 f-s-6 t-c-00bb"  v-if="p.time != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">{{timename}}</a></div>
 
 <!--福利待遇-->
     <div class="col-3 f-s-f13 screen p-0 f-s-6 bor-0" v-show="p.benefit == ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 t-c-0a0' @click="show(benefit)">福利待遇<i class='icon p-l-3 m-t-p3'>&#xe7c3;</i></a></div>
@@ -58,7 +58,7 @@
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="join(n)" :class="{'bg-00b': n.checked}">{{n.name}}</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value' :class="{'bg-00b': p.time == n.value}">{{n.name}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>
     <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-00b pa b-0 l-0' @click='search'>确定</button>
@@ -155,7 +155,7 @@
   <div class="weui-mask z-1030" @click='notshow1'></div>
   <div class="weui-dialog f-s-8 br-5">
     <div class="weui-dialog__hd"><strong class="weui-dialog__title icon f-s-f40 t-c-f970">&#xe85e;</strong></div>
-    <div class="weui-dialog__bd">确认要切换身份吗?</div>
+    <div class="weui-dialog__bd">您确定要切换到招人身份吗？</div>
     <div class="weui-dialog__ft">
       <a class="weui-dialog__btn weui-dialog__btn_default" id='cancel' @click='notshow1'>取消</a>
       <a class="weui-dialog__btn weui-dialog__btn_primary t-c-0bb20c" @click='sure'>确认</a>
@@ -182,6 +182,7 @@
         time:'',
         benefit:'',
       },
+      timename:'',
       type:'',
       msg:[],
       body_h:null,
@@ -234,10 +235,6 @@
           pop.style.display = 'none'
         },(err)=>{
         })
-        this.p.area = ''
-        this.p.pay = ''
-        this.p.time = ''
-        this.p.benefit = ''
       },
       link(){
         window.location.href = '/front/jobseeker/search'
