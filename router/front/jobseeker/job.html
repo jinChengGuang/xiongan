@@ -1,7 +1,7 @@
 <%- tname %>
 <div class="container-fluid m-t-46 bg-white p-x-30 ">
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">期望职位</div>
+    <div class="col-3 bor-r-sol bor-f6 p-x-0">期望职位</div>
     <div class="col-9 text-right p-x-0">
       <a href="/front/jobseeker/job_content?type=add" class="jump">
         <span>{{jtname}}</span>
@@ -11,7 +11,7 @@
   </div>
 
   <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">期望薪资</div>
+    <div class="col-3 bor-r-sol bor-f6 p-x-0">期望薪资</div>
     <div class="col-9 text-right none pr">
       <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
       <select v-model='data.pay' class="bg-ef br-3 h-24 w-50 t-c-666 f-s-f14 p-l-2">
@@ -21,7 +21,7 @@
     </div>
   </div>
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-      <div class="col-3 bor-r-sol bor-eae p-x-0">求职地区</div>
+      <div class="col-3 bor-r-sol bor-f6 p-x-0">求职地区</div>
       <div class="col-9 text-right none pr">
         <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i>
         <select v-model='data.want_area' class="bg-ef br-3 h-24 w-50 t-c-666 f-s-f14 p-l-2">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <div class="text-center">
-  <button @click='next' class="btn bg-00b t-c-white m-t-10 p-x-30">保存</button>
+  <button @click='next' class="btn bg-00b t-c-white m-t-10 p-x-30">下一步</button>
 </div>
 <script>
 new Vue({
@@ -67,7 +67,7 @@ new Vue({
       this.data.jtid = this.query.get('id')
       this.ajax.put('/add/wanted', this.data,(res) => {
         weui.toast('添加成功', 2000);
-          setTimeout(function () {window.location.href='/front/jobseeker/assess'}, 2000)
+        setTimeout(function () {window.location.href='/front/jobseeker/assess'}, 2000)
         }, (res) => {
           console.log(res.errmsg)
         })
