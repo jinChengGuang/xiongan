@@ -1,12 +1,12 @@
 <%- tname %>
 <div class="container-fluid m-t-46 bg-white ">
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
-    <span class='bor-r-sol bor-eae w-25 dinb'>学校名称</span>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-0">
+    <span class='bor-r-sol bor-f6 w-25 dinb'>学校名称</span>
     <input type="text" class="border-0 w-70 text-right" placeholder="请输入学校名称" v-model='data.school'>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">学历/学位</div>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-0">
+    <div class="col-3 bor-r-sol bor-f6 p-x-0">学历/学位</div>
     <div class="col-9 text-right">
       <select v-model='data.education' class='bg-fff h-20'>
         <option :value="v" v-for='v in education' > {{v}} </option>
@@ -14,22 +14,22 @@
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">开始时间</div>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-0">
+    <div class="col-3 bor-r-sol bor-f6 p-x-0">开始时间</div>
     <div class="col-9 text-right p-x-0">
       <input type="date" v-model='data.start' class="text-right bg-fff h-20" >
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">结束时间</div>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-0">
+    <div class="col-3 bor-r-sol bor-f6 p-x-0">结束时间</div>
     <div class="col-9 text-right p-x-0">
       <input type="date" v-model='data.end' class="text-right bg-fff h-20" >
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
-    <span class='bor-r-sol bor-eae w-25 dinb'>专业</span>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-0">
+    <span class='bor-r-sol bor-f6 w-25 dinb'>专业</span>
     <input type="text" class="border-0 w-70 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
   </div>
 
