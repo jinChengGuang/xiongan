@@ -35,7 +35,7 @@ module.exports = function () {
       <a href="/front/company/home" style='display: block; width: 100%; height: 100%;'>
         <i class="icon notbig t-c-7c88 f-s-f22" v-if="keyword != 'home'">&#xe8e2;</i>
         <i class="icon notbig f-s-f22" style=' color:#01aaef!important' v-if="keyword == 'home'">&#xe8e6;</i>
-        <p class="mb-0 f-s-f11" style='font-size:0.8rem;' :class="{'t-c-01aaef' : keyword == 'home'}">首页</p >
+        <p class="mb-0 f-s-f11" :class="{'t-c-01aaef' : keyword == 'home'}">首页</p >
       </a>
     </div>
     <div class="col" style=' text-align: center; padding:0;'>

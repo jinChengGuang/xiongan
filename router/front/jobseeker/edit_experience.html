@@ -1,34 +1,30 @@
 <%- tname %>
-<div class="container-fluid m-t-46 bg-white p-x-30">
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">公司名称</div>
-    <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入公司名称" v-model='data.company'>
-    </div>
+<div class="container-fluid m-t-46 bg-white ">
+  <div class="f-s-9 pt-2 pb-2 w-100 bor-b-sol bor-eae p-x-10">
+    <span class='bor-r-sol bor-eae w-25 dinb'>公司名称</span>
+    <input type="text" class="border-0 w-70 text-right" placeholder="请输入公司名称" v-model='data.company'>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">职位名称</div>
-    <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入职位名称"v-model='data.job'>
-    </div>
+  <div class="f-s-9 pt-2 pb-2 w-100 bor-b-sol bor-eae p-x-10">
+    <span class='bor-r-sol bor-eae w-25 dinb'>职位名称</span>
+    <input type="text" class="border-0 w-70 text-right" placeholder="请输入职位名称" v-model='data.job'>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row m-x-0 f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-10">
     <div class="col-3 bor-r-sol bor-eae p-x-0">开始时间</div>
     <div class="col-9 text-right p-x-0">
-      <input type="date" v-model='data.start' class="text-right">
+      <input type="date" v-model='data.start' class="text-right bg-fff h-20">
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row m-x-0 f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-10">
     <div class="col-3 bor-r-sol bor-eae p-x-0">结束时间</div>
     <div class="col-9 text-right p-x-0">
-      <input type="date" v-model='data.end' class="text-right">
+      <input type="date" v-model='data.end' class="text-right bg-fff h-20">
     </div>
   </div>
 </div>
-<div class="row item pt-3">
+<div class="row m-x-0 item pt-3">
   <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">保存</button>
 </div>
 <script>

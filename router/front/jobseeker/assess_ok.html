@@ -1,12 +1,12 @@
 <%- tname %>
 <div class="container-fluid m-t-46 none">
-  <div class="row bg-white">
+  <div class="row m-x-0 bg-white">
     <i class="icon f-s-30 t-c-009 ma mt-3">&#xe680;</i>
     <p class="w-100 text-center mt-3 t-c-666">个人基本简历已创建完成!</p>
   </div>
 
   <div class="box bg-white bor-b-sol bor-e1">
-    <div class="row mt-2 bg-white  pt-2 pb-2  p-x-10 ">
+    <div class="row m-x-0 mt-2 bg-white  pt-2 pb-2 m-x-0">
       <div class="col-10 t-c-00b f-s-9 ">教育经历</div>
       <div class="col-2 none text-center">
         <a href="/front/jobseeker/teach?type=add" class="icon t-c-00b f-s-10">
@@ -14,7 +14,7 @@
         </a>
       </div>
     </div>
-    <div class="row pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10"  v-for='v in education'>
+    <div class="row m-x-0 pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10"  v-for='v in education'>
       <div class="col-10 none">
         <span>{{time.dateFormat('yyyy.MM',v.start)}}-{{time.dateFormat('yyyy.MM',v.end)}}</span>
         <span class='p-l-15'>{{v.education}}</span>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="box bg-white">
-    <div class="row bg-white f-s-9 pt-2 pb-2  p-x-10">
+    <div class="row m-x-0 m-x-0 bg-white f-s-9 pt-2 pb-2  m-x-0">
       <div class="col-10 t-c-00b">工作经历</div>
       <div class="col-2 none text-center">
         <a href="/front/jobseeker/work?type=add">
@@ -41,7 +41,7 @@
         </a>
       </div>
     </div>
-    <div class="row pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10" v-for='v in experience'>
+    <div class="row m-x-0 m-x-0 pt-2 pb-2 f-s-f13 bg-white bor-t-sol bor-eae m-x-10" v-for='v in experience'>
       <div class="col-10 none">
         <span>{{time.dateFormat('yyyy.MM',v.start)}}-{{time.dateFormat('yyyy.MM',v.end)}}</span>
       </div>

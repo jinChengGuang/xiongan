@@ -4,7 +4,7 @@
     <div class="col-12 text-center p-t-p9" >
       <img class=" w-30 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
       <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
-      <input type="file" class="dn" id = 'head' @change='upload'>
+      <input type="file" class="dn" id = 'head' multiple='xiongan' accept='image/*' @change='upload'>
     </div>
   </div>
     
@@ -120,7 +120,7 @@
 </div>
 
 <div class="text-center">
-  <button @click='add' class="btn bg-00b t-c-white m-t-10 p-x-30">下一步</button>
+  <button @click='add' class="btn bg-00b t-c-white m-t-10 m-b-20 p-x-30">下一步</button>
 </div>
 
 <!--失败弹层-->
@@ -179,7 +179,7 @@ new Vue({
       console.log(this.data.birthday)
       this.ajax.post('/add/resume', this.data,(res) => {
       weui.toast('添加成功', 2000);
-      // setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)
+      setTimeout(function () { window.location.href='/front/jobseeker/job'}, 2000)
       }, (res) => {
         console.log(res.errmsg)
       })
@@ -189,7 +189,7 @@ new Vue({
 		},
     upload(){
       this.data.head = head.value
-    },
+    }
   }
 })
 </script>

@@ -1,6 +1,6 @@
 <%- tname %>
-<div class="container-fluid m-t-46 bg-white p-x-30 ">
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+<div class="container-fluid m-t-46 bg-white p-x-20">
+  <div class="row m-x-0 f-s-9  bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">期望职位</div>
     <div class="col-9 text-right p-x-0">
       <a href="/front/jobseeker/job_content" class="jump">
@@ -10,24 +10,24 @@
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row f-s-9 m-x-0 bor-b-sol bor-eae pt-2 pb-2">
     <div class="col-3 bor-r-sol bor-eae p-x-0">期望薪资</div>
     <div class="col-9 text-right none">
-      <select v-model='data.pay'>
+      <select v-model='data.pay' class='bg-fff h-20'>
         <option v-for='v in pay' :value="v" >{{v}}</option>
       </select>
     </div>
   </div>
-    <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+    <div class="row f-s-9 m-x-0 bor-b-sol bor-eae pt-2 pb-2">
       <div class="col-3 bor-r-sol bor-eae p-x-0">求职地区</div>
       <div class="col-9 text-right none">
-        <select v-model='data.want_area'>
+        <select v-model='data.want_area' class='bg-fff h-20'>
           <option v-for='v in area' :value="v" >{{v}}</option>
         </select>
       </div>
   </div>
 </div>
-<div class="row item pt-3">
+<div class="row m-x-0 item pt-3">
   <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">保存</button>
 </div>
 <script>

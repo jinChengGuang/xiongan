@@ -11,7 +11,7 @@
 <!--瑞安-->
 <div class="m-t-85" v-show='type == 0'>
   <!--轮播图-->
-  <div id="carouselId" class="carousel slide h-150" data-ride="carousel">
+  <div id="carouselId" class="carousel slide h-150" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators">
       <li v-for='(n,i) in images' data-target="#carouselId" data-slide-to="i" class="active">{{i}}</li>
     </ol>

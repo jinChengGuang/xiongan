@@ -29,13 +29,13 @@
           <span class="icon p-l-f2 m-l-5 f-s-f18 mt-2">&#xe7c4;</a></span>
         </a>
         <span class='collect-1 dinb h-h25 lh-25 w-w60 ta-c br-5 bor-sol bor-00bb right m-t-5' @click='cancel(list.id)' v-if="show_1 == false">收藏</span>
-        <span class='collect-1 dinb h-h25 w-w60 ta-c lh-25 br-5 bor-sol bor-ccc right bg-00bb t-c-fff  m-t-5' v-if="show_1 == true">已收藏</span>
+        <span class='collect-1 dinb h-h25 w-w60 ta-c lh-25 br-5 bor-sol bor-ccc right bg-00bb t-c-fff  m-t-5' @click='cancel1(list.id)' v-if="show_1 == true">已收藏</span>
       </p>
     </li>
   </ul>
 </div>
 <!--岗位职责-->
-<div>
+<div class='m-b-60'>
   <div class="container-fluid p-x-10 content bg-fff bor-t-sol bor-ea bor-b-sol m-b-15" >
     <div class='p-y-p2 f-s-8 bor-b-sol bor-ccc f-s-f15'>
       <i class="icon f-s-8 p-y-3 m-t-3 t-c-00a f-s-f15">&#xe8f3;</i>
@@ -159,6 +159,19 @@
         },(err)=>{
         })
       },
+      cancel1(id){
+        console.log(id)
+        this.ajax.delete('/collect/delete/'+ id,(res)=>{
+          this.list.show = !this.list.show
+          this.show_1 = this.list.show
+          weui.toast('取消收藏成功', 500);
+          setTimeout(window.loction.reload(),2000)
+        },(err)=>{
+
+        })
+      },
+
+
   // 投递
       notshow1(){
         let dialog1 = document.getElementById('dialog1')

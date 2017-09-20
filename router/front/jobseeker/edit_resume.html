@@ -8,13 +8,11 @@
     </div>
   </div>
   <div class="box">
-      
     <div class="f-s-9  bor-b-sol bor-eae pt-2 pb-2 ">
       <div class="col-12 t-c-00b f-s-f17">个人基本信息</div>
     </div>
-
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12 ">
-      <label class="col-3 bor-r-sol bor-eae p-x-0">姓名</label>
+      <label class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">姓名</label>
       <div class="col-8 text-right">
         <input type="text" class="form-control-plaintext border-0 w-100 text-right p-y-0 in-out" placeholder="请输入姓名" v-model='data.name'>
       </div>
@@ -24,17 +22,17 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label for="" class="col-3 bor-r-sol bor-eae p-x-0">性别</label>
+      <label for="" class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">性别</label>
       <div class="col-8 p-x-0 text-right">
         <div class="form-check form-check-inline m-b-0">
-          <label class="form-check-label custom-radio">
+          <label class="form-check-label custom-radio m-b-0">
           <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description align-self-center">男</span>
         </label>
         </div>
         <div class="form-check form-check-inline m-b-0">
-          <label class="form-check-label custom-radio">
+          <label class="form-check-label custom-radio m-b-0">
           <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description align-self-center">女</span>
@@ -47,9 +45,9 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label class="col-3 bor-r-sol bor-eae p-x-0">出生年月</label>
+      <label class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">出生年月</label>
       <div class="col-8 text-right p-x-0">
-        <input type="month" class="p-x-0 text-right" v-model='data.birthday'>
+        <input type="month" class="p-x-0 text-right bg-fff text-right" v-model='data.birthday'>
       </div>
       <div class="col-1 align-self-center text-center p-x-0">
         <span class="t-c-e20">*</span>  
@@ -57,9 +55,9 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label for="" class="col-3 bor-r-sol bor-eae p-x-0">最高学历</label>
+      <label for="" class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">最高学历</label>
       <div class="col-8 p-x-0 align-self-center text-right">
-        <select v-model='data.education' >
+        <select v-model='data.education' class='bg-fff h-20'>
           <option v-for ="v in education" :value="v">{{v}}</option>
         </select>
       </div>
@@ -69,9 +67,9 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label class="col-3 bor-r-sol bor-eae p-x-0">工作经验</label>
+      <label class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">工作经验</label>
       <div class="col-8 p-x-0 align-self-center text-right">
-        <select v-model='data.experience'>
+        <select v-model='data.experience' class='bg-fff h-20'>
           <option v-for ="v in kind" :value="v">{{v}}</option>
         </select>
       </div>
@@ -81,9 +79,9 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label for="" class="col-3 bor-r-sol bor-eae p-x-0">现居住地</label>
+      <label for="" class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">现居住地</label>
       <div class="col-8 p-x-0 align-self-center text-right">  
-        <select  v-model='data.area'>
+        <select  v-model='data.area' class='bg-fff h-20'>
           <option v-for ="v in area" :value="v">{{v}}</option>
         </select>
       </div>
@@ -93,7 +91,7 @@
     </div>
 
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
-      <label for="" class="col-3 bor-r-sol bor-eae p-x-0">手机号码</label>
+      <label for="" class="col-3 bor-r-sol bor-eae p-x-0 m-b-0">手机号码</label>
       <div class="col-8 text-right">
         <input type="text"  v-model='data.mobile' class="form-control-plaintext border-0 w-100 text-right p-y-0 in-out" placeholder="请输入手机号码">
       </div>

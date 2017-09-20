@@ -1,7 +1,7 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--轮播图-->
-<div id="carouselId" class="carousel slide h-150 m-t-46" data-ride="carousel">
+<div id="carouselId" class="carousel slide h-150 m-t-46" data-ride="carousel" data-interval="2000">
   <ol class="carousel-indicators">
     <li v-for='(n,i) in swiper' data-target="#carouselId" data-slide-to="i" class="active"></li>
   </ol>
@@ -69,6 +69,7 @@ new Vue({
     })
     this.ajax.get('/cultivate/status?culid=' + this.detail.culid,(res) => {
       this.culStatus = res.data
+      console.log(this.culStatus)
       if(this.culStatus.length != 0){
         this.status = 1
       }
@@ -88,6 +89,8 @@ new Vue({
       dialog.style.display = 'none'
     },
     sure(){
+      window.alert(this.p.culid)
+      window.alert(this.p.culname)
       let dialog = document.getElementById('dialog')
       dialog.style.display = 'none'
       this.ajax.post('/add/cultivate/record',this.p,(res) => {

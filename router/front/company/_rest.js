@@ -385,6 +385,7 @@ exports.post = {
    */
   '/add/cultivate/record': async (ctx, next) => {
     let uid = ctx.user.id
+    console.log(uid)
     let cid = ctx.company.id
 
     let { culid, culname} = ctx.post

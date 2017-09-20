@@ -1,43 +1,40 @@
 <%- tname %>
-<div class="container-fluid m-t-46 bg-white p-x-30">
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">学校名称</div>
-    <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入学校名称" v-model='data.school'>
-    </div>
+<div class="container-fluid m-t-46 bg-white ">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
+    <span class='bor-r-sol bor-eae w-25 dinb'>学校名称</span>
+    <input type="text" class="border-0 w-70 text-right" placeholder="请输入学校名称" v-model='data.school'>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
     <div class="col-3 bor-r-sol bor-eae p-x-0">学历/学位</div>
     <div class="col-9 text-right">
-      <select v-model='data.education'>
+      <select v-model='data.education' class='bg-fff h-20'>
         <option :value="v" v-for='v in education' > {{v}} </option>
       </select>
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
     <div class="col-3 bor-r-sol bor-eae p-x-0">开始时间</div>
     <div class="col-9 text-right p-x-0">
-      <input type="date" v-model='data.start' class="text-right">
+      <input type="date" v-model='data.start' class="text-right bg-fff h-20" >
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
     <div class="col-3 bor-r-sol bor-eae p-x-0">结束时间</div>
     <div class="col-9 text-right p-x-0">
-      <input type="date" v-model='data.end' class="text-right">
+      <input type="date" v-model='data.end' class="text-right bg-fff h-20" >
     </div>
   </div>
 
-  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2">
-    <div class="col-3 bor-r-sol bor-eae p-x-0">专业</div>
-    <div class="col-9 text-right">
-      <input type="text" class="border-0 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
-    </div>
+  <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 p-x-20">
+    <span class='bor-r-sol bor-eae w-25 dinb'>专业</span>
+    <input type="text" class="border-0 w-70 text-right" placeholder="请输入专业名称" v-model='data.speciality'>
   </div>
+
 </div>
-<div class="row item pt-3">
+<div class="row m-x-0 item pt-3">
   <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
 </div>
 <script>

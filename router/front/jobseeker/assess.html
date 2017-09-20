@@ -3,10 +3,16 @@
   <div class="from-group p-y-p3 f-s-8  bg-white w-100">
     <textarea v-model='data.evaluate' rows="2" class="w-100 border-0 in-out p-x-10" placeholder="[示例] 本人工作2年，性格开朗熟练掌握各种技能，待人友好，为人诚恳。"></textarea>
   </div>
-  <div class="row item pt-3">
+  <div class="row item pt-3 m-x-0">
     <button @click='next' class="btn bg-00b t-c-white m-10-auto p-x-30">确定</button>
   </div>
 </div>
+<!--失败弹层-->
+<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+    <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+    <p class="weui-toast__content">请填写个人评价</p > 
+</div>
+
 <script>
 new Vue({
   el: '#app',
@@ -18,6 +24,14 @@ new Vue({
   },
   methods: {
     next(){
+      if(this.data.evaluate == ''){
+        let fail = document.getElementById('fail')
+          fail.style.display = 'block'
+        setTimeout(function(){
+          fail.style.display = 'none'
+        },2000)
+        return
+      }
       this.ajax.put('/evaluate/add', this.data,(res) => {
         weui.toast('提交成功', 2000);
         setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
