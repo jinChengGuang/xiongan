@@ -9,7 +9,7 @@
 <div>
 <ul class="m-b-80 f-s-f15 m-t-55" v-show='record.length != 0'>
   <li class="m-t-10 m-x-10 p-x-10 bg-white br-5 p-y-5" v-for ='rec in record'>
-    <a :href="'/front/company/resume_list?id=' + rec.id" class="d-block w-100 h-100 t-c-0a0">
+    <a :href="'/front/company/resume_list?id=' + rec.id" class="d-block w-100 h-100 t-c-0a0" style='color:#000;'>
       <p class="lh-30 my-1 mb-0">
         <i class='icon m-x-5 f-s-f18'>&#xe8ee;</i>
         <span>{{rec.name}}</span>

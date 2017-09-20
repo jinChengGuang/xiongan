@@ -11,42 +11,42 @@
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe902;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='link' class='db w-100 t-c-2b2 va-m m-l-10'>企业认证</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/com_test" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='link' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8ee;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='href("/front/company/job_send")' class='db w-100 t-c-2b2 va-m m-l-10'>发布的岗位</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/station" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/job_send")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe909;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='href("/front/login/put_psd")' class='db w-100 t-c-2b2 va-m m-l-10'>修改密码</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/login/put_psd" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a  @click='href("/front/login/put_psd")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe908;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='href("/front/company/resume_record")' class='db w-100 t-c-2b2 va-m m-l-10'>简历记录</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/resume_record" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/resume_record")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe903;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='href("/front/company/invitation_send")' class='db w-100 t-c-2b2 va-m m-l-10'>我发出的邀请</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/invitation_send" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/invitation_send")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8ea;</i>
     </div>
     <div class="col-10 p-x-0"><a @click='href("/front/company/my_cultivate")' class='db w-100 t-c-2b2 va-m m-l-10'>我们的报名培训</a></div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/my_cultivate" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/my_cultivate")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
 
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
@@ -59,13 +59,13 @@
         <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-18' v-for='n in list' v-show='n.isread==0'> </span>
       </a>
     </div>
-    <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/mail" class='db w-100'><i class="icon">&#xe630;</i></a></div>
+    <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/mail")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 ">
     <div class="col-1 text-center align-self-center p-x-0">
       <i class="icon f-s-f20 t-c-999 va-m px-2">&#xe8fa;</i>
     </div>
-    <div class="col-10 p-x-0"><a href="/front/company/link" class='db w-100 t-c-2b2 va-m m-l-10'>联系我们</a></div>
+    <div class="col-10 p-x-0"><a href="/front/company/link" class='db w-100 t-c-2b2 va-m m-l-10' style='color:#000;'>联系我们</a></div>
     <div class="col-1 text-center align-self-center p-x-0"><a href="/front/company/link" class='db w-100'><i class="icon">&#xe630;</i></a></div>
   </div>
   <div class="row bor-t-sol bor-f1 p-y-p4 " @click='show1'>

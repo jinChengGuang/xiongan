@@ -24,7 +24,7 @@
   <!--学校简介-->
   <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8fc;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f7;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">学校简介</span>
     </p>
     <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
@@ -32,12 +32,12 @@
   <!--培训列表-->
   <div class="container-fluid w-100 bg-white m-t-5 f-s-6">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f9;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f6;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">培训课程</span>
     </p>
     <div class="row p-x-10">
       <div class="col-6 p-y-15 bor-b-sol bor-e0e px-0" v-for='cult in ruian'>
-        <a :href="'/front/company/ruian_detail?id='+ cult.id" class="d-block w-100 h-100 t-c-0a0">
+        <a :href="'/front/company/ruian_detail?id='+ cult.id" class="d-block w-100 h-100 t-c-0a0" style='color:#000;'>
           <div class="w-55 text-left float-left p-l-5">
             <p class="m-0 p-y-5 px-0 f-s-f15 f-w-d">{{cult.name}}</p>
             <p class="m-0 p-y-5 px-0 t-c-666">{{cult.keyword.replace(/\|/g,' ')}}</p>
@@ -49,8 +49,8 @@
       </div>
     </div>
     <div class="row p-x-10 p-y-15" v-if='last'>
-      <a :href="'/front/company/ruian_detail?id='+ last.id" class="d-block w-100 h-100 t-c-0a0">
-        <div class="w-45 p-t-10 p-r-10 float-left text-right">
+      <a :href="'/front/company/ruian_detail?id='+ last.id" class="d-block w-100 h-100 t-c-0a0" style='color:#000;'>
+        <div class="w-45 p-r-10 float-left text-right">
           <img src="../../../skins/img/class.jpg" alt="" class='w-40'>
         </div>
         <div class="w-55 text-left float-right p-l-5">
@@ -63,7 +63,7 @@
   <!--我们的优势-->
   <div class=" bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
-      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f8;</i>
+      <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f9;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">优势</span>
     </p>
     <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.merit}}</p>

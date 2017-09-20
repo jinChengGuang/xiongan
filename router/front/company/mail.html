@@ -7,28 +7,28 @@
 </div>
 <!--通知条-->
 <div class="container-fluid m-t-55" v-show='list.length > 0'>
-  <a href="/front/company/mail_detail?type=examine" class="d-block w-94 h-100 t-c-0a0 m-l-f3">
+  <a href="/front/company/mail_detail?type=examine" class="d-block w-94 h-100 t-c-0a0 m-l-5" style='color:#000; margin:0 auto'>
     <div class="row p-y-10 p-x-15 bg-white f-s-8 br-5">
       <div class="col-2 px-0">
         <i class="icon f-s-f30" style='color:#fe9b28'>&#xe8f4;</i>
       </div>
-      <div class="col-8 p-0 m-t-5">系统通知
+      <div class="col-8 p-0 m-t-5" style='margin-left:-12px;'>系统通知
         <span class="weui-badge weui-badge_dot align-top" v-show = 'examine.length > 0'></span>
       </div>
-      <div class="col-2 p-0 text-right m-t-5">
+      <div class="col-2 p-0 text-right m-t-5" style='margin-left:12px;'>
         <i class="icon">&#xe630;</i>
       </div>
     </div>
   </a>
-  <a href="/front/company/mail_detail?type=user" class="d-block w-94 h-100 t-c-0a0 m-l-f3 m-t-10">
+  <a href="/front/company/mail_detail?type=user" class="d-block w-94 h-100 t-c-0a0 m-l-5 m-t-10" style='color:#000; margin:0 auto; margin-top:10px;'>
     <div class="row p-y-10 p-x-15 bg-white f-s-8 br-5">
-      <div class="col-2 px-0">
+      <div class="col-2 px-0 ">
         <i class="icon f-s-f30" style='color:#00abef;'>&#xe8f2;</i>
       </div>
-      <div class="col-8 p-0 m-t-5">用户投递通知
+      <div class="col-8 p-0 m-t-5" style='margin-left:-12px;'>用户投递通知
         <span class="weui-badge weui-badge_dot align-top" v-show = 'user.length > 0'></span>
       </div>
-      <div class="col-2 p-0 text-right m-t-5">
+      <div class="col-2 p-0 text-right m-t-5" style='margin-left:12px;'>
         <i class="icon">&#xe630;</i>
       </div>
     </div>
