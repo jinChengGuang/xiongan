@@ -34,8 +34,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
-        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.kind' id="kind">
+        <i class="icon pa r-4 t-25 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-100 t-c-666 f-s-f14 p-l-2" v-model='group.kind' id="kind">
           <option value=''>请选择公司性质</option>
           <option v-for='t in type' :value='t'>{{t}}</option>
         </select>
@@ -52,13 +52,13 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
-        <i class="icon pa r-22 t-11 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='bcat' @change="linkage">
+        <i class="icon pa r-4 t-11 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-100 t-c-666 f-s-f14 p-l-2" id='bcat' @change="linkage">
           <option value=''>请选择</option>
           <option v-for="b in big" :value="b.id">{{b.name}}</option>
         </select><br/>
-        <i class="icon pa r-22 b-p12 t-c-bf">&#xe62e;</i>
-        <select class="mt-2 bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid' id='iid'>
+        <i class="icon pa r-4 b-p12 t-c-bf">&#xe62e;</i>
+        <select class="mt-2 bg-ef br-3 h-24 w-100 t-c-666 f-s-f14 p-l-2" id='mcat' v-model='group.iid' id='iid'>
           <option value=''>请选择</option>
           <option v-for="m in small" :value="m.id">{{m.name}}</option>
         </select>
@@ -77,7 +77,7 @@
       <div class="col-6 p-x-0 align-self-center pr">
         <!--<input type="text" class="form-control form-filter yearpicker" readonly name="year" id="Year" />-->
         <!--<i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>-->
-        <input type="month" class="p-x-0 text-center bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
+        <input type="month" class="p-x-0 text-center bg-ef br-3 h-24 w-100 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
         <!--<select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2">
         <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.age'>
           <option value=''>请选择年份</option>
@@ -98,8 +98,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
-        <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
-        <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='group.scope' id='scope'>
+        <i class="icon pa r-4 t-25 t-c-bf">&#xe62e;</i>
+        <select class="bg-ef br-3 h-24 w-100 t-c-666 f-s-f14 p-l-2" v-model='group.scope' id='scope'>
           <option value=''>请选择公司规模</option>
           <option v-for='s in scope'>{{s}}</option>
         </select>
