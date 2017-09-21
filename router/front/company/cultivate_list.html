@@ -3,7 +3,7 @@
 <!--顶部navbar-->
 <div class="container-fluid bg-white f-s-8 fixed-top m-t-46">
   <div class="row">
-    <div v-for="t in tab" @click="type = t.id" class="col p-y-10 text-center p-x-0">
+    <div v-for="t in tab" @click="type = t.id" class="col p-y-10 text-center p-x-0 bor-b-sol bor-eae">
       <span :class="{'bor-b-sol':type == t.id,'bor-00baf3':type == t.id,'p-b-11': type== t.id,'t-c-00baf3': type== t.id}">{{t.name}}</span>
     </div>
   </div>
@@ -12,7 +12,7 @@
 <div class="m-t-85" v-show='type == 0'>
   <!--轮播图-->
   <div id="carouselId" class="carousel slide h-150" data-ride="carousel" data-interval="2000">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" style='bottom:-10px;'>
       <li v-for='(n,i) in images' data-target="#carouselId" data-slide-to="i" class="active">{{i}}</li>
     </ol>
     <div class="carousel-inner" role="listbox" style="height:150px">
@@ -22,7 +22,7 @@
     </div>
   </div>
   <!--学校简介-->
-  <div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
+  <div class="w-100 bg-white m-t-8 py-0 p-x-15 f-s-8 bor-t-sol bor-b-sol bor-eae">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
       <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f7;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">学校简介</span>
@@ -30,7 +30,7 @@
     <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
   </div>
   <!--培训列表-->
-  <div class="container-fluid w-100 bg-white m-t-5 f-s-6">
+  <div class="container-fluid w-100 bg-white m-t-8 f-s-6 bor-t-sol bor-b-sol bor-eae">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
       <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f6;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">培训课程</span>
@@ -61,7 +61,7 @@
     </div>
   </div>
   <!--我们的优势-->
-  <div class=" bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80">
+  <div class=" bg-white m-t-8 py-0 p-x-15 f-s-8 m-b-80 bor-t-sol bor-b-sol bor-eae">
     <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
       <i class="icon f-s-15 va-m t-c-00baf3">&#xe8f9;</i>
       <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">优势</span>
@@ -72,14 +72,14 @@
 <!--职称考试/企业培训-->
 <div class="m-b-80 m-t-85" v-show='type != 0'>
   <ul>
-    <li v-for="cul in list" class="w-100 bg-white f-s-8 m-b-5" v-show="cul.type == type"> 
+    <li v-for="cul in list" class="w-100 bg-white f-s-8 m-b-8 bor-t-sol bor-b-sol bor-eae" v-show="cul.type == type"> 
       <a :href="'/front/company/class_detail?id=' + cul.id " class="d-block w-100 h-100 t-c-0a0">
         <img class="w-100 h-135" :src="cul.img" alt="">
         <p class="p-y-5 p-x-15 mb-0">
           <span class='f-s-f16 f-w-d'>{{cul.name}}</span>
           <span class="float-right f-s-f12 t-c-666">{{time.dateFormat('yyyy/MM/dd', cul.class_starttime)}}</span>
         </p>
-        <p class="p-y-5 p-r-15 p-l-12 mb-0">
+        <p class="p-b-5 p-r-15 p-l-12 mb-0">
           <i class="icon f-s-f20 t-c-00baf3 va-m">&#xe8e0;</i>
           <span class='f-s-f12 t-c-666 va-m'>{{cul.address}}</span>
         </p>

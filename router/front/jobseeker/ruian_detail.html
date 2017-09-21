@@ -2,7 +2,7 @@
 <%- tname%>
 <!--轮播图-->
 <div id="carouselId" class="carousel slide m-t-46 h-150" data-ride="carousel" data-interval="2000">
-  <ol class="carousel-indicators">
+  <ol class="carousel-indicators" style='bottom:-10px;'>
     <li v-for='(n,i) in swiper' data-target="#carouselId" data-slide-to="i" class="active"></li>
   </ol>
   <div class="carousel-inner" role="listbox" style="height:150px">
@@ -12,7 +12,7 @@
   </div>
 </div>
 <!--课程简介-->
-<div class="w-100 bg-white m-t-5 py-0 p-x-15 f-s-8">
+<div class="w-100 bg-white m-t-8 py-0 p-x-15 f-s-8">
   <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
     <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
     <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程简介</span>
@@ -20,7 +20,7 @@
   <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.summary}}</p>
 </div>
 <!--课程的优势-->
-<div class="bg-white m-t-5 py-0 p-x-15 f-s-8" :class="{'m-b-80': detail.time == 0}">
+<div class="bg-white m-t-8 py-0 p-x-15 f-s-8" :class="{'m-b-80': detail.time == 0}">
   <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
     <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
     <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程优势</span>
@@ -28,7 +28,7 @@
   <p class="p-t-8 p-b-10 px-0 mb-0 t-c-666">{{detail.merit}}</p>
 </div>
 <!--开课时间-->
-<div class="bg-white m-t-5 py-0 p-x-15 f-s-8 m-b-80" v-show="detail.class_starttime != 0">
+<div class="bg-white m-t-8 py-0 p-x-15 f-s-8 m-b-80" v-show="detail.class_starttime != 0">
   <p class="p-b-5 px-0 bg-white t-c-009 mb-0 bor-b-sol bor-e0e p-t-10">
     <i class="icon f-s-15 va-m t-c-00baf3">&#xe829;</i>
     <span class="f-s-9 t-c-000 va-m f-s-f15 p-l-5">课程时间</span>

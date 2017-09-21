@@ -2,8 +2,8 @@
 <%- tname%>
 <!--简历列表-->
 <div>
-  <ul class="m-t-55 m-b-80 f-s-8">
-    <li class="m-10 p-10 bg-white br-5 pr row" v-for='n in list'>
+  <ul class="m-t-53 m-b-80 f-s-8">
+    <li class="m-x-10 m-t-8 p-10 bg-white br-5 pr row" v-for='n in list'>
       <div class="p-0">
         <!--<img class="w-100 pa" style="top:30%" :src="n.uhead " alt="">-->
         <img class="w50 h-h50 pa br-h" style="top:5%; left:5%;" src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKUS3XYMj6PNDaLW4s9EpCM7uUCx3MgHCvdtFBC4KqdibxEbfzhhAlriaialhO2Glbx6vUQNDj1qYIow/0 " alt="">
@@ -12,7 +12,7 @@
         <p class="lh-25 mb-0 pa f-w-b f-s-f16" style="top:5%; left:25%;">
           <span>{{n.uname}}</span>
         </p>
-        <p class="lh-25 mb-0 pa f-s-f12" style="top:25%; left:25%;">
+        <p class="lh-25 mb-0 pa f-s-f12" style="top:20%; left:25%;">
           <span>{{n.education + ' | '}}{{n.experience}}</span>
         </p>
         <p class="lh-25 mb-0 f-s-f14 m-t-p20 m-l-f5">
@@ -37,7 +37,7 @@
           <a class=' pa f-s-f40 ' style="top:-15px; right:10px" @click='mark(n.id)' v-show='n.sort == 0' >
             <i class="icon  t-c-e5e">&#xe90c;</i>
           </a>
-          <a class=' pa f-s-f40' style="top:-15px; right:10px" v-show='n.sort == 1' >
+          <a class=' pa f-s-f40' style="top:-15px; right:10px" v-show='n.sort == 1'  @click='cancelmark(n.id)'>
             <i class="icon t-c-ff6e52">&#xe90c;</i>
           </a>
         </p>
@@ -107,7 +107,7 @@ new Vue({
     },
     deleteId:'',
     name:'简历列表',
-    keyword:'my'
+    keyword:'my',
   },
   mounted () {
     this.id = this.query.get('id')
@@ -117,7 +117,6 @@ new Vue({
     del.onclick = this.delete
     this.ajax.get('/job/resume/record/' + this.id, (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
       console.log(err)
     })
@@ -180,6 +179,14 @@ new Vue({
     mark(id){
       this.ajax.put('/mark/resume',{id:id},(res) => {
         weui.toast('标记成功', 500);
+        setTimeout("window.location.reload()",1500)
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    cancelmark(id){
+      this.ajax.put('/cancelmark/resume',{id:id},(res) => {
+        weui.toast('取消标记成功', 500);
         setTimeout("window.location.reload()",1500)
       }, (err) => {
         console.log(err)

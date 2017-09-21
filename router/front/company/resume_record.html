@@ -7,24 +7,24 @@
 </div>
 <!--中间内容-->
 <div>
-<ul class="m-b-80 f-s-f15 m-t-55" v-show='record.length != 0'>
-  <li class="m-t-10 m-x-10 p-x-10 bg-white br-5 p-y-5" v-for ='rec in record'>
-    <a :href="'/front/company/resume_list?id=' + rec.id" class="d-block w-100 h-100 t-c-0a0" style='color:#000;'>
+<ul class="m-b-80 f-s-f15 m-t-53" v-show='record.length != 0'>
+  <li class="m-t-8 m-x-10 p-x-10 bg-white br-5 p-y-5" v-for ='rec in record'>
+    <a @click='href(rec.id)' class="d-block w-100 h-100 t-c-0a0">
       <p class="lh-30 my-1 mb-0">
-        <i class='icon m-x-5 f-s-f18'>&#xe8ee;</i>
-        <span>{{rec.name}}</span>
+        <i class='icon m-x-5 f-s-f18 t-c-c0c'>&#xe8ee;</i>
+        <span class='t-c-000'>{{rec.name}}</span>
       </p>
       <p class="li-30 my-1 mb-0">
-        <i class='icon m-x-5 f-s-f18'>&#xe906;</i>
-        <span>{{time.dateFormat('yyyy/MM/dd', rec.issue_time)}}</span>
+        <i class='icon m-x-5 f-s-f18 t-c-c0c'>&#xe906;</i>
+        <span class='t-c-666'>{{time.dateFormat('yyyy/MM/dd', rec.issue_time)}}</span>
       </p>
       <p class="li-30 my-1 mb-0">
-        <i class='icon m-x-5 f-s-f18'>&#xe90e;</i>
-        <span>有{{rec.count}}人投递简历</span>
+        <i class='icon m-x-5 f-s-f18 t-c-c0c'>&#xe90e;</i>
+        <span class='t-c-00b'>有{{rec.count}}人投递简历</span>
       </p>
       <p class="li-30 my-1 mb-0">
-        <i class='icon m-x-5 f-s-f18'>&#xe8e0;</i>
-        <span>{{rec.address}}</span>
+        <i class='icon m-x-5 f-s-f18 t-c-c0c'>&#xe8e0;</i>
+        <span class='t-c-666'>{{rec.address}}</span>
       </p>
     </a>
   </li>
@@ -47,6 +47,9 @@ new Vue({
     })
   },
   methods: {
+    href(id){
+      window.location.href= '/front/company/resume_list?id=' + id
+    }
   }
 })
 </script>

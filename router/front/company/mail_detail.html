@@ -1,35 +1,35 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--通知详情列表-->
-<div class="container-fluid m-t-55 p-0 m-b-80">
+<div class="container-fluid m-t-53 p-0 m-b-80">
   <ul>
-    <li class="m-b-10 m-x-10 bg-white bor-r-5 f-s-8 p-10 br-5" v-for='n in list'>
+    <li class="m-b-8 m-x-10 bg-white bor-r-5 f-s-8 p-10 br-5" v-for='n in list'>
       <a href="/front/company/put_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 1' style='color:#000;'>
-        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="text-right m-b-0 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
         <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/com_test" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 0 && n.status == 0' style='color:#000;'>
-        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="text-right m-b-0 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
         <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/station" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 0' style='color:#000;'>
-        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="text-right m-b-0 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
         <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/company/recruit_list" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 1 && n.status == 1' style='color:#000;'>
-        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="text-right m-b-0 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
         <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>
       </a>
       <a href="/front/jobseeker/resume_detail" class="w-100 h-100 t-c-0a0" v-show = 'n.type == 2' style='color:#000;'>
-        <p class="text-right m-b-5 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
+        <p class="text-right m-b-0 f-s-f12 t-c-999">{{time.dateFormat('MM/dd', n.time)}}</p>
         <p class="m-b-5 f-s-f14">
           <span>{{n.content}}</span>
         </p>

@@ -1,17 +1,5 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span class="t-c-32 f-s-f17">我的报名培训</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 
 <!--空页-->
 <div class="w-100 m-t-p30 text-center" v-if='list.length==0' >
@@ -19,19 +7,19 @@
   <p class="text-center mt-5 t-c-98">您还没有培训记录哟!</p>
 </div>
 <!--报名列表-->
-<div class="box m-t-55">
+<div class="box m-t-53">
   <ul class="f-s-8 m-b-80">
-    <li class="p-10 bg-white br-5 w-95 ma-10 " v-for='n in list'>
+    <li class="p-10 bg-white br-5 w-95 m-x-10 m-t-8 " v-for='n in list'>
       <p class="p-b-p5 m-b-0">
-        <span class="f-w-b f-s-f16">{{n.culname}}</span>
-        <a :href="'/front/company/class_detail?id='+n.culid" class="float-right f-s-11"><i class="icon">&#xe7c4;</i></a>
+        <span class="f-s-f16 t-c-000">{{n.culname}}</span>
+        <a :href="'/front/company/class_detail?id='+n.culid" class="float-right f-s-11" style='color:#666666;'><i class="icon">&#xe7c4;</i></a>
       </p>
       <p class="p-b-p5 m-b-0">
-        <span class="f-s-f15 t-c-666">您于{{time.dateFormat( 'yyyy-MM-dd', n.apply_time)}}报名的{{n.culname}}待审核。</span>
+        <span class="f-s-f15 t-c-666">您于{{time.dateFormat('MM/dd', n.apply_time)}}报名的{{n.culname}}待审核。</span>
       </p>
       <p class="text-right m-b-0">
-        <button type="button" class="btn btn-sm bg-c6 t-c-white" @click='cancompany'>取消报名</button>
-        <a href="javascript:void(0)" name="" id="" class="btn btn-sm bg-00b t-c-white" @click='phone(n.mobile)' role="button">联系客服</a>
+        <button type="button" class="btn btn-sm bg-c6 t-c-white m-r-10 p-y-2 p-x-10 br-5" @click='cancompany'>取消报名</button>
+        <a href="javascript:void(0)" name="" id="" class="btn btn-sm bg-00b t-c-white p-y-2 p-x-10 br-5" @click='phone(n.mobile)' role="button">联系客服</a>
       </p>
       <!--企业弹框-->
       <div id="dialog2" style="display: none;">
@@ -57,11 +45,13 @@ new Vue({
   el: '#app',
   data: {
     list:[],
-    keyword:'my'
+    keyword:'my',
+    name:'我的报名培训'
   },
   mounted () {
     this.ajax.get('/cultivate/list', (res) => {
       this.list = res.data
+      console.log(this.list)
     }, (err) => {
       console.log(err)
     })

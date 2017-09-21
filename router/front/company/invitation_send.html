@@ -7,8 +7,8 @@
 </div>
 <!--中间内容-->
 <div v-show='list.length != 0'>
-  <ul class="m-t-55 m-b-80 f-s-8">
-    <li class="m-10 p-10 bg-white bor-r-5" v-for='one in list'>
+  <ul class="m-t-53 m-b-80 f-s-8">
+    <li class="m-x-10 m-t-8 p-10 bg-white bor-r-5 br-5" v-for='one in list'>
       <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start <one.invitetime'>今天</span>
       <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start-86400<one.invitetime && one.invitetime< start'>昨天</span>
       <p class="float-right t-c-0a0 f-s-f14 t-c-999 lh-25 mb-0" v-if='start-86400>one.invitetime'>{{time.dateFormat('yyyy/MM/dd',one.invitetime)}}</span>

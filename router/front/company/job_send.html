@@ -1,17 +1,5 @@
 <!--顶部导航栏-->
-<div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
-  <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
-      <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-15">&#xe86c;</i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <span>发布的岗位</span>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<%- tname%>
 <!--简历列表-->
 <div class='m-t-55'>
   <ul class="m-t-p3 m-b-80 f-s-8">
@@ -40,8 +28,8 @@
         <i class="icon f-s-40 m-l-5 p-r-3 pa t-c-999" style='right:0%; bottom:-30%;' v-if='job.examine == 0'> &#xe920; </i>
       </p>
       <p class="p-0 w-100 m-b-5" style='text-align: right' v-if ='job.examine == 1'>
-        <button type="button" class="btn btn-secondary bg-ccc p-y-3 p-x-15 f-s-f14 m-l-5" @click = 'lose(job.id)'>删除</button>
-        <a :href="'/front/company/station_edit?id=' + job.id" name="" id="" class="btn bg-ccc btn-secondary p-y-3 p-x-15 f-s-f14 m-l-5" role="button">编辑</a>
+        <button type="button" class="btn btn-secondary bg-ccc bor-ccc p-y-3 p-x-15 f-s-f14 m-l-5" @click = 'lose(job.id)'>删除</button>
+        <a :href="'/front/company/station_edit?id=' + job.id" name="" id="" class="btn bg-ccc bor-ccc btn-secondary p-y-3 p-x-15 f-s-f14 m-l-5" role="button">编辑</a>
         <button type="button" class="btn p-y-3 p-x-15 bg-00a f-s-f14 m-l-5 t-c-fff" @click = 'update(job.id)'>刷新</button>
       </p>
     </li>
@@ -70,7 +58,8 @@ new Vue({
     jobs:[],
     start:new Date().setHours(0,0,0,0)/1000,
     id:'',
-    keyword:'my'
+    keyword:'my',
+    name:'发布的岗位'
   },
   mounted () {
     this.ajax.get('/company/job/list', (res) => {
