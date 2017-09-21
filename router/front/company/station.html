@@ -1,9 +1,9 @@
 <!--顶部导航栏-->
 <div class="container-fluid fixed-top bor-b-sol bor-eee align-middle">
   <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
+    <div class="col-2 p-x-0 p-l-10">
       <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
+        <i class="icon text-center f-s-f22 t-c-7c88">&#xe90f;</i>
       </a>
     </div>
     <div class="col-8 text-center">
@@ -15,8 +15,8 @@
 <div class="container-fluid bg-white m-t-53 m-b-38">
   <form action="#" class="f-s-8">
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">职位类型
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">职位类型
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
@@ -36,29 +36,29 @@
             <option v-for='n in small' :value='n.id'> {{n.name}} </option>
           </select>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>  
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">职位名称
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">职位名称
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
           <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写职位名称" v-model='jobs.name'>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">薪资水平
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">薪资水平
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
@@ -68,15 +68,15 @@
             <option v-for='list in pay' :value='list'>{{list}}</option>
           </select>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15" >福利待遇
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15" >福利待遇
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center">
@@ -85,15 +85,15 @@
             <span class="border p-1 dinb mb-1 mr-1 h-30" v-for ='(v,i) in li'  @click='check(i,v.checked)':class="{'t-c-00b': v.checked==true}" >{{v.name}}</span>
           </div>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">工作区域
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">工作区域
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
@@ -103,15 +103,15 @@
             <option v-for='a in area' :value='a'>{{a}}</option>
           </select> 
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">学历要求
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">学历要求
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
@@ -121,15 +121,15 @@
             <option v-for='e in education' :value='e'>{{e}}</option>
           </select>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">经验要求
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">经验要求
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0 align-self-center pr">
@@ -139,68 +139,68 @@
             <option v-for='exper in exper'>{{exper}}</option>
           </select>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">工作地址
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">工作地址
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
           <input type="text" class="form-control-plaintext border-0 w-100 p-y-0" placeholder="请填写详细地址" v-model='jobs.address'>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">岗位职责
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">岗位职责
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
           <textarea rows="3" placeholder="请填写完整的岗位职责，保证真实有效" class="border-0 w-100" v-model='jobs.statement'></textarea>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">岗位要求
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">岗位要求
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
           <textarea rows="3" placeholder="请填写完整的岗位要求，保证真实有效" class="border-0 w-100" v-model='jobs.requirements'></textarea>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">是否公开
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15">是否公开
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </label>
         <div class="col-6 p-x-0">
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline m-b-0">
             <label class="form-check-label custom-radio">
               <input class="custom-control-input" type="radio" name="radio" value="1" v-model='jobs.status'>
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description align-self-center">公开</span>
             </label>
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline m-b-0">
             <label class="form-check-label custom-radio">
               <input class="custom-control-input" type="radio" name="radio" value="2" v-model='jobs.status'>
               <span class="custom-control-indicator"></span>
@@ -208,7 +208,7 @@
             </label>
           </div>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
