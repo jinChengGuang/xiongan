@@ -22,7 +22,7 @@ exports.get = {
   '/user/invite/record': async (ctx, next) => {
     let uid = ctx.user.id
     await $.mysql.push($.conf.mysql.main, 'update resume_record set isread=1 where uid = ? and status = 1', [ uid ])
-    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.name as uname, C.name as jname from resume_record A,resume B,job C where A.rid = B.id and A.jid = C.id and A.uid = ? and A.status = 1 ', [uid])
+    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.name as uname, C.name as jname from resume_record A,resume B,job C where A.rid = B.id and A.jid = C.id and A.uid = ? and A.status = 1 order by A.invitetime desc', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -89,22 +89,6 @@ exports.get = {
     let record = await $.mysql.query($.conf.mysql.main, 'select * from  education_record where id = ?', [id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
-  },
-  /*
-   * 我的报名列表
-   */
-  '/cultivate/list': async (ctx, next) => {
-    let uid = ctx.user.id
-    let cid = ctx.company.id 
-    if(cid){
-      let list = await $.mysql.query($.conf.mysql.main, 'select * from apply_record where cid =? and status = 0' , [cid])
-      ctx.result.ok.data = list
-      $.flush(ctx, ctx.result.ok)
-    }else{
-      let list = await $.mysql.query($.conf.mysql.main, 'select * from spply_record where uid =? and status = 0' , [uid])
-      ctx.result.ok.data = list
-      $.flush(ctx, ctx.result.ok)
-    }
   },
   /**
    * 收藏列表

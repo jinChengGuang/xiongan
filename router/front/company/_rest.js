@@ -139,11 +139,11 @@ exports.get = {
     let uid = ctx.user.id
     let cid = ctx.company.id 
     if(cid){
-      let list = await $.mysql.query($.conf.mysql.main, 'select * from apply_record where cid =?' , [cid])
+      let list = await $.mysql.query($.conf.mysql.main, 'select * from apply_record where cid =? and status = 0 order by apply_time desc' , [cid])
       ctx.result.ok.data = list
       $.flush(ctx, ctx.result.ok)
     }else{
-      let list = await $.mysql.query($.conf.mysql.main, 'select * from apply_record where uid =?' , [uid])
+      let list = await $.mysql.query($.conf.mysql.main, 'select * from apply_record where uid =? and status = 0 order by apply_time desc' , [uid])
       ctx.result.ok.data = list
       $.flush(ctx, ctx.result.ok)
     }
@@ -217,12 +217,12 @@ exports.get = {
     let type = ctx.params.type
     if(type=='examine'){
       await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type in (0,1) and cid =? ', [ cid ])
-      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type in (0,1) and cid =?', [cid])
+      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type in (0,1) and cid =? order by time desc', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     }else{
       await $.mysql.push($.conf.mysql.main, 'update msg set isread=1 where type = 2 and cid =? ', [cid ])
-      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =?', [cid])
+      let msg = await $.mysql.query($.conf.mysql.main, 'select * from msg where type = 2 and cid =? order by time desc', [cid])
       ctx.result.ok.data = msg
       $.flush(ctx, ctx.result.ok)
     } 
@@ -293,7 +293,7 @@ exports.get = {
    */
   '/job/resume/record/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname,D.contact_name as linkname from resume_record A,resume B,job C, company D where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? and A.cid = D.id order by sort desc  ', [id,id])
+    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname,D.contact_name as linkname from resume_record A,resume B,job C, company D where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? and A.cid = D.id order by A.time desc  ', [id,id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -356,7 +356,7 @@ exports.get = {
    */
   '/company/invite/record': async (ctx, next) => {
     let cid = ctx.company.id
-    let record = await $.mysql.query($.conf.mysql.main,'select A.*, B.name as uname, B.education as education from resume_record A, resume B where A.cid = ? and A.rid = B.id and A.status = 1', [cid])
+    let record = await $.mysql.query($.conf.mysql.main,'select A.*, B.name as uname, B.education as education from resume_record A, resume B where A.cid = ? and A.rid = B.id and A.status = 1 order by A.invitetime desc', [cid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -475,6 +475,15 @@ exports.put = {
   '/mark/resume': async (ctx, next) => {
     let { id } = ctx.put
     let data=await $.mysql.push($.conf.mysql.main, 'update resume_record set sort=1  where id =? ', [ id])
+    ctx.result.ok.data = data
+    $.flush(ctx, ctx.result.ok)
+  },
+  /**
+   * 取消标记简历
+   */
+  '/cancelmark/resume': async (ctx, next) => {
+    let { id } = ctx.put
+    let data=await $.mysql.push($.conf.mysql.main, 'update resume_record set sort=0  where id =? ', [ id])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },
