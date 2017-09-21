@@ -19,7 +19,8 @@ const common = {
   },
   upload: {
     rule: {
-      product:  {project: 'shop',  category: 'product',   max: 1024000, type: 'img'}
+      head:  {project: 'xiongan',  category: 'head',   max: 1024000, type: 'img', maxHeight:500 },
+      company:  {project: 'xiongan',  category: 'company',   max: 1024000, type: 'img', maxHeight:500 }
     }
   },
   aliyun: {

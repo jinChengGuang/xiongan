@@ -1,23 +1,27 @@
-//---------------------------------------------------------------------------- Strict
-'use strict'
 //---------------------------------------------------------------------------- Exports
-module.exports = function () {
-  return async (ctx, next) => {
-    ctx.state.upload = `
-    <div>
-      <div class='upload' v-for='(v, i) in data'>
-        <img :src= 'v'>
-		    <a @click='remove(i)' > 删除 </a>
-      </div>
-      <div class='upload' v-for='(v, i) in data'>
-        <input id='upload',type='file' :multiple='multiple' accept='image/*' @change='upload'>
-		    <i class='icon' >  &#xe623; </i>
-      </div>
-    </div>
-    `
-    /**
-     * 向后传递
-     */
-    await next()
-  }
+const UPLOAD = {
+	working (fileId,rule) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				let files = document.getElementById(fileId).files
+				// 声明FormData对象
+				let form = new FormData()
+				form.append('rule', rule)
+				// 遍历文件，追加到form对象上
+				for (let i = 0, l = files.length; i < l; i++) {
+					form.append(`file_${i}`, files[i])
+				}
+				// 上传文件，注意上传接口只允许统一使用upload
+				Vue.http.post('/upload',form).then((res) => {
+					if (parseInt(res.body.errcode) === 0) {
+						resolve(res.body)
+						return
+					}
+						reject(res)
+				})
+			} catch (err) {
+				reject(err)
+			}
+		})
+	}
 }
