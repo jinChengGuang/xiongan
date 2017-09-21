@@ -12,7 +12,7 @@
 
 <!--轮播图-->
 <div id="carouselId" class="carousel slide m-t-45" data-ride="carousel"  data-interval="2000">
-  <ol class="carousel-indicators">
+  <ol class="carousel-indicators" style='margin-bottom:-5px;'>
     <li data-target="#carouselId" v-for='(v,i) in swiper' :data-slide-to="i" class="active"></li>
   </ol>
   <div class="carousel-inner" role="listbox">
@@ -88,7 +88,7 @@
           <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-5 p-r-3">&#xe8e1;</i>{{list.experience}}</span>
         </p>
         <p class="w-100 m-b-5 f-s-f11" >
-          <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in list.benefit.split('|')">{{i}}</span>
+          <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in list.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
           <img :src="list.logo" class='br-h h-h32 w-w32'>

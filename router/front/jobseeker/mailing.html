@@ -1,7 +1,7 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--热门岗位1-->
-<div class='m-t-50' v-show='list.length != 0'>
+<div class='m-t-53' v-show='list.length != 0'>
   <ul class="m-t-p3 m-b-80 f-s-8">
     <li class="m-10 m-t-8 p-10 bg-white br-5 pr row" v-for='n in list'>
       <a :href="'/front/jobseeker/jobseeker_detail?id='+n.id" class='w-100'>
@@ -20,10 +20,10 @@
           <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
         </p>
         <p class="w-100 m-b-5 f-s-f11">
-          <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
+          <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
-          <img src="n.logo" class='br-h h-h32 w-w32'>
+          <img :src="n.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(0,14)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
         </p>

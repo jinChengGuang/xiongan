@@ -1,7 +1,7 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--职位详情-->
-<div class='container-fluid m-b-8 m-t-50'>
+<div class='container-fluid m-b-8 m-t-54'>
   <ul class="f-s-8 m-b-0">
     <li class="bg-white bor-r-5 p-10 pr row bor-b-sol bor-ea">
       <p class="w-100 m-b-10">
@@ -23,7 +23,7 @@
       </p>
       <p class="w-100 m-b-5 m-t-15 bor-t-sol bor-ea p-t-5">
         <a :href="'/front/jobseeker/job_company_list?id='+list.cid">
-          <img src="list.logo" class='br-h h-h32 w-w32'>
+          <img :src="list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
           <span class="icon p-l-f2 m-l-5 f-s-f18 mt-2 t-c-7c88">&#xe7c4;</a></span>
@@ -44,8 +44,12 @@
     <div class='content_1 f-s-6 t-c-666'>
       <p class='m-t-5 f-s-f14 t-c-7f' id='a'>{{str}}</p>
     </div>
-    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='statement_length.length > 80'>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement'>
       <i class="icon t-c-09a f-s-f35" >&#xe7c3;</i>
+    </div>
+
+    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement_length'>
+      <i class="icon t-c-09a f-s-f35" >&#xe7c2;</i>
     </div>
   </div>
   <!--任职资格-->
@@ -57,8 +61,11 @@
     <div class='content_1 f-s-6 t-c-666'>
       <p class='pt-3 f-s-f14 t-c-7f'>{{requ}}</p>
     </div>
-    <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requirements_length.length > 80'>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements'>
       <i class="icon t-c-09a f-s-f35">&#xe7c3;</i>
+    </div>
+        <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements_length'>
+      <i class="icon t-c-09a f-s-f35">&#xe7c2;</i>
     </div>
   </div>
 </div>

@@ -89,7 +89,7 @@
           <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
-          <img src="n.logo" class='br-h h-h32 w-w32'>
+          <img :src="n.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
         </p>
@@ -141,7 +141,7 @@
             <span class="bor p-x-2 m-l-3 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
           </p>
           <p class="w-100 m-b-5 m-t-15">
-            <img src="n.logo" class='br-h h-h32 w-w32'>
+            <img :src="n.logo" class='br-h h-h32 w-w32'>
             <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
             <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
           </p>

@@ -205,7 +205,7 @@ exports.get = {
    */
   '/job/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let job = await $.mysql.query($.conf.mysql.main, 'select * from job where id = ?', [id])
+    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.* from job A,company B where A.id = ? and A.cid = B.id', [id])
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
   },
@@ -266,7 +266,7 @@ exports.get = {
   '/company/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id = ? ', [id])
-    let job = await $.mysql.query($.conf.mysql.main, 'select * from job where cid = ? and examine = 1 and status=1 order by issue_time desc', [id])
+    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.* from job A,company B where A.cid = ? and A.examine = 1 and A.status=1 order by A.issue_time desc', [id])
     let industry = await $.mysql.query($.conf.mysql.main, 'select * from industry where id=?',[company[0].iid])
     ctx.result.ok.data = [company[0],job,industry[0]]
     $.flush(ctx, ctx.result.ok)

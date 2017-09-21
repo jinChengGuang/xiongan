@@ -5,7 +5,7 @@ exports.get = {
    */
 '/user/resume/record': async (ctx, next) => {
     let uid = ctx.user.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.* from  resume_record A,job B where uid = ? and A.jid = B.id order by time desc', [uid])
+    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.*,C.* from  resume_record A,job B,company C where uid = ? and A.jid = B.id and A.cid = C.id order by time desc', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },

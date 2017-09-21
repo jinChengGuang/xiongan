@@ -19,7 +19,7 @@
       </p>
       <p class="text-right m-b-0">
         <button type="button" class="btn btn-sm bg-c6 t-c-white m-r-10 p-y-2 p-x-10 br-5" @click='cancompany'>取消报名</button>
-        <a href='javascript:void(0)' name="" id="" class="btn btn-sm bg-00b t-c-white p-y-2 p-x-10 br-5" @click='phone(n.mobile)' role="button">联系客服</a>
+        <a href='tel:17332269131' name="" id="" class="btn btn-sm bg-00b t-c-white p-y-2 p-x-10 br-5" role="button">联系客服</a>
       </p>
 
        <!--企业弹框-->
@@ -73,9 +73,6 @@ new Vue({
       let dialog2 = document.getElementById('dialog2')
       dialog2.style.display = 'none'
    },
-    phone(date){
-      window.location.href = 'tel:' + date;
-    },
   }
 })
 </script>
