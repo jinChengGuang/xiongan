@@ -1,9 +1,9 @@
 <!--顶部导航栏-->
 <div class="container-fluid fixed-top bor-b-sol bor-eee  align-middle">
   <div class="row h-45 lh-45 bg-white">
-    <div class="col-2 ">
+    <div class="col-2 p-x-0 p-l-10">
       <a href="javascript:history.go(-1)" class='t-c-0a0'>
-        <i class="icon text-center f-s-f22 t-c-616">&#xe90f;</i>
+        <i class="icon text-center f-s-f22 t-c-7c88">&#xe90f;</i>
       </a>
     </div>
     <div class="col-8 text-center">
@@ -15,23 +15,23 @@
 <div class="container-fluid bg-white m-t-53 m-b-60">
   <form action="#" class="f-s-8">
     <div class="row">
-      <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司名称
-          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司名称
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
         </label>
         <div class="col-6 p-x-0">
           <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="公司名称" v-model='list.name' readonly>
         </div>
-        <div class="col-2 align-self-center text-right">
+        <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
         </div>
       </div>
   </div>
   
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row ">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司性质
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row ">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司性质
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-4 t-25 t-c-bf">&#xe62e;</i>
@@ -39,16 +39,16 @@
           <option v-model='list.kind'>{{list.kind}}</option>
         </select>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">所属行业
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">所属行业
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-4 t-44 t-c-bf">&#xe62e;</i>
@@ -56,16 +56,16 @@
           <option v-model='list.bname'>{{list.bname}}</option>
         </select>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row ">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司规模
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row ">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司规模
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0 align-self-center pr">
         <i class="icon pa r-4 t-30 t-c-bf">&#xe62e;</i>
@@ -73,100 +73,102 @@
           <option v-model='list.scope'>{{list.scope}}</option>
         </select>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">注册地址
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">注册地址
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司地址" v-model='list.address' readonly>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司网址
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司网址
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司网址" v-model='list.website' readonly>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司邮箱
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司邮箱
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司邮箱" v-model='list.email' readonly>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">联系人姓名
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">联系人姓名
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人姓名" v-model='list.contact_name' readonly>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">联系人电话
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">联系人电话
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人电话" v-model='list.contact_mobile' readonly>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="from-group bor-b-sol bor-e9 w-95 ma p-y-p2 row">
-      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">公司简介
-        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+    <div class="from-group bor-b-sol bor-e9 w-93 ma p-y-p2 row">
+      <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司简介
+        <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
         <textarea rows="3" class="border-0 t-c-00b f-s-f14" v-model='list.summary' readonly>保定保定保定</textarea>
       </div>
-      <div class="col-2 align-self-center text-right">
+      <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
   </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传营业执照
-          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">
+          <span>上传营业执</span><br/>
+          <span class="db p-l-p23">照</span>
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
         </label>
         <div class="col-6 p-x-0 file">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
@@ -177,16 +179,18 @@
           </div>
           <input type="file" class="dn" id = 'head' @change='upload'>-->
         </div>
-        <div class="col-2 align-self-center text-right">
-          <span class="t-c-e20">*</span>  
+        <div class="col-2 align-self-center text-right p-x-0">
+          <span class="t-c-ff0">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group bor-b-sol bor-eee w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传法人身份证原件
-          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      <div class="from-group bor-b-sol bor-eee w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">
+          <span class="p-l-p7">上传法人</span><br/>
+          <span>身份证原件</span>
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
         </label>
         <div class="col-6 p-x-0 file">
 
@@ -212,16 +216,18 @@
 
 
         </div>
-        <div class="col-2 align-self-center text-right">
-          <span class="t-c-e20">*</span>  
+        <div class="col-2 align-self-center text-right p-x-0">
+          <span class="t-c-ff0">*</span>  
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="from-group w-95 ma p-y-p2 row">
-        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-r-0 f-s-f15">上传公司logo
-          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
+      <div class="from-group w-93 ma p-y-p2 row">
+        <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">
+          <span>上传公司</span><br/>
+          <span class="p-l-p7">LOGO</span>
+          <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
         </label>
         <div class="col-6 p-x-0 file">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
@@ -232,8 +238,8 @@
           </div>
           <input type="file" class="dn" id = 'head' @change='upload'>-->
         </div>
-        <div class="col-2 align-self-center text-right">
-          <span class="t-c-e20">*</span>  
+        <div class="col-2 align-self-center text-right p-x-0">
+          <span class="t-c-ff0">*</span>  
         </div>
       </div>
     </div>

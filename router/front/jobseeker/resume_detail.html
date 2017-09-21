@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12">
+    <div class="row bor-t-sol bor-ef p-y-p1 m-x-12">
       <div class="col-12 none p-y-p1">
         <span class='f-s-f16 t-c-333 p-r-r3'>{{data.name}}</span>
         <span class='p-x-5'>{{sex[data.sex]}}</span>
@@ -40,7 +40,7 @@
         <span>{{data.area}}</span>
       </div>
     </div>
-    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-c4">
+    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
       <div class="col-10 t-c-00b f-s-9">求职意向</div>
       <div class="col-2 text-right">
         <a href="/front/jobseeker/edit_job?type=edit" style='color:#00bef9;'>
@@ -48,7 +48,7 @@
         </a>
       </div>
     </div>
-    <div class="row bor-t-sol bor-eae p-y-p1 m-x-12">
+    <div class="row bor-t-sol bor-ef p-y-p1 m-x-12">
       <div class="col-12 p-y-p1 none">
         <span>{{data.jtname}}</span>
       </div>
@@ -59,7 +59,7 @@
         <span>{{data.pay}}</span>
       </div>
     </div>
-    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-c4">
+    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
       <div class="col-10 t-c-00b f-s-9">个人评价</div>
       <div class="col-2 text-right">
         <a href="/front/jobseeker/edit_assess">
@@ -68,11 +68,11 @@
       </div>
     </div>
 
-    <div class="row bor-t-sol bor-eae p-y-p2 m-x-12 none">
+    <div class="row bor-t-sol bor-ef p-y-p1 m-x-12 none">
       <span>{{data.evaluate}}</span>
     </div>
 
-    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-c4">
+    <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
     <div class="col-10 t-c-00b f-s-9">教育经历</div>
     <div class="col-2 text-right">
       <a href="/front/jobseeker/teach" style='color:#00bef9;'>
@@ -81,21 +81,21 @@
     </div>
   </div>
 
-   <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none" v-for='v in education'>
+   <div class="row bor-t-sol bor-ef p-y-p1 m-x-12 none" v-for='v in education'>
     <div class="col-9 none">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
-    <div class="col-3 text-right none">
+    <div class="col-3 text-right none p-y-p1">
       <a :href='"/front/jobseeker/edit_education?id="+v.id'>
-        <i class="icon t-c-00b">&#xe803;</i>
+        <i class="icon t-c-00b f-s-10">&#xe803;</i>
       </a>
-      <i class="icon t-c-00b p-l-5" @click='del1(v)'>&#xe7f9;</i>
+      <i class="icon t-c-00b p-l-5 f-s-10" @click='del1(v)'>&#xe7f9;</i>
     </div>
-    <div class="col-12 none">{{v.school}}</div>
-    <div class="col-12 none">{{v.speciality}}</div>
+    <div class="col-12 none p-y-p1">{{v.school}}</div>
+    <div class="col-12 none p-y-p1">{{v.speciality}}</div>
   </div>
 
-  <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-c4">
+  <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
     <div class="col-10 t-c-00b f-s-9">工作经历</div>
     <div class="col-2 text-right">
       <a href="/front/jobseeker/work" style='color:#00bef9;'>
@@ -104,18 +104,18 @@
     </div>
   </div>
 
-  <div class="row bor-t-sol bor-eae p-y-p1 m-x-12 none" v-for='v in experience'>
-    <div class="col-9 none">
+  <div class="row bor-t-sol bor-ef p-y-p1 m-x-12 none" v-for='v in experience'>
+    <div class="col-9 none p-y-p1">
       <span>{{time.dateFormat('yyyy/MM/dd',v.start)}}-{{time.dateFormat('yyyy/MM/dd',v.end)}}</span>
     </div>
     <div class="col-3 text-right none">
       <a :href='"/front/jobseeker/edit_experience?id="+v.id'>
-        <i class="icon t-c-00b">&#xe803;</i>
+        <i class="icon t-c-00b f-s-10">&#xe803;</i>
       </a>
-      <i class="icon t-c-00b p-l-5" @click='del1(v)'>&#xe7f9;</i>
+      <i class="icon t-c-00b p-l-5 f-s-10" @click='del1(v)'>&#xe7f9;</i>
     </div>
-    <div class="col-12 none">{{v.company}}</div>
-    <div class="col-12 none">{{v.job}}</div>
+    <div class="col-12 none p-y-p1">{{v.company}}</div>
+    <div class="col-12 none p-y-p1">{{v.job}}</div>
   </div>
 </div>
 <!--删除工作经历弹框-->
