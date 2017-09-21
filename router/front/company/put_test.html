@@ -172,7 +172,7 @@
         </label>
         <div class="col-6 p-x-0 file">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
-            <img src="../../../skins/img/1.jpg" class="w-100" >
+            <img :src="list.certificate" class="w-100" >
           </div>
           <!--<div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
             <i class="icon">&#xe7ba;</i>
@@ -196,7 +196,7 @@
 
           <div class="float-left">
             <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
-              <img src="../../../skins/img/1.jpg" class="w-100" >
+              <img :src="list.idcard_front" class="w-100" >
             </div>
             <!--<div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
               <i>正面</i>
@@ -206,7 +206,7 @@
 
           <div class="float-left m-l-10">
             <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
-              <img src="../../../skins/img/1.jpg" class="w-100" >
+              <img :src="list.idcard_reverse" class="w-100" >
             </div>
             <!--<div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile' v-else>
               <i>反面</i>
@@ -231,7 +231,7 @@
         </label>
         <div class="col-6 p-x-0 file">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb">
-            <img src="../../../skins/img/1.jpg" class="w-100" >
+            <img :src="list.logo" class="w-100" >
           </div>
           <!--<div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
             <i class="icon">&#xe7ba;</i>

@@ -208,7 +208,7 @@
         <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
           <i class="icon">&#xe7ba;</i>
         </div>
-        <input type="file" class="dn" id = 'head' @change='upload' id="cert">
+        <input type="file" class="dn" @change='upload' id="cert">
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-ff0">*</span>  
@@ -232,7 +232,7 @@
           <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile1' v-else>
             <i>正面</i>
           </div>
-          <input type="file" class="dn" id = 'head1' @change='upload1' id="front">
+          <input type="file" class="dn" @change='upload1' id="front">
         </div>
 
         <div class="float-left m-l-10">
@@ -242,7 +242,7 @@
           <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile2' v-else>
             <i>反面</i>
           </div>
-          <input type="file" class="dn" id = 'head2' @change='upload2' id="reverse">
+          <input type="file" class="dn"  @change='upload2' id="reverse">
         </div>
 
 
@@ -376,30 +376,38 @@ new Vue({
     can1(){
       window.location.href = '/front/company/home'
     },
+    async upload(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('cert','company')
+      this.group.certificate = res.data[0].path
+    },
+     async upload1(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('front','company')
+      this.group.idcard_front = res.data[0].path
+    },
+    async upload2(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('reverse','company')
+      this.group.idcard_reverse = res.data[0].path
+    },
+    async upload3(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('logo','company')
+      this.group.logo = res.data[0].path
+    },
     openfile () {
-     $(head).click()
+     $(cert).click()
 		},
-    upload(){
-      this.group.certificate = head.value
-    },
     openfile1 () {
-     $(head1).click()
+     $(front).click()
 		},
-    upload1(){
-      this.group.idcard_front = head1.value
-    },
     openfile2 () {
-     $(head2).click()
+     $(reverse).click()
 		},
-    upload2(){
-      this.group.idcard_reverse = head2.value
-    },
     openfile3 () {
-     $(head3).click()
+     $(logo).click()
 		},
-    upload3(){
-      this.group.logo = head3.value
-    },
     linkage (){
       let bcat = document.getElementById('bcat')
       let mcat = document.getElementById('mcat')

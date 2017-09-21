@@ -3,7 +3,7 @@
    <div class="row p-x-p5 m-x-0 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
       <div class="col-12 text-center p-t-p9" >
         <div class="w100 h100 br-h bg-white ma">
-          <img class="w100 h100 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
+          <img class="w100 h100 br-h" :src="data.head" v-if='data.head'>
           <i class="icon f-s-26 p-t-25" @click='openfile' v-else >&#xe81e;</i>
           <input type="file" class="dn" id = 'head' @change='upload'>
         </div>
@@ -186,13 +186,16 @@ new Vue({
     openfile () {
      $(head).click()
 		},
-    upload(){
-      this.data.head = head.value
+    async upload(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('head','head')
+      this.data.head = res.data[0].path
+      this.ajax.put('/edit/basis', this.data,(res) => {
+        weui.toast('编辑成功', 2000);
+      }, (res) => {
+          console.log(res.errmsg)
+      })
     },
-    // del(){
-    //   let dialog1 = document.getElementById('dialog1')
-    //   dialog1.style.display = 'block'
-    // },
     can(){
       let dialog1 = document.getElementById('dialog1')
       dialog1.style.display = 'none'

@@ -2,7 +2,7 @@
 <div class="container-fluid m-t-46 bg-white">
   <div class="row p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
     <div class="col-12 text-center p-t-p9" >
-      <img class=" w-30 br-h" src="../../../skins/img/1.jpg" v-if='data.head'>
+      <img class=" w-30 br-h" :src="data.head" v-if='data.head'>
       <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
       <input type="file" class="dn" id = 'head' multiple='xiongan' accept='image/*' @change='upload'>
     </div>
@@ -187,9 +187,11 @@ new Vue({
     openfile () {
      $(head).click()
 		},
-    upload(){
-      this.data.head = head.value
-    }
+    async upload(){
+      // 第一个为id 第二个为config定义的规则
+      let res = await this.uploadimg.working('head','head')
+      this.data.head = res.data[0].path
+    },
   }
 })
 </script>

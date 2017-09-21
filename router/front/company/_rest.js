@@ -73,7 +73,7 @@ exports.get = {
     let params = []
     let sql=''
     if(name){
-      where = where + ' and (A.name = ? or A.cname = ? )'
+      where = where + ' and (A.name like "%'+ name + '%"' + 'or A.cname like "%'+ name +'%")'
       params.push(name,name)
     }
     if(area){
