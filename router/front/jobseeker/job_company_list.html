@@ -3,7 +3,7 @@
 <!--公司头像-->
 <div class="container-fluid img bg-fff ta-c m-t-53 bor-t-sol bor-b-sol bor-eee">
   <!--<img src="list.logo" class='mt-3 br-h w-w50 h-h50  bor-sol bor-f9'>-->
-  <img src="../../../skins/img/1.jpg" class='mt-3 br-h w-w50 h-h50  bor-sol bor-f9'>
+  <img :src="list.logo" class='mt-3 br-h w-w50 h-h50  bor-sol bor-f9'>
   <p class='mt-2 f-s-f15 t-c-0a0' style='margin-bottom:0'>{{list.name}}</p>
   <div class='mt-2 f-s-f13 t-c-999'>{{industry.name}} | 成立{{list.age}}年 | {{list.scope}}</div>
   <p class='mt-2 f-s-f13 t-c-999 m-b-0 f-s-8 t-c-0a0 p-b-12'>公司地址 : {{list.address}}</p>
@@ -71,6 +71,9 @@
     mounted(){
       this.ajax.get('/company/detail/'+this.query.get('id'),(res)=>{
         this.list = res.data[0]
+        let date = new Date
+        let year = date.getFullYear()
+        this.list.age = year - this.list.age
         this.datail = res.data[1]
         console.log(this.datail[0].id)
         this.industry = res.data[2]

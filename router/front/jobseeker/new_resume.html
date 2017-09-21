@@ -4,7 +4,7 @@
     <div class="col-12 text-center p-t-p9" >
       <img class=" w-30 br-h" :src="data.head" v-if='data.head'>
       <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
-      <input type="file" class="dn" id = 'head' multiple='xiongan' accept='image/*' @change='upload'>
+      <input type="file" class="dn" id = 'head' multiple='xiongan' accept='image/*'>
     </div>
   </div>
     
@@ -90,7 +90,7 @@
       <i class="icon pa t-25 t-c-bf r-4">&#xe62e;</i> 
       <select  v-model='data.area' class="bg-ef br-3 h-24 w-70 t-c-666 f-s-f14 p-l-2">
         <option value=''>请选择现居住地</option>
-        <option v-for ="v in area" :value="v">{{v}}</option>
+        <option v-for ="v in area" :value="v.name">{{v.name}}</option>
       </select>
     </div>
     <div class="col-1 align-self-center text-center p-x-0 ">
@@ -187,11 +187,11 @@ new Vue({
     openfile () {
      $(head).click()
 		},
-    async upload(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('head','head')
-      this.data.head = res.data[0].path
-    },
+    // async upload(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('head','head')
+    //   this.data.head = res.data[0].path
+    // },
   }
 })
 </script>

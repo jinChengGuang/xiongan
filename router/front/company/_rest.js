@@ -11,7 +11,8 @@ exports.get = {
    * 区域列表
    */
   '/area/list': async (ctx, next) => {
-    ctx.result.ok.data = ['容城','雄县','安新','保定']
+    let area = await $.mysql.query($.conf.mysql.main, 'select * from area' , [null])
+    ctx.result.ok.data = area
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -25,7 +26,7 @@ exports.get = {
    * 薪资列表
    */
   '/pay/list': async (ctx, next) => {
-    ctx.result.ok.data = ['2000以下','2000-3000','3000-5000','5000-10000','10000以上']
+    ctx.result.ok.data = ['2000以下','2000-3000','3000-5000','5000-10000','10000以上','面议']
     $.flush(ctx, ctx.result.ok)
   },
   /**
@@ -73,7 +74,7 @@ exports.get = {
     let params = []
     let sql=''
     if(name){
-      where = where + ' and (A.name like "%'+ name + '%"' + 'or A.cname like "%'+ name +'%")'
+      where = where + ' and (A.name like "%'+ name + '%"' + ' or A.cname like "%'+ name +'%") '
       params.push(name,name)
     }
     if(area){
@@ -111,11 +112,11 @@ exports.get = {
     let where1 = 'examine = 1 and status=1 '
     if(name){
       await $.mysql.push($.conf.mysql.main, 'insert into history (uid,keyword) values (?,?)', [ uid,name ])
-      for(let v of name ){
-        where = where + ( name.indexOf(v) == 0? (where1 + ' and (name like "%'+ v + '%" or cname like "%' + v + '%")') : ' or ' + (where1 + 'and (name like "%'+ v + '%" or cname like "%' + v + '%")'))
+      for(let i=0;i<name.length;i++){
+        where = where + ( i == 0 ?  (where1 + ' and (name like "%'+ name[i] + '%" or cname like "%' + name[i] + '%")') : ' or ' + (where1 + 'and (name like "%'+ name[i] + '%" or cname like "%' + name[i] + '%")'))
       }
       let sql= 'select * from job where ' + where +' order by issue_time' 
-      let job = await $.mysql.query($.conf.mysql.main, sql, [null])
+      let job =  await $.mysql.query($.conf.mysql.main, sql, [null])
       ctx.result.ok.data = job
       $.flush(ctx, ctx.result.ok)
       return
@@ -196,7 +197,7 @@ exports.get = {
    */
   '/search/history/list': async (ctx, next) => {
     let uid = ctx.user.id
-    let history = await $.mysql.query($.conf.mysql.main, 'select * from history where uid =? order by id desc limit 0,15' , [uid])
+    let history = await $.mysql.query($.conf.mysql.main, 'select * from history where uid =? order by id desc limit 0,10' , [uid])
     ctx.result.ok.data = history
     $.flush(ctx, ctx.result.ok)
   },

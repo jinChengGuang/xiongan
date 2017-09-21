@@ -267,7 +267,7 @@
         <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile3' v-else>
           <i class="icon">&#xe7ba;</i>
         </div>
-        <input type="file" class="dn" id = 'head3' @change='upload3' id='logo'>
+        <input type="file" class="dn" id = 'head3' id='logo'>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-ff0">*</span>  
@@ -376,26 +376,26 @@ new Vue({
     can1(){
       window.location.href = '/front/company/home'
     },
-    async upload(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('cert','company')
-      this.group.certificate = res.data[0].path
-    },
-     async upload1(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('front','company')
-      this.group.idcard_front = res.data[0].path
-    },
-    async upload2(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('reverse','company')
-      this.group.idcard_reverse = res.data[0].path
-    },
-    async upload3(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('logo','company')
-      this.group.logo = res.data[0].path
-    },
+    // async upload(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('cert','company')
+    //   this.group.certificate = res.data[0].path
+    // },
+    //  async upload1(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('front','company')
+    //   this.group.idcard_front = res.data[0].path
+    // },
+    // async upload2(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('reverse','company')
+    //   this.group.idcard_reverse = res.data[0].path
+    // },
+    // async upload3(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('logo','company')
+    //   this.group.logo = res.data[0].path
+    // },
     openfile () {
      $(cert).click()
 		},

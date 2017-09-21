@@ -36,19 +36,19 @@
 <div class='window container-fluid p-0  w-100  t-14 z-100 dn pf t-85' id='pop' id='pop' style='display: none;'>
   <div class='datail p-10 bg-f5f5 pr oh d-block clear p-b-50 z-10030'>
     <ul class='m-b-0' style='list-style-type: none;'>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area'>
+      <li class='float-left m-l-5  w-22 ta-c m-t-5 bg-fff' v-if='arry == area'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''":class="{'bg-00b': p.area == '','t-c-fff': p.area == ''}" >全部</span>
       </li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n':class="{'bg-00b': p.area == n,'t-c-fff':p.area==n}">{{n}}</span>
+      <li class='float-left m-l-5  w-22 ta-c m-t-5 bg-fff' v-if='arry == area' v-for='n in arry'>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n.name':class="{'bg-00b': p.area == n.name,'t-c-fff':p.area==n.name}">{{n.name}}</span>
       </li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay'>
+      <li class='float-left m-l-5  w-22 ta-c m-t-5 bg-fff' v-if='arry == pay'>
         <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''" :class="{'bg-00b': p.pay == '','t-c-fff': p.pay == ''}">全部</span>
       </li>
-      <li class='float-left p-l-f2  .p-r-f2  ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
+      <li class='float-left m-l-5  ta-c m-t-5 bg-fff' v-if='arry == pay' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n,'t-c-fff': p.pay == n}">{{n}}</span>
       </li>
-      <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
+      <li class='float-left m-l-5 w-22 ta-c m-t-5 bg-fff' v-if='arry == time_1' v-for='n in arry'>
         <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value,'t-c-fff': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>

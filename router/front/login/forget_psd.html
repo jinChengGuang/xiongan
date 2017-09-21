@@ -1,3 +1,9 @@
+<style>
+  input::-webkit-input-placeholder{ color:#fff ;}		/* 使用webkit内核的浏览器 */
+  input:-moz-placeholder{color:#fff ;}									/* Firefox版本4-18 */
+  input::-moz-placeholder{color:#fff ;}									/* Firefox版本19+ */
+  input:-ms-input-placeholder{color:#fff ;}					 /* IE浏览器 */
+</style>
 <div class="container-fluid pr" :style="{height:height + 'px',background:bg , backgroundSize:size}">
   <div class="row p-t-p20 text-center">
     <div class="col-12">
@@ -32,6 +38,18 @@
   </div>
 </div>
 
+<!--失败弹层-->
+  <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+    <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+    <p class="weui-toast__content">两次密码不一致</p > 
+  </div>
+
+<!--失败弹层-->
+  <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail1'>
+    <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+    <p class="weui-toast__content">对不起，您输入的原密码有误！</p > 
+  </div>
+
 <script>
 new Vue({
   el: '#app',
@@ -55,14 +73,16 @@ new Vue({
       let first = $('#new').val()
       let psd = $('#psd').val()
       if(first != psd){
-        weui.toast('两次密码输入不一致',1500)
-        return false
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
       }
       this.ajax.put('/company/change',this.user, (res) => {
         weui.toast('修改成功', 1500)
         setTimeout("window.location.href='/front/login/login'",1500)
       }, (err) => {
-        weui.toast(err.errmsg)
+        document.getElementById('fail1').style.display = 'block'
+        setTimeout("document.getElementById('fail1').style.display='none'",1500)
       })
     }
   }

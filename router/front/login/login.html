@@ -15,7 +15,7 @@
         <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p5 f-s-f18" id="basic-addon1">&#xe745;
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1"></span>
         </span>
-        <input v-model='user.username' type="text" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" id="username" placeholder="请输入账号">
+        <input v-model='user.username' type="text" class="from-control w-100 in-out br-right bg-rgba-fff t-c-fff" id="username" placeholder="请输入账号" >
       </div>
       <div class="input-group h-50 lh-50 mt-3">
         <span class="input-group-addon icon border-0 bg-rgba-fff t-c-white p-t-p4 f-s-f18" id="basic-addon1">&#xe74f;
@@ -30,6 +30,24 @@
     </form>
   </div>
 </div>
+
+<!--失败弹层-->
+    <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+      <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+      <p class="weui-toast__content">请输入账号</p > 
+    </div>
+
+<!--失败弹层-->
+    <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail1'>
+      <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+      <p class="weui-toast__content">请输入密码</p > 
+    </div>
+
+<!--失败弹层-->
+    <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail2'>
+      <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
+      <p class="weui-toast__content">账号或密码错误</p > 
+    </div>
 
 <script>
 new Vue({
@@ -48,17 +66,20 @@ new Vue({
       let username = $('#username').val()
       let password = $('#password').val()
       if(username == ''){
-        weui.toast('账号不能为空')
-        return false
+        document.getElementById('fail').style.display = 'block'
+        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        return
       }else if(password == ''){
-        weui.toast('密码不能为空')
-        return false
+        document.getElementById('fail1').style.display = 'block'
+        setTimeout("document.getElementById('fail1').style.display='none'",1500)
+        return
       }
       this.ajax.get('/company/login/'+ this.user.username + '/' + this.user.password, (res) => {
         weui.toast('登陆成功', 1500)
         setTimeout("window.location.href='/front/company/home'",1500)
       }, (err) => {
-        weui.toast(err.errmsg)
+        document.getElementById('fail2').style.display = 'block'
+        setTimeout("document.getElementById('fail2').style.display='none'",1500)
       })
     }
   }

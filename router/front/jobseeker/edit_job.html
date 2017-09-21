@@ -22,7 +22,7 @@
       <div class="col-3 bor-r-sol bor-eae p-x-0">求职地区</div>
       <div class="col-9 text-right none">
         <select v-model='data.want_area' class='bg-fff h-20'>
-          <option v-for='v in area' :value="v" >{{v}}</option>
+          <option v-for='v in area' :value="v.name" >{{v.name}}</option>
         </select>
       </div>
   </div>

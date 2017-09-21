@@ -4,7 +4,7 @@
     <div class="col-12 text-center p-t-p9" >
       <img class=" w-30 br-h" :src="data.head" v-if='data.head'>
       <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
-      <input type="file" class="dn" id = 'head' @change='upload'>
+      <input type="file" class="dn" id = 'head'>
     </div>
   </div>
   <div class="box">
@@ -82,7 +82,7 @@
       <label for="" class="col-3 bor-r-sol bor-f6 p-x-0 m-b-0">现居住地</label>
       <div class="col-8 p-x-0 align-self-center text-right">  
         <select  v-model='data.area' class='bg-fff h-20'>
-          <option v-for ="v in area" :value="v">{{v}}</option>
+          <option v-for ="v in area" :value="v.name">{{v.name}}</option>
         </select>
       </div>
       <div class="col-1 align-self-center text-center p-x-0 ">
@@ -164,16 +164,16 @@ new Vue({
    openfile () {
      $(head).click()
 		},
-    async upload(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('head','head')
-      this.data.head = res.data[0].path
-      this.ajax.put('/edit/basis', this.data,(res) => {
-        weui.toast('编辑成功', 2000);
-      }, (res) => {
-          console.log(res.errmsg)
-      })
-    },
+    // async upload(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('head','head')
+    //   this.data.head = res.data[0].path
+    //   this.ajax.put('/edit/basis', this.data,(res) => {
+    //     weui.toast('编辑成功', 2000);
+    //   }, (res) => {
+    //       console.log(res.errmsg)
+    //   })
+    // },
     add(){
       if(this.data.name == '' || !this.data.birthday || this.data.education =='' || this.data.experience == '' || this.data.area == '' || this.data.mobile == '' || this.data.email == ''){
         document.getElementById('fail').style.display = 'block'

@@ -100,7 +100,7 @@
           <i class="icon pa r-22 t-25 t-c-bf">&#xe62e;</i>
           <select class="bg-ef br-3 h-24 w-80 t-c-666 f-s-f14 p-l-2" v-model='jobs.area'>
             <option value=''>请选择工作区域</option>
-            <option v-for='a in area' :value='a'>{{a}}</option>
+            <option v-for='a in area' :value='a.name'>{{a.name}}</option>
           </select> 
         </div>
         <div class="col-2 align-self-center text-right p-x-0">

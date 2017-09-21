@@ -5,7 +5,7 @@
         <div class="w100 h100 br-h bg-white ma">
           <img class="w100 h100 br-h" :src="data.head" v-if='data.head'>
           <i class="icon f-s-26 p-t-25" @click='openfile' v-else >&#xe81e;</i>
-          <input type="file" class="dn" id = 'head' @change='upload'>
+          <input type="file" class="dn" id = 'head'>
         </div>
       </div>
     </div>
@@ -186,16 +186,16 @@ new Vue({
     openfile () {
      $(head).click()
 		},
-    async upload(){
-      // 第一个为id 第二个为config定义的规则
-      let res = await this.uploadimg.working('head','head')
-      this.data.head = res.data[0].path
-      this.ajax.put('/edit/basis', this.data,(res) => {
-        weui.toast('编辑成功', 2000);
-      }, (res) => {
-          console.log(res.errmsg)
-      })
-    },
+    // async upload(){
+    //   // 第一个为id 第二个为config定义的规则
+    //   let res = await this.uploadimg.working('head','head')
+    //   this.data.head = res.data[0].path
+    //   this.ajax.put('/edit/basis', this.data,(res) => {
+    //     weui.toast('编辑成功', 2000);
+    //   }, (res) => {
+    //       console.log(res.errmsg)
+    //   })
+    // },
     can(){
       let dialog1 = document.getElementById('dialog1')
       dialog1.style.display = 'none'
