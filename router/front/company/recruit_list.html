@@ -28,7 +28,7 @@
 
     <div id='time_1' class="col-3 f-s-f13 screen p-0 f-s-6 t-c-00bb" v-if="p.time != ''"><a class='dinb w-100 ta-c h-26 lh-26 m-t-p6 bor-r-sol bor-f7 t-c-0a0' @click="show(time_1)">{{timename}}</a></div>
 
-    <div  class="col-3 f-s-f13 screen p-0 f-s-6 bor-0 text-center"><a href="/front/company/station" class='dinb ta-c h-26 lh-26 br-8 m-t-p6  t-c-0a0 w-w65 h-h23 bg-ff6 t-c-fff' style='color:#fff;'>发布岗位</a></div>
+    <div  class="col-3 f-s-f13 screen p-0 f-s-6 bor-0 text-center"><a href="/front/company/station" class='dinb ta-c h-26 lh-26 br-5 m-t-p6  t-c-0a0 w-w65 h-h23 bg-ff6 t-c-fff' style='color:#fff;'>发布岗位</a></div>
   </div>
 </div>
 
@@ -37,19 +37,19 @@
   <div class='datail p-10 bg-f5f5 pr oh d-block clear p-b-50 z-10030'>
     <ul class='m-b-0' style='list-style-type: none;'>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''":class="{'bg-00b': p.area == ''}">全部</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''":class="{'bg-00b': p.area == '','t-c-fff': p.area == ''}" >全部</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n':class="{'bg-00b': p.area == n}">{{n}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n':class="{'bg-00b': p.area == n,'t-c-fff':p.area==n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay'>
-        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''" :class="{'bg-00b': p.pay == ''}">全部</span>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''" :class="{'bg-00b': p.pay == '','t-c-fff': p.pay == ''}">全部</span>
       </li>
       <li class='float-left p-l-f2  .p-r-f2  ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n}">{{n}}</span>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n,'t-c-fff': p.pay == n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 .p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value}">{{n.name}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value,'t-c-fff': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>
     <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-00b pa b-0 l-0' @click='search'>确定</button>
@@ -58,7 +58,7 @@
 </div>
 
 <!--热门岗位1-->
-<div v-show='list.length != 0' style='margin-top:100px'>
+<div v-show='list.length != 0' style='margin-top:94px'>
   <ul class="m-t-p3 m-b-80 f-s-8">
     <li class="m-10 m-t-8 p-10 bg-white br-5 pr row" v-for='n in list'>
       <a :href="'/front/company/company_detail?id='+n.id" class='w-100 '>
@@ -66,7 +66,7 @@
           <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232">{{n.name}}</span>
           <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < n.issue_time'>今天</span>
           <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
-          <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
+          <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('MM/dd',n.issue_time)}}</span>
         </p>
         <p class="w-100 m-b-5">
           <span class="t-c-ff4 f-s-f15">{{n.pay}}</span>
@@ -77,7 +77,7 @@
           <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
         </p>
         <p class="w-100 m-b-5 f-s-f11">
-          <span class="bor p-x-2 m-l-3 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
+          <span class="bor p-x-2 m-l-3 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
           <img src="n.logo" class='br-h h-h32 w-w32'>

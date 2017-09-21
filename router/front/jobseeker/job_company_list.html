@@ -1,7 +1,7 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--公司头像-->
-<div class="container-fluid img bg-fff ta-c m-t-55 bor-t-sol bor-b-sol bor-eee">
+<div class="container-fluid img bg-fff ta-c m-t-53 bor-t-sol bor-b-sol bor-eee">
   <!--<img src="list.logo" class='mt-3 br-h w-w50 h-h50  bor-sol bor-f9'>-->
   <img src="../../../skins/img/1.jpg" class='mt-3 br-h w-w50 h-h50  bor-sol bor-f9'>
   <p class='mt-2 f-s-f15 t-c-0a0' style='margin-bottom:0'>{{list.name}}</p>
@@ -10,7 +10,7 @@
 </div>
 
 <!--公司概况-->
-<div class="container-fluid content bg-fff bor-t-sol bor-eee bor-b-sol bor-ccc m-b-10 m-t-6 p-x-10">
+<div class="container-fluid content bg-fff bor-t-sol bor-eee bor-b-sol bor-ccc m-b-8 m-t-8 p-x-10">
   <div class='p-y-6 f-s-8 bor-b-sol bor-e1'>
     <i class="icon f-s-8 p-t-10 p-r-5 t-c-00b f-s-f18">&#xe8f5;</i>
     <span class='f-s-f15 t-c-0a0'>公司概况</span>
@@ -22,7 +22,7 @@
 
 <!--该公司职位-->
 <div class="company">
-  <div class='post container-fluid h-40 w-100 bg-fff m-t-6 f-s-8 lh-40 bor-b-sol bor-ea'>
+  <div class='post container-fluid h-40 w-100 bg-fff m-t-8 f-s-8 lh-40 bor-b-sol bor-ea'>
     <span class="icon p-r-3 t-c-7c88 f-s-f18">&#xe8ee;</span>
     <span class=' f-s-f15 t-c-7c88'>该公司职位</span>
   </div>
@@ -46,7 +46,7 @@
           <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
         </p>
         <p class="w-100 m-b-5 f-s-f11">
-          <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
+          <span class="bor p-x-2 m-l-8  br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
           <img src="n.logo" class='br-h h-h32 w-w32'>

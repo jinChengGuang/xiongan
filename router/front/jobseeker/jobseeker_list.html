@@ -4,7 +4,7 @@
     <a class="col-1 icon icon_1 mt-2 f-s-f22 pl-2 t-c-7c88 p-t-5" v-if="query.get('name')" href='/front/jobseeker/jobseeker_list'>&#xe90f;</a>
     <div class="col-10 pl-3" >
       <input type="autocomplete" placeholder="搜索职位/公司" class='h-h30 lh-30 w-100 bg-fff f-s-8 t-c-eee bor-0' style='padding-left: 10%;'v-model="p.name" @focus='link'>
-      <span class='icon' style='position: absolute; top:34%; left:7%;'>&#xe7fd;</span>
+      <span class='icon t-c-c1' style='position: absolute; top:36%; left:7%;'>&#xe7fd;</span>
     </div>
     <div class="col-1 icon pl-0 mt-2 letter f-s-f22 pr p-t-5"><a href='/front/jobseeker/invitation_receive' class='t-c-7c88 f-s-f20'>&#xe7d5;<a ><span style='position: absolute; display: inline-block; width:6px; height:6px; background: red; border-radius: 50%; top:8px; right:27%;' v-show='msg.length != 0'></span>
     </div>
@@ -40,34 +40,34 @@
   <div class='datail p-10 bg-f5f5 pr oh d-block clear p-b-50 z-10030'>
     <ul class='m-b-0' style='list-style-type: none;'>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == area'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''" :class="{'bg-00b': p.area == ''}">全部</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="p.area = ''" :class="{'bg-00b': p.area == '','t-c-fff': p.area == ''}">全部</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == area' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n' :class="{'bg-00b': p.area == n}">{{n}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.area = n' :class="{'bg-00b': p.area == n,'t-c-fff': p.area == n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == pay'>
-        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''"  :class="{'bg-00b': p.pay == ''}">全部</span>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.pay = ''"  :class="{'bg-00b': p.pay == '','t-c-fff': p.pay == ''}">全部</span>
       </li>
       <li class='float-left p-l-f2  p-r-f2  ta-c m-t-5' v-if='arry == pay' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n}">{{n}}</span>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click='p.pay = n' :class="{'bg-00b': p.pay == n,'t-c-fff': p.pay == n}">{{n}}</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == benefit'>
-        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.benefit = ''" :class="{'bg-00b': p.benefit == ''}">全部</span>
+        <span class='bor-sol bor-ccc br-5  p-x-5 dinb p-y-3 w-100 f-s-8' @click="p.benefit = ''" :class="{'bg-00b': p.benefit == '','t-c-fff': p.benefit == ''}">全部</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == benefit' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="join(n)" :class="{'bg-00b': n.checked}">{{n.name}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click="join(n)" :class="{'bg-00b': n.checked,'t-c-fff': n.checked}">{{n.name}}</span>
       </li>
       <li class='float-left p-l-f2 p-r-f2 w-25 ta-c m-t-5' v-if='arry == time_1' v-for='n in arry'>
-        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value}">{{n.name}}</span>
+        <span class='bor-sol bor-ccc br-5 dinb p-y-3 w-100 f-s-8' @click='p.time = n.value,timename = n.name' :class="{'bg-00b': p.time == n.value,'t-c-fff': p.time == n.value}">{{n.name}}</span>
       </li>
     </ul>
-    <button class='w-100 h-35 m-t-p3 f-s-8 t-c-fff bg-00b pa b-0 l-0' @click='search'>确定</button>
+    <button class='w-100 h-36 m-t-p3 f-s-9 t-c-fff bg-00b pa b-0 l-0' @click='search'>确定</button>
   </div>
   <div class='bg-rgba w-100 ' :style="{height:body_h + 'px'}"  @click='none_1' id='pop1'></div>
 </div>
 
 <!--热门岗位1-->
-<div v-show='list.length != 0' style='margin-top:100px'>
+<div v-show='list.length != 0' style='margin-top:94px'>
   <ul class="m-t-p3 m-b-80 f-s-8">
     <li class="m-10 m-t-8 p-10 bg-white br-5 pr row" v-for='n in list'>
       <a :href="'/front/jobseeker/jobseeker_detail?id='+n.id" class='w-100 '>
@@ -75,18 +75,18 @@
           <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232">{{n.name}}</span>
           <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < n.issue_time'>今天</span>
           <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < n.issue_time && n.issue_time < start'>昨天</span>
-          <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('yyyy-MM-dd',n.issue_time)}}</span>
+          <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > n.issue_time'> {{time.dateFormat('MM/dd',n.issue_time)}}</span>
         </p>
         <p class="w-100 m-b-5">
           <span class="t-c-ff4 f-s-f15">{{n.pay}}</span>
         </p>
         <p class="w-100 m-b-5">
-          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 p-r-3">&#xe621;</i>{{n.area}}</span>
-          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe86a;</i>{{n.education}}</span>
-          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe68c;</i>{{n.experience}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 p-r-3">&#xe8e0;</i>{{n.area}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e3;</i>{{n.education}}</span>
+          <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{n.experience}}</span>
         </p>
         <p class="w-100 m-b-5 f-s-f11">
-          <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
+          <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
           <img src="n.logo" class='br-h h-h32 w-w32'>

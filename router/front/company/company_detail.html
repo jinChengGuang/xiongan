@@ -8,7 +8,7 @@
         <span class="f-s-10 f-s-f16 t-c-32 f-w-600 t-c-3232"> {{list.name}} </span>
         <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start < list.issue_time'>今天</span>
         <span class='float-right t-c-0a0 f-s-f14 t-c-999' v-if='start-86400 < list.issue_time && list.issue_time < start'>昨天</span>
-        <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > list.issue_time'> {{time.dateFormat('yyyy-MM-dd',list.issue_time)}}</span>
+        <span class="float-right t-c-0a0 f-s-f14 t-c-999" v-if='start-86400 > list.issue_time'> {{time.dateFormat('MM/dd',list.issue_time)}}</span>
       </p>
       <p class="w-100 m-b-5">
         <span class="t-c-ff4 f-s-f15">{{list.pay}}</span>
@@ -19,14 +19,14 @@
         <span class='f-s-f12 t-c-666'><i class="icon f-s-f12 m-l-10 p-r-3">&#xe8e1;</i>{{list.experience}}</span>
       </p>
       <p class="w-100 m-b-5 f-s-f11" >
-        <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for='n in arry'>{{n}}</span>
+        <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for='n in arry'>{{n}}</span>
       </p>
-      <p class="w-100 m-b-5 m-t-15 bor-t-sol bor-ccc p-t-5">
+      <p class="w-100 m-b-5 m-t-15 bor-t-sol bor-ea p-t-5">
         <a :href="'/front/company/company_list?id=' + list.cid" class='w-100'>
           <img src="list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
-          <span class="icon float-right mt-2 f-s-f18 ">&#xe7c4;</a></span>
+          <span class="icon float-right mt-2 f-s-f18 t-c-7c88">&#xe7c4;</a></span>
         </a>
       </p>
     </li>
@@ -34,8 +34,8 @@
 </div>
 <!--岗位职责-->
 <div>
-  <div class="container-fluid p-x-10 content bg-fff bor-t-sol bor-ea bor-b-sol m-b-15" >
-    <div class='p-y-p2 f-s-8 bor-b-sol bor-ccc f-s-f15'>
+  <div class="container-fluid p-x-10 content bg-fff bor-t-sol bor-ea bor-b-sol m-b-8" >
+    <div class='p-y-p2 f-s-8 bor-b-sol bor-ea f-s-f15'>
       <i class="icon f-s-8 p-y-3 m-t-3 t-c-00a f-s-f15">&#xe8f3;</i>
       <span class='f-s-f15'>岗位职责</span>
     </div>
@@ -48,7 +48,7 @@
   </div>
   <!--任职资格-->
   <div class="container-fluid content bg-fff bor-t-sol bor-ea bor-b-sol m-b-60">
-    <div class='p-y-p2 f-s-8 bor-b-sol bor-ccc f-s-f15' id='icon'>
+    <div class='p-y-p2 f-s-8 bor-b-sol bor-ea f-s-f15' id='icon'>
       <i class="icon f-s-8 p-y-3 m-t-3 t-c-00a f-s-f15">&#xe8f3;</i>
       <span>岗位要求</span>
     </div>
