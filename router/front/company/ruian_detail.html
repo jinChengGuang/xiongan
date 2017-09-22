@@ -1,15 +1,12 @@
 <!--顶部导航栏-->
 <%- tname%>
 <!--轮播图-->
-<div id="carouselId" class="carousel slide m-t-46 h-150" data-ride="carousel" data-interval="2000">
-  <ol class="carousel-indicators" style='bottom:-10px;'>
-    <li v-for='(n,i) in swiper' data-target="#carouselId" data-slide-to="i" class="active"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox" style="height:150px">
-    <div class="carousel-item active" v-for='n in swiper'>
-      <img :src="n.url" alt="First slide" class='w-100'>
-    </div>
-  </div>
+<div class="siwper m-t-45 w-100 h-h150">
+  <mt-swipe class="carousel" :auto='4000' :swiper='swiper'>
+    <mt-swipe-item  v-for='n in swiper'>
+      <img :src="n.url" class='w-100 h-100'>
+    </mt-swipe-item>
+  </mt-swipe>
 </div>
 <!--课程简介-->
 <div class="w-100 bg-white m-t-8 py-0 p-x-15 f-s-8">

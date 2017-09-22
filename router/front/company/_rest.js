@@ -70,6 +70,7 @@ exports.get = {
    */
   '/job/all/list': async (ctx, next) => {
     let{ name, area, pay, time,benefit } = ctx.get
+    console.log(area)
     let where = ''
     let params = []
     let sql=''
@@ -96,7 +97,8 @@ exports.get = {
         where = ' and A.benefit like "%'+ v + '%"'
       }
     }
-    sql= 'select A.* , B.logo from job A, company B where A.examine = 1 and A.status=1 and A.cid =  B.id ' + where +'order by issue_time' 
+    sql= 'select A.* , B.logo from job A, company B where A.examine = 1 and A.status=1 and A.cid =  B.id ' + where +'order by issue_time desc' 
+    console.log(sql)
     let job = await $.mysql.query($.conf.mysql.main, sql, params)
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)

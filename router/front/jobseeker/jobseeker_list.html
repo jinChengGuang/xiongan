@@ -227,9 +227,11 @@
         pop.style.display = 'block'
       },
       search(){
+        console.log(111)
         if(!this.p.name){
           this.type = 'filter'
         }
+        console.log(this.p.area)
         this.ajax.get('/job/all/list?area=' + this.p.area + '&pay=' + this.p.pay + '&time=' + this.p.time + '&name=' + this.p.name + '&benefit=' + this.p.benefit,(res)=>{
           this.list = res.data
           pop.style.display = 'none'

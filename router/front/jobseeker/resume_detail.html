@@ -2,10 +2,10 @@
 <div class="container-fluid f-s-8 m-t-46 bg-white t-c-666 f-s-f14 none m-b-80">
    <div class="row p-x-p5 m-x-0 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
       <div class="col-12 text-center p-t-p9" >
-        <div class="w100 h100 br-h bg-white ma">
+        <div class="w100 h100 br-h bg-white ma" @click='openfile'>
           <img class="w100 h100 br-h" :src="data.head" v-if='data.head'>
-          <i class="icon f-s-26 p-t-25" @click='openfile' v-else >&#xe81e;</i>
-          <input type="file" class="dn" id = 'head'>
+          <i class="icon f-s-26 p-t-25"  v-else >&#xe81e;</i>
+          <input type="file" class="dn" id = 'head' @change='upload'>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
       <div class="col-10 t-c-00b f-s-9">求职意向</div>
       <div class="col-2 text-right">
-        <a href="/front/jobseeker/edit_job?type=edit" style='color:#00bef9;'>
+        <a href="/front/jobseeker/edit_job" style='color:#00bef9;'>
           <i class="icon t-c-00b">&#xe901;</i>
         </a>
       </div>
@@ -62,7 +62,7 @@
     <div class="row f-s-f17 pt-2 pb-2 m-x-0 bor-t-sol bor-e1">
       <div class="col-10 t-c-00b f-s-9">个人评价</div>
       <div class="col-2 text-right">
-        <a href="/front/jobseeker/edit_assess">
+        <a href="/front/jobseeker/edit_assess?type=edit">
           <i class="icon t-c-00b">&#xe901;</i>
         </a>
       </div>
@@ -166,6 +166,17 @@ new Vue({
     })
   },
   methods: {
+    upload(){
+      // 第一个为id 第二个为config定义的规则
+      this.uploadimg.working('head','head').then((res)=>{
+        this.data.head = res.data[0].path
+        this.ajax.put('/edit/basis', this.data,(res) => {
+          weui.toast('编辑成功', 2000);
+        }, (res) => {
+            console.log(res.errmsg)
+        })
+      })
+    },
     delexp(){
      this.ajax.delete('/experience/delete/'+this.delid,(res) => {
         weui.toast('删除成功', 1500);
@@ -184,18 +195,9 @@ new Vue({
       })
     },
     openfile () {
-     $(head).click()
+      $(head).click()
 		},
-    // async upload(){
-    //   // 第一个为id 第二个为config定义的规则
-    //   let res = await this.uploadimg.working('head','head')
-    //   this.data.head = res.data[0].path
-    //   this.ajax.put('/edit/basis', this.data,(res) => {
-    //     weui.toast('编辑成功', 2000);
-    //   }, (res) => {
-    //       console.log(res.errmsg)
-    //   })
-    // },
+    
     can(){
       let dialog1 = document.getElementById('dialog1')
       dialog1.style.display = 'none'

@@ -61,12 +61,14 @@ new Vue({
   },
   methods: {
     next(){
-      this.data.start=(parseInt(new Date(this.data.start).getTime().toString().substr(0, 10)))
-      this.data.end=(parseInt(new Date(this.data.end).getTime().toString().substr(0, 10)))
+      this.data.start=(new Date(this.data.start).getTime() / 1000)
+      this.data.end=(new Date(this.data.end).getTime() / 1000)
       this.ajax.put('/education/edit', this.data,(res) => {
       weui.toast('提交成功', 2000);
       if(this.query.get('type')){
         setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
+      }else{
+        setTimeout(function () { window.location.href='/front/jobseeker/resume_detail'}, 2000)
       }
         }, (res) => {
           console.log(res.errmsg)

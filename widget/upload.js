@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------- Exports
 const UPLOAD = {
 	working (fileId,rule) {
-		return new Promise(async (resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			try {
 				let files = document.getElementById(fileId).files
 				// 声明FormData对象
@@ -17,7 +17,7 @@ const UPLOAD = {
 						resolve(res.body)
 						return
 					}
-						reject(res)
+					reject(res)
 				})
 			} catch (err) {
 				reject(err)

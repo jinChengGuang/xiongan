@@ -32,7 +32,15 @@ exports.post = {
       ctx.result.ok.data = data
       $.flush(ctx, ctx.result.ok)
     }
-  }
+  },
+  /**
+   * 上传图片
+   */
+  '/upload': async (ctx, next) => {
+    let data = await $.upload(ctx)
+    ctx.result.ok.data = data
+    $.flush(ctx, ctx.result.ok)
+  },
 }
 // ---------------------------------------------------------------------------- PUT
 exports.put = {

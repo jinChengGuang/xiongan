@@ -1108,3 +1108,17 @@ label {max-width:inherit;}
       url('../../../skins/font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
       url('../../../skins/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
     }
+    /*修改input的placeholder的颜色*/
+    input.inputColor::-webkit-input-placeholder{
+      color: #fff;
+    }
+    input.inputColor:-moz-placeholder{
+      color: #fff;
+    }
+    input.inputColor::-moz-placeholder{
+      color: #fff;
+    }
+    input.inputColor:-ms-input-placeholder{
+      color: #fff;
+    }
+    .mint-swipe-indicators{bottom:-3px!important;}

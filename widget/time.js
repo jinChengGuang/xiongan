@@ -11,7 +11,7 @@ const TIME = {
     // }
 
     // 如果传入的是10位时间戳，则变为13位时间戳
-    if (time.toString().length === 10) {
+    if (time.toString().length < 10) {
       time *= 1000
     }
     

@@ -2,9 +2,11 @@
 <div class="container-fluid m-t-46 bg-white none">
   <div class="p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
     <div class="col-12 text-center p-t-p9" >
-      <img class=" w-30 br-h" :src="data.head" v-if='data.head'>
-      <i class="icon f-s-40 bg-white br-h p-3" @click='openfile' v-else >&#xe81e;</i>
-      <input type="file" class="dn" id = 'head'>
+      <div class="w100 h100 br-h bg-white ma" @click='openfile'>
+          <img class="w100 h100 br-h" :src="data.head" v-if='data.head'>
+          <i class="icon f-s-26 p-t-25"  v-else >&#xe81e;</i>
+          <input type="file" class="dn" id = 'head' @change='upload'>
+        </div>
     </div>
   </div>
   <div class="box">
@@ -33,7 +35,7 @@
         </div>
         <div class="form-check form-check-inline m-b-0">
           <label class="form-check-label custom-radio m-b-0">
-          <input class="custom-control-input" type="radio" name="isopen" value="0" v-model='data.sex' >
+          <input class="custom-control-input" type="radio" name="isopen" value="1" v-model='data.sex' >
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description align-self-center">女</span>
         </label>
@@ -47,7 +49,7 @@
     <div class="row f-s-9  bor-b-sol bor-eae pt-2 pb-2 m-x-12">
       <label class="col-3 bor-r-sol bor-f6 p-x-0 m-b-0">出生年月</label>
       <div class="col-8 text-right p-x-0">
-        <input type="date" class="p-x-0 text-right bg-fff text-right" v-model='data.birthday'>
+        <input type="date" class="p-x-0 text-right  h-24 t-c-666 f-s-f14 p-l-2" v-model='data.birthday'>
       </div>
       <div class="col-1 align-self-center text-center p-x-0">
         <span class="t-c-e20">*</span>  
@@ -130,12 +132,13 @@ new Vue({
     experience:[],
     education:[],
     area:[],
-    kind:[]
+    kind:[],
+    name:'我的简历'
   },
   mounted () {
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
-      this.data.birthday= this.time.dateFormat('yyyy-MM',this.data.birthday)
+      this.data.birthday= this.time.dateFormat('yyyy-MM-dd',this.data.birthday)
     }, (res) => {
       console.log(res.errmsg)
     })
@@ -164,26 +167,27 @@ new Vue({
    openfile () {
      $(head).click()
 		},
-    // async upload(){
-    //   // 第一个为id 第二个为config定义的规则
-    //   let res = await this.uploadimg.working('head','head')
-    //   this.data.head = res.data[0].path
-    //   this.ajax.put('/edit/basis', this.data,(res) => {
-    //     weui.toast('编辑成功', 2000);
-    //   }, (res) => {
-    //       console.log(res.errmsg)
-    //   })
-    // },
+    upload(){
+      // 第一个为id 第二个为config定义的规则
+      this.uploadimg.working('head','head').then((res)=>{
+        this.data.head = res.data[0].path
+        this.ajax.put('/edit/basis', this.data,(res) => {
+          weui.toast('编辑成功', 2000);
+        }, (res) => {
+            console.log(res.errmsg)
+        })
+      })
+    },
     add(){
       if(this.data.name == '' || !this.data.birthday || this.data.education =='' || this.data.experience == '' || this.data.area == '' || this.data.mobile == '' || this.data.email == ''){
         document.getElementById('fail').style.display = 'block'
         setTimeout("document.getElementById('fail').style.display='none'",1500)
         return
       }
-      this.data.birthday=(parseInt(new Date(this.data.birthday).getTime().toString().substr(0, 10)))
+      this.data.birthday=(new Date(this.data.birthday).getTime() / 1000)
       this.ajax.put('/edit/basis', this.data,(res) => {
       weui.toast('编辑成功', 2000);
-      setTimeout( 'window.history.go(-1)', 2000)
+      setTimeout("window.location.href='/front/jobseeker/resume_detail'",1500)
       }, (res) => {
         console.log(res.errmsg)
       })
