@@ -60,11 +60,11 @@
     </p>
     <p>
       <span>面试时间：</span>
-      <input type="datetime_local" class='bor-0 bor-b-sol bor-eee' placeholder="请选择面试时间" v-model='p.interviewtime'>
+      <input type="date" class='bg-ef br-3 h-24 w-50 t-c-666 f-s-f14 p-l-2' placeholder="请选择面试时间" v-model='p.interviewtime'>
     </p>
     <p>
       <span>面试地址：</span>
-      <span>北二环于瑞祥大街交叉口东行50米和社区</span>
+      <input type='text' placeholder="请输入面试地址" v-model='p.address' class='bor-0 bor-b-sol bor-eee'>
     </p>
       <p>
       <span>备注：</span>
@@ -149,6 +149,7 @@ new Vue({
         this.msg.error('app','请将内容填写完整！')
         return
       }
+      this.p.interviewtime = (parseInt(new Date(this.p.interviewtime).getTime().toString().substr(0,10)))
       this.ajax.put('/invite/resume',this.p,(res) => {
         weui.toast('邀请成功', 500);
         setTimeout("window.location.reload()",1500)
