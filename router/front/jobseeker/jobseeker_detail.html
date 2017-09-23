@@ -23,7 +23,7 @@
       </p>
       <p class="w-100 m-b-5 m-t-15 bor-t-sol bor-ea p-t-5">
         <a :href="'/front/jobseeker/job_company_list?id='+list.cid">
-          <img :src="list.logo" class='br-h h-h32 w-w32'>
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
           <span class="icon p-l-f2 m-l-5 f-s-f18 mt-2 t-c-7c88">&#xe7c4;</a></span>
@@ -83,10 +83,10 @@
   </div>
 </div>
 <!--失败弹层-->
-<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+<!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
     <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
     <p class="weui-toast__content">您还没有简历,请创建简历</p > 
-</div>
+</div>-->
 
 <script> 
   new Vue({
@@ -122,7 +122,7 @@
         this.requirements_length = res.data[0].requirements
         this.requ = this.requirements
       },(err)=>{
-        
+        this.msg.error('app',err.errmsg)
       }),
       // 是否收藏
       this.ajax.get('/user/collect/collect_list?jid='+this.query.get('id'),(res)=>{
@@ -133,13 +133,14 @@
           this.list.show = !this.list.show
         }
         this.show_1 = this.list.show
-        console.log(this.show_1)
-      })
+    },(err)=>{
+      this.msg.error('app',err.errmsg)
+    })
       // 个人简历
       this.ajax.get('/user/resume/datail',(res)=>{
         this.resume_1 = res.data
       },(err)=>{
-
+        this.msg.error('app',err.errmsg)
       })
     },
     methods: {
@@ -164,17 +165,17 @@
           this.show_1 = this.list.show
           weui.toast('收藏成功', 500);
         },(err)=>{
+          this.msg.error('app',err.errmsg)
         })
       },
       cancel1(id){
-        console.log(id)
         this.ajax.delete('/collect/delete/'+ id,(res)=>{
           this.list.show = !this.list.show
           this.show_1 = this.list.show
           weui.toast('取消收藏成功', 500);
           setTimeout(window.loction.reload(),2000)
         },(err)=>{
-
+          this.msg.error('app',err.errmsg)
         })
       },
 
@@ -188,17 +189,18 @@
         let dialog1 = document.getElementById('dialog1')
         setTimeout(dialog1.style.display = 'none',1000)
         if(this.resume_1 == 0){
-          console.log(this.resume_1)
-          let fail = document.getElementById('fail')
-            fail.style.display = 'block'
-          setTimeout(function(){
-            fail.style.display = 'none'
-          },2000)
+          // let fail = document.getElementById('fail')
+          //   fail.style.display = 'block'
+          // setTimeout(function(){
+          //   fail.style.display = 'none'
+          // },2000)
+          this.msg.error('app','您还没有简历,请创建简历!')
           setTimeout("window.location.href='/front/jobseeker/new_resume'",1500)
         }else{
-          console.log(2)
           this.ajax.post('/add/resume/record',{jid:this.jid, rid:this.resume_1[0].id}, (res)=>{
           weui.toast('投递成功', 2000);
+          },(err)=>{
+            this.msg.error('app',err.errmsg)
           })
         }
       },

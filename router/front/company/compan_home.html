@@ -116,18 +116,18 @@
         this.detail = res.data
         console.log(this.detail)
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/msg/red',(res)=>{
         this.list = res.data
         console.log(this.list)
       },(err)=>{
-
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/company/test/detail',(res)=>{
         this.test = res.data
-        console.log(this.test)
       },(err)=>{
-
+        this.msg.error('app',err.errmsg)
       })
     },
     methods: {

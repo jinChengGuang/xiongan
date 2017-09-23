@@ -86,7 +86,7 @@
           <span class="bor p-x-2 m-l-8 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in list.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
-          <img :src="list.logo" class='br-h h-h32 w-w32'>
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
         </p>
@@ -127,7 +127,8 @@ new Vue({
     this.mydata = Date.parse(new Date()).toString().slice(0,10);
     this.ajax.get('/home/swiper', (res) => {
       this.swiper = res.data
-    }, (res) => {
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/live/list', (res) => {
       this.live = res.data[0]
@@ -138,18 +139,18 @@ new Vue({
       }else if(this.mydata > this.live.end_time.toString()){
         this.live.status = 2
       }
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/job/all/list', (res) => {
       this.list = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     }),
     this.ajax.get('/msg/red',(res)=>{
       this.msg = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

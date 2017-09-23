@@ -24,7 +24,7 @@
         </p>
       </a>
         <p class="w-100 m-b-5 m-t-15">
-          <img src="n.logo" class='br-h h-h32 w-w32'>
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+n.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(0,13)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
           <span class='collect-1 dinb h-h25 w-w60 ta-c lh-25 br-5 bor-sol bg-00bb t-c-fff bor-00bb right bg-d' @click='cancel(n.jid,i)' v-if='n.iscollect==true'>已收藏</span>
@@ -39,11 +39,6 @@
 <div class='none pa t-25 l-30 text-center' v-show='list.length == 0'>
   <img src="../../../skins/img/shoucang.png" class='w-w150 h-h150 '>
   <p class='f-s-f14 t-c-999 m-b-3'>暂无岗位收藏记录</p>
-</div>
-<!--失败弹层-->
-<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
-    <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
-    <p class="weui-toast__content">取消收藏</p > 
 </div>
 <%- fjob%>
 <script>
@@ -60,6 +55,7 @@
       this.ajax.get('/user/collect/list',(res)=>{
         this.list = res.data
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
     },
     methods: {
@@ -68,21 +64,17 @@
         this.list[i].iscollect=true
         weui.toast('收藏成功', 2000);
         },(err)=>{
-
+          this.msg.error('app',err.errmsg)
         })
       },
       cancel(jid,i){
         this.ajax.delete('/collect/delete/'+ jid,(res)=>{
-        this.list[i].iscollect=false
-        this.show = false
-        let fail = document.getElementById('fail')
-          fail.style.display = 'block'
-        setTimeout(function(){
-          fail.style.display = 'none'
-        },2000)
-        setTimeout(window.loction.reload(),2000)
+          this.list[i].iscollect=false
+          this.show = false
+          this.msg.error('app','取消收藏')
+          setTimeout(window.loction.reload(),2000)
         },(err)=>{
-
+          this.msg.error('app',err.errmsg)
         })
       },
       go(){

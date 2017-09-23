@@ -74,13 +74,13 @@ new Vue({
   mounted () {
     this.ajax.get('/user/resume/experience', (res) => {
       this.experience = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/user/resume/education', (res) => {
       this.education = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -88,16 +88,16 @@ new Vue({
      this.ajax.delete('/experience/delete/'+id,(res) => {
       weui.toast('删除成功', 2000);
       setTimeout("window.location.reload()",2000)
-      }, (res) => {
-        console.log(res.errmsg)
+      }, (err) => {
+        this.msg.error('app',err.errmsg)
       })
     },
     deledu(id){
      this.ajax.delete('/education/delete/'+id,(res) => {
       weui.toast('删除成功', 2000);
       setTimeout("window.location.reload()",2000)
-      }, (res) => {
-        console.log(res.errmsg)
+      }, (err) => {
+        this.msg.error('app',err.errmsg)
       })
     }
   }

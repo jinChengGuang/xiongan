@@ -17,8 +17,8 @@ new Vue({
   mounted () {
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -27,8 +27,8 @@ new Vue({
         weui.toast('提交成功', 1500);
         // 跳页
         setTimeout("window.location.href='/front/jobseeker/resume_detail'",1500)
-        }, (res) => {
-          console.log(res.errmsg)
+        }, (err) => {
+          this.msg.error('app',err.errmsg)
         })
     }
   }

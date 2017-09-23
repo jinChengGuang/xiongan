@@ -55,18 +55,18 @@
     mounted(){
       this.ajax.get('/job/search/hot',(res)=>{
         this.list = res.data
-        console.log(this.list)
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/company/search/hot',(res)=>{
         this.datail = res.data
-        console.log(this.datail)
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/search/history/list',(res)=>{
         this.history = res.data
-        console.log(this.history)
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
     },
     methods: {
@@ -78,6 +78,7 @@
           weui.toast('删除成功', 2000);
           setTimeout('window.location.reload()',1500)
           },(err)=>{
+            this.msg.error('app',err.errmsg)
         })
       }
     }

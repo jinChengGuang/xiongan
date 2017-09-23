@@ -113,15 +113,14 @@ new Vue({
         this.last = this.ruian.pop()
       }
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/school/detail', (res) => {
       this.school = res.data
       this.images = this.school[1]
       this.detail = this.school[0][0]
-      console.log(this.school)      
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

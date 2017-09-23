@@ -262,37 +262,37 @@ new Vue({
         }
       }
     },(err)=>{
-
+      this.msg.error('app',err.errmsg)
     })
     //学历列表
     this.ajax.get('/education/list',(res)=>{
       this.education = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     }),
     //薪资要求
     this.ajax.get('/pay/list',(res)=>{
       this.pay = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     }),
   //  区域列表
     this.ajax.get('/area/list',(res)=>{
       this.area = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     }),
     // 经验要求
     this.ajax.get('/experience/list',(res)=>{
       this.exper = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     }),
     // 福利待遇
     this.ajax.get('/benefit/list',(res)=>{
       this.li = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     })
     $(function(){
       $('#span').css('height','70px')
@@ -322,7 +322,7 @@ new Vue({
         weui.toast('发布成功,请等待审核', 2000)
         setTimeout("window.location.href='/front/company/job_send'",1500)
       },(err)=>{
-        console.log(err.errmsg)
+        this.msg.error('app',err.errmsg)
       })
     },
     check(i,type){

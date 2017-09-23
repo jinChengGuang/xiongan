@@ -203,7 +203,7 @@
       </label>
       <div class="col-6 p-x-0 file">
         <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.certificate'>
-          <img src="../../../skins/img/1.jpg" class="w-100" >
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+ group.certificate" class="w-100" >
         </div>
         <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile' v-else>
           <i class="icon">&#xe7ba;</i>
@@ -227,7 +227,7 @@
 
         <div class="float-left">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.idcard_front'>
-            <img src="../../../skins/img/1.jpg" class="w-100" >
+            <img :src="'http://xiongan.tset.hesq.com.cn/image/'+ group.idcard_front" class="w-100" >
           </div>
           <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile1' v-else>
             <i>正面</i>
@@ -237,7 +237,7 @@
 
         <div class="float-left m-l-10">
           <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.idcard_reverse'>
-            <img src="../../../skins/img/1.jpg" class="w-100" >
+            <img :src="'http://xiongan.tset.hesq.com.cn/image/'+ group.idcard_reserve" class="w-100" >
           </div>
           <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f14 t-c-bbb" @click='openfile2' v-else>
             <i>反面</i>
@@ -262,7 +262,7 @@
       </label>
       <div class="col-6 p-x-0 file">
         <div class="w50 h-h50 bor-das bor-bbb text-center t-c-bbb" v-if='group.logo'>
-          <img src="../../../skins/img/1.jpg" class="w-100" >
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+group.logo" class="w-100" >
         </div>
         <div class="w50 h-h50 bor-das bor-bbb lh-50 text-center f-s-f22 t-c-bbb" @click='openfile3' v-else>
           <i class="icon">&#xe7ba;</i>
@@ -308,11 +308,11 @@
       </div>
 
 
-        <!--失败弹层-->
+        <!--失败弹层
       <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
         <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
         <p class="weui-toast__content">请将信息填写完整！</p > 
-      </div>
+      </div>-->
 
 </div>
 
@@ -354,19 +354,19 @@ new Vue({
       this.big = bigcat
       this.smallall = smallall
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     }),
     //性质
     this.ajax.get('/company/kind/list',(res)=>{
       this.type = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     })
     //规模
     this.ajax.get('/company/scope/list',(res)=>{
       this.scope = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -379,25 +379,41 @@ new Vue({
     upload(){
       // 第一个为id 第二个为config定义的规则
       this.uploadimg.working('cert','company').then((res)=>{
-        this.data.certificate = res.data[0].path
+         if(res.errcode!==0){
+          this.msg.error('app',res.errmsg)
+          return
+        }
+        this.data.certificate = res.data[0].url
       })
     },
      upload1(){
       // 第一个为id 第二个为config定义的规则
       this.uploadimg.working('front','company').then((res)=>{
-        this.data.idcard_front = res.data[0].path
+         if(res.errcode!==0){
+          this.msg.error('app',res.errmsg)
+          return
+        }
+        this.data.idcard_front = res.data[0].url
       })
     },
     upload2(){
       // 第一个为id 第二个为config定义的规则
       this.uploadimg.working('reverse','company').then((res)=>{
-        this.data.idcard_reverse = res.data[0].path
+         if(res.errcode!==0){
+          this.msg.error('app',res.errmsg)
+          return
+        }
+        this.data.idcard_reverse = res.data[0].url
       })
     },
     upload3(){
       // 第一个为id 第二个为config定义的规则
       this.uploadimg.working('logo','company').then((res)=>{
-        this.data.logo = res.data[0].path
+         if(res.errcode!==0){
+          this.msg.error('app',res.errmsg)
+          return
+        }
+        this.data.logo = res.data[0].url
       })
     },
     openfile () {
@@ -425,59 +441,57 @@ new Vue({
 			} 
     },
     submit(){
-      // let name = $('#name').val()
-      // let kind = $('#kind').val()
-      // let iid = $('#iid').val()
-      // let scope = $('#scope').val()
-      // let address = $('#address').val()
-      // let contact_name = $('#address').val()
-      // let summary = $('#summary').val()
-      // let cert = $('#cert').val()
-      // let front = $('#front').val()
-      // let reverse = $('#reverse').val()
-      // let logo = $('#logo').val()
-      // if(name == ''){
-      //   alert('公司名称不能为空',1500)
-      //   // document.getElementById('fail').style.display = 'block'
-      //   // setTimeout("document.getElementById('fail').style.display='none'",1500)
-      //   return false
-      // }else if(kind == 0){
-      //   alert('公司性质不能为空',1500)
-      //   return false
-      // }else if(iid == ''){
-      //   alert('所属行业不能为空',1500)
-      //   return false
-      // }else if(scope == ''){
-      //   alert('公司规模不能为空',1500)
-      //   return false
-      // }else if(address == ''){
-      //   alert('注册地址不能为空',1500)
-      //   return false
-      // }else if(contact_name == ''){
-      //   alert('联系人姓名不能为空',1500)
-      //   return false
-      // }else if(summary == ''){
-      //   alert('公司简介不能为空',1500)
-      //   return false
-      // }else if(cert == ''){
-      //   alert('请上传营业执照',1500)
-      //   return false
-      // }else if(front == ''){
-      //   alert('请上传身份证正面',1500)
-      //   return false
-      // }else if(reverse == ''){
-      //   alert('请上传身份证反面',1500)
-      //   return false
-      // }else if(logo == ''){
-      //   alert('请上传公司logo',1500)
-      //   return false
-      // }
-
-       if(this.group.name == '' || this.group.kind == '' || this.group.iid =='' || this.group.age == '' || this.group.scope == '' || this.group.address == '' || this.group.contact_name == '' || this.group.summary == '' || this.group.certificate == '' || this.group.idcard_front == '' || this.group.idcard_reverse == '' || this.group.logo == ''){
-        document.getElementById('fail').style.display = 'block'
-        setTimeout("document.getElementById('fail').style.display='none'",1500)
-        return
+      let name = $('#name').val()
+      let kind = $('#kind').val()
+      let iid = $('#iid').val()
+      let scope = $('#scope').val()
+      let address = $('#address').val()
+      let contact_name = $('#address').val()
+      let summary = $('#summary').val()
+      let cert = $('#cert').val()
+      let front = $('#front').val()
+      let reverse = $('#reverse').val()
+      let logo = $('#logo').val()
+      if(name == ''){
+        this.msg.error('app','公司名称不能为空')
+        return false
+      }else if(kind == 0){
+        this.msg.error('app','公司性质不能为空')
+        return false
+      }else if(iid == ''){
+        this.msg.error('app','所属行业不能为空')
+        return false
+      }else if(scope == ''){
+        this.msg.error('app','公司规模不能为空')
+        return false
+      }else if(address == ''){
+        this.msg.error('app','注册地址不能为空')
+        return false
+      }else if(contact_name == ''){
+        this.msg.error('app','联系人姓名不能为空')
+        return false
+      }else if(summary == ''){
+        this.msg.error('app','公司简介不能为空')
+        return false
+      }else if(cert == ''){
+        this.msg.error('app','请上传营业执照')
+        return false
+      }else if(front == ''){
+        this.msg.error('app','请上传身份证正面')
+        return false
+      }else if(reverse == ''){
+        this.msg.error('app','请上传身份证反面')
+        return false
+      }else if(logo == ''){
+        this.msg.error('app','请上传公司logo')
+        return false
       }
+
+      //  if(this.group.name == '' || this.group.kind == '' || this.group.iid =='' || this.group.age == '' || this.group.scope == '' || this.group.address == '' || this.group.contact_name == '' || this.group.summary == '' || this.group.certificate == '' || this.group.idcard_front == '' || this.group.idcard_reverse == '' || this.group.logo == ''){
+      //   document.getElementById('fail').style.display = 'block'
+      //   setTimeout("document.getElementById('fail').style.display='none'",1500)
+      //   return
+      // }
 
       let website = document.getElementById('website').value
       let email = document.getElementById('email').value
@@ -503,7 +517,7 @@ new Vue({
         weui.toast('提交成功,请等待审核', 1500);
         setTimeout("window.location.href='/front/company/station'",1500)
       },(err)=>{
-        console.log(err.errmsg)
+        this.msg.error('app',err.errmsg)
       })   
     },
     canjob(){

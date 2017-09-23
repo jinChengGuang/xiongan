@@ -43,16 +43,16 @@
 </div>
 
 <!--失败弹层-->
-    <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+    <!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
       <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
       <p class="weui-toast__content">两次密码不一致</p > 
-    </div>
+    </div>-->
 
 <!--失败弹层-->
-    <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail1'>
+    <!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail1'>
       <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
       <p class="weui-toast__content">该账号已存在</p > 
-    </div>
+    </div>-->
 
 <script>
   new Vue({
@@ -72,15 +72,17 @@
         let psd = document.getElementById('psd').value
         let req = document.getElementById('repeat').value
         if(psd != req){
-          document.getElementById('fail').style.display = 'block'
-          setTimeout("document.getElementById('fail').style.display='none'",1500)
+          // document.getElementById('fail').style.display = 'block'
+          // setTimeout("document.getElementById('fail').style.display='none'",1500)
+          this.msg.error('app','两次密码不一致!')
         }
         this.ajax.post('/company/register',this.company,(res)=>{
           weui.toast('注册成功', 1500)
           setTimeout("window.location.href='/front/login/login'",1500)
         },(err)=>{
-          document.getElementById('fail1').style.display = 'block'
-          setTimeout("document.getElementById('fail1').style.display='none'",1500)
+          // document.getElementById('fail1').style.display = 'block'
+          // setTimeout("document.getElementById('fail1').style.display='none'",1500)
+          this.msg.error('app','该账号已存在!')
         })
       },
     }

@@ -58,9 +58,8 @@ new Vue({
   mounted () {
     this.ajax.get('/company/invite/record', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

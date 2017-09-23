@@ -3,7 +3,7 @@
   <div class="p-x-p5 h-150" style = 'background-image:url("../../../skins/img/header.jpg")'>
     <div class="col-12 text-center p-t-p9" >
       <div class="w100 h100 br-h bg-white ma" @click='openfile'>
-          <img class="w100 h100 br-h" :src="data.head" v-if='data.head'>
+          <img class="w100 h100 br-h" :src="'http://xiongan.tset.hesq.com.cn/image/'+ data.head" v-if='data.head'>
           <i class="icon f-s-26 p-t-25"  v-else >&#xe81e;</i>
           <input type="file" class="dn" id = 'head' @change='upload'>
         </div>
@@ -119,10 +119,10 @@
 </div>
 
 <!--失败弹层-->
-<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+<!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
   <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
   <p class="weui-toast__content">请将信息填写完整！</p > 
-</div>
+</div>-->
 
 <script>
 new Vue({
@@ -139,28 +139,28 @@ new Vue({
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
       this.data.birthday= this.time.dateFormat('yyyy-MM-dd',this.data.birthday)
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/experience/list', (res) => {
       this.experience = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/education/list', (res) => {
       this.education = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/area/list', (res) => {
       this.area = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/experience/list', (res) => {
       this.kind = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -170,26 +170,31 @@ new Vue({
     upload(){
       // 第一个为id 第二个为config定义的规则
       this.uploadimg.working('head','head').then((res)=>{
-        this.data.head = res.data[0].path
+         if(res.errcode!==0){
+          this.msg.error('app',res.errmsg)
+          return
+        }
+        this.data.head = res.data[0].url
         this.ajax.put('/edit/basis', this.data,(res) => {
           weui.toast('编辑成功', 2000);
-        }, (res) => {
-            console.log(res.errmsg)
+        }, (err) => {
+            this.msg.error('app',err.errmsg)
         })
       })
     },
     add(){
       if(this.data.name == '' || !this.data.birthday || this.data.education =='' || this.data.experience == '' || this.data.area == '' || this.data.mobile == '' || this.data.email == ''){
-        document.getElementById('fail').style.display = 'block'
-        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        // document.getElementById('fail').style.display = 'block'
+        // setTimeout("document.getElementById('fail').style.display='none'",1500)
+        this.msg.error('app','请将信息填写完整！')
         return
       }
       this.data.birthday=(new Date(this.data.birthday).getTime() / 1000)
       this.ajax.put('/edit/basis', this.data,(res) => {
       weui.toast('编辑成功', 2000);
       setTimeout("window.location.href='/front/jobseeker/resume_detail'",1500)
-      }, (res) => {
-        console.log(res.errmsg)
+      }, (err) => {
+        this.msg.error('app',err.errmsg)
       })
     }
   }

@@ -34,10 +34,10 @@
   <button @click='next' class="btn bg-00b t-c-white m-t-10 p-x-30">确定</button>
 </div>
 <!--失败弹层-->
-<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+<!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
   <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
   <p class="weui-toast__content">请将信息填写完整！</p > 
-</div>
+</div>-->
 <script>
 new Vue({
   el: '#app',
@@ -49,15 +49,16 @@ new Vue({
   mounted () {
     this.ajax.get('/education/list',(res) => {
       this.education = res.data
-      }, (res) => {
-        console.log(res.errmsg)
+      }, (err) => {
+        this.msg.error('app',err.errmsg)
     })
   },
   methods: {
     next(){
       if(this.p.school == '' || this.p.education == '' || this.p.education == '' || !this.p.start || !this.p.end || this.p.speciality == ''){
-        document.getElementById('fail').style.display = 'block'
-        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        // document.getElementById('fail').style.display = 'block'
+        // setTimeout("document.getElementById('fail').style.display='none'",1500)
+        this.msg.error('app','请将信息填写完整!')
         return
       }
       this.p.start=(parseInt(new Date(this.p.start).getTime().toString().substr(0, 10)))
@@ -69,8 +70,8 @@ new Vue({
       }else{
          setTimeout(function () { window.location.href='/front/jobseeker/resume_detail'}, 2000)
       }
-        }, (res) => {
-          console.log(res.errmsg)
+        }, (err) => {
+          this.msg.error('app',err.errmsg)
         })
     }
   }

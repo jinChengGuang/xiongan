@@ -89,12 +89,12 @@ new Vue({
       this.swiper = this.cultivate[1]
       this.detail = this.cultivate[0][0]
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/company/detail',(res) => {
       this.company = res.data
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/cultivate/status?culid=' + this.id,(res) => {
       this.culStatus = res.data
@@ -102,7 +102,7 @@ new Vue({
         this.status = 1
       }
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -135,7 +135,7 @@ new Vue({
         this.status = 1
         weui.toast('报名成功', 1000);
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     }
   }

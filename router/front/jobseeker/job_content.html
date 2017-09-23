@@ -48,8 +48,8 @@ new Vue({
           this.big.push(v)
         }
       }
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

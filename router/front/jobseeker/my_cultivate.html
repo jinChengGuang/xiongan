@@ -51,7 +51,7 @@ new Vue({
     this.ajax.get('/cultivate/list', (res) => {
       this.list = res.data
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -62,7 +62,7 @@ new Vue({
         weui.toast('取消成功', 500);
         setTimeout("window.location.reload()",1000)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     cancompany(){

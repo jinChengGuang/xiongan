@@ -22,7 +22,7 @@
         <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for='n in job.benefit'>{{n}}</span>
       </p>
       <p class="w-100 m-b-5 m-t-15 pr">
-        <img src="job.logo" class='br-h h-h32 w-w32'>
+        <img :src="'http://xiongan.tset.hesq.com.cn/image/'+job.logo" class='br-h h-h32 w-w32'>
         <span class='f-s-f13 t-c-999' v-if='job.cname.length >14'>{{job.cname.substring(0,14)+'...'}}</span>
         <span class='f-s-f13 t-c-999' v-if='job.cname.length <14'>{{job.cname}}</span>
         <i class="icon f-s-40 m-l-5 p-r-3 pa t-c-999" style='right:0%; bottom:-30%;' v-if='job.examine == 0'> &#xe920; </i>
@@ -64,12 +64,11 @@ new Vue({
   mounted () {
     this.ajax.get('/company/job/list', (res) => {
       this.jobs = res.data
-      console.log(this.jobs)
       for(let job of this.jobs){
         job.benefit = job.benefit.split("|")
       }
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -82,7 +81,7 @@ new Vue({
       dialog1.style.display = 'none'
       setTimeout("window.location.reload()",1500)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     lose(id){
@@ -99,7 +98,7 @@ new Vue({
         weui.toast('恭喜您刷新陈成功!排名会靠前哟', 1500);
         setTimeout("window.location.reload()",2000)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     }
   }

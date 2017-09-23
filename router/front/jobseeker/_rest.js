@@ -1,11 +1,11 @@
 // ---------------------------------------------------------------------------- GET
 exports.get = {
-  /**
+    /**
    * 我的投递
    */
 '/user/resume/record': async (ctx, next) => {
     let uid = ctx.user.id
-    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.*,C.* from  resume_record A,job B,company C where uid = ? and A.jid = B.id and A.cid = C.id order by time desc', [uid])
+    let record = await $.mysql.query($.conf.mysql.main, 'select A.*, B.*,C.kind as kind,C.iid,C.scope,C.summary,C.certificate,C.logo from  resume_record A,job B,company C where uid = ? and A.jid = B.id and A.cid = C.id order by time desc', [uid])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },
@@ -139,13 +139,14 @@ exports.post = {
    */
   '/add/resume/record': async (ctx, next) => {
     let uid = ctx.user.id
+    let cid = ctx.company.id
     let { jid, rid } = ctx.post
     let resume = await $.mysql.query($.conf.mysql.main, 'select * from  resume where id = ?', [rid])
     let job = await $.mysql.query($.conf.mysql.main, 'select * from  job where id = ?', [jid])
     let time = $.time10()
     let data=await $.mysql.push($.conf.mysql.main, 'insert into resume_record (uid, rid, cid, cname, jid, time) values (?,?,?,?,?,?)', [uid, rid,job[0].cid,job[0].cname,jid,time ])
     let companycontent = resume[0].name+'投递了您公司的'+ job[0].name +'岗位，请注意查看'
-    await $.mysql.push($.conf.mysql.main, 'insert into msg (cid,content,type) values (?,?,?) ', [uid, companycontent,3])
+    await $.mysql.push($.conf.mysql.main, 'insert into msg (uid,cid,content,time,isread,type) values (?,?,?,?,?,?) ', [uid, cid, companycontent, time, 0, 2])
     ctx.result.ok.data = data
     $.flush(ctx, ctx.result.ok)
   },

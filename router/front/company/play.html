@@ -31,9 +31,8 @@ new Vue({
     this.mydata = Date.parse(new Date()).toString().slice(0,10);
     this.ajax.get('/live/list', (res) => {
       this.list = res.data
-
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

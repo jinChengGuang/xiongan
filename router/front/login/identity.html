@@ -56,12 +56,12 @@ new Vue({
     this.ajax.get('/company/test/detail',(res)=>{
       this.list = res.data[0]
       },(err)=>{
-        console.log(err.errmsg)
+        this.msg.error('app',err.errmsg)
       })
     this.ajax.get('/user/resume/datail',(res)=>{
       this.is = res.data
     },(err)=>{
-      console.log(err.errmsg)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

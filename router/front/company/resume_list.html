@@ -85,11 +85,11 @@
     </div>
   </div>
 </div>
-<!--失败弹层-->
+<!--失败弹层
 <div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
   <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
   <p class="weui-toast__content">请将内容填写完整！</p> 
-</div>
+</div>-->
 <%- f%>
 <script>
 new Vue({
@@ -118,7 +118,7 @@ new Vue({
     this.ajax.get('/job/resume/record/' + this.id, (res) => {
       this.list = res.data
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -146,16 +146,14 @@ new Vue({
     },
     invite(){
       if(this.p.interviewtime == '' || this.p.mobile == '' || this.p.remark == '' || this.p.mobile == ''){
-        let fail = document.getElementById('fail')
-        fail.style.display = 'block'
-        setTimeout("document.getElementById('fail').style.display='none'",1500)
+        this.msg.error('app','请将内容填写完整！')
         return
       }
       this.ajax.put('/invite/resume',this.p,(res) => {
         weui.toast('邀请成功', 500);
         setTimeout("window.location.reload()",1500)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     show1(id){
@@ -173,7 +171,7 @@ new Vue({
         weui.toast('删除成功', 500);
         setTimeout("window.location.href='/front/company/resume_record'",1500)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     mark(id){
@@ -181,7 +179,7 @@ new Vue({
         weui.toast('标记成功', 500);
         setTimeout("window.location.reload()",1500)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     cancelmark(id){
@@ -189,7 +187,7 @@ new Vue({
         weui.toast('取消标记成功', 500);
         setTimeout("window.location.reload()",1500)
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     }
   }                                          

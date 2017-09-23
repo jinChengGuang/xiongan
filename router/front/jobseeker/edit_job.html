@@ -42,18 +42,18 @@ new Vue({
   mounted () {
     this.ajax.get('/pay/list', (res) => {
       this.pay = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/user/resume', (res) => {
       this.data = res.data[0]
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/area/list', (res) => {
       this.area = res.data
-    }, (res) => {
-      console.log(res.errmsg)
+    }, (err) => {
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -64,8 +64,8 @@ new Vue({
       this.ajax.put('/add/wanted', this.data,(res) => {
         weui.toast('提交成功', 2000);
         window.location.href='/front/jobseeker/resume_detail'
-        }, (res) => {
-          console.log(res.errmsg)
+        }, (err) => {
+          this.msg.error('app',err.errmsg)
         })
     }
   }

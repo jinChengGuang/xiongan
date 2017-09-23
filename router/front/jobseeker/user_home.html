@@ -89,14 +89,17 @@
         this.list = res.data
         console.log(this.list)
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/user/resume/datail',(res)=>{
         this.resume = res.data
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
       this.ajax.get('/user/receive/notread',(res)=>{
         this.msg = res.data
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
     },
     methods:{

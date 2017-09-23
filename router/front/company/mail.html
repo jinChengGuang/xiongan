@@ -48,21 +48,18 @@ new Vue({
   mounted () {
     this.ajax.get('/examine/msg/red', (res) => {
       this.examine = res.data
-      console.log(this.examine)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/user/msg/red', (res) => {
       this.user = res.data
-      console.log(this.user)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/msg/list', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

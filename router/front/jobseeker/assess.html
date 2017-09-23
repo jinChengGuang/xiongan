@@ -8,10 +8,10 @@
   </div>
 </div>
 <!--失败弹层-->
-<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
+<!--<div class="weui-toast weui-animate-fade-in dn" style='padding-top:22px' id='fail'>
     <i class="weui-icon_toast icon f-s-f45 t-c-white m-y-10">&#xe82c;</i> 
     <p class="weui-toast__content">请填写个人评价</p > 
-</div>
+</div>-->
 
 <script>
 new Vue({
@@ -25,18 +25,19 @@ new Vue({
   methods: {
     next(){
       if(this.data.evaluate == ''){
-        let fail = document.getElementById('fail')
-          fail.style.display = 'block'
-        setTimeout(function(){
-          fail.style.display = 'none'
-        },2000)
+        // let fail = document.getElementById('fail')
+        //   fail.style.display = 'block'
+        // setTimeout(function(){
+        //   fail.style.display = 'none'
+        // },2000)
+        this.msg.error('app','请填写个人评价!')
         return
       }
       this.ajax.put('/evaluate/add', this.data,(res) => {
         weui.toast('提交成功', 2000);
         setTimeout(function () { window.location.href='/front/jobseeker/assess_ok'}, 2000)
-        }, (res) => {
-          console.log(res.errmsg)
+        }, (err) => {
+          this.msg.error('app',err.errmsg)
         })
     }
   }

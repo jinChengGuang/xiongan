@@ -43,7 +43,7 @@ new Vue({
       this.record = res.data
       console.log(this.record)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

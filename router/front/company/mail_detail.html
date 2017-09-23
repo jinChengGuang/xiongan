@@ -54,7 +54,7 @@ new Vue({
     this.ajax.get('/msg/detail/' + this.type, (res) => {
       this.list = res.data
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

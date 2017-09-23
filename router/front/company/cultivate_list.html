@@ -112,18 +112,15 @@ new Vue({
       if(this.ruian.length%2 == 1){
         this.last = this.ruian.pop()
       }
-      console.log(this.ruian)
-      console.log(this.last)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/school/detail', (res) => {
       this.school = res.data
-      console.log(this.school)
       this.images = this.school[1]
       this.detail = this.school[0][0]
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {

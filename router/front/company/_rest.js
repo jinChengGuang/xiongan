@@ -70,7 +70,6 @@ exports.get = {
    */
   '/job/all/list': async (ctx, next) => {
     let{ name, area, pay, time,benefit } = ctx.get
-    console.log(area)
     let where = ''
     let params = []
     let sql=''
@@ -98,7 +97,6 @@ exports.get = {
       }
     }
     sql= 'select A.* , B.logo from job A, company B where A.examine = 1 and A.status=1 and A.cid =  B.id ' + where +'order by issue_time desc' 
-    console.log(sql)
     let job = await $.mysql.query($.conf.mysql.main, sql, params)
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
@@ -208,7 +206,7 @@ exports.get = {
    */
   '/job/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.* from job A,company B where A.id = ? and A.cid = B.id', [id])
+    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.kind as kind,B.iid,B.scope,B.summary,B.certificate,B.logo from job A,company B where A.id = ? and A.cid = B.id', [id])
     ctx.result.ok.data = job
     $.flush(ctx, ctx.result.ok)
   },
@@ -263,13 +261,13 @@ exports.get = {
     ctx.result.ok.data = industry
     $.flush(ctx, ctx.result.ok)
   },
-  /**
+    /**
    * 公司详情
    */
   '/company/detail/:id': async (ctx, next) => {
     let id = ctx.params.id
     let company = await $.mysql.query($.conf.mysql.main, 'select * from company where id = ? ', [id])
-    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.* from job A,company B where A.cid = ? and A.examine = 1 and A.status=1 order by A.issue_time desc', [id])
+    let job = await $.mysql.query($.conf.mysql.main, 'select A.*,B.kind as kind,B.iid,B.scope,B.summary,B.certificate,B.logo from job A,company B where A.cid = ? and A.examine = 1 and A.status=1 order by A.issue_time desc', [id])
     let industry = await $.mysql.query($.conf.mysql.main, 'select * from industry where id=?',[company[0].iid])
     ctx.result.ok.data = [company[0],job,industry[0]]
     $.flush(ctx, ctx.result.ok)

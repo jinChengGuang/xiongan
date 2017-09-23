@@ -40,8 +40,8 @@ new Vue({
       this.data = res.data[0]
       this.data.start = this.time.dateFormat('yyyy-MM-dd',this.data.start)
       this.data.end = this.time.dateFormat('yyyy-MM-dd',this.data.end)
-      }, (res) => {
-        console.log(res.errmsg)
+      }, (err) => {
+        this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -57,8 +57,8 @@ new Vue({
       }else{
         setTimeout(function () { window.location.href='/front/jobseeker/resume_detail'}, 2000)
       }
-        }, (res) => {
-          console.log(res.errmsg)
+        }, (err) => {
+          this.msg.error('app',err.errmsg)
         })
     }
   }

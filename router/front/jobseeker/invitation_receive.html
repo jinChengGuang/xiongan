@@ -60,9 +60,8 @@ new Vue({
   mounted () {
     this.ajax.get('/user/invite/record', (res) => {
       this.list = res.data
-      console.log(this.list)
     }, (err) => {
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -70,7 +69,7 @@ new Vue({
       this.ajax.post('/add/cultivate/record',{culid:this.cultivate.id,culname:this.cultivate.name},(res) => {
         weui.toast('报名成功', 2000);
       }, (err) => {
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     phone(date){

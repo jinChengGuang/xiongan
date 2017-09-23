@@ -23,7 +23,7 @@
       </p>
       <p class="w-100 m-b-5 m-t-15 bor-t-sol bor-ea p-t-5">
         <a :href="'/front/company/company_list?id=' + list.cid" class='w-100'>
-          <img :src="list.logo" class='br-h h-h32 w-w32'>
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+list.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length >14'>{{list.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='list.cname.length <14'>{{list.cname}}</span>
           <span class="icon float-right mt-2 f-s-f18 t-c-7c88">&#xe7c4;</a></span>
@@ -98,6 +98,7 @@
         this.requirements_length = res.data[0].requirements
         this.requ = this.requirements
       },(err)=>{
+        this.msg.error('app',err.errmsg)
       })
     },
     methods: {
@@ -121,6 +122,7 @@
         weui.toast('收藏成功', 2000);
         this.show_1 = false
         },(err)=>{
+          this.msg.error('app',err.errmsg)
         })
       },
       go(){

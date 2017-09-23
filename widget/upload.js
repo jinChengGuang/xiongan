@@ -17,9 +17,12 @@ const UPLOAD = {
 						resolve(res.body)
 						return
 					}
-					reject(res)
+
+					resolve(res.body)
+					
 				})
 			} catch (err) {
+				alert(err)
 				reject(err)
 			}
 		})

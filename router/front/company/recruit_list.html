@@ -80,7 +80,7 @@
           <span class="bor p-x-2 m-l-3 br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
         </p>
         <p class="w-100 m-b-5 m-t-15">
-          <img :src="n.logo" class='br-h h-h32 w-w32'>
+          <img :src="'http://xiongan.tset.hesq.com.cn/image/'+ n.logo" class='br-h h-h32 w-w32'>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
           <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
         </p>
@@ -132,7 +132,7 @@
             <span class="bor p-x-2 m-l-8 bor-sol bor-ccc br-5 p-l-5 dinb m-t-5 t-c-758 bg-f6" v-for="i in n.benefit.split('|')">{{i}}</span>
           </p>
           <p class="w-100 m-b-5 m-t-15">
-            <img src="n.logo" class='br-h h-h32 w-w32'>
+            <img :src="'http://xiongan.tset.hesq.com.cn/image/'+n.logo" class='br-h h-h32 w-w32'>
             <span class='f-s-f13 t-c-999' v-if='n.cname.length >14'>{{n.cname.substring(1,15)+'...'}}</span>
             <span class='f-s-f13 t-c-999' v-if='n.cname.length <14'>{{n.cname}}</span>
           </p>
@@ -192,27 +192,27 @@ new Vue({
     this.ajax.get('/job/all/list?name=' + this.p.name,(res)=>{
       this.list = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     }),
     this.ajax.get('/search/recommend?name=' + this.p.name,(res)=>{
       this.recommend = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     }),
     this.ajax.get('/area/list',(res)=>{
       this.area = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/pay/list',(res)=>{
       this.pay = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
     this.ajax.get('/msg/red',(res)=>{
       this.msg = res.data
     },(err)=>{
-      console.log(err)
+      this.msg.error('app',err.errmsg)
     })
   },
   methods: {
@@ -229,7 +229,7 @@ new Vue({
         this.list = res.data
         pop.style.display = 'none'
       },(err)=>{
-        console.log(err)
+        this.msg.error('app',err.errmsg)
       })
     },
     none_1(){
