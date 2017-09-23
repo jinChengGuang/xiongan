@@ -55,8 +55,9 @@
     </div>
     <div class="col-10 p-x-0">
       <a @click='href("/front/company/mail")' class='db w-100 t-c-2b2 va-m  m-l-15'>
-        <span>站内信</span>
-        <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa l-18' v-for='n in list' v-show='n.isread==0'> </span>
+        <span class="pr">站内信
+          <span class = 'in-block absolute h-7 w-7 bg-044 br-h pa r-0' v-for='n in list' v-show='n.isread==0'> </span>
+        </span>
       </a>
     </div>
     <div class="col-1 text-center align-self-center p-x-0"><a @click='href("/front/company/mail")' class='db w-100'><i class="icon">&#xe630;</i></a></div>
