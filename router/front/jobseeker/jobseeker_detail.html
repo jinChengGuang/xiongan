@@ -44,11 +44,11 @@
     <div class='content_1 f-s-6 t-c-666'>
       <p class='m-t-5 f-s-f14 t-c-7f' id='a'>{{str}}</p>
     </div>
-    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement'>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement && statement_length.length > 80'>
       <i class="icon t-c-09a f-s-f35" >&#xe7c3;</i>
     </div>
 
-    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement_length'>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='block' v-if='str==statement_length && statement_length.length > 80'>
       <i class="icon t-c-09a f-s-f35" >&#xe7c2;</i>
     </div>
   </div>
@@ -61,10 +61,10 @@
     <div class='content_1 f-s-6 t-c-666'>
       <p class='pt-3 f-s-f14 t-c-7f'>{{requ}}</p>
     </div>
-    <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements'>
+    <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements && requirements_length.length > 80'>
       <i class="icon t-c-09a f-s-f35">&#xe7c3;</i>
     </div>
-        <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements_length'>
+        <div class='bottom ta-c t-c-009 f-s-12' @click='content'  v-if='requ==requirements_length && requirements_length.length > 80'>
       <i class="icon t-c-09a f-s-f35">&#xe7c2;</i>
     </div>
   </div>
@@ -115,10 +115,10 @@
         this.list = res.data[0]
         this.list.show = false
         this.arry = res.data[0].benefit.split('|')
-        this.statement = res.data[0].statement.substring(0,80)+'...'
+        this.statement = res.data[0].statement.length > 80 ? res.data[0].statement.substring(0,80)+'...' : res.data[0].statement
         this.statement_length = res.data[0].statement
         this.str = this.statement
-        this.requirements = res.data[0].requirements.substring(0,80)+'...'
+        this.requirements = res.data[0].requirements.length > 80? res.data[0].requirements.substring(0,80)+'...' : res.data[0].requirements
         this.requirements_length = res.data[0].requirements
         this.requ = this.requirements
       },(err)=>{

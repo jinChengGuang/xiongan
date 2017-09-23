@@ -15,7 +15,7 @@
         <a :href="'/front/company/class_detail?id='+n.culid" class="float-right f-s-11" style='color:#666666;'><i class="icon">&#xe7c4;</i></a>
       </p>
       <p class="p-b-p5 m-b-0">
-        <span>您于{{time.dateFormat( 'yyyy-MM-dd', n.apply_time)}}报名的{{n.culname}}待审核</span>
+        <span>您于{{time.dateFormat( 'MM/dd', n.apply_time)}}报名的{{n.culname}}待审核</span>
       </p>
       <p class="text-right m-b-0">
         <button type="button" class="btn btn-sm bg-c6 t-c-white m-r-10 p-y-2 p-x-10 br-5" @click='cancompany'>取消报名</button>
@@ -60,7 +60,7 @@ new Vue({
         let dialog2 = document.getElementById('dialog2')
         dialog2.style.display = 'none'
         weui.toast('取消成功', 500);
-        setTimeout("window.location.reload()",1000)
+        window.location.reload()
       }, (err) => {
         this.msg.error('app',err.errmsg)
       })

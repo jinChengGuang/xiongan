@@ -9,12 +9,10 @@ const TIME = {
     // if (_.isNil(time)) {
     //   time = this.time13()
     // }
-
     // 如果传入的是10位时间戳，则变为13位时间戳
-    if (time.toString().length < 10) {
+    if (time.toString().length <= 10) {
       time *= 1000
     }
-    
     // 初始化时间对象d，并使用d转化一个date object
     let d = new Date(time)
     let date = {
@@ -36,7 +34,6 @@ const TIME = {
         format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? date[k] : ('00' + date[k]).substr(('' + date[k]).length))
       }
     }
-
     // 返回
     return format
   }

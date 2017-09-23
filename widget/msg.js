@@ -22,7 +22,5 @@ const MSG = {
           error.style.display = 'none'
           ele.removeChild(error)
         },1500)
-    // 返回
-    return format
   }
 }

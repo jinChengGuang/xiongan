@@ -126,11 +126,9 @@ new Vue({
       window.location.href = 'tel:' + date;
     },
     show2(n){
+      console.log(n)
       let dialog2 = document.getElementById('dialog2')
       dialog2.style.display = 'block'
-      if(this.p.id){
-
-      }
       this.p.id = n.id
       this.p.address = n.address
       this.p.mobile = n.mobile

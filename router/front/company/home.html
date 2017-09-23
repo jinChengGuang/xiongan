@@ -149,6 +149,7 @@ new Vue({
     }),
     this.ajax.get('/msg/red',(res)=>{
       this.msg = res.data
+      console.log(this.msg)
     },(err)=>{
       this.msg.error('app',err.errmsg)
     })

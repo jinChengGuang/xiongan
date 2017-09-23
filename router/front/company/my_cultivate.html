@@ -61,7 +61,7 @@ new Vue({
         let dialog2 = document.getElementById('dialog2')
         dialog2.style.display = 'none'
         weui.toast('取消成功', 500);
-        setTimeout("window.location.reload()",1000)
+        window.location.reload()
       }, (err) => {
         this.msg.error('app',err.errmsg)
       })

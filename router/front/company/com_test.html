@@ -383,7 +383,7 @@ new Vue({
           this.msg.error('app',res.errmsg)
           return
         }
-        this.data.certificate = res.data[0].url
+        this.group.certificate = res.data[0].url
       })
     },
      upload1(){
@@ -393,7 +393,7 @@ new Vue({
           this.msg.error('app',res.errmsg)
           return
         }
-        this.data.idcard_front = res.data[0].url
+        this.group.idcard_front = res.data[0].url
       })
     },
     upload2(){
@@ -403,7 +403,7 @@ new Vue({
           this.msg.error('app',res.errmsg)
           return
         }
-        this.data.idcard_reverse = res.data[0].url
+        this.group.idcard_reverse = res.data[0].url
       })
     },
     upload3(){
@@ -413,7 +413,7 @@ new Vue({
           this.msg.error('app',res.errmsg)
           return
         }
-        this.data.logo = res.data[0].url
+        this.group.logo = res.data[0].url
       })
     },
     openfile () {
@@ -500,13 +500,13 @@ new Vue({
       let emareg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
       let mobreg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
       if(!webreg.test(website)){
-        weui.alert('输入的网址格式不正确')
+        this.msg.error('app','输入的网址格式不正确')
         return false
       }else if(!emareg.test(email)){
-        weui.alert('输入的邮箱格式不正确')
+        this.msg.error('app','输入的邮箱格式不正确')
         return false
       }else if(!mobreg.test(mobile)){
-        weui.alert('输入的手机号格式不正确')
+        this.msg.error('app','输入的手机号格式不正确')
         return false
       }
      

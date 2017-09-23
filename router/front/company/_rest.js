@@ -294,7 +294,7 @@ exports.get = {
    */
   '/job/resume/record/:id': async (ctx, next) => {
     let id = ctx.params.id
-    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname,D.contact_name as linkname from resume_record A,resume B,job C, company D where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? and A.cid = D.id order by A.time desc  ', [id,id])
+    let record = await $.mysql.query($.conf.mysql.main, ' select A.*,B.name as uname,B.education,B.experience,B.mobile as usermobile,B.head as uhead,c.name as jname,D.contact_name as linkname,D.contact_mobile as mobile from resume_record A,resume B,job C, company D where A.jid = ? and A.status <2 and B.id = A.rid and C.id = ? and A.cid = D.id order by A.time desc  ', [id,id])
     ctx.result.ok.data = record
     $.flush(ctx, ctx.result.ok)
   },

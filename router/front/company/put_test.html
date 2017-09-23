@@ -20,7 +20,8 @@
           <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
         </label>
         <div class="col-6 p-x-0">
-          <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="公司名称" v-model='list.name' readonly>
+          <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="公司名称" v-model='list.name' readonly>-->
+          <span class="t-c-00b">{{list.name}}</span>
         </div>
         <div class="col-2 align-self-center text-right p-x-0">
           <span class="t-c-e20">*</span>  
@@ -85,7 +86,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司地址" v-model='list.address' readonly>
+        <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司地址" v-model='list.address' disabled>-->
+        <span class="t-c-00b">{{list.address}}</span>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
@@ -99,7 +101,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司网址" v-model='list.website' readonly>
+        <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司网址" v-model='list.website' readonly>-->
+        <span class="t-c-00b">{{list.website}}</span>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
@@ -113,7 +116,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司邮箱" v-model='list.email' readonly>
+        <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写公司邮箱" v-model='list.email' readonly>-->
+        <span class="t-c-00b">{{list.email}}</span>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
@@ -127,7 +131,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人姓名" v-model='list.contact_name' readonly>
+        <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人姓名" v-model='list.contact_name' readonly>-->
+        <span class="t-c-00b">{{list.contact_name}}</span>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
@@ -141,7 +146,8 @@
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
       <div class="col-6 p-x-0">
-        <input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人电话" v-model='list.contact_mobile' readonly>
+        <!--<input type="text" class="form-control-plaintext border-0 w-100 p-y-0 t-c-00b h-24 f-s-f14" placeholder="请填写联系人电话" v-model='list.contact_mobile' readonly>-->
+        <span class="t-c-00b">{{list.contact_mobile}}</span>
       </div>
       <div class="col-2 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
@@ -154,10 +160,11 @@
       <label for="" class="col-4 col-from-label align-self-center m-b-0 p-x-0 f-s-f15 pr">公司简介
         <span class="w-w1 dinb bg-f7 h-17 v-a ml-1 pa r-17 t-25"></span>
       </label>
-      <div class="col-6 p-x-0">
-        <textarea rows="3" class="border-0 t-c-00b f-s-f14" v-model='list.summary' readonly>保定保定保定</textarea>
+      <div class="col-7 p-x-0">
+        <!--<textarea rows="3" class="border-0 t-c-00b f-s-f14" v-model='list.summary' readonly>保定保定保定</textarea>-->
+        <span class="t-c-00b">{{list.summary}}</span>
       </div>
-      <div class="col-2 align-self-center text-right p-x-0">
+      <div class="col-1 align-self-center text-right p-x-0">
         <span class="t-c-e20">*</span>  
       </div>
     </div>
